@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python游戏化学习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        nav {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #4CAF50;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+        .game-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .level-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .level-btn {
+            padding: 12px 24px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .level-btn:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        .level-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
+        .level-btn.locked {
+            background: #ddd;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .level-content {
+            display: none;
+        }
+        .level-content.active {
+            display: block;
+        }
+        .level-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #4CAF50;
+        }
+        .level-title {
+            font-size: 1.8em;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .level-description {
+            color: #666;
+        }
+        .learning-objectives {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .learning-objectives h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .learning-objectives ul {
+            margin-left: 20px;
+        }
+        .code-example {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        .code-example pre {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .challenge {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+        .challenge h3 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .challenge-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        .submit-btn {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #45a049;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .feedback.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .feedback.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 20px;
+            height: 20px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: #4CAF50;
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 20px;
+        }
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+        }
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Python游戏化学习</h1>
+            <p class="subtitle">以游戏的方式循序渐进学习Python编程</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Python Game Learn</div>
+            <ul class="nav-links">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">关卡</a></li>
+                <li><a href="#">关于</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="progress-text" id="progressText">完成进度: 0%</p>
+        
+        <div class="game-container">
+            <h2>选择关卡</h2>
+            <div class="level-selector" id="levelSelector">
+                <button class="level-btn active" data-level="1">关卡 1: 变量与输出</button>
+                <button class="level-btn locked" data-level="2">关卡 2: 基本数据类型</button>
+                <button class="level-btn locked" data-level="3">关卡 3: 条件语句</button>
+                <button class="level-btn locked" data-level="4">关卡 4: 循环结构</button>
+                <button class="level-btn locked" data-level="5">关卡 5: 函数基础</button>
+                <button class="level-btn locked" data-level="6">关卡 6: 列表操作</button>
+                <button class="level-btn locked" data-level="7">关卡 7: 字典与集合</button>
+                <button class="level-btn locked" data-level="8">关卡 8: 文件操作</button>
+                <button class="level-btn locked" data-level="9">关卡 9: 异常处理</button>
+                <button class="level-btn locked" data-level="10">关卡 10: 综合挑战</button>
+            </div>
+            
+            <div class="level-content active" id="level1">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 1: 变量与输出</h2>
+                    <p class="level-description">学习如何创建变量并使用print()函数输出内容</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解变量的概念</li>
+                        <li>学习如何给变量赋值</li>
+                        <li>掌握print()函数的基本用法</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># 创建变量并赋值
+name = "Python"
+age = 30
+
+# 输出变量内容
+print("你好，" + name + "!")
+print("我今年" + str(age) + "岁了")</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>创建两个变量，分别存储你的姓名和年龄，然后使用print()函数输出一句问候语。</p>
+                    <textarea class="challenge-input" id="level1Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel1()">提交答案</button>
+                    <div class="feedback" id="level1Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level2">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 2: 基本数据类型</h2>
+                    <p class="level-description">学习Python的基本数据类型：整数、浮点数、字符串和布尔值</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解Python的基本数据类型</li>
+                        <li>学习如何进行类型转换</li>
+                        <li>掌握基本的算术运算符</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># 不同类型的变量
+integer = 10
+float_num = 3.14
+string = "Hello"
+bool_value = True
+
+# 类型转换
+print(int(3.9))  # 输出: 3
+print(str(42))   # 输出: "42"
+print(float("3.14"))  # 输出: 3.14
+
+# 算术运算
+print(10 + 5)    # 加法
+print(10 - 5)    # 减法
+print(10 * 5)    # 乘法
+print(10 / 5)    # 除法</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>计算一个圆的面积，其中半径为5。使用公式：面积 = π × 半径²</p>
+                    <textarea class="challenge-input" id="level2Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel2()">提交答案</button>
+                    <div class="feedback" id="level2Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level3">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 3: 条件语句</h2>
+                    <p class="level-description">学习使用if、elif和else语句进行条件判断</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解条件语句的基本结构</li>
+                        <li>学习比较运算符的使用</li>
+                        <li>掌握逻辑运算符的使用</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># 条件语句示例
+age = 18
+
+if age >= 18:
+    print("你是成年人")
+elif age >= 13:
+    print("你是青少年")
+else:
+    print("你是儿童")
+
+# 逻辑运算符
+x = 10
+y = 5
+
+if x > 5 and y < 10:
+    print("两个条件都满足")
+
+if x > 5 or y > 10:
+    print("至少有一个条件满足")</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>编写一个程序，根据用户输入的分数（0-100），输出对应的等级：
+                    90-100: A, 80-89: B, 70-79: C, 60-69: D, 0-59: F</p>
+                    <textarea class="challenge-input" id="level3Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel3()">提交答案</button>
+                    <div class="feedback" id="level3Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level4">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 4: 循环结构</h2>
+                    <p class="level-description">学习使用for和while循环进行重复操作</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解for循环的基本用法</li>
+                        <li>学习while循环的基本用法</li>
+                        <li>掌握break和continue语句的使用</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># for循环示例
+for i in range(5):
+    print(i)  # 输出: 0, 1, 2, 3, 4
+
+# while循环示例
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# break和continue
+for i in range(10):
+    if i == 5:
+        break  # 终止循环
+    if i % 2 == 0:
+        continue  # 跳过当前迭代
+    print(i)</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>使用循环计算1到100的和</p>
+                    <textarea class="challenge-input" id="level4Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel4()">提交答案</button>
+                    <div class="feedback" id="level4Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level5">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 5: 函数基础</h2>
+                    <p class="level-description">学习如何定义和调用函数</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解函数的基本概念</li>
+                        <li>学习如何定义函数</li>
+                        <li>掌握函数参数和返回值的使用</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># 定义函数
+def greet(name):
+    """问候函数"""
+    return "你好，" + name + "!"
+
+# 调用函数
+print(greet("Python"))  # 输出: 你好，Python!
+
+# 带默认参数的函数
+def add(a, b=10):
+    return a + b
+
+print(add(5))      # 输出: 15
+print(add(5, 20))  # 输出: 25</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>定义一个函数，计算两个数的最大公约数</p>
+                    <textarea class="challenge-input" id="level5Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel5()">提交答案</button>
+                    <div class="feedback" id="level5Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level6">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 6: 列表操作</h2>
+                    <p class="level-description">学习列表的创建、访问和修改操作</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解列表的基本概念</li>
+                        <li>学习列表的索引和切片操作</li>
+                        <li>掌握列表的常用方法</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># 创建列表
+fruits = ["苹果", "香蕉", "橙子", "葡萄"]
+
+# 访问元素
+print(fruits[0])  # 输出: 苹果
+print(fruits[-1])  # 输出: 葡萄
+
+# 切片操作
+print(fruits[1:3])  # 输出: ["香蕉", "橙子"]
+
+# 列表方法
+fruits.append("草莓")  # 添加元素
+print(fruits)
+
+fruits.remove("香蕉")  # 删除元素
+print(fruits)
+
+fruits.sort()  # 排序
+print(fruits)</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>创建一个列表，包含10个随机整数，然后计算列表的平均值</p>
+                    <textarea class="challenge-input" id="level6Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel6()">提交答案</button>
+                    <div class="feedback" id="level6Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level7">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 7: 字典与集合</h2>
+                    <p class="level-description">学习字典和集合的使用</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解字典的基本概念和使用</li>
+                        <li>学习集合的基本概念和使用</li>
+                        <li>掌握字典和集合的常用操作</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># 创建字典
+student = {
+    "name": "张三",
+    "age": 18,
+    "grade": "A"
+}
+
+# 访问字典元素
+print(student["name"])  # 输出: 张三
+print(student.get("age"))  # 输出: 18
+
+# 修改字典
+student["age"] = 19
+student["gender"] = "男"
+print(student)
+
+# 创建集合
+fruits = {"苹果", "香蕉", "橙子"}
+another_set = {"香蕉", "葡萄", "草莓"}
+
+# 集合操作
+print(fruits | another_set)  # 并集
+print(fruits & another_set)  # 交集
+print(fruits - another_set)  # 差集</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>创建一个字典，存储学生的姓名和成绩，然后计算所有学生的平均成绩</p>
+                    <textarea class="challenge-input" id="level7Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel7()">提交答案</button>
+                    <div class="feedback" id="level7Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level8">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 8: 文件操作</h2>
+                    <p class="level-description">学习如何读写文件</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解文件操作的基本概念</li>
+                        <li>学习如何打开和关闭文件</li>
+                        <li>掌握文件的读写操作</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># 写入文件
+with open("example.txt", "w", encoding="utf-8") as f:
+    f.write("Hello, Python!\n")
+    f.write("这是一个文件操作示例")
+
+# 读取文件
+with open("example.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    print(content)
+
+# 逐行读取
+with open("example.txt", "r", encoding="utf-8") as f:
+    for line in f:
+        print(line.strip())</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>编写一个程序，读取一个文本文件，统计文件中单词的数量</p>
+                    <textarea class="challenge-input" id="level8Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel8()">提交答案</button>
+                    <div class="feedback" id="level8Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level9">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 9: 异常处理</h2>
+                    <p class="level-description">学习如何处理程序运行中的异常</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>了解异常的基本概念</li>
+                        <li>学习try-except语句的使用</li>
+                        <li>掌握异常处理的最佳实践</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例代码</h3>
+                    <pre># 基本异常处理
+try:
+    num = int(input("请输入一个数字: "))
+    result = 10 / num
+    print("结果:", result)
+except ValueError:
+    print("错误: 请输入有效的数字")
+except ZeroDivisionError:
+    print("错误: 除数不能为零")
+except Exception as e:
+    print("发生了错误:", str(e))
+finally:
+    print("程序执行完毕")</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>编写一个程序，处理用户输入的两个数字的除法运算，捕获可能的异常</p>
+                    <textarea class="challenge-input" id="level9Input" rows="5" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel9()">提交答案</button>
+                    <div class="feedback" id="level9Feedback"></div>
+                </div>
+            </div>
+            
+            <div class="level-content" id="level10">
+                <div class="level-header">
+                    <h2 class="level-title">关卡 10: 综合挑战</h2>
+                    <p class="level-description">综合运用所学知识，完成一个完整的Python程序</p>
+                </div>
+                
+                <div class="learning-objectives">
+                    <h3>学习目标</h3>
+                    <ul>
+                        <li>综合运用前面所学的知识</li>
+                        <li>学习如何设计和实现一个完整的程序</li>
+                        <li>培养解决问题的能力</li>
+                    </ul>
+                </div>
+                
+                <div class="code-example">
+                    <h3>示例项目：猜数字游戏</h3>
+                    <pre>import random
+
+def guess_number():
+    """猜数字游戏"""
+    number = random.randint(1, 100)
+    attempts = 0
+    
+    print("欢迎来到猜数字游戏！")
+    print("我已经想好了一个1到100之间的数字，你有10次机会猜它。")
+    
+    while attempts < 10:
+        try:
+            guess = int(input("请输入你的猜测: "))
+            attempts += 1
+            
+            if guess < number:
+                print("太小了！")
+            elif guess > number:
+                print("太大了！")
+            else:
+                print(f"恭喜你，猜对了！你用了{attempts}次机会。")
+                return
+        except ValueError:
+            print("请输入有效的数字！")
+    
+    print(f"很遗憾，你没有在10次机会内猜对。正确答案是{number}。")
+
+# 运行游戏
+guess_number()</pre>
+                </div>
+                
+                <div class="challenge">
+                    <h3>挑战任务</h3>
+                    <p>设计并实现一个简单的计算器程序，支持加减乘除四则运算</p>
+                    <textarea class="challenge-input" id="level10Input" rows="10" placeholder="请输入你的代码..."></textarea>
+                    <button class="submit-btn" onclick="checkLevel10()">提交答案</button>
+                    <div class="feedback" id="level10Feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Python游戏化学习平台. 保留所有权利.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 关卡状态管理
+        let completedLevels = [1]; // 已完成的关卡
+        let currentLevel = 1;
+        
+        // 更新进度条
+        function updateProgress() {
+            const progress = (completedLevels.length / 10) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `完成进度: ${Math.round(progress)}%`;
+        }
+        
+        // 初始化关卡选择器
+        function initLevelSelector() {
+            const levelButtons = document.querySelectorAll('.level-btn');
+            levelButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const level = parseInt(this.dataset.level);
+                    if (completedLevels.includes(level) || level === completedLevels[completedLevels.length - 1] + 1) {
+                        switchLevel(level);
+                    }
+                });
+            });
+        }
+        
+        // 切换关卡
+        function switchLevel(level) {
+            // 隐藏所有关卡内容
+            document.querySelectorAll('.level-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 显示当前关卡内容
+            document.getElementById(`level${level}`).classList.add('active');
+            
+            // 更新按钮状态
+            document.querySelectorAll('.level-btn').forEach(button => {
+                const btnLevel = parseInt(button.dataset.level);
+                button.classList.remove('active', 'locked');
+                
+                if (btnLevel === level) {
+                    button.classList.add('active');
+                } else if (!completedLevels.includes(btnLevel) && btnLevel !== completedLevels[completedLevels.length - 1] + 1) {
+                    button.classList.add('locked');
+                }
+            });
+            
+            currentLevel = level;
+        }
+        
+        // 完成关卡
+        function completeLevel(level) {
+            if (!completedLevels.includes(level)) {
+                completedLevels.push(level);
+                completedLevels.sort((a, b) => a - b);
+                updateProgress();
+                
+                // 解锁下一关
+                if (level < 10) {
+                    const nextLevelBtn = document.querySelector(`.level-btn[data-level="${level + 1}"]`);
+                    if (nextLevelBtn) {
+                        nextLevelBtn.classList.remove('locked');
+                    }
+                }
+            }
+        }
+        
+        // 关卡检查函数
+        function checkLevel1() {
+            const input = document.getElementById('level1Input').value;
+            const feedback = document.getElementById('level1Feedback');
+            
+            if (input.includes('print') && input.includes('=')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 1！';
+                completeLevel(1);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保使用了print()函数和变量赋值。';
+            }
+        }
+        
+        function checkLevel2() {
+            const input = document.getElementById('level2Input').value;
+            const feedback = document.getElementById('level2Feedback');
+            
+            if (input.includes('3.14') && input.includes('*') && input.includes('**')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 2！';
+                completeLevel(2);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保使用了π值和正确的计算公式。';
+            }
+        }
+        
+        function checkLevel3() {
+            const input = document.getElementById('level3Input').value;
+            const feedback = document.getElementById('level3Feedback');
+            
+            if (input.includes('if') && input.includes('elif') && input.includes('else')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 3！';
+                completeLevel(3);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保使用了if-elif-else语句。';
+            }
+        }
+        
+        function checkLevel4() {
+            const input = document.getElementById('level4Input').value;
+            const feedback = document.getElementById('level4Feedback');
+            
+            if ((input.includes('for') || input.includes('while')) && input.includes('+=')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 4！';
+                completeLevel(4);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保使用了循环和累加操作。';
+            }
+        }
+        
+        function checkLevel5() {
+            const input = document.getElementById('level5Input').value;
+            const feedback = document.getElementById('level5Feedback');
+            
+            if (input.includes('def') && input.includes('return')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 5！';
+                completeLevel(5);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保定义了函数并使用了return语句。';
+            }
+        }
+        
+        function checkLevel6() {
+            const input = document.getElementById('level6Input').value;
+            const feedback = document.getElementById('level6Feedback');
+            
+            if (input.includes('list') && input.includes('random') && input.includes('sum')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 6！';
+                completeLevel(6);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保使用了列表和随机数生成。';
+            }
+        }
+        
+        function checkLevel7() {
+            const input = document.getElementById('level7Input').value;
+            const feedback = document.getElementById('level7Feedback');
+            
+            if (input.includes('{') && input.includes(':') && input.includes('sum')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 7！';
+                completeLevel(7);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保使用了字典存储学生信息。';
+            }
+        }
+        
+        function checkLevel8() {
+            const input = document.getElementById('level8Input').value;
+            const feedback = document.getElementById('level8Feedback');
+            
+            if (input.includes('open') && input.includes('read') && input.includes('split')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 8！';
+                completeLevel(8);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保使用了文件读写操作。';
+            }
+        }
+        
+        function checkLevel9() {
+            const input = document.getElementById('level9Input').value;
+            const feedback = document.getElementById('level9Feedback');
+            
+            if (input.includes('try') && input.includes('except')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 9！';
+                completeLevel(9);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保使用了try-except语句。';
+            }
+        }
+        
+        function checkLevel10() {
+            const input = document.getElementById('level10Input').value;
+            const feedback = document.getElementById('level10Feedback');
+            
+            if (input.includes('def') && input.includes('if') && input.includes('input')) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '恭喜你完成了关卡 10！你已经掌握了Python的基本技能！';
+                completeLevel(10);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = '请检查你的代码，确保实现了一个完整的计算器程序。';
+            }
+        }
+        
+        // 初始化
+        window.onload = function() {
+            initLevelSelector();
+            updateProgress();
+        };
+    </script>
+</body>
+</html>
