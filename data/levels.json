@@ -1,0 +1,134 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "title": "关卡 1: 变量与输出",
+      "description": "学习如何创建变量并使用print()函数输出内容",
+      "objectives": [
+        "了解变量的概念",
+        "学习如何给变量赋值",
+        "掌握print()函数的基本用法"
+      ],
+      "example": "# 创建变量并赋值\nname = \"Python\"\nage = 30\n\n# 输出变量内容\nprint(\"你好，\" + name + \"!\")\nprint(\"我今年\" + str(age) + \"岁了\")",
+      "challenge": "创建两个变量，分别存储你的姓名和年龄，然后使用print()函数输出一句问候语。",
+      "hints": ["使用 = 符号给变量赋值", "使用 print() 函数输出内容"]
+    },
+    {
+      "id": 2,
+      "title": "关卡 2: 基本数据类型",
+      "description": "学习Python的基本数据类型：整数、浮点数、字符串和布尔值",
+      "objectives": [
+        "了解Python的基本数据类型",
+        "学习如何进行类型转换",
+        "掌握基本的算术运算符"
+      ],
+      "example": "# 不同类型的变量\ninteger = 10\nfloat_num = 3.14\nstring = \"Hello\"\nbool_value = True\n\n# 类型转换\nprint(int(3.9))  # 输出: 3\nprint(str(42))   # 输出: \"42\"\nprint(float(\"3.14\"))  # 输出: 3.14\n\n# 算术运算\nprint(10 + 5)    # 加法\nprint(10 - 5)    # 减法\nprint(10 * 5)    # 乘法\nprint(10 / 5)    # 除法",
+      "challenge": "计算一个圆的面积，其中半径为5。使用公式：面积 = π × 半径²",
+      "hints": ["使用 3.14 作为π的值", "使用 ** 运算符进行幂运算"]
+    },
+    {
+      "id": 3,
+      "title": "关卡 3: 条件语句",
+      "description": "学习使用if、elif和else语句进行条件判断",
+      "objectives": [
+        "了解条件语句的基本结构",
+        "学习比较运算符的使用",
+        "掌握逻辑运算符的使用"
+      ],
+      "example": "# 条件语句示例\nage = 18\n\nif age >= 18:\n    print(\"你是成年人\")\nelif age >= 13:\n    print(\"你是青少年\")\nelse:\n    print(\"你是儿童\")\n\n# 逻辑运算符\nx = 10\ny = 5\n\nif x > 5 and y < 10:\n    print(\"两个条件都满足\")\n\nif x > 5 or y > 10:\n    print(\"至少有一个条件满足\")",
+      "challenge": "编写一个程序，根据用户输入的分数（0-100），输出对应的等级：\n90-100: A, 80-89: B, 70-79: C, 60-69: D, 0-59: F",
+      "hints": ["使用 if-elif-else 结构", "使用比较运算符判断分数范围"]
+    },
+    {
+      "id": 4,
+      "title": "关卡 4: 循环结构",
+      "description": "学习使用for和while循环进行重复操作",
+      "objectives": [
+        "了解for循环的基本用法",
+        "学习while循环的基本用法",
+        "掌握break和continue语句的使用"
+      ],
+      "example": "# for循环示例\nfor i in range(5):\n    print(i)  # 输出: 0, 1, 2, 3, 4\n\n# while循环示例\ncount = 0\nwhile count < 5:\n    print(count)\n    count += 1\n\n# break和continue\nfor i in range(10):\n    if i == 5:\n        break  # 终止循环\n    if i % 2 == 0:\n        continue  # 跳过当前迭代\n    print(i)",
+      "challenge": "使用循环计算1到100的和",
+      "hints": ["使用 for 循环或 while 循环", "使用 += 运算符累加"]
+    },
+    {
+      "id": 5,
+      "title": "关卡 5: 函数基础",
+      "description": "学习如何定义和调用函数",
+      "objectives": [
+        "了解函数的基本概念",
+        "学习如何定义函数",
+        "掌握函数参数和返回值的使用"
+      ],
+      "example": "# 定义函数\ndef greet(name):\n    \"\"\"问候函数\"\"\"\n    return \"你好，\" + name + \"!\"\n\n# 调用函数\nprint(greet(\"Python\"))  # 输出: 你好，Python!\n\n# 带默认参数的函数\ndef add(a, b=10):\n    return a + b\n\nprint(add(5))      # 输出: 15\nprint(add(5, 20))  # 输出: 25",
+      "challenge": "定义一个函数，计算两个数的最大公约数",
+      "hints": ["使用 def 关键字定义函数", "使用 return 返回结果"]
+    },
+    {
+      "id": 6,
+      "title": "关卡 6: 列表操作",
+      "description": "学习列表的创建、访问和修改操作",
+      "objectives": [
+        "了解列表的基本概念",
+        "学习列表的索引和切片操作",
+        "掌握列表的常用方法"
+      ],
+      "example": "# 创建列表\nfruits = [\"苹果\", \"香蕉\", \"橙子\", \"葡萄\"]\n\n# 访问元素\nprint(fruits[0])  # 输出: 苹果\nprint(fruits[-1])  # 输出: 葡萄\n\n# 切片操作\nprint(fruits[1:3])  # 输出: [\"香蕉\", \"橙子\"]\n\n# 列表方法\nfruits.append(\"草莓\")  # 添加元素\nprint(fruits)\n\nfruits.remove(\"香蕉\")  # 删除元素\nprint(fruits)\n\nfruits.sort()  # 排序\nprint(fruits)",
+      "challenge": "创建一个列表，包含10个随机整数，然后计算列表的平均值",
+      "hints": ["使用 random 模块生成随机数", "使用 sum() 函数和 len() 函数计算平均值"]
+    },
+    {
+      "id": 7,
+      "title": "关卡 7: 字典与集合",
+      "description": "学习字典和集合的使用",
+      "objectives": [
+        "了解字典的基本概念和使用",
+        "学习集合的基本概念和使用",
+        "掌握字典和集合的常用操作"
+      ],
+      "example": "# 创建字典\nstudent = {\n    \"name\": \"张三\",\n    \"age\": 18,\n    \"grade\": \"A\"\n}\n\n# 访问字典元素\nprint(student[\"name\"])  # 输出: 张三\nprint(student.get(\"age\"))  # 输出: 18\n\n# 修改字典\nstudent[\"age\"] = 19\nstudent[\"gender\"] = \"男\"\nprint(student)\n\n# 创建集合\nfruits = {\"苹果\", \"香蕉\", \"橙子\"}\nanother_set = {\"香蕉\", \"葡萄\", \"草莓\"}\n\n# 集合操作\nprint(fruits | another_set)  # 并集\nprint(fruits & another_set)  # 交集\nprint(fruits - another_set)  # 差集",
+      "challenge": "创建一个字典，存储学生的姓名和成绩，然后计算所有学生的平均成绩",
+      "hints": ["使用字典存储学生信息", "使用 values() 方法获取所有成绩"]
+    },
+    {
+      "id": 8,
+      "title": "关卡 8: 文件操作",
+      "description": "学习如何读写文件",
+      "objectives": [
+        "了解文件操作的基本概念",
+        "学习如何打开和关闭文件",
+        "掌握文件的读写操作"
+      ],
+      "example": "# 写入文件\nwith open(\"example.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Hello, Python!\\n\")\n    f.write(\"这是一个文件操作示例\")\n\n# 读取文件\nwith open(\"example.txt\", \"r\", encoding=\"utf-8\") as f:\n    content = f.read()\n    print(content)\n\n# 逐行读取\nwith open(\"example.txt\", \"r\", encoding=\"utf-8\") as f:\n    for line in f:\n        print(line.strip())",
+      "challenge": "编写一个程序，读取一个文本文件，统计文件中单词的数量",
+      "hints": ["使用 with 语句打开文件", "使用 split() 方法分割单词"]
+    },
+    {
+      "id": 9,
+      "title": "关卡 9: 异常处理",
+      "description": "学习如何处理程序运行中的异常",
+      "objectives": [
+        "了解异常的基本概念",
+        "学习try-except语句的使用",
+        "掌握异常处理的最佳实践"
+      ],
+      "example": "# 基本异常处理\ntry:\n    num = int(input(\"请输入一个数字: \"))\n    result = 10 / num\n    print(\"结果:\", result)\nexcept ValueError:\n    print(\"错误: 请输入有效的数字\")\nexcept ZeroDivisionError:\n    print(\"错误: 除数不能为零\")\nexcept Exception as e:\n    print(\"发生了错误:\", str(e))\nfinally:\n    print(\"程序执行完毕\")",
+      "challenge": "编写一个程序，处理用户输入的两个数字的除法运算，捕获可能的异常",
+      "hints": ["使用 try-except 语句", "捕获 ValueError 和 ZeroDivisionError"]
+    },
+    {
+      "id": 10,
+      "title": "关卡 10: 综合挑战",
+      "description": "综合运用所学知识，完成一个完整的Python程序",
+      "objectives": [
+        "综合运用前面所学的知识",
+        "学习如何设计和实现一个完整的程序",
+        "培养解决问题的能力"
+      ],
+      "example": "import random\n\ndef guess_number():\n    \"\"\"猜数字游戏\"\"\"\n    number = random.randint(1, 100)\n    attempts = 0\n    \n    print(\"欢迎来到猜数字游戏！\")\n    print(\"我已经想好了一个1到100之间的数字，你有10次机会猜它。\")\n    \n    while attempts < 10:\n        try:\n            guess = int(input(\"请输入你的猜测: \"))\n            attempts += 1\n            \n            if guess < number:\n                print(\"太小了！\")\n            elif guess > number:\n                print(\"太大了！\")\n            else:\n                print(f\"恭喜你，猜对了！你用了{attempts}次机会。\")\n                return\n        except ValueError:\n            print(\"请输入有效的数字！\")\n    \n    print(f\"很遗憾，你没有在10次机会内猜对。正确答案是{number}。\")\n\n# 运行游戏\nguess_number()",
+      "challenge": "设计并实现一个简单的计算器程序，支持加减乘除四则运算",
+      "hints": ["使用函数实现不同的运算", "使用循环让用户可以连续计算"]
+    }
+  ]
+}
