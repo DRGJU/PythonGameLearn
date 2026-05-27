@@ -7,13 +7,23 @@
     <meta name="keywords" content="Python, 编程学习, 游戏化学习, Python教程">
     <meta name="author" content="Python Game Learn">
     <meta name="theme-color" content="#1a1a2e">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <title>Python 游戏化学习 - 关卡</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('loaded');
+      });
+    </script>
 </head>
 <body>
     <div class="background-effects">
@@ -58,6 +68,17 @@
     </header>
 
     <main class="container main-content" style="padding-top: 20px;">
+        <div class="level-navigation-bar" id="level-navigation-bar">
+            <button class="level-nav-arrow" id="level-nav-prev" disabled>‹</button>
+            <div class="level-nav-current" id="level-nav-current">第 1 关 / 共 30 关</div>
+            <button class="level-nav-arrow" id="level-nav-next">›</button>
+            <div class="level-nav-shortcut-hint">
+                <span>快捷键:</span>
+                <span class="level-nav-shortcut-key">←</span>
+                <span>/</span>
+                <span class="level-nav-shortcut-key">→</span>
+            </div>
+        </div>
         <div class="level-content-wrapper" id="level-content-wrapper">
             <div class="level-content active" id="level-content">
                 <div class="level-header" id="level-header">

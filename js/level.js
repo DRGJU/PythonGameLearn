@@ -11,6 +11,7 @@ class LevelPage {
         this.dragBlocks = [];
         this.droppedBlocks = [];
         this.completedLevels = this.loadCompletedLevels();
+        this.isInputFocused = false;
         
         this.init();
     }
@@ -79,6 +80,94 @@ class LevelPage {
         document.getElementById('guided-prev').addEventListener('click', () => this.prevGuidedStep());
         document.getElementById('guided-next').addEventListener('click', () => this.nextGuidedStep());
         document.getElementById('guided-use-code').addEventListener('click', () => this.useGuidedCode());
+
+        document.getElementById('level-nav-prev').addEventListener('click', () => this.navigateToPrevLevel());
+        document.getElementById('level-nav-next').addEventListener('click', () => this.navigateToNextLevel());
+
+        this.setupKeyboardNavigation();
+        this.setupInputFocusListeners();
+    }
+
+    setupKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+            if (this.isInputFocused) return;
+            
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                this.navigateToPrevLevel();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                this.navigateToNextLevel();
+            }
+        });
+    }
+
+    setupInputFocusListeners() {
+        const inputs = document.querySelectorAll('textarea, input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                this.isInputFocused = true;
+            });
+            input.addEventListener('blur', () => {
+                this.isInputFocused = false;
+            });
+        });
+    }
+
+    navigateToPrevLevel() {
+        if (this.currentLevelId <= 1) {
+            this.showNavigationHint('已经是第一个关卡');
+            return;
+        }
+        
+        const prevLevelId = this.currentLevelId - 1;
+        if (this.isLevelUnlocked(prevLevelId)) {
+            this.navigateToLevel(prevLevelId);
+        } else {
+            this.showNavigationHint('上一关尚未解锁');
+        }
+    }
+
+    navigateToNextLevel() {
+        const maxUnlockedLevel = this.getMaxUnlockedLevel();
+        if (this.currentLevelId >= maxUnlockedLevel) {
+            this.showNavigationHint('已经是最后一个已解锁关卡');
+            return;
+        }
+        
+        const nextLevelId = this.currentLevelId + 1;
+        if (this.isLevelUnlocked(nextLevelId)) {
+            this.navigateToLevel(nextLevelId);
+        }
+    }
+
+    getMaxUnlockedLevel() {
+        const maxCompleted = Math.max(...this.completedLevels, 0);
+        return maxCompleted + 1;
+    }
+
+    isLevelUnlocked(levelId) {
+        return levelId === 1 || this.completedLevels.includes(levelId - 1);
+    }
+
+    navigateToLevel(levelId) {
+        window.location.href = `level.html?level=${levelId}`;
+    }
+
+    showNavigationHint(message) {
+        const hint = document.createElement('div');
+        hint.className = 'navigation-hint';
+        hint.textContent = message;
+        document.body.appendChild(hint);
+        
+        setTimeout(() => {
+            hint.classList.add('show');
+        }, 50);
+        
+        setTimeout(() => {
+            hint.classList.remove('show');
+            setTimeout(() => hint.remove(), 300);
+        }, 2000);
     }
 
     renderLevel() {
@@ -89,6 +178,7 @@ class LevelPage {
             return;
         }
 
+        this.updateNavigationBar();
         this.renderHeader();
         this.renderLearningObjectives();
         this.renderCodeExample();
@@ -99,6 +189,18 @@ class LevelPage {
         this.renderChoiceMode();
         this.renderFillMode();
         this.renderGuidedMode();
+    }
+
+    updateNavigationBar() {
+        const totalLevels = this.levels.length;
+        const prevBtn = document.getElementById('level-nav-prev');
+        const nextBtn = document.getElementById('level-nav-next');
+        const currentDisplay = document.getElementById('level-nav-current');
+
+        currentDisplay.textContent = `第 ${this.currentLevelId} 关 / 共 ${totalLevels} 关`;
+
+        prevBtn.disabled = this.currentLevelId <= 1 || !this.isLevelUnlocked(this.currentLevelId - 1);
+        nextBtn.disabled = this.currentLevelId >= this.getMaxUnlockedLevel();
     }
 
     renderHeader() {

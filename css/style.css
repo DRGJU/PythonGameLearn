@@ -2188,3 +2188,102 @@ body {
     font-size: 1em;
   }
 }
+
+/* 导航提示样式 */
+.navigation-hint {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  padding: 20px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: 1.1em;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.navigation-hint.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* 关卡位置指示器 */
+.level-navigation-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+}
+
+.level-nav-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.level-nav-arrow {
+  padding: 10px 16px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+}
+
+.level-nav-arrow:hover:not(:disabled) {
+  background: var(--bg-secondary);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: scale(1.05);
+}
+
+.level-nav-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.level-nav-current {
+  font-family: var(--font-mono);
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--accent-primary);
+  min-width: 100px;
+  text-align: center;
+}
+
+.level-nav-shortcut-hint {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.level-nav-shortcut-key {
+  display: inline-block;
+  padding: 4px 8px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--bg-tertiary);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--text-secondary);
+}
