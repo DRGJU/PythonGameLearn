@@ -3,52 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Python游戏化学习 - 以游戏的方式循序渐进学习Python编程">
-  <title>Python游戏化学习</title>
+  <meta name="description" content="Python游戏化学习平台 - 以沉浸式游戏体验学习Python编程，从基础到进阶">
+  <meta name="keywords" content="Python, 编程学习, 游戏化学习, Python教程">
+  <meta name="author" content="Python Game Learn">
+  <meta name="theme-color" content="#1a1a2e">
+  
+  <title>Python 游戏化学习平台</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Python游戏化学习</h1>
-      <p class="subtitle">以游戏的方式循序渐进学习Python编程</p>
+  <div class="background-effects">
+    <div class="grid-overlay"></div>
+    <div class="gradient-orb gradient-orb-1"></div>
+    <div class="gradient-orb gradient-orb-2"></div>
+  </div>
+
+  <header class="hero-header">
+    <div class="container header-content">
+      <div class="logo-section">
+        <div class="python-icon">
+          <svg width="48" height="48" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="python-gradient" x1="12.959%" y1="12.039%" x2="79.639%" y2="78.201%">
+                <stop offset="0%" stop-color="#387EB8"/>
+                <stop offset="100%" stop-color="#366994"/>
+              </linearGradient>
+              <linearGradient id="python-gradient-2" x1="19.128%" y1="20.579%" x2="90.742%" y2="88.429%">
+                <stop offset="0%" stop-color="#FFE052"/>
+                <stop offset="100%" stop-color="#FFC331"/>
+              </linearGradient>
+            </defs>
+            <path d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072zM92.802 19.66a11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13 11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.13z" fill="url(#python-gradient)"/>
+            <path d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.601v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897zm34.114-19.586a11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.13 11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13z" fill="url(#python-gradient-2)"/>
+          </svg>
+        </div>
+        <div class="title-wrapper">
+          <h1>Python 游戏化学习</h1>
+          <p class="subtitle">以沉浸式游戏体验掌握Python编程</p>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-number" id="totalLevels">10</span>
+          <span class="stat-label">关卡</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="completedCount">0</span>
+          <span class="stat-label">已完成</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="remainingCount">10</span>
+          <span class="stat-label">待完成</span>
+        </div>
+      </div>
     </div>
   </header>
-  
-  <nav aria-label="主导航">
-    <div class="container nav-container">
-      <div class="logo">Python Game Learn</div>
-      <ul class="nav-links">
-        <li><a href="#">首页</a></li>
-        <li><a href="#">关卡</a></li>
-        <li><a href="#">关于</a></li>
-      </ul>
-    </div>
-  </nav>
-  
-  <main class="container">
-    <section aria-label="学习进度">
-      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-        <div class="progress-fill" id="progressFill"></div>
+
+  <main class="container main-content">
+    <section class="progress-section" aria-label="学习进度">
+      <div class="progress-header">
+        <h2>学习进度</h2>
+        <span class="progress-percentage" id="progressPercentage">0%</span>
       </div>
-      <p class="progress-text" id="progressText">完成进度: 0%</p>
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="完成进度">
+        <div class="progress-fill" id="progressFill"></div>
+        <div class="progress-glow"></div>
+      </div>
+      <p class="progress-text" id="progressText">完成 0 / 10 个关卡</p>
     </section>
     
-    <section class="game-container" aria-label="游戏关卡">
-      <h2>选择关卡</h2>
-      <div class="level-selector" id="levelSelector" role="tablist">
-        <!-- 关卡按钮将通过JavaScript动态生成 -->
+    <section class="game-section" aria-label="游戏关卡">
+      <div class="section-header">
+        <h2>
+          <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          选择关卡
+        </h2>
       </div>
       
-      <div id="levelContent" role="tabpanel">
-        <!-- 关卡内容将通过JavaScript动态生成 -->
+      <div class="level-selector" id="levelSelector" role="tablist" aria-label="关卡列表">
+      </div>
+      
+      <div class="level-content-wrapper" id="levelContentWrapper">
+        <div class="level-content" id="levelContent" role="tabpanel" aria-label="关卡内容">
+        </div>
       </div>
     </section>
   </main>
-  
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Python游戏化学习平台. 保留所有权利.</p>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <p>&copy; 2026 Python游戏化学习平台 · 由热爱编程的学习者精心打造</p>
+      </div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">使用指南</a>
+        <span class="footer-divider">·</span>
+        <a href="#" class="footer-link">常见问题</a>
+        <span class="footer-divider">·</span>
+        <a href="#" class="footer-link">关于作者</a>
+      </div>
     </div>
   </footer>
   
