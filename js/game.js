@@ -2,7 +2,7 @@
   'use strict';
 
   // 关卡状态管理
-  let completedLevels = [1];
+  let completedLevels = [];
   let currentLevel = 1;
   let levelsData = [];
 
@@ -33,7 +33,7 @@
       
       if (level.id === 1) {
         button.classList.add('active');
-      } else if (!completedLevels.includes(level.id)) {
+      } else if (!completedLevels.includes(level.id) && !(level.id === completedLevels.length + 1)) {
         button.classList.add('locked');
       }
       
@@ -85,7 +85,7 @@
     levelButtons.forEach(button => {
       button.addEventListener('click', function() {
         const level = parseInt(this.dataset.level);
-        if (completedLevels.includes(level) || level === completedLevels[completedLevels.length - 1] + 1) {
+        if (completedLevels.includes(level) || level === completedLevels.length + 1) {
           switchLevel(level);
         }
       });
@@ -119,7 +119,7 @@
       
       if (btnLevel === level) {
         button.classList.add('active');
-      } else if (!completedLevels.includes(btnLevel) && btnLevel !== completedLevels[completedLevels.length - 1] + 1) {
+      } else if (!completedLevels.includes(btnLevel) && btnLevel !== completedLevels.length + 1) {
         button.classList.add('locked');
       }
     });
