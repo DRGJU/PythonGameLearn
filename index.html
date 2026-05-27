@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python游戏化学习</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Python游戏化学习 - 以游戏的方式循序渐进学习Python编程">
+  <title>Python游戏化学习</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Python游戏化学习</h1>
-            <p class="subtitle">以游戏的方式循序渐进学习Python编程</p>
-        </div>
-    </header>
-    
-    <nav>
-        <div class="container nav-container">
-            <div class="logo">Python Game Learn</div>
-            <ul class="nav-links">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">关卡</a></li>
-                <li><a href="#">关于</a></li>
-            </ul>
-        </div>
-    </nav>
-    
+  <header>
     <div class="container">
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <p class="progress-text" id="progressText">完成进度: 0%</p>
-        
-        <div class="game-container">
-            <h2>选择关卡</h2>
-            <div class="level-selector" id="levelSelector">
-                <!-- 关卡按钮将通过JavaScript动态生成 -->
-            </div>
-            
-            <div id="levelContent">
-                <!-- 关卡内容将通过JavaScript动态生成 -->
-            </div>
-        </div>
+      <h1>Python游戏化学习</h1>
+      <p class="subtitle">以游戏的方式循序渐进学习Python编程</p>
     </div>
+  </header>
+  
+  <nav aria-label="主导航">
+    <div class="container nav-container">
+      <div class="logo">Python Game Learn</div>
+      <ul class="nav-links">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">关卡</a></li>
+        <li><a href="#">关于</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <main class="container">
+    <section aria-label="学习进度">
+      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="progress-text" id="progressText">完成进度: 0%</p>
+    </section>
     
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Python游戏化学习平台. 保留所有权利.</p>
-        </div>
-    </footer>
-    
-    <script src="js/game.js"></script>
+    <section class="game-container" aria-label="游戏关卡">
+      <h2>选择关卡</h2>
+      <div class="level-selector" id="levelSelector" role="tablist">
+        <!-- 关卡按钮将通过JavaScript动态生成 -->
+      </div>
+      
+      <div id="levelContent" role="tabpanel">
+        <!-- 关卡内容将通过JavaScript动态生成 -->
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Python游戏化学习平台. 保留所有权利.</p>
+    </div>
+  </footer>
+  
+  <script src="js/game.js"></script>
 </body>
 </html>
