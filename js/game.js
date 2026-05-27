@@ -46,18 +46,6 @@
     return div.innerHTML;
   }
 
-  function cacheDOM() {
-    DOMCache.progressFill = document.getElementById('progressFill');
-    DOMCache.progressText = document.getElementById('progressText');
-    DOMCache.progressPercentage = document.getElementById('progressPercentage');
-    DOMCache.totalLevels = document.getElementById('totalLevels');
-    DOMCache.completedCount = document.getElementById('completedCount');
-    DOMCache.remainingCount = document.getElementById('remainingCount');
-    DOMCache.levelSelector = document.getElementById('levelSelector');
-    DOMCache.levelContent = document.getElementById('levelContent');
-    DOMCache.phaseTabs = document.getElementById('phaseTabs');
-  }
-
   function updateProgress() {
     const totalLevels = GameState.levelsData.length;
     const completedCount = GameState.completedLevels.length;
@@ -455,9 +443,25 @@
 
   function generateLevelContent() {
     const contentContainer = DOMCache.levelContent;
+    console.log('📦 contentContainer:', contentContainer);
+    
+    if (!contentContainer) {
+      console.error('❌ contentContainer不存在！');
+      return;
+    }
+    
     contentContainer.innerHTML = '';
     
+    console.log('📋 开始生成关卡内容，共', GameState.levelsData.length, '个关卡');
+    
+    if (GameState.levelsData.length === 0) {
+      console.error('❌ 没有关卡数据！');
+      contentContainer.innerHTML = '<p style="color: red;">没有找到关卡数据</p>';
+      return;
+    }
+    
     GameState.levelsData.forEach(level => {
+      console.log('📝 生成关卡', level.id, ':', level.title);
       const levelDiv = document.createElement('div');
       levelDiv.className = 'level-content';
       levelDiv.id = 'level' + level.id;
@@ -888,6 +892,8 @@
   }
 
   function switchLevel(level) {
+    console.log('🔄 切换到关卡:', level);
+    
     const levelPhase = GameState.levelsData.find(l => l.id === level)?.phase;
     if (levelPhase && levelPhase !== GameState.currentPhase) {
       GameState.currentPhase = levelPhase;
@@ -900,9 +906,13 @@
     });
     
     const currentLevelDiv = document.getElementById('level' + level);
+    console.log('🎯 当前关卡div:', currentLevelDiv);
     if (currentLevelDiv) {
       currentLevelDiv.classList.add('active');
+      console.log('✅ 关卡', level, '已激活');
       currentLevelDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      console.log('❌ 关卡div不存在:', 'level' + level);
     }
     
     document.querySelectorAll('.level-btn').forEach(button => {
@@ -1187,14 +1197,46 @@
   }
 
   function initGame() {
+    console.log('🔧 开始初始化游戏...');
+    
+    cacheDOM();
+    console.log('🔧 DOM缓存完成');
+    
     generateLevelButtons();
+    console.log('🔧 关卡按钮生成完成');
+    
     generateLevelContent();
+    console.log('🔧 关卡内容生成完成');
+    
     initPhaseTabs();
+    console.log('🔧 阶段标签初始化完成');
+    
     initLevelSelector();
+    console.log('🔧 关卡选择器初始化完成');
+    
     initSubmitButtons();
+    console.log('🔧 提交按钮初始化完成');
+    
     updateProgress();
+    console.log('🔧 进度更新完成');
+    
     updatePhaseTabs();
+    console.log('🔧 阶段标签更新完成');
+    
     switchLevel(1);
+    console.log('🔧 切换到关卡1完成');
+  }
+
+  function cacheDOM() {
+    DOMCache.progressFill = document.getElementById('progressFill');
+    DOMCache.progressText = document.getElementById('progressText');
+    DOMCache.progressPercentage = document.getElementById('progressPercentage');
+    DOMCache.totalLevels = document.getElementById('totalLevels');
+    DOMCache.completedCount = document.getElementById('completedCount');
+    DOMCache.remainingCount = document.getElementById('remainingCount');
+    DOMCache.levelSelector = document.getElementById('levelSelector');
+    DOMCache.levelContent = document.getElementById('levelContent');
+    DOMCache.phaseTabs = document.getElementById('phaseTabs');
   }
 
   async function loadLevelsData() {
@@ -1206,11 +1248,12 @@
       
       const data = await response.json();
       GameState.levelsData = data.levels;
+      console.log('✅ 关卡数据加载成功:', GameState.levelsData.length, '个关卡');
       
-      cacheDOM();
       initGame();
+      console.log('✅ 游戏初始化完成');
     } catch (error) {
-      console.error('Error loading levels data:', error);
+      console.error('❌ Error loading levels data:', error);
       showGlobalError('加载关卡数据失败，请刷新页面重试');
     }
   }
