@@ -697,26 +697,31 @@ class LevelPage {
             console.log('✅ 关卡完成，进度已保存:', this.currentLevelId);
         }
         
-        const celebration = document.createElement('div');
-        celebration.className = 'celebration show';
-        celebration.innerHTML = `
-            <div class="celebration-content">
-                <div class="celebration-icon">🎉</div>
-                <h3>恭喜通关！</h3>
-                <p>你已成功完成这个关卡</p>
-                <div style="margin-top: 20px; display: flex; gap: 12px; justify-content: center;">
-                    <button class="back-button" style="padding: 12px 24px; font-size: 16px; cursor: pointer;" onclick="this.closest('.celebration').remove()">继续练习</button>
-                    <a href="index.html" class="submit-button" style="padding: 12px 24px; font-size: 16px; text-decoration: none; color: white;">返回首页</a>
-                </div>
-            </div>
+        // 显示简洁的成功提示
+        const hint = document.createElement('div');
+        hint.className = 'success-hint';
+        hint.innerHTML = `
+            <span class="success-hint-icon">🎉</span>
+            关卡完成！
         `;
+        document.body.appendChild(hint);
         
-        document.body.appendChild(celebration);
-        celebration.addEventListener('click', (e) => {
-            if (e.target === celebration) {
-                celebration.remove();
+        setTimeout(() => {
+            hint.classList.add('show');
+        }, 50);
+        
+        // 1.5秒后自动跳转
+        setTimeout(() => {
+            hint.classList.remove('show');
+            setTimeout(() => hint.remove(), 300);
+            
+            const nextLevelId = this.currentLevelId + 1;
+            if (nextLevelId <= this.levels.length && this.isLevelUnlocked(nextLevelId)) {
+                this.navigateToLevel(nextLevelId);
+            } else {
+                window.location.href = 'index.html';
             }
-        });
+        }, 1500);
     }
 
     showError(message) {

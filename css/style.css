@@ -2287,3 +2287,34 @@ body {
   font-size: 0.8em;
   color: var(--text-secondary);
 }
+
+.success-hint {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  padding: 24px 40px;
+  background: var(--bg-card);
+  border: 2px solid var(--accent-success);
+  border-radius: var(--radius-lg);
+  color: var(--accent-success);
+  font-size: 1.3em;
+  font-weight: 600;
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(74, 222, 128, 0.2);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.success-hint.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.success-hint-icon {
+  font-size: 2em;
+  margin-bottom: 8px;
+  display: block;
+}
