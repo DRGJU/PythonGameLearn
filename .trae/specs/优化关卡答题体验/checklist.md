@@ -1,0 +1,15 @@
+- [x] Checkpoint 1: 关卡数据扩展完成，每个关卡都包含所有答题模式所需数据 ✓
+- [x] Checkpoint 2: 答题模式选择器（标签页）正确显示在关卡详情页面 ✓
+- [x] Checkpoint 3: 五种答题模式都可以切换显示 ✓
+- [x] Checkpoint 4: 拖放编程模式可以正常拖拽代码块 ✓
+- [x] Checkpoint 5: 拖放到正确位置有高亮反馈，错误位置有错误反馈 ✓
+- [x] Checkpoint 6: 选择题模式可以选择选项并验证 ✓
+- [x] Checkpoint 7: 代码填空模式可以点击空白框并填写答案 ✓
+- [x] Checkpoint 8: 智能引导模式可以分步查看提示 ✓
+- [x] Checkpoint 9: 所有答题模式都能生成可验证的完整代码 ✓
+- [x] Checkpoint 10: 答题过程中有实时视觉反馈 ✓
+- [x] Checkpoint 11: 答题正确/错误时有动画反馈效果 ✓
+- [x] Checkpoint 12: 在移动设备上所有功能正常工作 ✓
+- [x] Checkpoint 13: 自由代码模式功能保持完整 ✓
+- [x] Checkpoint 14: 所有关卡的所有答题模式都能正常工作 ✓
+- [x] Checkpoint 15: 整体体验流畅有趣 ✓
