@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简化测试</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1a1a2e;
+      color: white;
+      padding: 20px;
+    }
+    .level-content {
+      background: #16213e;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #00d4ff;
+    }
+    pre {
+      background: #0f0f1a;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>简化测试页面</h1>
+  
+  <div id="levelContent">
+    <!-- 内容将在这里显示 -->
+  </div>
+
+  <script>
+    // 直接嵌入关卡数据
+    const levelsData = [
+      {
+        id: 1,
+        title: "关卡 1: 初识Python",
+        description: "学习如何输出文字到屏幕，开始你的Python之旅！",
+        objectives: ["了解Python的基本语法结构", "学会使用print()函数", "理解字符串的概念"],
+        example: "# 输出文字\nprint(\"Hello, World!\")\nprint(\"欢迎来到编程世界！\")",
+        challenge: "编写一个程序，输出\"你好，Python！\"和\"我准备好了！\"这两句话。"
+      },
+      {
+        id: 2,
+        title: "关卡 2: 变量的魔法",
+        description: "学习如何使用变量存储和操作数据。",
+        objectives: ["理解变量的概念", "学会声明和赋值变量", "掌握变量命名规则"],
+        example: "# 定义变量\nname = \"小明\"\nage = 18\nprint(name, \"今年\", age, \"岁\")",
+        challenge: "创建一个变量存储你的名字，然后输出\"你好，[你的名字]！\""
+      }
+    ];
+
+    function generateLevelContent() {
+      const container = document.getElementById('levelContent');
+      
+      levelsData.forEach(level => {
+        const div = document.createElement('div');
+        div.className = 'level-content';
+        div.innerHTML = `
+          <h2>🎮 ${level.title}</h2>
+          <p>${level.description}</p>
+          <h3>📚 学习目标</h3>
+          <ul>${level.objectives.map(o => '<li>' + o + '</li>').join('')}</ul>
+          <h3>💡 示例代码</h3>
+          <pre>${level.example}</pre>
+          <h3>🎯 挑战任务</h3>
+          <p>${level.challenge}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // 页面加载后执行
+    document.addEventListener('DOMContentLoaded', generateLevelContent);
+  </script>
+</body>
+</html>

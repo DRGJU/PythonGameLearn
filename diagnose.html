@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>诊断页面</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #1a1a2e; color: white; padding: 20px; }
+    .log { padding: 8px; margin: 4px; border-radius: 4px; }
+    .success { background: #10b98133; color: #10b981; }
+    .error { background: #ef444433; color: #ef4444; }
+    .info { background: #00d4ff33; color: #00d4ff; }
+  </style>
+</head>
+<body>
+  <h1>诊断页面</h1>
+  <div id="log"></div>
+
+  <script>
+    const logDiv = document.getElementById('log');
+
+    function addLog(msg, type = 'info') {
+      const p = document.createElement('p');
+      p.className = `log ${type}`;
+      p.textContent = msg;
+      logDiv.appendChild(p);
+      console.log(msg);
+    }
+
+    addLog('=== 开始诊断 ===', 'info');
+
+    // 检查DOM元素
+    addLog('检查DOM元素...', 'info');
+    const levelContent = document.getElementById('levelContent');
+    addLog(`levelContent元素: ${levelContent ? '✅ 存在' : '❌ 不存在'}`, levelContent ? 'success' : 'error');
+
+    // 尝试加载数据
+    addLog('尝试加载关卡数据...', 'info');
+    
+    fetch('data/levels.json')
+      .then(response => {
+        addLog(`HTTP状态: ${response.status}`, response.ok ? 'success' : 'error');
+        return response.json();
+      })
+      .then(data => {
+        addLog(`数据加载成功，共 ${data.levels.length} 个关卡`, 'success');
+        addLog(`关卡1标题: ${data.levels[0].title}`, 'success');
+        
+        // 尝试生成内容
+        const level1 = data.levels[0];
+        const content = `
+          <h2>${level1.title}</h2>
+          <p>${level1.description}</p>
+          <h3>学习目标:</h3>
+          <ul>${level1.objectives.map(o => `<li>${o}</li>`).join('')}</ul>
+          <h3>示例代码:</h3>
+          <pre>${level1.example}</pre>
+          <h3>挑战任务:</h3>
+          <p>${level1.challenge}</p>
+        `;
+        
+        // 创建一个临时容器来显示内容
+        const tempDiv = document.createElement('div');
+        tempDiv.style.background = '#16213e';
+        tempDiv.style.padding = '20px';
+        tempDiv.style.marginTop = '20px';
+        tempDiv.style.borderRadius = '8px';
+        tempDiv.innerHTML = content;
+        document.body.appendChild(tempDiv);
+        
+        addLog('关卡内容已成功显示！', 'success');
+      })
+      .catch(error => {
+        addLog(`加载失败: ${error.message}`, 'error');
+      });
+  </script>
+</body>
+</html>

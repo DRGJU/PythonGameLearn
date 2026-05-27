@@ -563,6 +563,11 @@ body {
   display: block;
 }
 
+/* 调试样式：确保至少显示一个关卡 */
+.level-content:first-child {
+  display: block !important;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
