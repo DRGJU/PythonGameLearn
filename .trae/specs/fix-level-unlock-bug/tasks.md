@@ -41,7 +41,7 @@
   - `programmatic` TR-3.4: 10个关卡完成 → 100%
 - **Notes**: 现有的 `updateProgress` 函数逻辑应该是正确的，主要是确保数据源正确
 
-## [/] Task 4: 完整功能测试
+## [x] Task 4: 完整功能测试
 - **Priority**: P0
 - **Depends On**: [Task 2, Task 3]
 - **Description**: 
