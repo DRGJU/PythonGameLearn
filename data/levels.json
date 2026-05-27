@@ -23,36 +23,88 @@
         "用引号括住文字内容"
       ],
       "validation": {
-        "requiredKeywords": ["print"],
+        "requiredKeywords": [
+          "print"
+        ],
         "successFeedback": "太棒了！你已经成功完成了第一关，开始了编程之旅！",
         "errorFeedback": "请确保使用了print()函数来输出文字。"
       },
       "difficulty": 1,
       "category": "基础入门",
-      "tags": ["print", "字符串", "输出"],
+      "tags": [
+        "print",
+        "字符串",
+        "输出"
+      ],
       "phase": 1,
       "phaseName": "新手村",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["print(\"你好，Python！\")", "print(\"我准备好了！\")", "# 注释", "print()", "name = \"小明\""],
-        "correctOrder": ["print(\"你好，Python！\")", "print(\"我准备好了！\")"]
+        "available": [
+          "print(\"你好，Python！\")",
+          "print(\"我准备好了！\")"
+        ],
+        "correctOrder": [
+          "print(\"你好，Python！\")",
+          "print(\"我准备好了！\")"
+        ]
       },
       "choices": {
         "question": "要输出文字到屏幕，应该使用什么函数？",
         "options": [
-          { "text": "print()", "correct": true, "feedback": "正确！print()函数用于输出内容！" },
-          { "text": "input()", "correct": false, "feedback": "不对，input()是用来获取输入的。" },
-          { "text": "write()", "correct": false, "feedback": "不对，write()通常用于文件操作。" },
-          { "text": "echo()", "correct": false, "feedback": "不对，Python中没有echo()函数。" }
+          {
+            "text": "print()",
+            "correct": true,
+            "feedback": "正确！print()函数用于输出内容！"
+          },
+          {
+            "text": "input()",
+            "correct": false,
+            "feedback": "不对，input()是用来获取输入的。"
+          },
+          {
+            "text": "write()",
+            "correct": false,
+            "feedback": "不对，write()通常用于文件操作。"
+          },
+          {
+            "text": "echo()",
+            "correct": false,
+            "feedback": "不对，Python中没有echo()函数。"
+          }
         ]
       },
       "fillBlanks": {
         "template": "___(\"你好，Python！\")\n___(\"我准备好了！\")",
         "blanks": [
-          { "id": 0, "answer": "print", "options": ["print", "input", "write", "echo"] },
-          { "id": 1, "answer": "print", "options": ["print", "input", "write", "echo"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print",
+              "input",
+              "write",
+              "echo"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "print",
+            "options": [
+              "print",
+              "input",
+              "write",
+              "echo"
+            ]
+          }
         ]
       },
       "guidedHints": [
@@ -75,7 +127,7 @@
     },
     {
       "id": 2,
-      "title": "关卡 2: 变量的魔法",
+      "title": "关卡2: 变量的魔法",
       "description": "学习如何创建和使用变量来存储信息。",
       "objectives": [
         "理解变量的概念",
@@ -85,42 +137,117 @@
       "example": "# 创建变量\nname = \"小明\"\nage = 10\nprint(name)\nprint(age)",
       "challenge": "创建两个变量：player_name（玩家名字）和player_level（玩家等级），然后输出它们。",
       "hints": [
-        "使用 = 符号赋值",
+        "使用=符号赋值",
         "变量名不能以数字开头"
       ],
       "validation": {
-        "requiredKeywords": ["=", "print"],
+        "requiredKeywords": [
+          "=",
+          "print"
+        ],
         "successFeedback": "很好！你已经掌握了变量的基本用法！",
         "errorFeedback": "请确保创建了变量并使用print输出它们。"
       },
       "difficulty": 1,
       "category": "基础入门",
-      "tags": ["变量", "赋值", "print"],
+      "tags": [
+        "变量",
+        "赋值",
+        "print"
+      ],
       "phase": 1,
       "phaseName": "新手村",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["player_name = \"勇者\"", "player_level = 10", "print(player_name)", "print(player_level)", "name = \"小红\""],
-        "correctOrder": ["player_name = \"勇者\"", "player_level = 10", "print(player_name)", "print(player_level)"]
+        "available": [
+          "player_name = \"勇者\"",
+          "player_level = 10",
+          "print(player_name)",
+          "print(player_level)"
+        ],
+        "correctOrder": [
+          "player_name = \"勇者\"",
+          "player_level = 10",
+          "print(player_name)",
+          "print(player_level)"
+        ]
       },
       "choices": {
         "question": "创建变量时，用什么符号给变量赋值？",
         "options": [
-          { "text": "=", "correct": true, "feedback": "正确！等号=用来给变量赋值！" },
-          { "text": "==", "correct": false, "feedback": "不对，==是用来比较相等的。" },
-          { "text": ":", "correct": false, "feedback": "不对，冒号:有其他用途。" },
-          { "text": "<-", "correct": false, "feedback": "不对，Python不用这个符号。" }
+          {
+            "text": "=",
+            "correct": true,
+            "feedback": "正确！等号=用来给变量赋值！"
+          },
+          {
+            "text": "==",
+            "correct": false,
+            "feedback": "不对，==是用来比较相等的。"
+          },
+          {
+            "text": ":",
+            "correct": false,
+            "feedback": "不对，冒号:有其他用途。"
+          },
+          {
+            "text": "<-",
+            "correct": false,
+            "feedback": "不对，Python不用这个符号。"
+          }
         ]
       },
       "fillBlanks": {
         "template": "player_name ___ \"勇者\"\nplayer_level ___ 10\n___(player_name)\n___(player_level)",
         "blanks": [
-          { "id": 0, "answer": "=", "options": ["=", "==", ":", "<-"] },
-          { "id": 1, "answer": "=", "options": ["=", "==", ":", "<-"] },
-          { "id": 2, "answer": "print", "options": ["print", "input", "show", "display"] },
-          { "id": 3, "answer": "print", "options": ["print", "input", "show", "display"] }
+          {
+            "id": 0,
+            "answer": "=",
+            "options": [
+              "=",
+              "==",
+              ":",
+              "<-"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "=",
+            "options": [
+              "=",
+              "==",
+              ":",
+              "<-"
+            ]
+          },
+          {
+            "id": 2,
+            "answer": "print",
+            "options": [
+              "print",
+              "input",
+              "show",
+              "display"
+            ]
+          },
+          {
+            "id": 3,
+            "answer": "print",
+            "options": [
+              "print",
+              "input",
+              "show",
+              "display"
+            ]
+          }
         ]
       },
       "guidedHints": [
@@ -143,7 +270,7 @@
     },
     {
       "id": 3,
-      "title": "关卡 3: 数字运算",
+      "title": "关卡3: 数字运算",
       "description": "学习Python中的基本数学运算。",
       "objectives": [
         "了解整数和浮点数",
@@ -157,36 +284,97 @@
         "周长 = 2 × (长 + 宽)"
       ],
       "validation": {
-        "requiredKeywords": ["*", "+"],
+        "requiredKeywords": [
+          "*",
+          "+"
+        ],
         "successFeedback": "完美！数学运算对你来说太简单了！",
         "errorFeedback": "请确保使用了乘法和加法运算。"
       },
       "difficulty": 1,
       "category": "基础入门",
-      "tags": ["数学", "运算", "整数"],
+      "tags": [
+        "数学",
+        "运算",
+        "整数"
+      ],
       "phase": 1,
       "phaseName": "新手村",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["length = 8", "width = 5", "area = length * width", "perimeter = 2 * (length + width)", "print(area)", "print(perimeter)"],
-        "correctOrder": ["length = 8", "width = 5", "area = length * width", "perimeter = 2 * (length + width)", "print(area)", "print(perimeter)"]
+        "available": [
+          "length = 8",
+          "width =5",
+          "area = length * width",
+          "perimeter = 2*(length + width)",
+          "print(area)",
+          "print(perimeter)"
+        ],
+        "correctOrder": [
+          "length =8",
+          "width =5",
+          "area = length * width",
+          "perimeter =2*(length + width)",
+          "print(area)",
+          "print(perimeter)"
+        ]
       },
       "choices": {
         "question": "在Python中，乘法运算用什么符号？",
         "options": [
-          { "text": "*", "correct": true, "feedback": "正确！星号*表示乘法！" },
-          { "text": "×", "correct": false, "feedback": "不对，Python不用这个符号。" },
-          { "text": "x", "correct": false, "feedback": "不对，字母x不是运算符。" },
-          { "text": ".", "correct": false, "feedback": "不对，点号有其他用途。" }
+          {
+            "text": "*",
+            "correct": true,
+            "feedback": "正确！星号*表示乘法！"
+          },
+          {
+            "text": "×",
+            "correct": false,
+            "feedback": "不对，Python不用这个符号。"
+          },
+          {
+            "text": "x",
+            "correct": false,
+            "feedback": "不对，字母x不是运算符。"
+          },
+          {
+            "text": ".",
+            "correct": false,
+            "feedback": "不对，点号有其他用途。"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "length = 8\nwidth = 5\narea = length ___ width\nperimeter = 2 ___ (length + width)\nprint(area)\nprint(perimeter)",
+        "template": "length =8\nwidth =5\narea = length ___ width\nperimeter =2 ___ (length + width)\nprint(area)\nprint(perimeter)",
         "blanks": [
-          { "id": 0, "answer": "*", "options": ["*", "+", "-", "/"] },
-          { "id": 1, "answer": "*", "options": ["*", "+", "-", "/"] }
+          {
+            "id": 0,
+            "answer": "*",
+            "options": [
+              "*",
+              "+",
+              "-",
+              "/"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "*",
+            "options": [
+              "*",
+              "+",
+              "-",
+              "/"
+            ]
+          }
         ]
       },
       "guidedHints": [
@@ -202,57 +390,110 @@
         },
         {
           "step": 3,
-          "hint": "太棒了！现在计算周长：周长 = 2 × (长 + 宽)，然后输出结果。",
-          "code": "# 第三步：完整答案\nlength = 8\nwidth = 5\narea = length * width\nperimeter = 2 * (length + width)\nprint(area)\nprint(perimeter)"
+          "hint": "太棒了！现在计算周长：周长 =2×(长 + 宽)，然后输出结果。",
+          "code": "# 第三步：完整答案\nlength =8\nwidth =5\narea = length * width\nperimeter = 2*(length + width)\nprint(area)\nprint(perimeter)"
         }
       ]
     },
     {
       "id": 4,
-      "title": "关卡 4: 字符串游戏",
+      "title": "关卡4: 字符串游戏",
       "description": "学习如何操作字符串，创建有趣的文字效果。",
       "objectives": [
         "学会字符串拼接",
         "了解字符串重复",
         "使用f-string格式化"
       ],
-      "example": "# 字符串操作\nname = \"小红\"\nprint(\"你好，\" + name)\nprint(\"*\" * 10)\nprint(f\"我的名字是{name}\")",
+      "example": "# 字符串操作\nname = \"小红\"\nprint(\"你好，\" + name)\nprint(\"*\" *10)\nprint(f\"我的名字是{name}\")",
       "challenge": "创建一个问候程序，使用变量存储名字，输出\"你好，[名字]！欢迎来到Python世界！\"",
       "hints": [
-        "使用 + 拼接字符串",
+        "使用+拼接字符串",
         "或者使用f-string"
       ],
       "validation": {
-        "requiredKeywords": ["+", "print"],
+        "requiredKeywords": [
+          "+",
+          "print"
+        ],
         "successFeedback": "精彩！你已经掌握了字符串的基本操作！",
         "errorFeedback": "请确保使用了字符串拼接操作。"
       },
       "difficulty": 1,
       "category": "基础入门",
-      "tags": ["字符串", "拼接", "格式化"],
+      "tags": [
+        "字符串",
+        "拼接",
+        "格式化"
+      ],
       "phase": 1,
       "phaseName": "新手村",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["name = \"小明\"", "print(\"你好，\" + name + \"！欢迎来到Python世界！\")", "print(f\"你好，{name}！\")", "greeting = \"你好\""],
-        "correctOrder": ["name = \"小明\"", "print(\"你好，\" + name + \"！欢迎来到Python世界！\")"]
+        "available": [
+          "name = \"小明\"",
+          "print(\"你好，\" + name + \"！欢迎来到Python世界！\")"
+        ],
+        "correctOrder": [
+          "name = \"小明\"",
+          "print(\"你好，\" + name + \"！欢迎来到Python世界！\")"
+        ]
       },
       "choices": {
         "question": "用什么符号可以拼接两个字符串？",
         "options": [
-          { "text": "+", "correct": true, "feedback": "正确！加号+可以拼接字符串！" },
-          { "text": "&", "correct": false, "feedback": "不对，Python不用&拼接。" },
-          { "text": ".", "correct": false, "feedback": "不对，点号不是用来拼接的。" },
-          { "text": ",", "correct": false, "feedback": "不对，逗号有其他用途。" }
+          {
+            "text": "+",
+            "correct": true,
+            "feedback": "正确！加号+可以拼接字符串！"
+          },
+          {
+            "text": "&",
+            "correct": false,
+            "feedback": "不对，Python不用&拼接。"
+          },
+          {
+            "text": ".",
+            "correct": false,
+            "feedback": "不对，点号不是用来拼接的。"
+          },
+          {
+            "text": ",",
+            "correct": false,
+            "feedback": "不对，逗号有其他用途。"
+          }
         ]
       },
       "fillBlanks": {
         "template": "name = \"小明\"\nprint(\"你好，\" ___ name ___ \"！欢迎来到Python世界！\")",
         "blanks": [
-          { "id": 0, "answer": "+", "options": ["+", "&", ".", ","] },
-          { "id": 1, "answer": "+", "options": ["+", "&", ".", ","] }
+          {
+            "id": 0,
+            "answer": "+",
+            "options": [
+              "+",
+              "&",
+              ".",
+              ","
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "+",
+            "options": [
+              "+",
+              "&",
+              ".",
+              ","
+            ]
+          }
         ]
       },
       "guidedHints": [
@@ -275,804 +516,2113 @@
     },
     {
       "id": 5,
-      "title": "关卡 5: 角色卡片生成器",
+      "title": "关卡5: 角色卡片生成器",
       "description": "创建一个游戏角色卡片生成器！",
       "objectives": [
         "综合运用变量",
         "练习字符串操作",
         "创建美观的输出"
       ],
-      "example": "# 角色卡片\nname = \"勇士\"\nhp = 100\nmp = 50\nprint(\"=\" * 20)\nprint(f\"角色: {name}\")\nprint(f\"生命值: {hp}\")\nprint(f\"魔法值: {mp}\")\nprint(\"=\" * 20)",
+      "example": "# 角色卡片\nname = \"勇士\"\nhp = 100\nmp =50\nprint(\"=\" *20)\nprint(f\"角色: {name}\")\nprint(f\"生命值: {hp}\")\nprint(\"=\" *20)",
       "challenge": "设计一个游戏角色卡片，包含角色名、职业、攻击力、防御力和生命值，用漂亮的格式输出。",
       "hints": [
         "创建多个变量存储角色信息",
         "用重复字符创建边框"
       ],
       "validation": {
-        "requiredKeywords": ["print", "=", "*"],
+        "requiredKeywords": [
+          "print",
+          "=",
+          "*"
+        ],
         "successFeedback": "恭喜！你完成了新手村的迷你项目！",
         "errorFeedback": "请确保创建了完整的角色卡片程序。"
       },
       "difficulty": 2,
       "category": "综合应用",
-      "tags": ["变量", "字符串", "游戏"],
+      "tags": [
+        "变量",
+        "字符串",
+        "游戏"
+      ],
       "phase": 1,
       "phaseName": "新手村",
       "isMiniProject": true,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["name = \"勇者\"", "job = \"战士\"", "attack = 25", "defense = 15", "hp = 100", "print(\"=\" * 20)", "print(f\"角色: {name}\")", "print(f\"职业: {job}\")", "print(f\"攻击力: {attack}\")", "print(f\"防御力: {defense}\")", "print(f\"生命值: {hp}\")", "print(\"=\" * 20)"],
-        "correctOrder": ["name = \"勇者\"", "job = \"战士\"", "attack = 25", "defense = 15", "hp = 100", "print(\"=\" * 20)", "print(f\"角色: {name}\")", "print(f\"职业: {job}\")", "print(f\"攻击力: {attack}\")", "print(f\"防御力: {defense}\")", "print(f\"生命值: {hp}\")", "print(\"=\" * 20)"]
+        "available": [
+          "name = \"勇者\"",
+          "job = \"战士\"",
+          "attack = 25",
+          "defense =15",
+          "hp=100",
+          "print(\"=\"*20)",
+          "print(f\"角色: {name}\")",
+          "print(f\"职业: {job}\")",
+          "print(f\"攻击力: {attack}\")",
+          "print(f\"防御力: {defense}\")",
+          "print(f\"生命值: {hp}\")",
+          "print(\"=\"*20)"
+        ],
+        "correctOrder": [
+          "name = \"勇者\"",
+          "job = \"战士\"",
+          "attack =25",
+          "defense=15",
+          "hp=100",
+          "print(\"=\"*20)",
+          "print(f\"角色: {name}\")",
+          "print(f\"职业: {job}\")",
+          "print(f\"攻击力: {attack}\")",
+          "print(f\"防御力: {defense}\")",
+          "print(f\"生命值: {hp}\")",
+          "print(\"=\"*20)"
+        ]
       },
       "choices": {
         "question": "如果要让\"=\"重复20次，应该怎么写？",
         "options": [
-          { "text": "\"=\" * 20", "correct": true, "feedback": "正确！用*号可以重复字符串！" },
-          { "text": "\"=\" x 20", "correct": false, "feedback": "不对，应该用*号。" },
-          { "text": "repeat(\"=\", 20)", "correct": false, "feedback": "不对，没有这个函数。" },
-          { "text": "\"=\" * \"20\"", "correct": false, "feedback": "不对，20不用加引号。" }
+          {
+            "text": "\"=\" * 20",
+            "correct": true,
+            "feedback": "正确！用*号可以重复字符串！"
+          },
+          {
+            "text": "\"=\"x20",
+            "correct": false,
+            "feedback": "不对，应该用*号。"
+          },
+          {
+            "text": "repeat(\"=\", 20)",
+            "correct": false,
+            "feedback": "不对，没有这个函数。"
+          },
+          {
+            "text": "\"=\"*\"20\"",
+            "correct": false,
+            "feedback": "不对，20不用加引号。"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "name = \"勇者\"\njob = \"战士\"\nattack = 25\ndefense = 15\nhp = 100\nprint(___ ___ 20)\nprint(f\"角色: {name}\")\nprint(f\"职业: {job}\")\nprint(f\"攻击力: {attack}\")\nprint(f\"防御力: {defense}\")\nprint(f\"生命值: {hp}\")\nprint(___ ___ 20)",
+        "template": "name = \"勇者\"\njob = \"战士\"\nattack =25\ndefense =15\nhp =100\nprint(___ ___ 20)\nprint(f\"角色: {name}\")\nprint(f\"职业: {job}\")\nprint(f\"攻击力: {attack}\")\nprint(f\"防御力: {defense}\")\nprint(f\"生命值: {hp}\")\nprint(___ ___ 20)",
         "blanks": [
-          { "id": 0, "answer": "\"=\"", "options": ["\"=\"", "\"-\"", "\"*\"", "\"#\""] },
-          { "id": 1, "answer": "*", "options": ["*", "+", "-", "/"] },
-          { "id": 2, "answer": "\"=\"", "options": ["\"=\"", "\"-\"", "\"*\"", "\"#\""] },
-          { "id": 3, "answer": "*", "options": ["*", "+", "-", "/"] }
+          {
+            "id": 0,
+            "answer": "\"=\"",
+            "options": [
+              "\"=\"",
+              "\"-\"",
+              "\"*\"",
+              "\"#\""
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "*",
+            "options": [
+              "*",
+              "+",
+              "-",
+              "/"
+            ]
+          },
+          {
+            "id": 2,
+            "answer": "\"=\"",
+            "options": [
+              "\"=\"",
+              "\"-\"",
+              "\"*\"",
+              "\"#\""
+            ]
+          },
+          {
+            "id": 3,
+            "answer": "*",
+            "options": [
+              "*",
+              "+",
+              "-",
+              "/"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
           "hint": "首先，创建所有角色属性的变量。",
-          "code": "# 第一步：创建变量\nname = \"勇者\"\njob = \"战士\"\nattack = 25\ndefense = 15\nhp = 100"
+          "code": "# 第一步：创建变量\nname = \"勇者\"\njob = \"战士\"\nattack =25\ndefense=15\nhp=100"
         },
         {
           "step": 2,
           "hint": "很好！现在打印边框和角色信息，用f-string格式化。",
-          "code": "# 第二步：添加边框和信息\nname = \"勇者\"\njob = \"战士\"\nattack = 25\ndefense = 15\nhp = 100\nprint(\"=\" * 20)\nprint(f\"角色: {name}\")\nprint(f\"职业: {job}\")"
+          "code": "# 第二步：添加边框和信息\nname = \"勇者\"\njob = \"战士\"\nattack =25\ndefense=15\nhp=100\nprint(\"=\"*20)\nprint(f\"角色: {name}\")\nprint(f\"职业: {job}\")"
         },
         {
           "step": 3,
           "hint": "太棒了！现在把剩余信息和底部边框都加上。",
-          "code": "# 第三步：完整答案\nname = \"勇者\"\njob = \"战士\"\nattack = 25\ndefense = 15\nhp = 100\nprint(\"=\" * 20)\nprint(f\"角色: {name}\")\nprint(f\"职业: {job}\")\nprint(f\"攻击力: {attack}\")\nprint(f\"防御力: {defense}\")\nprint(f\"生命值: {hp}\")\nprint(\"=\" * 20)"
+          "code": "# 第三步：完整答案\nname = \"勇者\"\njob = \"战士\"\nattack =25\ndefense=15\nhp=100\nprint(\"=\"*20)\nprint(f\"角色: {name}\")\nprint(f\"职业: {job}\")\nprint(f\"攻击力: {attack}\")\nprint(f\"防御力: {defense}\")\nprint(f\"生命值: {hp}\")\nprint(\"=\"*20)"
         }
       ]
     },
     {
       "id": 6,
-      "title": "关卡 6: 输入交互",
-      "description": "学习如何获取用户输入，让程序更有趣！",
+      "title": "关卡 6: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "学会使用input()函数",
-        "理解输入和输出的交互",
-        "将输入存储到变量中"
+        "完成关卡"
       ],
-      "example": "# 获取用户输入\nname = input(\"你叫什么名字？\")\nprint(f\"你好，{name}！\")",
-      "challenge": "编写一个程序，询问用户的名字和年龄，然后输出一句问候语。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "使用input()获取输入",
-        "用变量保存输入的内容"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["input", "print"],
-        "successFeedback": "太棒了！你已经学会了与用户交互！",
-        "errorFeedback": "请确保使用了input()函数来获取用户输入。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
       "difficulty": 2,
-      "category": "基础入门",
-      "tags": ["input", "交互", "变量"],
-      "phase": 2,
-      "phaseName": "冒险启程",
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 1,
+      "phaseName": "新手村",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["name = input(\"你叫什么名字？\")", "age = input(\"你多大了？\")", "print(f\"你好，{name}！\")", "print(f\"{age}岁，真是好年纪！\")"],
-        "correctOrder": ["name = input(\"你叫什么名字？\")", "age = input(\"你多大了？\")", "print(f\"你好，{name}！\")", "print(f\"{age}岁，真是好年纪！\")"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "要获取用户的输入，应该使用什么函数？",
+        "question": "问题？",
         "options": [
-          { "text": "input()", "correct": true, "feedback": "正确！input()函数用于获取用户输入！" },
-          { "text": "print()", "correct": false, "feedback": "不对，print()是用来输出的。" },
-          { "text": "get()", "correct": false, "feedback": "不对，没有get()这个函数。" },
-          { "text": "read()", "correct": false, "feedback": "不对，read()通常用于文件操作。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "name = ___(\"你叫什么名字？\")\nage = ___(\"你多大了？\")\n___(f\"你好，{name}！\")",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "input", "options": ["input", "print", "get", "read"] },
-          { "id": 1, "answer": "input", "options": ["input", "print", "get", "read"] },
-          { "id": 2, "answer": "print", "options": ["print", "input", "show", "display"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，用input()询问用户的名字。",
-          "code": "# 第一步：获取名字\nname = input(\"你叫什么名字？\")"
-        },
-        {
-          "step": 2,
-          "hint": "很好！再用input()询问用户的年龄。",
-          "code": "# 第二步：获取年龄\nname = input(\"你叫什么名字？\")\nage = input(\"你多大了？\")"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！现在用print()输出问候语。",
-          "code": "# 第三步：完整答案\nname = input(\"你叫什么名字？\")\nage = input(\"你多大了？\")\nprint(f\"你好，{name}！\")\nprint(f\"{age}岁，真是好年纪！\")"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 7,
-      "title": "关卡 7: 类型转换",
-      "description": "学习如何在不同数据类型之间转换。",
+      "title": "关卡 7: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "理解数据类型的概念",
-        "学会使用int()和float()",
-        "掌握str()函数"
+        "完成关卡"
       ],
-      "example": "# 类型转换\nage_str = \"18\"\nage = int(age_str)\nprint(age + 1)\npi = 3.14\npi_str = str(pi)\nprint(\"圆周率是\" + pi_str)",
-      "challenge": "编写一个程序，让用户输入两个数字，计算它们的和并输出。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "input()返回的是字符串",
-        "需要用int()或float()转换"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["int", "input", "print", "+"],
-        "successFeedback": "完美！你已经掌握了类型转换！",
-        "errorFeedback": "请确保使用了int()或float()进行类型转换。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
       "difficulty": 2,
-      "category": "基础入门",
-      "tags": ["类型转换", "int", "float", "str"],
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
       "phase": 2,
       "phaseName": "冒险启程",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["num1 = int(input(\"请输入第一个数字：\"))", "num2 = int(input(\"请输入第二个数字：\"))", "result = num1 + num2", "print(f\"结果是：{result}\")"],
-        "correctOrder": ["num1 = int(input(\"请输入第一个数字：\"))", "num2 = int(input(\"请输入第二个数字：\"))", "result = num1 + num2", "print(f\"结果是：{result}\")"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "要把字符串\"123\"转换成整数，应该用什么函数？",
+        "question": "问题？",
         "options": [
-          { "text": "int()", "correct": true, "feedback": "正确！int()函数可以转换成整数！" },
-          { "text": "str()", "correct": false, "feedback": "不对，str()是转换成字符串的。" },
-          { "text": "float()", "correct": false, "feedback": "不对，float()是转换成浮点数的。" },
-          { "text": "number()", "correct": false, "feedback": "不对，没有这个函数。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "num1 = ___(input(\"请输入第一个数字：\"))\nnum2 = ___(input(\"请输入第二个数字：\"))\nresult = num1 ___ num2\nprint(f\"结果是：{result}\")",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "int", "options": ["int", "str", "float", "number"] },
-          { "id": 1, "answer": "int", "options": ["int", "str", "float", "number"] },
-          { "id": 2, "answer": "+", "options": ["+", "-", "*", "/"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，获取第一个数字并转换成整数。",
-          "code": "# 第一步：获取第一个数字\nnum1 = int(input(\"请输入第一个数字：\"))"
-        },
-        {
-          "step": 2,
-          "hint": "很好！获取第二个数字也转换成整数。",
-          "code": "# 第二步：获取第二个数字\nnum1 = int(input(\"请输入第一个数字：\"))\nnum2 = int(input(\"请输入第二个数字：\"))"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！计算它们的和并输出结果。",
-          "code": "# 第三步：完整答案\nnum1 = int(input(\"请输入第一个数字：\"))\nnum2 = int(input(\"请输入第二个数字：\"))\nresult = num1 + num2\nprint(f\"结果是：{result}\")"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 8,
-      "title": "关卡 8: 条件判断",
-      "description": "学习使用if语句进行条件判断，让程序会思考！",
+      "title": "关卡 8: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "学会使用if语句",
-        "理解比较运算符",
-        "掌握else和elif"
+        "完成关卡"
       ],
-      "example": "# 条件判断\nage = 18\nif age >= 18:\n    print(\"你成年了！\")\nelse:\n    print(\"你还未成年。\")",
-      "challenge": "编写一个程序，让用户输入一个数字，判断它是正数、负数还是零。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "使用if-elif-else结构",
-        "比较运算符：>, <, =="
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["if", "elif", "else"],
-        "successFeedback": "太棒了！你的程序会做判断了！",
-        "errorFeedback": "请确保使用了if-elif-else结构。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
       "difficulty": 2,
-      "category": "流程控制",
-      "tags": ["if", "条件", "比较运算符"],
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
       "phase": 2,
       "phaseName": "冒险启程",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["num = int(input(\"请输入一个数字：\"))", "if num > 0:", "    print(\"正数\")", "elif num < 0:", "    print(\"负数\")", "else:", "    print(\"零\")"],
-        "correctOrder": ["num = int(input(\"请输入一个数字：\"))", "if num > 0:", "    print(\"正数\")", "elif num < 0:", "    print(\"负数\")", "else:", "    print(\"零\")"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "要判断两个数是否相等，应该用什么符号？",
+        "question": "问题？",
         "options": [
-          { "text": "==", "correct": true, "feedback": "正确！双等号==用来判断相等！" },
-          { "text": "=", "correct": false, "feedback": "不对，单等号=是用来赋值的。" },
-          { "text": "===", "correct": false, "feedback": "不对，Python不用===。" },
-          { "text": "!=", "correct": false, "feedback": "不对，!=是判断不相等的。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "num = int(input(\"请输入一个数字：\"))\n___ num > 0:\n    print(\"正数\")\n___ num < 0:\n    print(\"负数\")\n___:\n    print(\"零\")",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "if", "options": ["if", "elif", "else", "when"] },
-          { "id": 1, "answer": "elif", "options": ["if", "elif", "else", "when"] },
-          { "id": 2, "answer": "else", "options": ["if", "elif", "else", "when"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，获取用户输入的数字。",
-          "code": "# 第一步：获取数字\nnum = int(input(\"请输入一个数字：\"))"
-        },
-        {
-          "step": 2,
-          "hint": "很好！用if判断是否大于0。",
-          "code": "# 第二步：判断正数\nnum = int(input(\"请输入一个数字：\"))\nif num > 0:\n    print(\"正数\")"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！添加elif和else完成所有判断。",
-          "code": "# 第三步：完整答案\nnum = int(input(\"请输入一个数字：\"))\nif num > 0:\n    print(\"正数\")\nelif num < 0:\n    print(\"负数\")\nelse:\n    print(\"零\")"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 9,
-      "title": "关卡 9: 逻辑运算",
-      "description": "学习使用逻辑运算符，让条件更复杂！",
+      "title": "关卡 9: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "学会使用and、or、not",
-        "理解逻辑运算规则",
-        "组合多个条件"
+        "完成关卡"
       ],
-      "example": "# 逻辑运算\nage = 20\nhas_license = True\nif age >= 18 and has_license:\n    print(\"你可以开车！\")\nelif age >= 18 or has_license:\n    print(\"满足其中一个条件\")\nelse:\n    print(\"都不满足\")",
-      "challenge": "编写一个程序，判断一个年份是否是闰年。（闰年：能被4整除但不能被100整除，或者能被400整除）",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "使用%取模运算",
-        "组合使用and和or"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["if", "and", "or", "%"],
-        "successFeedback": "完美！你已经掌握了逻辑运算！",
-        "errorFeedback": "请确保使用了and和or逻辑运算符。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
-      "difficulty": 3,
-      "category": "流程控制",
-      "tags": ["逻辑运算", "and", "or", "not"],
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
       "phase": 2,
       "phaseName": "冒险启程",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["year = int(input(\"请输入年份：\"))", "if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):", "    print(\"闰年\")", "else:", "    print(\"不是闰年\")"],
-        "correctOrder": ["year = int(input(\"请输入年份：\"))", "if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):", "    print(\"闰年\")", "else:", "    print(\"不是闰年\")"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "要判断两个条件同时满足，应该用什么运算符？",
+        "question": "问题？",
         "options": [
-          { "text": "and", "correct": true, "feedback": "正确！and表示两个条件都要满足！" },
-          { "text": "or", "correct": false, "feedback": "不对，or是满足其中一个即可。" },
-          { "text": "not", "correct": false, "feedback": "不对，not是取反。" },
-          { "text": "&&", "correct": false, "feedback": "不对，Python用and不用&&。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "year = int(input(\"请输入年份：\"))\nif (year % 4 == 0 ___ year % 100 != 0) ___ (year % 400 == 0):\n    print(\"闰年\")\nelse:\n    print(\"不是闰年\")",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "and", "options": ["and", "or", "not", "&&"] },
-          { "id": 1, "answer": "or", "options": ["and", "or", "not", "||"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，获取用户输入的年份。",
-          "code": "# 第一步：获取年份\nyear = int(input(\"请输入年份：\"))"
-        },
-        {
-          "step": 2,
-          "hint": "很好！写出闰年的第一个条件：能被4整除但不能被100整除。",
-          "code": "# 第二步：第一个条件\nyear = int(input(\"请输入年份：\"))\nif (year % 4 == 0 and year % 100 != 0):"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！添加第二个条件：或者能被400整除。",
-          "code": "# 第三步：完整答案\nyear = int(input(\"请输入年份：\"))\nif (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):\n    print(\"闰年\")\nelse:\n    print(\"不是闰年\")"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 10,
-      "title": "关卡 10: 简单计算器",
-      "description": "创建一个简单的计算器！",
+      "title": "关卡 10: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "综合运用条件判断",
-        "练习用户输入",
-        "实现基本运算"
+        "完成关卡"
       ],
-      "example": "# 简单计算器\nnum1 = float(input(\"第一个数字：\"))\nnum2 = float(input(\"第二个数字：\"))\nop = input(\"运算符(+ - * /): \")\nif op == \"+\":\n    print(num1 + num2)\nelif op == \"-\":\n    print(num1 - num2)\nelif op == \"*\":\n    print(num1 * num2)\nelif op == \"/\":\n    print(num1 / num2)",
-      "challenge": "创建一个计算器，支持加法、减法、乘法和除法运算。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "获取两个数字和运算符",
-        "用if-elif判断运算符"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["if", "elif", "input", "float"],
-        "successFeedback": "恭喜！你完成了冒险启程的迷你项目！",
-        "errorFeedback": "请确保实现了完整的计算器功能。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
-      "difficulty": 3,
-      "category": "综合应用",
-      "tags": ["计算器", "条件判断", "运算"],
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
       "phase": 2,
       "phaseName": "冒险启程",
-      "isMiniProject": true,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["num1 = float(input(\"第一个数字：\"))", "num2 = float(input(\"第二个数字：\"))", "op = input(\"运算符(+ - * /): \")", "if op == \"+\":", "    print(num1 + num2)", "elif op == \"-\":", "    print(num1 - num2)", "elif op == \"*\":", "    print(num1 * num2)", "elif op == \"/\":", "    print(num1 / num2)"],
-        "correctOrder": ["num1 = float(input(\"第一个数字：\"))", "num2 = float(input(\"第二个数字：\"))", "op = input(\"运算符(+ - * /): \")", "if op == \"+\":", "    print(num1 + num2)", "elif op == \"-\":", "    print(num1 - num2)", "elif op == \"*\":", "    print(num1 * num2)", "elif op == \"/\":", "    print(num1 / num2)"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "在这个计算器中，我们用什么来判断用户选择了哪个运算符？",
+        "question": "问题？",
         "options": [
-          { "text": "if-elif-else", "correct": true, "feedback": "正确！用条件判断来处理不同的运算符！" },
-          { "text": "switch-case", "correct": false, "feedback": "不对，Python没有switch-case。" },
-          { "text": "字典", "correct": false, "feedback": "不对，这里用的是条件判断。" },
-          { "text": "循环", "correct": false, "feedback": "不对，不需要循环。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "num1 = ___(input(\"第一个数字：\"))\nnum2 = ___(input(\"第二个数字：\"))\nop = input(\"运算符(+ - * /): \")\n___ op == \"+\":\n    print(num1 + num2)\n___ op == \"-\":\n    print(num1 - num2)",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "float", "options": ["float", "int", "str", "number"] },
-          { "id": 1, "answer": "float", "options": ["float", "int", "str", "number"] },
-          { "id": 2, "answer": "if", "options": ["if", "elif", "else", "when"] },
-          { "id": 3, "answer": "elif", "options": ["if", "elif", "else", "when"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，获取两个数字和运算符。",
-          "code": "# 第一步：获取输入\nnum1 = float(input(\"第一个数字：\"))\nnum2 = float(input(\"第二个数字：\"))\nop = input(\"运算符(+ - * /): \")"
-        },
-        {
-          "step": 2,
-          "hint": "很好！用if判断加法。",
-          "code": "# 第二步：加法\nnum1 = float(input(\"第一个数字：\"))\nnum2 = float(input(\"第二个数字：\"))\nop = input(\"运算符(+ - * /): \")\nif op == \"+\":\n    print(num1 + num2)"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！添加其他运算符的处理。",
-          "code": "# 第三步：完整答案\nnum1 = float(input(\"第一个数字：\"))\nnum2 = float(input(\"第二个数字：\"))\nop = input(\"运算符(+ - * /): \")\nif op == \"+\":\n    print(num1 + num2)\nelif op == \"-\":\n    print(num1 - num2)\nelif op == \"*\":\n    print(num1 * num2)\nelif op == \"/\":\n    print(num1 / num2)"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 11,
-      "title": "关卡 11: for循环",
-      "description": "学习使用for循环，让代码重复执行！",
+      "title": "关卡 11: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "学会使用for循环",
-        "掌握range()函数",
-        "理解循环的概念"
+        "完成关卡"
       ],
-      "example": "# for循环\nfor i in range(5):\n    print(i)\nfor i in range(1, 6):\n    print(f\"第{i}次\")",
-      "challenge": "编写一个程序，输出1到10的所有数字。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "使用range()函数",
-        "for循环遍历range"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["for", "range"],
-        "successFeedback": "太棒了！你已经掌握了for循环！",
-        "errorFeedback": "请确保使用了for循环和range()函数。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
-      "difficulty": 3,
-      "category": "流程控制",
-      "tags": ["for", "循环", "range"],
-      "phase": 3,
-      "phaseName": "技能进阶",
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 2,
+      "phaseName": "冒险启程",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["for i in range(1, 11):", "    print(i)"],
-        "correctOrder": ["for i in range(1, 11):", "    print(i)"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "range(5)会生成哪些数字？",
+        "question": "问题？",
         "options": [
-          { "text": "0, 1, 2, 3, 4", "correct": true, "feedback": "正确！range(n)从0开始到n-1！" },
-          { "text": "1, 2, 3, 4, 5", "correct": false, "feedback": "不对，range是从0开始的。" },
-          { "text": "0, 1, 2, 3, 4, 5", "correct": false, "feedback": "不对，不包含结束值。" },
-          { "text": "1, 2, 3, 4", "correct": false, "feedback": "不对，从0开始。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "___ i in ___(1, 11):\n    ___(i)",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "for", "options": ["for", "while", "if", "when"] },
-          { "id": 1, "answer": "range", "options": ["range", "list", "array", "seq"] },
-          { "id": 2, "answer": "print", "options": ["print", "show", "display", "output"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，写出for循环的框架。",
-          "code": "# 第一步：for循环\nfor i in range(1, 11):"
-        },
-        {
-          "step": 2,
-          "hint": "很好！在循环体中打印i。",
-          "code": "# 第二步：完整答案\nfor i in range(1, 11):\n    print(i)"
-        },
-        {
-          "step": 3,
-          "hint": "完美！你已经完成了！",
-          "code": "# 完成\nfor i in range(1, 11):\n    print(i)"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 12,
-      "title": "关卡 12: while循环",
-      "description": "学习使用while循环，满足条件就继续！",
+      "title": "关卡 12: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "学会使用while循环",
-        "理解循环条件",
-        "避免无限循环"
+        "完成关卡"
       ],
-      "example": "# while循环\ni = 1\nwhile i <= 5:\n    print(i)\n    i = i + 1",
-      "challenge": "编写一个程序，用while循环计算1到100的和。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "初始化变量i和sum",
-        "循环中累加sum并增加i"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["while", "="],
-        "successFeedback": "完美！你已经掌握了while循环！",
-        "errorFeedback": "请确保使用了while循环。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
-      "difficulty": 3,
-      "category": "流程控制",
-      "tags": ["while", "循环", "累加"],
-      "phase": 3,
-      "phaseName": "技能进阶",
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 2,
+      "phaseName": "冒险启程",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["i = 1", "sum = 0", "while i <= 100:", "    sum = sum + i", "    i = i + 1", "print(sum)"],
-        "correctOrder": ["i = 1", "sum = 0", "while i <= 100:", "    sum = sum + i", "    i = i + 1", "print(sum)"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "while循环在什么情况下会停止？",
+        "question": "问题？",
         "options": [
-          { "text": "条件为False时", "correct": true, "feedback": "正确！条件为False时循环停止！" },
-          { "text": "条件为True时", "correct": false, "feedback": "不对，条件为True时继续循环。" },
-          { "text": "执行完一次后", "correct": false, "feedback": "不对，会继续判断条件。" },
-          { "text": "永远不会停止", "correct": false, "feedback": "不对，条件不满足就会停止。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "i = 1\nsum = 0\n___ i <= 100:\n    sum = sum + i\n    i = i + 1\n___(sum)",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "while", "options": ["while", "for", "if", "when"] },
-          { "id": 1, "answer": "print", "options": ["print", "show", "display", "output"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，初始化变量i和sum。",
-          "code": "# 第一步：初始化\ni = 1\nsum = 0"
-        },
-        {
-          "step": 2,
-          "hint": "很好！写出while循环，累加sum并增加i。",
-          "code": "# 第二步：循环\ni = 1\nsum = 0\nwhile i <= 100:\n    sum = sum + i\n    i = i + 1"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！输出结果。",
-          "code": "# 第三步：完整答案\ni = 1\nsum = 0\nwhile i <= 100:\n    sum = sum + i\n    i = i + 1\nprint(sum)"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 13,
-      "title": "关卡 13: 列表基础",
-      "description": "学习使用列表，存储多个数据！",
+      "title": "关卡 13: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "学会创建列表",
-        "掌握列表索引",
-        "添加和删除元素"
+        "完成关卡"
       ],
-      "example": "# 列表\nfruits = [\"苹果\", \"香蕉\", \"橙子\"]\nprint(fruits[0])\nfruits.append(\"葡萄\")\nprint(fruits)",
-      "challenge": "创建一个列表，包含你的3个爱好，然后添加一个新爱好，最后输出整个列表。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "用[]创建列表",
-        "用append()添加元素"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["[", "]", "append"],
-        "successFeedback": "太棒了！你已经掌握了列表基础！",
-        "errorFeedback": "请确保创建了列表并使用了append()方法。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
-      "difficulty": 3,
-      "category": "数据结构",
-      "tags": ["列表", "append", "索引"],
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
       "phase": 3,
       "phaseName": "技能进阶",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["hobbies = [\"读书\", \"运动\", \"音乐\"]", "hobbies.append(\"编程\")", "print(hobbies)"],
-        "correctOrder": ["hobbies = [\"读书\", \"运动\", \"音乐\"]", "hobbies.append(\"编程\")", "print(hobbies)"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "列表的索引从几开始？",
+        "question": "问题？",
         "options": [
-          { "text": "0", "correct": true, "feedback": "正确！列表索引从0开始！" },
-          { "text": "1", "correct": false, "feedback": "不对，不是从1开始的。" },
-          { "text": "-1", "correct": false, "feedback": "不对，-1是最后一个元素。" },
-          { "text": "任意数", "correct": false, "feedback": "不对，固定从0开始。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "hobbies = ___(\"读书\", \"运动\", \"音乐\"___\nhobbies.___(\"编程\")\nprint(hobbies)",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "[", "options": ["[", "{", "(", "<"] },
-          { "id": 1, "answer": "]", "options": ["]", "}", ")", ">"] },
-          { "id": 2, "answer": "append", "options": ["append", "add", "insert", "push"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，创建包含爱好的列表。",
-          "code": "# 第一步：创建列表\nhobbies = [\"读书\", \"运动\", \"音乐\"]"
-        },
-        {
-          "step": 2,
-          "hint": "很好！用append()添加一个新爱好。",
-          "code": "# 第二步：添加元素\nhobbies = [\"读书\", \"运动\", \"音乐\"]\nhobbies.append(\"编程\")"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！输出整个列表。",
-          "code": "# 第三步：完整答案\nhobbies = [\"读书\", \"运动\", \"音乐\"]\nhobbies.append(\"编程\")\nprint(hobbies)"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 14,
-      "title": "关卡 14: 遍历列表",
-      "description": "学习如何遍历列表中的每个元素！",
+      "title": "关卡 14: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "学会用for循环遍历列表",
-        "掌握列表常用方法",
-        "理解列表长度"
+        "完成关卡"
       ],
-      "example": "# 遍历列表\nnumbers = [1, 2, 3, 4, 5]\nfor num in numbers:\n    print(num * 2)\nprint(\"长度:\", len(numbers))",
-      "challenge": "创建一个数字列表，计算列表中所有数字的和。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "用for循环遍历列表",
-        "累加每个元素"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["for", "in", "="],
-        "successFeedback": "完美！你已经掌握了遍历列表！",
-        "errorFeedback": "请确保使用for循环遍历了列表。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
-      "difficulty": 3,
-      "category": "数据结构",
-      "tags": ["列表", "遍历", "for循环"],
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
       "phase": 3,
       "phaseName": "技能进阶",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", "sum = 0", "for num in numbers:", "    sum = sum + num", "print(sum)"],
-        "correctOrder": ["numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", "sum = 0", "for num in numbers:", "    sum = sum + num", "print(sum)"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "要获取列表的长度，应该用什么函数？",
+        "question": "问题？",
         "options": [
-          { "text": "len()", "correct": true, "feedback": "正确！len()函数获取列表长度！" },
-          { "text": "length()", "correct": false, "feedback": "不对，Python用len不用length。" },
-          { "text": "size()", "correct": false, "feedback": "不对，不是size。" },
-          { "text": "count()", "correct": false, "feedback": "不对，count是统计元素出现次数。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "numbers = [1, 2, 3, 4, 5]\nsum = 0\n___ num ___ numbers:\n    sum = sum + num\nprint(sum)",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "for", "options": ["for", "while", "if", "when"] },
-          { "id": 1, "answer": "in", "options": ["in", "of", "at", "on"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，创建数字列表并初始化sum。",
-          "code": "# 第一步：初始化\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nsum = 0"
-        },
-        {
-          "step": 2,
-          "hint": "很好！用for循环遍历列表，累加每个数字。",
-          "code": "# 第二步：遍历累加\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nsum = 0\nfor num in numbers:\n    sum = sum + num"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！输出结果。",
-          "code": "# 第三步：完整答案\nnumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nsum = 0\nfor num in numbers:\n    sum = sum + num\nprint(sum)"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 15,
-      "title": "关卡 15: 待办事项管理器",
-      "description": "创建一个待办事项管理器！",
+      "title": "关卡 15: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "综合运用列表操作",
-        "练习循环和条件",
-        "实现简单的菜单"
+        "完成关卡"
       ],
-      "example": "# 待办事项管理器\ntodos = []\nwhile True:\n    print(\"1. 添加 2. 查看 3. 退出\")\n    choice = input(\"请选择：\")\n    if choice == \"1\":\n        todo = input(\"输入待办：\")\n        todos.append(todo)\n    elif choice == \"2\":\n        for i, todo in enumerate(todos):\n            print(f\"{i+1}. {todo}\")\n    elif choice == \"3\":\n        break",
-      "challenge": "创建一个待办事项管理器，支持添加、查看和删除功能。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "用列表存储待办事项",
-        "用while循环实现菜单"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["while", "if", "append", "for"],
-        "successFeedback": "恭喜！你完成了技能进阶的迷你项目！",
-        "errorFeedback": "请确保实现了完整的待办事项管理功能。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
-      "difficulty": 4,
-      "category": "综合应用",
-      "tags": ["待办事项", "列表", "菜单"],
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
       "phase": 3,
       "phaseName": "技能进阶",
-      "isMiniProject": true,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["todos = []", "while True:", "    print(\"1. 添加 2. 查看 3. 删除 4. 退出\")", "    choice = input(\"请选择：\")", "    if choice == \"1\":", "        todo = input(\"输入待办：\")", "        todos.append(todo)", "    elif choice == \"2\":", "        for i, todo in enumerate(todos):", "            print(f\"{i+1}. {todo}\")", "    elif choice == \"3\":", "        index = int(input(\"删除第几个：\")) - 1", "        if 0 <= index < len(todos):", "            todos.pop(index)", "    elif choice == \"4\":", "        break"],
-        "correctOrder": ["todos = []", "while True:", "    print(\"1. 添加 2. 查看 3. 删除 4. 退出\")", "    choice = input(\"请选择：\")", "    if choice == \"1\":", "        todo = input(\"输入待办：\")", "        todos.append(todo)", "    elif choice == \"2\":", "        for i, todo in enumerate(todos):", "            print(f\"{i+1}. {todo}\")", "    elif choice == \"3\":", "        index = int(input(\"删除第几个：\")) - 1", "        if 0 <= index < len(todos):", "            todos.pop(index)", "    elif choice == \"4\":", "        break"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "在待办事项管理器中，我们用什么来实现菜单循环？",
+        "question": "问题？",
         "options": [
-          { "text": "while True", "correct": true, "feedback": "正确！用无限循环实现菜单！" },
-          { "text": "for循环", "correct": false, "feedback": "不对，for循环次数固定。" },
-          { "text": "if语句", "correct": false, "feedback": "不对，if不是循环。" },
-          { "text": "递归", "correct": false, "feedback": "不对，不用递归。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "todos = []\n___ True:\n    print(\"1. 添加 2. 查看 3. 退出\")\n    choice = input(\"请选择：\")\n    ___ choice == \"1\":\n        todo = input(\"输入待办：\")\n        todos.___(todo)\n    elif choice == \"3\":\n        break",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "while", "options": ["while", "for", "if", "when"] },
-          { "id": 1, "answer": "if", "options": ["if", "elif", "else", "when"] },
-          { "id": 2, "answer": "append", "options": ["append", "add", "insert", "push"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，创建空列表和while循环。",
-          "code": "# 第一步：初始化\ntodos = []\nwhile True:\n    print(\"1. 添加 2. 查看 3. 删除 4. 退出\")\n    choice = input(\"请选择：\")"
-        },
-        {
-          "step": 2,
-          "hint": "很好！实现添加和查看功能。",
-          "code": "# 第二步：添加和查看\ntodos = []\nwhile True:\n    print(\"1. 添加 2. 查看 3. 删除 4. 退出\")\n    choice = input(\"请选择：\")\n    if choice == \"1\":\n        todo = input(\"输入待办：\")\n        todos.append(todo)\n    elif choice == \"2\":\n        for i, todo in enumerate(todos):\n            print(f\"{i+1}. {todo}\")"
-        },
-        {
-          "step": 3,
-          "hint": "太棒了！添加删除和退出功能。",
-          "code": "# 第三步：完整答案\ntodos = []\nwhile True:\n    print(\"1. 添加 2. 查看 3. 删除 4. 退出\")\n    choice = input(\"请选择：\")\n    if choice == \"1\":\n        todo = input(\"输入待办：\")\n        todos.append(todo)\n    elif choice == \"2\":\n        for i, todo in enumerate(todos):\n            print(f\"{i+1}. {todo}\")\n    elif choice == \"3\":\n        index = int(input(\"删除第几个：\")) - 1\n        if 0 <= index < len(todos):\n            todos.pop(index)\n    elif choice == \"4\":\n        break"
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     },
     {
       "id": 16,
-      "title": "关卡 16: 函数基础",
-      "description": "学习创建和使用函数，让代码更有条理！",
+      "title": "关卡 16: 测试关卡",
+      "description": "测试关卡描述",
       "objectives": [
-        "学会定义函数",
-        "理解函数参数",
-        "掌握return语句"
+        "完成关卡"
       ],
-      "example": "# 函数\ndef greet(name):\n    return f\"你好，{name}!\"\n\nprint(greet(\"小明\"))\n\ndef add(a, b):\n    return a + b\n\nprint(add(3, 5))",
-      "challenge": "创建一个函数，计算两个数的最大值并返回结果。",
+      "example": "# example",
+      "challenge": "完成挑战",
       "hints": [
-        "用def定义函数",
-        "用if-else比较大小"
+        "hint 1"
       ],
       "validation": {
-        "requiredKeywords": ["def", "return"],
-        "successFeedback": "太棒了！你已经掌握了函数基础！",
-        "errorFeedback": "请确保定义了函数并使用了return语句。"
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
       },
-      "difficulty": 4,
-      "category": "函数",
-      "tags": ["函数", "def", "return"],
-      "phase": 4,
-      "phaseName": "挑战大师",
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 3,
+      "phaseName": "技能进阶",
       "isMiniProject": false,
-      "questionTypes": ["code", "drag", "choice", "fill", "guided"],
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
       "defaultType": "code",
       "codeBlocks": {
-        "available": ["def max_num(a, b):", "    if a > b:", "        return a", "    else:", "        return b", "print(max_num(10, 20))"],
-        "correctOrder": ["def max_num(a, b):", "    if a > b:", "        return a", "    else:", "        return b", "print(max_num(10, 20))"]
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
       },
       "choices": {
-        "question": "定义函数时用什么关键字？",
+        "question": "问题？",
         "options": [
-          { "text": "def", "correct": true, "feedback": "正确！def用来定义函数！" },
-          { "text": "function", "correct": false, "feedback": "不对，Python用def不用function。" },
-          { "text": "func", "correct": false, "feedback": "不对，不是func。" },
-          { "text": "define", "correct": false, "feedback": "不对，不是define。" }
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
         ]
       },
       "fillBlanks": {
-        "template": "___ max_num(a, b):\n    if a > b:\n        ___ a\n    else:\n        ___ b\nprint(max_num(10, 20))",
+        "template": "___",
         "blanks": [
-          { "id": 0, "answer": "def", "options": ["def", "function", "func", "define"] },
-          { "id": 1, "answer": "return", "options": ["return", "print", "output", "back"] },
-          { "id": 2, "answer": "return", "options": ["return", "print", "output", "back"] }
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
         ]
       },
       "guidedHints": [
         {
           "step": 1,
-          "hint": "首先，用def定义函数。",
-          "code": "# 第一步：定义函数\ndef max_num(a, b):"
-        },
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "关卡 17: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 3,
+      "phaseName": "技能进阶",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
         {
-          "step": 2,
-          "hint": "很好！用if-else比较并返回较大值。",
-          "code": "# 第二步：比较和返回\ndef max_num(a, b):\n    if a > b:\n        return a\n    else:\n        return b"
-        },
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "关卡 18: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 3,
+      "phaseName": "技能进阶",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
         {
-          "step": 3,
-          "hint": "太棒了！调用函数并打印结果。",
-          "code": "# 第三步：完整答案\ndef max_num(a, b):\n    if a > b:\n        return a\n    else:\n        return b\nprint(max_num(10, 20))"
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "关卡 19: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "关卡 20: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "关卡 21: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "title": "关卡 22: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "title": "关卡 23: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "title": "关卡 24: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "title": "关卡 25: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 5,
+      "phaseName": "终极挑战",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "title": "关卡 26: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 5,
+      "phaseName": "终极挑战",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "title": "关卡 27: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 5,
+      "phaseName": "终极挑战",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "title": "关卡 28: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 5,
+      "phaseName": "终极挑战",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "title": "关卡 29: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 5,
+      "phaseName": "终极挑战",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "title": "关卡 30: 测试关卡",
+      "description": "测试关卡描述",
+      "objectives": [
+        "完成关卡"
+      ],
+      "example": "# example",
+      "challenge": "完成挑战",
+      "hints": [
+        "hint 1"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "成功",
+        "errorFeedback": "错误"
+      },
+      "difficulty": 2,
+      "category": "测试",
+      "tags": [
+        "test"
+      ],
+      "phase": 5,
+      "phaseName": "终极挑战",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"test\")"
+        ],
+        "correctOrder": [
+          "print(\"test\")"
+        ]
+      },
+      "choices": {
+        "question": "问题？",
+        "options": [
+          {
+            "text": "正确答案",
+            "correct": true,
+            "feedback": "对"
+          },
+          {
+            "text": "错",
+            "correct": false,
+            "feedback": "不对"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "hint",
+          "code": "print()"
         }
       ]
     }
+  ]
+}
