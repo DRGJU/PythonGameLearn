@@ -377,6 +377,91 @@ body {
   color: var(--accent-primary);
 }
 
+/* 阶段标签页样式 */
+.phase-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+}
+
+.phase-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 18px;
+  background: var(--bg-tertiary);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.phase-tab:hover:not(.locked) {
+  background: var(--bg-secondary);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.phase-tab.active {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border-color: transparent;
+  animation: phaseActivePulse 0.4s ease-out;
+}
+
+.phase-tab.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.phase-tab.completed {
+  border-color: var(--accent-success);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.phase-icon {
+  font-size: 1.8em;
+  line-height: 1;
+}
+
+.phase-name {
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.phase-badge {
+  font-size: 0.75em;
+  opacity: 0.8;
+  font-family: var(--font-mono);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.phase-tab.active .phase-badge {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes phaseActivePulse {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
 .level-selector {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -488,6 +573,23 @@ body {
   padding-bottom: 24px;
   border-bottom: 2px solid transparent;
   border-image: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)) 1;
+}
+
+.level-phase-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-bottom: 12px;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
 }
 
 .level-title {
@@ -854,6 +956,32 @@ body {
     font-size: 1.5em;
   }
   
+  /* 移动端阶段标签页 */
+  .phase-tabs {
+    gap: 8px;
+    padding: 6px;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .phase-tab {
+    padding: 10px 14px;
+    min-width: 80px;
+    scroll-snap-align: start;
+  }
+  
+  .phase-icon {
+    font-size: 1.5em;
+  }
+  
+  .phase-name {
+    font-size: 0.75em;
+  }
+  
+  .phase-badge {
+    font-size: 0.7em;
+    padding: 1px 6px;
+  }
+  
   .level-selector {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 12px;
@@ -1179,8 +1307,35 @@ body {
   position: absolute;
   top: 8px;
   right: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--accent-success);
+  font-weight: bold;
+  background: rgba(16, 185, 129, 0.2);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.level-btn.mini-project {
+  border: 2px solid var(--accent-warning);
+}
+
+.level-btn.mini-project::before {
+  content: '⭐';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  background: var(--bg-secondary);
+  padding: 0 4px;
+}
+
+.level-btn.mini-project.completed {
+  border-color: var(--accent-success);
 }
 
 .level-btn.unlocked {

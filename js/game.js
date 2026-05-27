@@ -4,6 +4,7 @@
   const GameState = {
     completedLevels: [],
     currentLevel: 1,
+    currentPhase: 1,
     levelsData: [],
     isSubmitting: false
   };
@@ -16,8 +17,19 @@
     completedCount: null,
     remainingCount: null,
     levelSelector: null,
-    levelContent: null
+    levelContent: null,
+    phaseTabs: null
   };
+
+  // 阶段配置
+  const phases = [
+    { id: 1, name: '新手村', icon: '🏠', levels: [1, 2, 3, 4, 5] },
+    { id: 2, name: '冒险启程', icon: '⚔️', levels: [6, 7, 8, 9, 10] },
+    { id: 3, name: '技能进阶', icon: '🛡️', levels: [11, 12, 13, 14, 15] },
+    { id: 4, name: '挑战大师', icon: '🏆', levels: [16, 17, 18, 19, 20] },
+    { id: 5, name: '探索者', icon: '🔍', levels: [21, 22, 23, 24, 25] },
+    { id: 6, name: '大师之路', icon: '👑', levels: [26, 27, 28, 29, 30] }
+  ];
 
   function escapeHtml(text) {
     const div = document.createElement('div');
@@ -34,6 +46,7 @@
     DOMCache.remainingCount = document.getElementById('remainingCount');
     DOMCache.levelSelector = document.getElementById('levelSelector');
     DOMCache.levelContent = document.getElementById('levelContent');
+    DOMCache.phaseTabs = document.getElementById('phaseTabs');
   }
 
   function updateProgress() {
@@ -80,11 +93,70 @@
     }, 3000);
   }
 
+  function showPhaseCelebration(phaseName) {
+    const celebration = document.createElement('div');
+    celebration.className = 'celebration phase-celebration';
+    celebration.innerHTML = `
+      <div class="celebration-content">
+        <div class="celebration-icon">🎊</div>
+        <h3>恭喜完成「${phaseName}」阶段！</h3>
+        <p>准备好迎接新的挑战了吗？</p>
+      </div>
+    `;
+    document.body.appendChild(celebration);
+    
+    setTimeout(() => {
+      celebration.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+      celebration.classList.remove('show');
+      setTimeout(() => celebration.remove(), 300);
+    }, 2500);
+  }
+
+  function isPhaseUnlocked(phaseId) {
+    if (phaseId === 1) return true;
+    const previousPhase = phases.find(p => p.id === phaseId - 1);
+    if (!previousPhase) return false;
+    return previousPhase.levels.every(levelId => GameState.completedLevels.includes(levelId));
+  }
+
+  function isPhaseCompleted(phaseId) {
+    const phase = phases.find(p => p.id === phaseId);
+    if (!phase) return false;
+    return phase.levels.every(levelId => GameState.completedLevels.includes(levelId));
+  }
+
+  function updatePhaseTabs() {
+    const tabs = DOMCache.phaseTabs.querySelectorAll('.phase-tab');
+    tabs.forEach(tab => {
+      const phaseId = parseInt(tab.dataset.phase);
+      tab.classList.remove('active', 'locked', 'completed');
+      tab.setAttribute('aria-selected', 'false');
+      
+      if (phaseId === GameState.currentPhase) {
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+      } else if (!isPhaseUnlocked(phaseId)) {
+        tab.classList.add('locked');
+        tab.setAttribute('aria-disabled', 'true');
+      } else if (isPhaseCompleted(phaseId)) {
+        tab.classList.add('completed');
+      }
+    });
+  }
+
   function generateLevelButtons() {
     const selector = DOMCache.levelSelector;
     selector.innerHTML = '';
     
-    GameState.levelsData.forEach(level => {
+    const currentPhaseData = phases.find(p => p.id === GameState.currentPhase);
+    if (!currentPhaseData) return;
+    
+    const phaseLevels = GameState.levelsData.filter(level => currentPhaseData.levels.includes(level.id));
+    
+    phaseLevels.forEach(level => {
       const button = document.createElement('button');
       button.className = 'level-btn';
       button.dataset.level = level.id;
@@ -103,13 +175,21 @@
       button.appendChild(levelNumber);
       button.appendChild(levelTitle);
       
-      if (level.id === 1) {
+      if (level.id === GameState.currentLevel) {
         button.classList.add('active');
         button.setAttribute('aria-selected', 'true');
       } else if (!isLevelUnlocked(level.id)) {
         button.classList.add('locked');
         button.setAttribute('aria-disabled', 'true');
         button.setAttribute('tabindex', '-1');
+      }
+      
+      if (GameState.completedLevels.includes(level.id)) {
+        button.classList.add('completed');
+      }
+      
+      if (level.isMiniProject) {
+        button.classList.add('mini-project');
       }
       
       selector.appendChild(button);
@@ -135,6 +215,7 @@
       
       levelDiv.innerHTML = `
         <div class="level-header">
+          <div class="level-phase-badge">${escapeHtml(level.phaseName)}</div>
           <h2 class="level-title">${escapeHtml(level.title)}</h2>
           <p class="level-description">${escapeHtml(level.description)}</p>
         </div>
@@ -195,6 +276,16 @@
     });
   }
 
+  function initPhaseTabs() {
+    DOMCache.phaseTabs.addEventListener('click', function(e) {
+      const tab = e.target.closest('.phase-tab');
+      if (!tab || tab.classList.contains('locked')) return;
+      
+      const phaseId = parseInt(tab.dataset.phase);
+      switchPhase(phaseId);
+    });
+  }
+
   function initLevelSelector() {
     DOMCache.levelSelector.addEventListener('click', function(e) {
       const button = e.target.closest('.level-btn');
@@ -243,7 +334,28 @@
     });
   }
 
+  function switchPhase(phaseId) {
+    GameState.currentPhase = phaseId;
+    updatePhaseTabs();
+    generateLevelButtons();
+    
+    // 切换到当前阶段的第一个关卡（如果当前关卡不在此阶段）
+    const currentPhaseData = phases.find(p => p.id === phaseId);
+    if (currentPhaseData && !currentPhaseData.levels.includes(GameState.currentLevel)) {
+      const firstLevel = currentPhaseData.levels.find(l => isLevelUnlocked(l)) || currentPhaseData.levels[0];
+      switchLevel(firstLevel);
+    }
+  }
+
   function switchLevel(level) {
+    // 如果关卡属于其他阶段，先切换阶段
+    const levelPhase = GameState.levelsData.find(l => l.id === level)?.phase;
+    if (levelPhase && levelPhase !== GameState.currentPhase) {
+      GameState.currentPhase = levelPhase;
+      updatePhaseTabs();
+      generateLevelButtons();
+    }
+    
     document.querySelectorAll('.level-content').forEach(content => {
       content.classList.remove('active');
     });
@@ -282,6 +394,7 @@
       GameState.completedLevels.push(level);
       GameState.completedLevels.sort((a, b) => a - b);
       updateProgress();
+      updatePhaseTabs();
       
       const nextLevelBtn = document.querySelector('.level-btn[data-level="' + (level + 1) + '"]');
       if (nextLevelBtn) {
@@ -294,6 +407,12 @@
       const currentButton = document.querySelector('.level-btn[data-level="' + level + '"]');
       if (currentButton) {
         currentButton.classList.add('completed');
+      }
+      
+      // 检查是否完成了整个阶段
+      const levelData = GameState.levelsData.find(l => l.id === level);
+      if (levelData && isPhaseCompleted(levelData.phase)) {
+        showPhaseCelebration(levelData.phaseName);
       }
     }
   }
@@ -386,9 +505,11 @@
   function initGame() {
     generateLevelButtons();
     generateLevelContent();
+    initPhaseTabs();
     initLevelSelector();
     initSubmitButtons();
     updateProgress();
+    updatePhaseTabs();
     switchLevel(1);
   }
 
