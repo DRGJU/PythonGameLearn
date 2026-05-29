@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代码编辑器深色主题测试</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      padding: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .test-section {
+      margin-bottom: 40px;
+      padding: 24px;
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+    }
+    .test-section h2 {
+      color: var(--accent-primary);
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+<body>
+  <h1>代码编辑器深色主题测试</h1>
+  
+  <div class="test-section">
+    <h2>基础代码块</h2>
+    <pre><code>def hello_world():
+    print("Hello, World!")
+    return 42</code></pre>
+  </div>
+  
+  <div class="test-section">
+    <h2>带行号的代码编辑器</h2>
+    <div class="code-editor-with-lines">
+      <div class="code-line-numbers">
+        <div class="code-line-number">1</div>
+        <div class="code-line-number">2</div>
+        <div class="code-line-number">3</div>
+        <div class="code-line-number">4</div>
+        <div class="code-line-number">5</div>
+      </div>
+      <div class="code-lines">
+        <div class="code-line">def calculate_sum(numbers):</div>
+        <div class="code-line"><span class="token-keyword">for</span> i <span class="token-operator">in</span> numbers:</div>
+        <div class="code-line">    total += i</div>
+        <div class="code-line highlighted">    <span class="token-function">print</span>(<span class="token-string">f"Current total: {total}"</span>)</div>
+        <div class="code-line"><span class="token-keyword">return</span> total</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>代码示例区域</h2>
+    <div class="code-example">
+      <pre><code><span class="token-keyword">class</span> <span class="token-class">Animal</span>:
+    <span class="token-keyword">def</span> <span class="token-function">__init__</span>(<span class="token-params">self, name</span>):
+        self.name = name
+    
+    <span class="token-keyword">def</span> <span class="token-function">speak</span>(<span class="token-params">self</span>):
+        <span class="token-keyword">pass</span>
+
+<span class="token-keyword">class</span> <span class="token-class">Dog</span>(<span class="token-class">Animal</span>):
+    <span class="token-keyword">def</span> <span class="token-function">speak</span>(<span class="token-params">self</span>):
+        <span class="token-keyword">return</span> <span class="token-string">"Woof!"</span></code></pre>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>代码片段容器</h2>
+    <div class="code-snippet">
+      <div class="code-snippet-header">
+        <span class="code-snippet-title">example.py</span>
+        <button class="code-snippet-copy">复制</button>
+      </div>
+      <div class="code-snippet-content">
+        <pre><code><span class="python-keyword">import</span> <span class="python-builtin">json</span>
+
+<span class="python-keyword">def</span> <span class="python-function">load_config</span>(<span class="python-params">filename</span>):
+    <span class="python-keyword">with</span> <span class="python-builtin">open</span>(filename, <span class="python-string">'r'</span>) <span class="python-keyword">as</span> f:
+        <span class="python-keyword">return</span> <span class="python-builtin">json</span>.<span class="python-function">load</span>(f)</code></pre>
+      </div>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>填空代码容器</h2>
+    <div class="fill-code-container">
+      <div class="fill-code">
+<span class="token-keyword">if</span> <span class="fill-blank">condition</span>:
+    <span class="token-function">print</span>(<span class="token-string">"Condition is true"</span>)
+<span class="token-keyword">else</span>:
+    <span class="token-function">print</span>(<span class="token-string">"Condition is false"</span>)
+      </div>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>引导代码预览</h2>
+    <div class="guided-code-preview">
+      <pre><code><span class="token-comment"># 这是一个注释</span>
+<span class="token-keyword">const</span> <span class="token-variable">numbers</span> = [<span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>, <span class="token-number">4</span>, <span class="token-number">5</span>];
+<span class="token-keyword">const</span> <span class="token-variable">sum</span> = numbers.<span class="token-function">reduce</span>((<span class="token-params">acc, curr</span>) => acc + curr, <span class="token-number">0</span>);</code></pre>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>内联代码</h2>
+    <p>这是一个带有 <span class="code-inline">内联代码</span> 的段落。</p>
+  </div>
+  
+  <div class="test-section">
+    <h2>代码输出</h2>
+    <div class="code-output">
+      <div>> python example.py</div>
+      <div>Hello, World!</div>
+      <div>> Process finished with exit code 0</div>
+    </div>
+    <div class="code-output error" style="margin-top: 16px;">
+      <div>> python example.py</div>
+      <div>Error: File not found</div>
+      <div>> Process finished with exit code 1</div>
+    </div>
+    <div class="code-output success" style="margin-top: 16px;">
+      <div>> python example.py</div>
+      <div>All tests passed!</div>
+      <div>> Process finished with exit code 0</div>
+    </div>
+  </div>
+  
+  <div class="test-section">
+    <h2>完整代码编辑器</h2>
+    <div class="code-editor">
+      <div class="code-editor-header">
+        <div class="code-editor-dots">
+          <div class="code-editor-dot red"></div>
+          <div class="code-editor-dot yellow"></div>
+          <div class="code-editor-dot green"></div>
+        </div>
+        <span class="code-editor-title">main.py - Python</span>
+        <div></div>
+      </div>
+      <div class="code-editor-body">
+        <pre><code><span class="python-keyword">def</span> <span class="python-function">fibonacci</span>(<span class="python-params">n</span>):
+    <span class="python-string">"""生成斐波那契数列"""</span>
+    <span class="python-keyword">if</span> n <= <span class="python-number">1</span>:
+        <span class="python-keyword">return</span> n
+    <span class="python-keyword">return</span> <span class="python-function">fibonacci</span>(n - <span class="python-number">1</span>) + <span class="python-function">fibonacci</span>(n - <span class="python-number">2</span>)
+
+<span class="python-keyword">for</span> i <span class="python-keyword">in</span> <span class="python-builtin">range</span>(<span class="python-number">10</span>):
+    <span class="python-builtin">print</span>(<span class="python-function">fibonacci</span>(i))</code></pre>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

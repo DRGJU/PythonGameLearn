@@ -1,0 +1,34 @@
+{
+  "index_page": {
+    "loaded": true,
+    "background_color": "rgb(13, 17, 23)",
+    "logo_exists": true,
+    "header_exists": true,
+    "progress_exists": true,
+    "game_section_exists": true,
+    "level_selector_exists": true,
+    "console_errors": []
+  },
+  "level_page": {
+    "loaded": true,
+    "background_color": "rgb(13, 17, 23)",
+    "back_button_exists": true,
+    "level_title_exists": true,
+    "navigation_bar_exists": true,
+    "mode_tabs_exists": true,
+    "code_input_exists": true,
+    "console_errors": [
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "severity": "critical",
+      "category": "functional",
+      "description": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"#level-nav-next\")\n    - locator resolved to <button disabled id=\"level-nav-next\" class=\"level-nav-arrow\">›</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not enabled\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not enabled\n    - retrying click action\n      - waiting 100ms\n    56 × waiting for element to be visible, enabled and stable\n       - element is not enabled\n     - retrying click action\n       - waiting 500ms\n"
+    }
+  ]
+}

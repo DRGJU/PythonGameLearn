@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #0d1117; color: #e6edf3; }
+        .test-result { margin: 10px 0; padding: 10px; border-radius: 8px; }
+        .success { background: #238636; }
+        .error { background: #da3633; }
+        a { color: #58a6ff; margin: 10px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>🧪 页面测试</h1>
+    
+    <div class="test-result success">
+        <h3>✅ 直接访问测试</h3>
+        <a href="level.html">level.html</a>
+        <a href="level.html?level=1">level.html?level=1</a>
+        <a href="level.html?level=2">level.html?level=2</a>
+    </div>
+    
+    <div class="test-result" id="levels-test">
+        <h3>加载关卡数据中...</h3>
+    </div>
+    
+    <div class="test-result" id="localstorage-test">
+        <h3>检查localStorage中...</h3>
+    </div>
+
+    <script>
+        // 测试levels.json加载
+        fetch('data/levels.json')
+            .then(response => {
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('levels-test').innerHTML = 
+                    '<h3>✅ levels.json加载成功</h3><p>关卡数量: ' + (data.levels ? data.levels.length : 0) + '</p>';
+            })
+            .catch(error => {
+                document.getElementById('levels-test').innerHTML = 
+                    '<h3>❌ levels.json加载失败</h3><p>错误: ' + error.message + '</p>';
+                document.getElementById('levels-test').classList.add('error');
+            });
+        
+        // 测试localStorage
+        const saved = localStorage.getItem('pythonGameCompletedLevels');
+        if (saved) {
+            const completed = JSON.parse(saved);
+            document.getElementById('localstorage-test').innerHTML = 
+                '<h3>✅ localStorage数据</h3><p>已完成的关卡: ' + completed.length + '</p><pre>' + 
+                JSON.stringify(completed, null, 2) + '</pre>';
+        } else {
+            document.getElementById('localstorage-test').innerHTML = 
+                '<h3>ℹ️ localStorage为空</h3><p>没有已保存的进度</p>';
+        }
+    </script>
+</body>
+</html>
