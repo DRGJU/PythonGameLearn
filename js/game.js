@@ -5,16 +5,78 @@
     completedLevels: loadCompletedLevels(),
     currentLevel: 1,
     currentPhase: 1,
-    levelsData: []
+    levelsData: [],
+    isLoading: true
   };
+
+  function validateCompletedLevels(data) {
+    if (!Array.isArray(data)) {
+      console.warn('Invalid completed levels data, resetting');
+      return [];
+    }
+    const validLevels = data.filter(levelId => 
+      typeof levelId === 'number' && 
+      levelId > 0 && 
+      levelId <= 30 &&
+      Number.isInteger(levelId)
+    );
+    return [...new Set(validLevels)];
+  }
 
   function loadCompletedLevels() {
     try {
       const saved = localStorage.getItem('pythonGameCompletedLevels');
-      return saved ? JSON.parse(saved) : [];
+      if (!saved) return [];
+      
+      const parsed = JSON.parse(saved);
+      const validated = validateCompletedLevels(parsed);
+      
+      if (validated.length !== parsed.length) {
+        console.warn('Some invalid level IDs were removed');
+        saveCompletedLevels(validated);
+      }
+      
+      return validated;
     } catch (error) {
-      console.error('加载进度失败:', error);
-      return [];
+      console.error('加载进度失败，尝试恢复数据:', error);
+      return recoverCompletedLevels();
+    }
+  }
+
+  function recoverCompletedLevels() {
+    try {
+      const corrupted = localStorage.getItem('pythonGameCompletedLevels');
+      if (!corrupted) return [];
+      
+      const cleaned = corrupted.replace(/[^\d,\[\]]/g, '');
+      const parsed = JSON.parse(cleaned);
+      const validated = validateCompletedLevels(parsed);
+      
+      if (validated.length > 0) {
+        saveCompletedLevels(validated);
+        console.log('成功恢复进度数据');
+        return validated;
+      }
+    } catch (e) {
+      console.error('无法恢复数据，将重置进度');
+    }
+    clearCompletedLevels();
+    return [];
+  }
+
+  function saveCompletedLevels(levels) {
+    try {
+      localStorage.setItem('pythonGameCompletedLevels', JSON.stringify(levels));
+    } catch (error) {
+      console.error('保存进度失败:', error);
+    }
+  }
+
+  function clearCompletedLevels() {
+    try {
+      localStorage.removeItem('pythonGameCompletedLevels');
+    } catch (error) {
+      console.error('清除进度失败:', error);
     }
   }
 
@@ -37,6 +99,111 @@
     { id: 5, name: '探索者', icon: '🔍', levels: [21, 22, 23, 24, 25] },
     { id: 6, name: '大师之路', icon: '👑', levels: [26, 27, 28, 29, 30] }
   ];
+
+  function showLoadingState() {
+    const loader = document.createElement('div');
+    loader.className = 'page-loader';
+    loader.id = 'pageLoader';
+    loader.innerHTML = `
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <p>加载中...</p>
+      </div>
+    `;
+    document.body.appendChild(loader);
+  }
+
+  function hideLoadingState() {
+    const loader = document.getElementById('pageLoader');
+    if (loader) {
+      loader.classList.add('fade-out');
+      setTimeout(() => loader.remove(), 300);
+    }
+  }
+
+  function initKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+      if (GameState.isLoading) return;
+      
+      const levelBtns = DOMCache.levelSelector.querySelectorAll('.level-btn:not(.locked)');
+      const focused = document.activeElement;
+      const focusedIndex = Array.from(levelBtns).indexOf(focused);
+      
+      switch(e.key) {
+        case 'ArrowRight':
+        case 'ArrowDown':
+          e.preventDefault();
+          if (focusedIndex < levelBtns.length - 1) {
+            levelBtns[focusedIndex + 1].focus();
+          } else if (levelBtns.length > 0) {
+            levelBtns[0].focus();
+          }
+          break;
+        case 'ArrowLeft':
+        case 'ArrowUp':
+          e.preventDefault();
+          if (focusedIndex > 0) {
+            levelBtns[focusedIndex - 1].focus();
+          } else if (levelBtns.length > 0) {
+            levelBtns[levelBtns.length - 1].focus();
+          }
+          break;
+        case 'Enter':
+        case ' ':
+          if (focused && focused.classList.contains('level-btn') && !focused.classList.contains('locked')) {
+            e.preventDefault();
+            selectLevel(parseInt(focused.dataset.level));
+          }
+          break;
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+          const phaseNum = parseInt(e.key);
+          if (isPhaseUnlocked(phaseNum)) {
+            e.preventDefault();
+            switchPhase(phaseNum);
+          }
+          break;
+        case 'r':
+        case 'R':
+          if (e.ctrlKey || e.metaKey) return;
+          e.preventDefault();
+          location.reload();
+          break;
+        case '?':
+          e.preventDefault();
+          showKeyboardHelp();
+          break;
+      }
+    });
+  }
+
+  function showKeyboardHelp() {
+    const help = document.createElement('div');
+    help.className = 'keyboard-help';
+    help.innerHTML = `
+      <div class="help-content">
+        <h3>⌨️ 键盘快捷键</h3>
+        <ul>
+          <li><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> 导航关卡</li>
+          <li><kbd>Enter</kbd> 或 <kbd>Space</kbd> 进入关卡</li>
+          <li><kbd>1</kbd>-<kbd>6</kbd> 切换阶段</li>
+          <li><kbd>R</kbd> 刷新页面</li>
+          <li><kbd>?</kbd> 显示此帮助</li>
+        </ul>
+        <button class="close-help">关闭</button>
+      </div>
+    `;
+    document.body.appendChild(help);
+    
+    help.querySelector('.close-help').addEventListener('click', () => help.remove());
+    help.addEventListener('click', (e) => {
+      if (e.target === help) help.remove();
+    });
+  }
 
   function escapeHtml(text) {
     const div = document.createElement('div');
@@ -232,6 +399,10 @@
     initLevelSelector();
     updateProgress();
     updatePhaseTabs();
+    initKeyboardShortcuts();
+    
+    GameState.isLoading = false;
+    hideLoadingState();
     
     console.log('✅ 关卡选择器初始化完成');
   }
@@ -248,6 +419,8 @@
   }
 
   async function loadLevelsData() {
+    showLoadingState();
+    
     try {
       const response = await fetch('data/levels.json');
       if (!response.ok) {
@@ -261,7 +434,7 @@
       initGame();
     } catch (error) {
       console.error('❌ Error loading levels data:', error);
-      showGlobalError('加载关卡数据失败，请刷新页面重试');
+      showGlobalError('加载关卡数据失败，请检查网络连接后刷新页面重试');
     }
   }
 

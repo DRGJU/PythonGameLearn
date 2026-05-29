@@ -16,13 +16,60 @@ class LevelPage {
         this.init();
     }
 
+    validateCompletedLevels(data) {
+        if (!Array.isArray(data)) {
+            console.warn('Invalid completed levels data, resetting');
+            return [];
+        }
+        const validLevels = data.filter(levelId => 
+            typeof levelId === 'number' && 
+            levelId > 0 && 
+            levelId <= 30 &&
+            Number.isInteger(levelId)
+        );
+        return [...new Set(validLevels)];
+    }
+
+    recoverCompletedLevels() {
+        try {
+            const corrupted = localStorage.getItem('pythonGameCompletedLevels');
+            if (!corrupted) return [];
+            
+            const cleaned = corrupted.replace(/[^\d,\[\]]/g, '');
+            const parsed = JSON.parse(cleaned);
+            const validated = this.validateCompletedLevels(parsed);
+            
+            if (validated.length > 0) {
+                this.completedLevels = validated;
+                this.saveCompletedLevels();
+                console.log('成功恢复进度数据');
+                return validated;
+            }
+        } catch (e) {
+            console.error('无法恢复数据，将重置进度');
+        }
+        this.clearCompletedLevels();
+        return [];
+    }
+
     loadCompletedLevels() {
         try {
             const saved = localStorage.getItem('pythonGameCompletedLevels');
-            return saved ? JSON.parse(saved) : [];
+            if (!saved) return [];
+            
+            const parsed = JSON.parse(saved);
+            const validated = this.validateCompletedLevels(parsed);
+            
+            if (validated.length !== parsed.length) {
+                console.warn('Some invalid level IDs were removed');
+                this.completedLevels = validated;
+                this.saveCompletedLevels();
+            }
+            
+            return validated;
         } catch (error) {
-            console.error('加载进度失败:', error);
-            return [];
+            console.error('加载进度失败，尝试恢复数据:', error);
+            return this.recoverCompletedLevels();
         }
     }
 
@@ -31,6 +78,15 @@ class LevelPage {
             localStorage.setItem('pythonGameCompletedLevels', JSON.stringify(this.completedLevels));
         } catch (error) {
             console.error('保存进度失败:', error);
+        }
+    }
+
+    clearCompletedLevels() {
+        try {
+            localStorage.removeItem('pythonGameCompletedLevels');
+            this.completedLevels = [];
+        } catch (error) {
+            console.error('清除进度失败:', error);
         }
     }
 
@@ -335,29 +391,46 @@ class LevelPage {
         const code = document.getElementById('code-input').value;
         const feedback = document.getElementById('code-feedback');
         
-        if (this.validateCode(code)) {
+        const validationResult = this.validateCode(code);
+        
+        if (validationResult.success) {
             feedback.className = 'feedback success';
             feedback.textContent = this.currentLevel.validation.successFeedback;
             this.showCelebration();
         } else {
             feedback.className = 'feedback error';
-            feedback.textContent = this.currentLevel.validation.errorFeedback;
+            feedback.textContent = validationResult.errorMessage;
         }
     }
 
     validateCode(code) {
         if (!code || code.trim() === '') {
-            return false;
+            return {
+                success: false,
+                errorMessage: '请输入代码答案'
+            };
         }
         
         const requiredKeywords = this.currentLevel.validation.requiredKeywords || [];
+        const missingKeywords = [];
+        
         for (const keyword of requiredKeywords) {
             if (code.indexOf(keyword) === -1) {
-                return false;
+                missingKeywords.push(keyword);
             }
         }
         
-        return true;
+        if (missingKeywords.length > 0) {
+            return {
+                success: false,
+                errorMessage: `代码中缺少关键字: ${missingKeywords.join(', ')}`
+            };
+        }
+        
+        return {
+            success: true,
+            errorMessage: ''
+        };
     }
 
     resetCode() {
