@@ -1,0 +1,97 @@
+{
+  "contrast_ratio": {
+    "页面背景-正文": {
+      "foreground": "rgb(230, 237, 243)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 16.02
+    },
+    "标题H1": {
+      "foreground": "rgb(230, 237, 243)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 16.02
+    },
+    "标题H2": {
+      "foreground": "rgb(230, 237, 243)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 16.02
+    },
+    "段落文本": {
+      "foreground": "rgb(139, 148, 158)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 6.15
+    },
+    "统计数字": {
+      "foreground": "rgb(230, 237, 243)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 16.02
+    },
+    "统计标签": {
+      "foreground": "rgb(139, 148, 158)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 6.15
+    },
+    "关卡按钮": {
+      "foreground": "rgb(230, 237, 243)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 16.02
+    },
+    "链接文本": {
+      "foreground": "rgb(230, 237, 243)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 16.02
+    },
+    "进度百分比": {
+      "foreground": "rgb(230, 237, 243)",
+      "background": "rgb(13, 17, 23)",
+      "ratio": 16.02
+    }
+  },
+  "wcag_compliance": {
+    "页面背景-正文": {
+      "normal_text": true,
+      "large_text": true
+    },
+    "标题H1": {
+      "normal_text": true,
+      "large_text": true
+    },
+    "标题H2": {
+      "normal_text": true,
+      "large_text": true
+    },
+    "段落文本": {
+      "normal_text": true,
+      "large_text": true
+    },
+    "统计数字": {
+      "normal_text": true,
+      "large_text": true
+    },
+    "统计标签": {
+      "normal_text": true,
+      "large_text": true
+    },
+    "关卡按钮": {
+      "normal_text": true,
+      "large_text": true
+    },
+    "链接文本": {
+      "normal_text": true,
+      "large_text": true
+    },
+    "进度百分比": {
+      "normal_text": true,
+      "large_text": true
+    }
+  },
+  "readability": {
+    "font_info": {
+      "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+      "fontSize": "16px",
+      "lineHeight": "26px",
+      "letterSpacing": "normal",
+      "fontWeight": "400"
+    },
+    "custom_fonts_loaded": true
+  }
+}

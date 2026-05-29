@@ -1,0 +1,37 @@
+{
+  "pages_tested": [
+    "index.html",
+    "level.html"
+  ],
+  "network_errors": [],
+  "console_errors": [],
+  "visual_checks": {
+    "index": {
+      "background_color": "rgb(13, 17, 23)",
+      "text_color": "rgb(230, 237, 243)",
+      "has_dark_theme": true,
+      "font_family": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+      "elements_count": {
+        "buttons": 6,
+        "links": 8,
+        "divs": 18,
+        "headings": 3
+      }
+    },
+    "level": {
+      "background_color": "rgb(13, 17, 23)",
+      "text_color": "rgb(230, 237, 243)",
+      "has_dark_theme": true,
+      "font_family": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+      "elements_count": {
+        "buttons": 18,
+        "links": 4,
+        "divs": 77,
+        "headings": 8,
+        "textareas": 1
+      },
+      "code_input_focus": true,
+      "mode_tabs_count": 5
+    }
+  }
+}
