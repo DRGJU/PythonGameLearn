@@ -39,6 +39,7 @@ class LevelPage {
         await this.loadLevelsData();
         this.setupEventListeners();
         this.renderLevel();
+        this.showShortcutHint();
     }
 
     getLevelIdFromUrl() {
@@ -154,16 +155,46 @@ class LevelPage {
         window.location.href = `level.html?level=${levelId}`;
     }
 
+    showShortcutHint() {
+        const hasSeen = localStorage.getItem('shortcutHintSeen');
+        if (hasSeen) return;
+
+        const hint = document.createElement('div');
+        hint.className = 'floating-shortcut-hint';
+        hint.innerHTML = `
+            <span class="shortcut-icon">⌨️</span>
+            <span>使用快捷键：</span>
+            <div class="shortcut-keys">
+                <span class="shortcut-key">←</span>
+                <span class="shortcut-key">/</span>
+                <span class="shortcut-key">→</span>
+            </div>
+        `;
+        document.body.appendChild(hint);
+
+        setTimeout(() => {
+            hint.classList.add('show');
+        }, 50);
+
+        setTimeout(() => {
+            hint.classList.remove('show');
+            setTimeout(() => {
+                hint.remove();
+                localStorage.setItem('shortcutHintSeen', 'true');
+            }, 300);
+        }, 3000);
+    }
+
     showNavigationHint(message) {
         const hint = document.createElement('div');
         hint.className = 'navigation-hint';
         hint.textContent = message;
         document.body.appendChild(hint);
-        
+
         setTimeout(() => {
             hint.classList.add('show');
         }, 50);
-        
+
         setTimeout(() => {
             hint.classList.remove('show');
             setTimeout(() => hint.remove(), 300);
