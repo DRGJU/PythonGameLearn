@@ -71,7 +71,6 @@
     celebration.className = 'celebration';
     celebration.innerHTML = `
       <div class="celebration-content">
-        <div class="celebration-icon">🎉</div>
         <h3>恭喜完成所有关卡！</h3>
         <p>你已经掌握了Python编程的基础知识</p>
       </div>
@@ -93,7 +92,6 @@
     celebration.className = 'celebration phase-celebration';
     celebration.innerHTML = `
       <div class="celebration-content">
-        <div class="celebration-icon">🎊</div>
         <h3>恭喜完成「${phaseName}」阶段！</h3>
         <p>准备好迎接新的挑战了吗？</p>
       </div>
@@ -270,7 +268,6 @@
     errorDiv.className = 'global-error';
     errorDiv.innerHTML = `
       <div class="error-content">
-        <div class="error-icon">⚠️</div>
         <h3>出错了</h3>
         <p>${message}</p>
         <button onclick="location.reload()">刷新页面</button>

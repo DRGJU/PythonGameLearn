@@ -162,7 +162,6 @@ class LevelPage {
         const hint = document.createElement('div');
         hint.className = 'floating-shortcut-hint';
         hint.innerHTML = `
-            <span class="shortcut-icon">⌨️</span>
             <span>使用快捷键：</span>
             <div class="shortcut-keys">
                 <span class="shortcut-key">←</span>
@@ -240,18 +239,18 @@ class LevelPage {
         
         document.getElementById('level-header').innerHTML = `
             <span class="level-phase-badge">${this.currentLevel.phaseName}</span>
-            <h2 class="level-title" style="margin-top: 12px;">${this.currentLevel.title}</h2>
+            <h2 class="level-title">${this.currentLevel.title}</h2>
             <p class="level-description">${this.currentLevel.description}</p>
         `;
     }
 
     renderLearningObjectives() {
         const objectivesHtml = this.currentLevel.objectives.map(obj => `
-            <li><strong>→</strong> ${obj}</li>
+            <li>${obj}</li>
         `).join('');
         
         document.getElementById('learning-objectives').innerHTML = `
-            <h3>🎯 学习目标</h3>
+            <h3>学习目标</h3>
             <ul>${objectivesHtml}</ul>
         `;
     }
@@ -264,12 +263,12 @@ class LevelPage {
 
     renderChallenge() {
         document.getElementById('challenge').innerHTML = `
-            <h3>⚔️ 挑战任务</h3>
+            <h3>挑战任务</h3>
             <p>${this.currentLevel.challenge}</p>
             ${this.currentLevel.hints && this.currentLevel.hints.length > 0 ? `
-                <div class="hint-section" style="margin-top: 16px;">
-                    <button class="hint-toggle" id="hint-toggle">💡 显示提示</button>
-                    <div class="hint-content" id="hint-content" style="display: none; margin-top: 12px;">
+                <div class="hint-section">
+                    <button class="hint-toggle" id="hint-toggle" type="button">显示提示</button>
+                    <div class="hint-content" id="hint-content" style="display: none;">
                         <ul>
                             ${this.currentLevel.hints.map(hint => `<li>${hint}</li>`).join('')}
                         </ul>
@@ -283,7 +282,7 @@ class LevelPage {
             hintToggle.addEventListener('click', () => {
                 const hintContent = document.getElementById('hint-content');
                 hintContent.style.display = hintContent.style.display === 'none' ? 'block' : 'none';
-                hintToggle.textContent = hintContent.style.display === 'none' ? '💡 显示提示' : '💡 隐藏提示';
+                hintToggle.textContent = hintContent.style.display === 'none' ? '显示提示' : '隐藏提示';
             });
         }
     }
@@ -608,7 +607,7 @@ class LevelPage {
         this.selectedFillBlank = index;
         const blank = document.getElementById(`fill-blank-${index}`);
         blank.style.borderColor = 'var(--accent-secondary)';
-        blank.style.boxShadow = '0 0 10px rgba(124, 58, 237, 0.5)';
+        blank.style.boxShadow = '0 0 0 2px var(--color-focus)';
     }
 
     selectFillOption(option) {
@@ -676,7 +675,7 @@ class LevelPage {
             html += `<div class="step-dot ${index === this.guidedStep ? 'active' : ''} ${index < this.guidedStep ? 'completed' : ''}">${index + 1}</div>`;
         });
         html += '</div>';
-        html += `<span style="color: var(--text-secondary); font-size: 14px;">步骤 ${this.guidedStep + 1} / ${hints.length}</span>`;
+        html += `<span class="guided-step-count">步骤 ${this.guidedStep + 1} / ${hints.length}</span>`;
         
         progressContainer.innerHTML = html;
         
@@ -689,7 +688,7 @@ class LevelPage {
         const hintContainer = document.getElementById('guided-hint');
         
         hintContainer.innerHTML = `
-            <h4>💡 步骤 ${hint.step}</h4>
+            <h4>步骤 ${hint.step}</h4>
             <p class="guided-hint-text">${hint.hint}</p>
             <div class="guided-code-preview">
                 <pre>${this.escapeHtml(hint.code)}</pre>
@@ -731,10 +730,7 @@ class LevelPage {
         // 显示简洁的成功提示
         const hint = document.createElement('div');
         hint.className = 'success-hint';
-        hint.innerHTML = `
-            <span class="success-hint-icon">🎉</span>
-            关卡完成！
-        `;
+        hint.innerHTML = `关卡完成！`;
         document.body.appendChild(hint);
         
         setTimeout(() => {
@@ -760,10 +756,9 @@ class LevelPage {
         mainContent.innerHTML = `
             <div class="global-error">
                 <div class="error-content">
-                    <div class="error-icon">❌</div>
                     <h3>出错了</h3>
                     <p>${message}</p>
-                    <a href="index.html" style="display: inline-block; padding: 12px 24px; background: var(--accent-primary); color: var(--bg-primary); border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none;">返回首页</a>
+                    <a href="index.html" class="back-button">返回首页</a>
                 </div>
             </div>
         `;

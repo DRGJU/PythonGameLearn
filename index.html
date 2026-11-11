@@ -6,32 +6,28 @@
   <meta name="description" content="Python游戏化学习平台 - 以沉浸式游戏体验学习Python编程，从基础到进阶">
   <meta name="keywords" content="Python, 编程学习, 游戏化学习, Python教程">
   <meta name="author" content="Python Game Learn">
-  <meta name="theme-color" content="#1a1a2e">
+  <meta name="theme-color" content="#f3f6fa">
   <meta name="robots" content="index, follow">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+
   <title>Python 游戏化学习平台</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" as="style">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="preload" href="css/style.css" as="style">
   <link rel="stylesheet" href="css/style.css">
-  
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       document.body.classList.add('loaded');
     });
   </script>
 </head>
-<body>
+<body class="index-page">
 
   <header class="hero-header">
     <div class="container header-content">
       <div class="logo-section">
         <div class="python-icon">
-          <svg width="48" height="48" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg">
+          <svg width="48" height="48" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <defs>
               <linearGradient id="python-gradient" x1="12.959%" y1="12.039%" x2="79.639%" y2="78.201%">
                 <stop offset="0%" stop-color="#387EB8"/>
@@ -51,7 +47,7 @@
           <p class="subtitle">以沉浸式游戏体验掌握Python编程</p>
         </div>
       </div>
-      <div class="stats-row">
+      <div class="stats-row" aria-label="学习统计">
         <div class="stat-item">
           <span class="stat-number" id="totalLevels">10</span>
           <span class="stat-label">关卡</span>
@@ -68,7 +64,7 @@
     </div>
   </header>
 
-  <main class="container main-content">
+  <main class="container main-content" id="main">
     <section class="progress-section" aria-label="学习进度">
       <div class="progress-header">
         <h2>学习进度</h2>
@@ -80,54 +76,45 @@
       </div>
       <p class="progress-text" id="progressText">完成 0 / 10 个关卡</p>
     </section>
-    
+
     <section class="game-section" aria-label="游戏关卡">
       <div class="section-header">
         <h2>
-          <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
           选择关卡
         </h2>
       </div>
-      
-      <!-- 阶段标签导航 -->
+
       <div class="phase-tabs" id="phaseTabs" role="tablist" aria-label="阶段导航">
-        <button class="phase-tab active" data-phase="1" role="tab" aria-selected="true">
-          <span class="phase-icon">🏠</span>
+        <button class="phase-tab active" data-phase="1" role="tab" aria-selected="true" type="button">
           <span class="phase-name">新手村</span>
           <span class="phase-badge">1-5</span>
         </button>
-        <button class="phase-tab" data-phase="2" role="tab" aria-selected="false">
-          <span class="phase-icon">⚔️</span>
+        <button class="phase-tab" data-phase="2" role="tab" aria-selected="false" type="button">
           <span class="phase-name">冒险启程</span>
           <span class="phase-badge">6-10</span>
         </button>
-        <button class="phase-tab locked" data-phase="3" role="tab" aria-selected="false">
-          <span class="phase-icon">🛡️</span>
+        <button class="phase-tab locked" data-phase="3" role="tab" aria-selected="false" type="button">
           <span class="phase-name">技能进阶</span>
           <span class="phase-badge">11-15</span>
         </button>
-        <button class="phase-tab locked" data-phase="4" role="tab" aria-selected="false">
-          <span class="phase-icon">🏆</span>
+        <button class="phase-tab locked" data-phase="4" role="tab" aria-selected="false" type="button">
           <span class="phase-name">挑战大师</span>
           <span class="phase-badge">16-20</span>
         </button>
-        <button class="phase-tab locked" data-phase="5" role="tab" aria-selected="false">
-          <span class="phase-icon">🔍</span>
+        <button class="phase-tab locked" data-phase="5" role="tab" aria-selected="false" type="button">
           <span class="phase-name">探索者</span>
           <span class="phase-badge">21-25</span>
         </button>
-        <button class="phase-tab locked" data-phase="6" role="tab" aria-selected="false">
-          <span class="phase-icon">👑</span>
+        <button class="phase-tab locked" data-phase="6" role="tab" aria-selected="false" type="button">
           <span class="phase-name">大师之路</span>
           <span class="phase-badge">26-30</span>
         </button>
       </div>
-      
-      <div class="level-selector" id="levelSelector" role="tablist" aria-label="关卡列表">
-      </div>
-      
+
+      <div class="level-selector" id="levelSelector" role="tablist" aria-label="关卡列表"></div>
     </section>
   </main>
 
@@ -138,14 +125,12 @@
       </div>
       <div class="footer-links">
         <a href="#" class="footer-link">使用指南</a>
-        <span class="footer-divider">·</span>
         <a href="#" class="footer-link">常见问题</a>
-        <span class="footer-divider">·</span>
         <a href="#" class="footer-link">关于作者</a>
       </div>
     </div>
   </footer>
-  
+
   <script src="js/game.js"></script>
 </body>
 </html>

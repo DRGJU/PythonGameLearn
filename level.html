@@ -6,31 +6,27 @@
     <meta name="description" content="Python游戏化学习平台 - 关卡答题页面">
     <meta name="keywords" content="Python, 编程学习, 游戏化学习, Python教程">
     <meta name="author" content="Python Game Learn">
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="theme-color" content="#f3f6fa">
     <meta name="robots" content="noindex, nofollow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <title>Python 游戏化学习 - 关卡</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
-    
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('loaded');
       });
     </script>
 </head>
-<body>
-    <header class="hero-header" style="padding: 30px 0 20px;">
+<body class="level-page">
+    <header class="hero-header">
         <div class="container header-content">
-            <div class="logo-section" style="gap: 15px;">
+            <div class="logo-section">
                 <div class="python-icon">
-                    <svg width="40" height="40" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="40" height="40" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                         <defs>
                             <linearGradient id="python-gradient" x1="12.959%" y1="12.039%" x2="79.639%" y2="78.201%">
                                 <stop offset="0%" stop-color="#387EB8"/>
@@ -46,172 +42,132 @@
                     </svg>
                 </div>
                 <div class="title-wrapper">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 4px;">
-                        <a href="index.html" class="back-button" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: var(--radius-md); color: var(--accent-primary); text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.3s ease; cursor: pointer;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M19 12H5M12 19l-7-7 7-7"/>
-                            </svg>
-                            返回首页
-                        </a>
-                    </div>
-                    <h1 style="font-size: 2em;" id="level-title">关卡</h1>
+                    <a href="index.html" class="back-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        返回首页
+                    </a>
+                    <h1 id="level-title">关卡</h1>
                     <p class="subtitle" id="level-subtitle">开始你的Python之旅</p>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="container main-content" style="padding-top: 20px;">
+    <main class="container main-content">
         <div class="level-navigation-bar" id="level-navigation-bar">
-            <button class="level-nav-arrow" id="level-nav-prev" disabled>‹</button>
+            <button class="level-nav-arrow" id="level-nav-prev" disabled type="button" aria-label="上一关">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
             <div class="level-nav-current" id="level-nav-current">第 1 关 / 共 30 关</div>
-            <button class="level-nav-arrow" id="level-nav-next">›</button>
+            <button class="level-nav-arrow" id="level-nav-next" type="button" aria-label="下一关">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
         </div>
         <div class="level-content-wrapper" id="level-content-wrapper">
             <div class="level-content active" id="level-content">
-                <div class="level-header" id="level-header">
+                <div class="lesson-rail">
+                    <div class="level-header" id="level-header"></div>
+                    <div class="learning-objectives" id="learning-objectives"></div>
+                    <div class="code-example" id="code-example"></div>
+                    <div class="challenge" id="challenge"></div>
                 </div>
-
-                <div class="learning-objectives" id="learning-objectives">
-                </div>
-
-                <div class="code-example" id="code-example">
-                </div>
-
-                <div class="challenge" id="challenge">
-                </div>
-
-                <div class="mode-tabs" id="mode-tabs" role="tablist" aria-label="答题模式">
-                    <button class="mode-tab active" data-mode="code" role="tab" aria-selected="true">
-                        <span class="mode-icon">💻</span>
-                        <span class="mode-label">代码模式</span>
-                    </button>
-                    <button class="mode-tab" data-mode="drag" role="tab" aria-selected="false">
-                        <span class="mode-icon">🧩</span>
-                        <span class="mode-label">拖放编程</span>
-                    </button>
-                    <button class="mode-tab" data-mode="choice" role="tab" aria-selected="false">
-                        <span class="mode-icon">📋</span>
-                        <span class="mode-label">选择题</span>
-                    </button>
-                    <button class="mode-tab" data-mode="fill" role="tab" aria-selected="false">
-                        <span class="mode-icon">✏️</span>
-                        <span class="mode-label">填空模式</span>
-                    </button>
-                    <button class="mode-tab" data-mode="guided" role="tab" aria-selected="false">
-                        <span class="mode-icon">🎯</span>
-                        <span class="mode-label">智能引导</span>
-                    </button>
-                </div>
-
-                <div class="mode-content active" id="mode-code">
-                    <div class="challenge" style="margin-top: 20px;">
-                        <h3>🎯 挑战任务</h3>
-                        <p id="challenge-description">完成编程挑战</p>
-                        <textarea class="challenge-input" id="code-input" placeholder="在这里输入你的代码..." rows="10"></textarea>
-                        <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-                            <button class="submit-button" id="submit-code">
-                                <span>提交答案</span>
-                            </button>
-                            <button class="reset-button" id="reset-code">
-                                <span>重置</span>
-                            </button>
-                        </div>
-                        <div class="feedback" id="code-feedback"></div>
+                <div class="work-rail">
+                    <div class="mode-tabs" id="mode-tabs" role="tablist" aria-label="答题模式">
+                        <button class="mode-tab active" data-mode="code" role="tab" aria-selected="true" type="button">
+                            <span class="mode-label">代码模式</span>
+                        </button>
+                        <button class="mode-tab" data-mode="drag" role="tab" aria-selected="false" type="button">
+                            <span class="mode-label">拖放编程</span>
+                        </button>
+                        <button class="mode-tab" data-mode="choice" role="tab" aria-selected="false" type="button">
+                            <span class="mode-label">选择题</span>
+                        </button>
+                        <button class="mode-tab" data-mode="fill" role="tab" aria-selected="false" type="button">
+                            <span class="mode-label">填空模式</span>
+                        </button>
+                        <button class="mode-tab" data-mode="guided" role="tab" aria-selected="false" type="button">
+                            <span class="mode-label">智能引导</span>
+                        </button>
                     </div>
-                </div>
 
-                <div class="mode-content" id="mode-drag">
-                    <div class="drag-container">
-                        <div class="drag-palette">
-                            <h4>📦 可用代码块</h4>
-                            <div class="drag-blocks" id="drag-blocks">
+                    <div class="mode-content active" id="mode-code">
+                        <div class="challenge">
+                            <h2>挑战任务</h2>
+                            <p id="challenge-description">完成编程挑战</p>
+                            <textarea class="challenge-input" id="code-input" placeholder="在这里输入你的代码..." rows="10" aria-label="代码答案"></textarea>
+                            <div class="drag-actions">
+                                <button class="submit-button" id="submit-code" type="button"><span>提交答案</span></button>
+                                <button class="reset-button" id="reset-code" type="button"><span>重置</span></button>
                             </div>
-                        </div>
-                        <div class="drop-zone" id="drop-zone">
-                            <h4>🎯 你的答案</h4>
-                            <div class="drop-zone-empty" id="drop-zone-empty">
-                                <span>📥</span>
-                                将代码块拖放到这里
-                            </div>
-                            <div class="dropped-blocks" id="dropped-blocks">
-                            </div>
-                        </div>
-                        <div class="drag-actions">
-                            <button class="reset-button" id="reset-drag">
-                                <span>重置</span>
-                            </button>
-                            <button class="submit-button" id="submit-drag">
-                                <span>提交答案</span>
-                            </button>
-                        </div>
-                        <div class="feedback" id="drag-feedback"></div>
-                    </div>
-                </div>
-
-                <div class="mode-content" id="mode-choice">
-                    <div class="choice-container">
-                        <div class="choice-question">
-                            <p id="choice-question-text"></p>
-                        </div>
-                        <div class="choice-options" id="choice-options">
-                        </div>
-                        <div class="choice-feedback" id="choice-feedback"></div>
-                        <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-                            <button class="submit-button" id="submit-choice" style="display: none;">
-                                <span>提交答案</span>
-                            </button>
+                            <div class="feedback" id="code-feedback" role="status"></div>
                         </div>
                     </div>
-                </div>
 
-                <div class="mode-content" id="mode-fill">
-                    <div class="fill-container">
-                        <div class="fill-instructions">
-                            <span>💡</span>
-                            点击空白处，然后从下方选择正确答案
+                    <div class="mode-content" id="mode-drag">
+                        <div class="drag-container">
+                            <div class="drag-palette">
+                                <h3>可用代码块</h3>
+                                <div class="drag-blocks" id="drag-blocks"></div>
+                            </div>
+                            <div class="drop-zone" id="drop-zone">
+                                <h3>你的答案</h3>
+                                <div class="drop-zone-empty" id="drop-zone-empty">将代码块拖放到这里</div>
+                                <div class="dropped-blocks" id="dropped-blocks"></div>
+                            </div>
+                            <div class="drag-actions">
+                                <button class="reset-button" id="reset-drag" type="button"><span>重置</span></button>
+                                <button class="submit-button" id="submit-drag" type="button"><span>提交答案</span></button>
+                            </div>
+                            <div class="feedback" id="drag-feedback" role="status"></div>
                         </div>
-                        <div class="fill-code-container">
-                            <div class="fill-code" id="fill-code">
+                    </div>
+
+                    <div class="mode-content" id="mode-choice">
+                        <div class="choice-container">
+                            <div class="choice-question">
+                                <p id="choice-question-text"></p>
+                            </div>
+                            <div class="choice-options" id="choice-options"></div>
+                            <div class="choice-feedback" id="choice-feedback" role="status"></div>
+                            <div class="drag-actions">
+                                <button class="submit-button" id="submit-choice" type="button" hidden><span>提交答案</span></button>
                             </div>
                         </div>
-                        <div class="fill-options" id="fill-options">
-                        </div>
-                        <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-                            <button class="submit-button" id="submit-fill">
-                                <span>提交答案</span>
-                            </button>
-                            <button class="reset-button" id="reset-fill">
-                                <span>重置</span>
-                            </button>
-                        </div>
-                        <div class="feedback" id="fill-feedback"></div>
                     </div>
-                </div>
 
-                <div class="mode-content" id="mode-guided">
-                    <div class="guided-container">
-                        <div class="guided-progress" id="guided-progress">
+                    <div class="mode-content" id="mode-fill">
+                        <div class="fill-container">
+                            <div class="fill-instructions">点击空白处，然后从下方选择正确答案</div>
+                            <div class="fill-code-container">
+                                <div class="fill-code" id="fill-code"></div>
+                            </div>
+                            <div class="fill-options" id="fill-options"></div>
+                            <div class="drag-actions">
+                                <button class="submit-button" id="submit-fill" type="button"><span>提交答案</span></button>
+                                <button class="reset-button" id="reset-fill" type="button"><span>重置</span></button>
+                            </div>
+                            <div class="feedback" id="fill-feedback" role="status"></div>
                         </div>
-                        <div class="guided-hint-card" id="guided-hint">
-                        </div>
-                        <div class="guided-actions">
-                            <button class="guided-use-code" id="guided-use-code">
-                                使用这段代码
-                            </button>
-                            <div class="guided-nav-buttons">
-                                <button class="guided-prev" id="guided-prev" disabled>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M15 18l-6-6 6-6"/>
-                                    </svg>
-                                    上一步
-                                </button>
-                                <button class="guided-next" id="guided-next">
-                                    下一步
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M9 18l6-6-6-6"/>
-                                    </svg>
-                                </button>
+                    </div>
+
+                    <div class="mode-content" id="mode-guided">
+                        <div class="guided-container">
+                            <div class="guided-progress" id="guided-progress"></div>
+                            <div class="guided-hint-card" id="guided-hint"></div>
+                            <div class="guided-actions">
+                                <button class="guided-use-code" id="guided-use-code" type="button">使用这段代码</button>
+                                <div class="guided-nav-buttons">
+                                    <button class="guided-prev" id="guided-prev" disabled type="button">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg>
+                                        上一步
+                                    </button>
+                                    <button class="guided-next" id="guided-next" type="button">
+                                        下一步
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M9 18l6-6-6-6"/></svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -227,9 +183,7 @@
             </div>
             <div class="footer-links">
                 <a href="#" class="footer-link">使用指南</a>
-                <span class="footer-divider">·</span>
                 <a href="#" class="footer-link">常见问题</a>
-                <span class="footer-divider">·</span>
                 <a href="#" class="footer-link">关于作者</a>
             </div>
         </div>
