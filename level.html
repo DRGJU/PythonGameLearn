@@ -74,102 +74,91 @@
                     <div class="challenge" id="challenge"></div>
                 </div>
                 <div class="work-rail">
+                    <div class="py-status" id="py-status" hidden></div>
                     <div class="mode-tabs" id="mode-tabs" role="tablist" aria-label="答题模式">
-                        <button class="mode-tab active" data-mode="code" role="tab" aria-selected="true" type="button">
-                            <span class="mode-label">代码模式</span>
+                        <button class="mode-tab active" data-mode="run" role="tab" aria-selected="true" type="button">
+                            <span class="mode-label">运行验证</span>
                         </button>
-                        <button class="mode-tab" data-mode="drag" role="tab" aria-selected="false" type="button">
-                            <span class="mode-label">拖放编程</span>
+                        <button class="mode-tab" data-mode="predict" role="tab" aria-selected="false" type="button">
+                            <span class="mode-label">预测输出</span>
                         </button>
-                        <button class="mode-tab" data-mode="choice" role="tab" aria-selected="false" type="button">
-                            <span class="mode-label">选择题</span>
+                        <button class="mode-tab" data-mode="debug" role="tab" aria-selected="false" type="button">
+                            <span class="mode-label">找错改错</span>
                         </button>
-                        <button class="mode-tab" data-mode="fill" role="tab" aria-selected="false" type="button">
-                            <span class="mode-label">填空模式</span>
+                        <button class="mode-tab" data-mode="assemble" role="tab" aria-selected="false" type="button">
+                            <span class="mode-label">拖拽组装</span>
                         </button>
-                        <button class="mode-tab" data-mode="guided" role="tab" aria-selected="false" type="button">
-                            <span class="mode-label">智能引导</span>
+                        <button class="mode-tab" data-mode="match" role="tab" aria-selected="false" type="button">
+                            <span class="mode-label">配对分类</span>
                         </button>
                     </div>
 
-                    <div class="mode-content active" id="mode-code">
-                        <div class="challenge">
-                            <h2>挑战任务</h2>
-                            <p id="challenge-description">完成编程挑战</p>
-                            <textarea class="challenge-input" id="code-input" placeholder="在这里输入你的代码..." rows="10" aria-label="代码答案"></textarea>
-                            <div class="drag-actions">
-                                <button class="submit-button" id="submit-code" type="button"><span>提交答案</span></button>
-                                <button class="reset-button" id="reset-code" type="button"><span>重置</span></button>
-                            </div>
-                            <div class="feedback" id="code-feedback" role="status"></div>
+                    <!-- 运行验证 -->
+                    <div class="mode-content active" id="mode-run">
+                        <p class="mode-prompt" id="run-prompt"></p>
+                        <textarea class="code-editor" id="run-input" rows="10" spellcheck="false" aria-label="代码答案"></textarea>
+                        <div class="drag-actions">
+                            <button class="submit-button" id="run-code" type="button"><span>运行并验证</span></button>
+                            <button class="reset-button" id="reset-run" type="button"><span>重置</span></button>
                         </div>
+                        <div class="run-output" id="run-output" aria-live="polite"></div>
+                        <div class="feedback" id="run-feedback" role="status"></div>
                     </div>
 
-                    <div class="mode-content" id="mode-drag">
-                        <div class="drag-container">
-                            <div class="drag-palette">
+                    <!-- 预测输出 -->
+                    <div class="mode-content" id="mode-predict">
+                        <p class="mode-prompt" id="predict-prompt"></p>
+                        <pre class="code-snippet" id="predict-code"></pre>
+                        <div class="predict-options" id="predict-options"></div>
+                        <div class="feedback" id="predict-feedback" role="status"></div>
+                    </div>
+
+                    <!-- 找错改错 -->
+                    <div class="mode-content" id="mode-debug">
+                        <p class="mode-prompt" id="debug-prompt"></p>
+                        <textarea class="code-editor" id="debug-input" rows="10" spellcheck="false" aria-label="修复后的代码"></textarea>
+                        <div class="drag-actions">
+                            <button class="submit-button" id="run-debug" type="button"><span>运行并验证</span></button>
+                            <button class="reset-button" id="reset-debug" type="button"><span>重置为原题</span></button>
+                        </div>
+                        <div class="run-output" id="debug-output" aria-live="polite"></div>
+                        <div class="feedback" id="debug-feedback" role="status"></div>
+                    </div>
+
+                    <!-- 拖拽组装 -->
+                    <div class="mode-content" id="mode-assemble">
+                        <p class="mode-prompt" id="assemble-prompt"></p>
+                        <div class="assemble-container">
+                            <div class="assemble-palette">
                                 <h3>可用代码块</h3>
-                                <div class="drag-blocks" id="drag-blocks"></div>
+                                <div class="assemble-blocks" id="assemble-blocks"></div>
                             </div>
-                            <div class="drop-zone" id="drop-zone">
-                                <h3>你的答案</h3>
-                                <div class="drop-zone-empty" id="drop-zone-empty">将代码块拖放到这里</div>
-                                <div class="dropped-blocks" id="dropped-blocks"></div>
+                            <div class="assemble-drop" id="assemble-drop">
+                                <h3>你的程序（从上到下）</h3>
+                                <div class="assemble-drop-empty" id="assemble-drop-empty">点击或拖拽左侧代码块到这里，按正确顺序排列</div>
+                                <div class="assemble-ordered" id="assemble-ordered"></div>
                             </div>
-                            <div class="drag-actions">
-                                <button class="reset-button" id="reset-drag" type="button"><span>重置</span></button>
-                                <button class="submit-button" id="submit-drag" type="button"><span>提交答案</span></button>
-                            </div>
-                            <div class="feedback" id="drag-feedback" role="status"></div>
                         </div>
+                        <div class="drag-actions">
+                            <button class="reset-button" id="reset-assemble" type="button"><span>重置</span></button>
+                            <button class="submit-button" id="submit-assemble" type="button"><span>运行并验证</span></button>
+                        </div>
+                        <div class="run-output" id="assemble-output" aria-live="polite"></div>
+                        <div class="feedback" id="assemble-feedback" role="status"></div>
                     </div>
 
-                    <div class="mode-content" id="mode-choice">
-                        <div class="choice-container">
-                            <div class="choice-question">
-                                <p id="choice-question-text"></p>
-                            </div>
-                            <div class="choice-options" id="choice-options"></div>
-                            <div class="choice-feedback" id="choice-feedback" role="status"></div>
-                            <div class="drag-actions">
-                                <button class="submit-button" id="submit-choice" type="button" hidden><span>提交答案</span></button>
-                            </div>
+                    <!-- 配对分类 -->
+                    <div class="mode-content" id="mode-match">
+                        <p class="mode-prompt" id="match-prompt"></p>
+                        <div class="match-grid">
+                            <div class="match-column" id="match-left"></div>
+                            <div class="match-column" id="match-right"></div>
                         </div>
-                    </div>
-
-                    <div class="mode-content" id="mode-fill">
-                        <div class="fill-container">
-                            <div class="fill-instructions">点击空白处，然后从下方选择正确答案</div>
-                            <div class="fill-code-container">
-                                <div class="fill-code" id="fill-code"></div>
-                            </div>
-                            <div class="fill-options" id="fill-options"></div>
-                            <div class="drag-actions">
-                                <button class="submit-button" id="submit-fill" type="button"><span>提交答案</span></button>
-                                <button class="reset-button" id="reset-fill" type="button"><span>重置</span></button>
-                            </div>
-                            <div class="feedback" id="fill-feedback" role="status"></div>
+                        <div class="drag-actions">
+                            <button class="reset-button" id="reset-match" type="button"><span>重置</span></button>
+                            <button class="submit-button" id="submit-match" type="button"><span>提交配对</span></button>
                         </div>
-                    </div>
-
-                    <div class="mode-content" id="mode-guided">
-                        <div class="guided-container">
-                            <div class="guided-progress" id="guided-progress"></div>
-                            <div class="guided-hint-card" id="guided-hint"></div>
-                            <div class="guided-actions">
-                                <button class="guided-use-code" id="guided-use-code" type="button">使用这段代码</button>
-                                <div class="guided-nav-buttons">
-                                    <button class="guided-prev" id="guided-prev" disabled type="button">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg>
-                                        上一步
-                                    </button>
-                                    <button class="guided-next" id="guided-next" type="button">
-                                        下一步
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M9 18l6-6-6-6"/></svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="feedback" id="match-feedback" role="status"></div>
                     </div>
                 </div>
             </div>
@@ -189,6 +178,7 @@
         </div>
     </footer>
 
+    <script src="js/py-runner.js"></script>
     <script src="js/level.js"></script>
 </body>
 </html>

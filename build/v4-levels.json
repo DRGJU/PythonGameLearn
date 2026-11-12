@@ -1,0 +1,3624 @@
+{
+  "metadata": {
+    "version": "4.0.0",
+    "totalLevels": 30,
+    "difficulty": "入门到大师",
+    "estimatedTime": "10-20小时",
+    "lastUpdated": "2026-11-12",
+    "redesignedBy": "Hallmark redesign — 合理性与严谨性复核"
+  },
+  "levels": [
+    {
+      "id": 1,
+      "title": "关卡 1：初识 Python",
+      "description": "学习如何把文字输出到屏幕，迈出编程第一步。",
+      "objectives": [
+        "了解 Python 程序的基本形态",
+        "掌握 print() 函数的用法",
+        "理解字符串（用引号包裹的文字）"
+      ],
+      "example": "# 输出一行文字\nprint(\"Hello, World!\")\n# 输出中文\nprint(\"欢迎来到 Python 世界\")",
+      "challenge": "编写程序，依次输出两句话：\"你好，Python！\" 和 \"我准备好了！\"",
+      "hints": [
+        "使用 print() 函数，每个 print() 输出一行",
+        "用引号把要输出的文字包起来"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "print"
+        ],
+        "successFeedback": "太棒了！你已经成功输出了内容，正式开始了编程之旅！",
+        "errorFeedback": "请确保使用了 print() 函数来输出文字。"
+      },
+      "difficulty": 1,
+      "category": "基础输出",
+      "tags": [
+        "print",
+        "字符串",
+        "输出"
+      ],
+      "phase": 1,
+      "phaseName": "新手村",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"我准备好了！\")",
+          "print(\"你好，Python！\")"
+        ],
+        "correctOrder": [
+          "print(\"你好，Python！\")",
+          "print(\"我准备好了！\")"
+        ]
+      },
+      "choices": {
+        "question": "要把文字显示到屏幕上，应该使用哪个函数？",
+        "options": [
+          {
+            "text": "print()",
+            "correct": true,
+            "feedback": "正确！print() 用于把内容输出到屏幕。"
+          },
+          {
+            "text": "input()",
+            "correct": false,
+            "feedback": "不对，input() 是用来接收用户输入的。"
+          },
+          {
+            "text": "write()",
+            "correct": false,
+            "feedback": "不对，write() 一般用于写文件。"
+          },
+          {
+            "text": "echo()",
+            "correct": false,
+            "feedback": "不对，Python 里没有 echo() 函数。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___(\"你好，Python！\")\n___(\"我准备好了！\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "print",
+            "options": [
+              "print",
+              "input",
+              "open",
+              "len"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "print",
+            "options": [
+              "print",
+              "input",
+              "open",
+              "len"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步，用 print() 输出第一句话，文字要用引号包裹。",
+          "code": "print(\"你好，Python！\")"
+        },
+        {
+          "step": 2,
+          "hint": "第二步，再写一行 print() 输出第二句话。",
+          "code": "print(\"你好，Python！\")\nprint(\"我准备好了！\")"
+        },
+        {
+          "step": 3,
+          "hint": "完成！每一行 print() 都会在屏幕上单独显示一行。",
+          "code": "print(\"你好，Python！\")\nprint(\"我准备好了！\")"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "关卡 2：变量的魔法",
+      "description": "学会用“变量”给数据起名字并保存，这是编程的基础。",
+      "objectives": [
+        "理解变量是“带名字的盒子”",
+        "掌握赋值语句 name = 值",
+        "学会把变量打印出来"
+      ],
+      "example": "# 把数字放进变量\nage = 12\nname = \"小明\"\nprint(name, \"今年\", age, \"岁\")",
+      "challenge": "创建两个变量：name 存你的名字（字符串），age 存你的年龄（数字），然后用一行 print 输出：\"我是<名字>，今年<年龄>岁\"。",
+      "hints": [
+        "赋值用单个等号：变量名 = 值",
+        "字符串用引号，数字不用引号",
+        "print 可以接收多个参数，用逗号分隔"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "=",
+          "print"
+        ],
+        "successFeedback": "漂亮！你已经学会用变量保存数据了。",
+        "errorFeedback": "请先用 = 给 name 和 age 赋值，再用 print 输出它们。"
+      },
+      "difficulty": 1,
+      "category": "变量",
+      "tags": [
+        "变量",
+        "赋值",
+        "print"
+      ],
+      "phase": 1,
+      "phaseName": "新手村",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"我是\" + name + \"，今年\" + str(age) + \"岁\")",
+          "age = 12",
+          "name = \"小明\""
+        ],
+        "correctOrder": [
+          "name = \"小明\"",
+          "age = 12",
+          "print(\"我是\" + name + \"，今年\" + str(age) + \"岁\")"
+        ]
+      },
+      "choices": {
+        "question": "下面哪一行是“把 5 存进变量 x”的正确写法？",
+        "options": [
+          {
+            "text": "x = 5",
+            "correct": true,
+            "feedback": "正确！单个等号是赋值，把 5 放进 x。"
+          },
+          {
+            "text": "x == 5",
+            "correct": false,
+            "feedback": "不对，== 是比较（判断是否相等），不是赋值。"
+          },
+          {
+            "text": "5 = x",
+            "correct": false,
+            "feedback": "不对，赋值要把变量名写在左边。"
+          },
+          {
+            "text": "let x = 5",
+            "correct": false,
+            "feedback": "不对，Python 不需要 let/var 关键字。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___ = \"小红\"\nage = ___\nprint(name)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "name",
+            "options": [
+              "name",
+              "var",
+              "let",
+              "def"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "12",
+            "options": [
+              "12",
+              "\"12\"",
+              "age",
+              "int"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：创建字符串变量 name。",
+          "code": "name = \"小明\""
+        },
+        {
+          "step": 2,
+          "hint": "第二步：创建数字变量 age。",
+          "code": "name = \"小明\"\nage = 12"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：用 print 输出，字符串用 + 拼接，数字要先转成字符串 str(age)。",
+          "code": "name = \"小明\"\nage = 12\nprint(\"我是\" + name + \"，今年\" + str(age) + \"岁\")"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "关卡 3：数字运算",
+      "description": "用 Python 做数学题：加减乘除以及整除、取余、乘方。",
+      "objectives": [
+        "掌握 + - * / 四则运算",
+        "理解 // 整除与 % 取余",
+        "理解 ** 乘方"
+      ],
+      "example": "a = 10\nb = 3\nprint(a + b)   # 13\nprint(a // b)  # 3（整除）\nprint(a % b)   # 1（余数）\nprint(a ** 2)  # 100（平方）",
+      "challenge": "计算并输出：100 除以 7 的商（整除）和余数（分别用 // 和 %），以及 2 的 10 次方。",
+      "hints": [
+        "整除用 // 会丢掉小数",
+        "取余用 % 得到除法剩下的部分",
+        "乘方用 ** ，如 2 ** 10"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "//",
+          "%",
+          "**"
+        ],
+        "successFeedback": "计算无误！你已经掌握了 Python 的算术运算。",
+        "errorFeedback": "请分别使用 //（整除）、%（取余）、**（乘方）来完成计算。"
+      },
+      "difficulty": 2,
+      "category": "运算符",
+      "tags": [
+        "算术",
+        "运算符",
+        "数字"
+      ],
+      "phase": 1,
+      "phaseName": "新手村",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(2 ** 10)",
+          "print(100 % 7)",
+          "print(100 // 7)"
+        ],
+        "correctOrder": [
+          "print(100 // 7)",
+          "print(100 % 7)",
+          "print(2 ** 10)"
+        ]
+      },
+      "choices": {
+        "question": "表达式 17 % 5 的结果是？",
+        "options": [
+          {
+            "text": "2",
+            "correct": true,
+            "feedback": "正确！17 ÷ 5 = 3 余 2，% 取到的就是余数 2。"
+          },
+          {
+            "text": "3",
+            "correct": false,
+            "feedback": "不对，3 是整除的商（17 // 5），不是余数。"
+          },
+          {
+            "text": "3.4",
+            "correct": false,
+            "feedback": "不对，% 取余得到整数 2，不是小数。"
+          },
+          {
+            "text": "85",
+            "correct": false,
+            "feedback": "不对，85 是 17 × 5，与取余无关。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "print(2 ___ 3)   # 结果是 8\nprint(20 ___ 6)  # 结果是 2（余数）",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "**",
+            "options": [
+              "**",
+              "//",
+              "%",
+              "/"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "%",
+            "options": [
+              "**",
+              "//",
+              "%",
+              "/"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：用 // 求 100 除以 7 的商。",
+          "code": "print(100 // 7)"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：用 % 求余数。",
+          "code": "print(100 // 7)\nprint(100 % 7)"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：用 ** 求 2 的 10 次方。",
+          "code": "print(100 // 7)\nprint(100 % 7)\nprint(2 ** 10)"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "关卡 4：字符串游戏",
+      "description": "文字也能“计算”：拼接、重复、求长度，以及用 f-string 优雅地嵌入变量。",
+      "objectives": [
+        "掌握字符串拼接（+）与重复（*）",
+        "用 len() 求字符串长度",
+        "用 f-string 把变量嵌入文字"
+      ],
+      "example": "s = \"Python\"\nprint(s + \"!\")\nprint(s * 3)\nprint(len(s))\nprint(f\"我爱{s}\")",
+      "challenge": "给定 first = \"Hello\"，last = \"World\"，用 f-string 输出 \"Hello World\"（中间一个空格），并输出该字符串的长度。",
+      "hints": [
+        "f-string 写法：f\"文字{变量}文字\"",
+        "在 f-string 里用 {first} 和 {last} 嵌入变量",
+        "空格直接写在引号里"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "f\"",
+          "len"
+        ],
+        "successFeedback": "字符串玩得不错！f-string 会是你以后最常用的技巧之一。",
+        "errorFeedback": "请使用 f-string（f\"...\"）嵌入变量，并用 len() 求长度。"
+      },
+      "difficulty": 2,
+      "category": "字符串",
+      "tags": [
+        "字符串",
+        "f-string",
+        "len"
+      ],
+      "phase": 1,
+      "phaseName": "新手村",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(len(f\"{first} {last}\"))",
+          "print(f\"{first} {last}\")",
+          "last = \"World\"",
+          "first = \"Hello\""
+        ],
+        "correctOrder": [
+          "first = \"Hello\"",
+          "last = \"World\"",
+          "print(f\"{first} {last}\")",
+          "print(len(f\"{first} {last}\"))"
+        ]
+      },
+      "choices": {
+        "question": "下列哪个能正确得到 \"ab\" ？",
+        "options": [
+          {
+            "text": "\"a\" + \"b\"",
+            "correct": true,
+            "feedback": "正确！+ 把两个字符串拼接成 \"ab\"。"
+          },
+          {
+            "text": "\"a\" * \"b\"",
+            "correct": false,
+            "feedback": "不对，* 只能让字符串重复整数次，不能乘字符串。"
+          },
+          {
+            "text": "\"a\" & \"b\"",
+            "correct": false,
+            "feedback": "不对，Python 用 + 拼接，不是 &。"
+          },
+          {
+            "text": "a + b",
+            "correct": false,
+            "feedback": "不一定——若 a、b 不是字符串变量会报错或做加法。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "name = \"Lucy\"\nprint(f\"你好，___\")\nprint(len(___))",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "{name}",
+            "options": [
+              "{name}",
+              "name",
+              "{Name}",
+              "(name)"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "name",
+            "options": [
+              "name",
+              "{name}",
+              "\"name\"",
+              "len"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义两个字符串变量。",
+          "code": "first = \"Hello\"\nlast = \"World\""
+        },
+        {
+          "step": 2,
+          "hint": "第二步：用 f-string 拼出带空格的句子。",
+          "code": "first = \"Hello\"\nlast = \"World\"\nprint(f\"{first} {last}\")"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：用 len() 输出长度。",
+          "code": "first = \"Hello\"\nlast = \"World\"\nprint(f\"{first} {last}\")\nprint(len(f\"{first} {last}\"))"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "关卡 5：角色卡片生成器（小项目）",
+      "description": "综合运用 print、变量与 f-string，制作一张“角色名片”。",
+      "objectives": [
+        "综合运用前四关知识",
+        "用变量组织多条信息",
+        "用 f-string 排版输出"
+      ],
+      "example": "name = \"勇者\"\nlevel = 7\nprint(f\"【{name}】\")\nprint(f\"等级：{level}\")",
+      "challenge": "创建一个角色卡片：定义 hero（名字）、job（职业）、power（战力，数字）三个变量，用 f-string 输出三行：第一行 \"英雄：<名字>\"，第二行 \"职业：<职业>\"，第三行 \"战力：<战力>\"。",
+      "hints": [
+        "把三样信息分别存进三个变量",
+        "每行用一个 print(f\"...\") 输出",
+        "数字战力直接放进 {} 即可"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "=",
+          "f\"",
+          "print"
+        ],
+        "successFeedback": "项目完成！你已能综合运用基础语法生成结构化输出。",
+        "errorFeedback": "请定义 hero/job/power 三个变量，并用 f-string 逐行 print 出来。"
+      },
+      "difficulty": 2,
+      "category": "综合项目",
+      "tags": [
+        "项目",
+        "f-string",
+        "综合"
+      ],
+      "phase": 1,
+      "phaseName": "新手村",
+      "isMiniProject": true,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(f\"战力：{power}\")",
+          "print(f\"职业：{job}\")",
+          "print(f\"英雄：{hero}\")",
+          "power = 88",
+          "job = \"战士\"",
+          "hero = \"亚瑟\""
+        ],
+        "correctOrder": [
+          "hero = \"亚瑟\"",
+          "job = \"战士\"",
+          "power = 88",
+          "print(f\"英雄：{hero}\")",
+          "print(f\"职业：{job}\")",
+          "print(f\"战力：{power}\")"
+        ]
+      },
+      "choices": {
+        "question": "关于「角色卡片生成器（小项目）」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "hero = \"亚瑟\"\njob = \"战士\"\npower = 88\nprint(f\"英雄：___\")\nprint(f\"职业：___\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "{hero}",
+            "options": [
+              "{hero}",
+              "hero",
+              "[hero]",
+              "(hero)"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "{job}",
+            "options": [
+              "{job}",
+              "job",
+              "[job]",
+              "(job)"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义角色的三个属性。",
+          "code": "hero = \"亚瑟\"\njob = \"战士\"\npower = 88"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：输出名字与职业行。",
+          "code": "hero = \"亚瑟\"\njob = \"战士\"\npower = 88\nprint(f\"英雄：{hero}\")\nprint(f\"职业：{job}\")"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：补上战力行，完成卡片。",
+          "code": "hero = \"亚瑟\"\njob = \"战士\"\npower = 88\nprint(f\"英雄：{hero}\")\nprint(f\"职业：{job}\")\nprint(f\"战力：{power}\")"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "关卡 6：获取用户输入",
+      "description": "让程序“听”用户说话：用 input() 接收键盘输入。",
+      "objectives": [
+        "掌握 input() 接收输入",
+        "理解 input() 返回的是字符串",
+        "把输入存进变量再使用"
+      ],
+      "example": "name = input(\"请输入你的名字：\")\nprint(\"你好，\" + name)",
+      "challenge": "用 input() 提示\"请输入你的城市：\"，把输入存到 city 变量，再输出\"欢迎来到<城市>！\"。",
+      "hints": [
+        "input(\"提示文字\") 会等待用户输入",
+        "input() 返回的是字符串，可直接拼接",
+        "把结果赋给一个变量"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "input",
+          "print"
+        ],
+        "successFeedback": "很好！你的程序已经能和用户对话了。",
+        "errorFeedback": "请使用 input() 获取输入并存到变量，再用 print 输出欢迎语。"
+      },
+      "difficulty": 2,
+      "category": "输入输出",
+      "tags": [
+        "input",
+        "交互"
+      ],
+      "phase": 2,
+      "phaseName": "冒险启程",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"欢迎来到\" + city + \"！\")",
+          "city = input(\"请输入你的城市：\")"
+        ],
+        "correctOrder": [
+          "city = input(\"请输入你的城市：\")",
+          "print(\"欢迎来到\" + city + \"！\")"
+        ]
+      },
+      "choices": {
+        "question": "input() 返回的数据类型是什么？",
+        "options": [
+          {
+            "text": "字符串（str）",
+            "correct": true,
+            "feedback": "正确！input() 永远返回字符串，哪怕是数字也要再转换。"
+          },
+          {
+            "text": "整数（int）",
+            "correct": false,
+            "feedback": "不对，输入 \"12\" 得到的是字符串 \"12\"，不是数字 12。"
+          },
+          {
+            "text": "什么都没有（None）",
+            "correct": false,
+            "feedback": "不对，input() 会返回用户输入的内容。"
+          },
+          {
+            "text": "取决于输入",
+            "correct": false,
+            "feedback": "不对，无论输入什么，类型都是字符串。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___ = input(\"名字：\")\nprint(\"你好，\" + ___)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "name",
+            "options": [
+              "name",
+              "input",
+              "print",
+              "str"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "name",
+            "options": [
+              "name",
+              "input",
+              "print",
+              "str"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：用 input 获取输入并存入变量。",
+          "code": "name = input(\"请输入你的名字：\")"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：用 print 输出欢迎语。",
+          "code": "name = input(\"请输入你的名字：\")\nprint(\"你好，\" + name)"
+        },
+        {
+          "step": 3,
+          "hint": "完成！把变量名改成 city 即可适配题目。",
+          "code": "city = input(\"请输入你的城市：\")\nprint(\"欢迎来到\" + city + \"！\")"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "关卡 7：类型转换",
+      "description": "input() 给的是字符串，要做数学就要 int() / float() 转换；要拼接就转回 str()。",
+      "objectives": [
+        "用 int() 把字符串变成整数",
+        "用 float() 变成小数",
+        "用 str() 把数字变成字符串"
+      ],
+      "example": "s = \"42\"\nn = int(s)\nprint(n + 8)        # 50\npi = float(\"3.14\")\nprint(str(n) + \"岁\")",
+      "challenge": "用 input() 让用户输入一个整数并存入变量，先用 int() 转换成数字，再把该数字加 10 后输出。",
+      "hints": [
+        "input() 得到字符串，先用 int(...) 包裹",
+        "转换后才是数字，才能做加减",
+        "表达式：int(input(...)) + 10"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "int",
+          "input"
+        ],
+        "successFeedback": "类型转换到位！这是处理用户输入的关键一步。",
+        "errorFeedback": "请先用 int() 把 input() 的结果转换成整数，再做加法。"
+      },
+      "difficulty": 2,
+      "category": "数据类型",
+      "tags": [
+        "类型转换",
+        "int",
+        "float"
+      ],
+      "phase": 2,
+      "phaseName": "冒险启程",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(n + 10)",
+          "n = int(input(\"输入一个整数：\"))"
+        ],
+        "correctOrder": [
+          "n = int(input(\"输入一个整数：\"))",
+          "print(n + 10)"
+        ]
+      },
+      "choices": {
+        "question": "要把字符串 \"3.5\" 变成小数，应该用？",
+        "options": [
+          {
+            "text": "float(\"3.5\")",
+            "correct": true,
+            "feedback": "正确！float() 把字符串转成浮点数 3.5。"
+          },
+          {
+            "text": "int(\"3.5\")",
+            "correct": false,
+            "feedback": "不对，int() 无法解析带小数点的字符串，会报错。"
+          },
+          {
+            "text": "str(\"3.5\")",
+            "correct": false,
+            "feedback": "不对，str() 是转成字符串，方向反了。"
+          },
+          {
+            "text": "num(\"3.5\")",
+            "correct": false,
+            "feedback": "不对，Python 没有 num() 函数。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "age = ___(input(\"年龄：\"))\nprint(age + 1)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "int",
+            "options": [
+              "int",
+              "str",
+              "float",
+              "len"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：获取输入并转换成整数。",
+          "code": "n = int(input(\"输入一个整数：\"))"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：加 10 并输出。",
+          "code": "n = int(input(\"输入一个整数：\"))\nprint(n + 10)"
+        },
+        {
+          "step": 3,
+          "hint": "完成！这就是“先转换后计算”的标准写法。",
+          "code": "n = int(input(\"输入一个整数：\"))\nprint(n + 10)"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "关卡 8：条件判断 if",
+      "description": "让程序做决定：当条件成立时才执行某段代码。",
+      "objectives": [
+        "理解布尔条件（True/False）",
+        "掌握 if 条件: 的写法",
+        "熟悉比较运算符 > < =="
+      ],
+      "example": "score = 90\nif score >= 60:\n    print(\"及格\")",
+      "challenge": "定义变量 age，若 age 大于等于 18，则输出\"已成年\"。",
+      "hints": [
+        "if 后面跟条件，末尾有冒号",
+        "条件成立的代码要缩进（通常 4 个空格）",
+        "用 >= 表示“大于等于”"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "if ",
+          ">=",
+          "print"
+        ],
+        "successFeedback": "判断成立！你的程序已经会“思考”了。",
+        "errorFeedback": "请使用 if 与 >= 判断 age 是否 >=18，成立时 print。"
+      },
+      "difficulty": 3,
+      "category": "流程控制",
+      "tags": [
+        "if",
+        "条件",
+        "比较"
+      ],
+      "phase": 2,
+      "phaseName": "冒险启程",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    print(\"已成年\")",
+          "if age >= 18:",
+          "age = 20"
+        ],
+        "correctOrder": [
+          "age = 20",
+          "if age >= 18:",
+          "    print(\"已成年\")"
+        ]
+      },
+      "choices": {
+        "question": "下列哪个是比较“相等”的运算符？",
+        "options": [
+          {
+            "text": "==",
+            "correct": true,
+            "feedback": "正确！== 判断两边是否相等（注意是两个等号）。"
+          },
+          {
+            "text": "=",
+            "correct": false,
+            "feedback": "不对，单个 = 是赋值，不是比较。"
+          },
+          {
+            "text": "!=",
+            "correct": false,
+            "feedback": "不对，!= 表示“不等于”。"
+          },
+          {
+            "text": "=>",
+            "correct": false,
+            "feedback": "不对，Python 用 >= 表示大于等于。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "age = 20\n___ age >= 18:\n    print(\"已成年\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "if",
+            "options": [
+              "if",
+              "when",
+              "for",
+              "check"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义变量。",
+          "code": "age = 20"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：写 if 条件（注意冒号）。",
+          "code": "age = 20\nif age >= 18:"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：缩进写出要执行的语句。",
+          "code": "age = 20\nif age >= 18:\n    print(\"已成年\")"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "关卡 9：if-else 二分支",
+      "description": "条件成立走一条路，不成立走另一条路。",
+      "objectives": [
+        "掌握 if ... else ... 结构",
+        "理解二选一的执行逻辑",
+        "区分两个分支的缩进块"
+      ],
+      "example": "n = int(input(\"数字：\"))\nif n % 2 == 0:\n    print(\"偶数\")\nelse:\n    print(\"奇数\")",
+      "challenge": "定义变量 score，若 score >= 60 输出\"及格\"，否则输出\"不及格\"。",
+      "hints": [
+        "if 分支处理“成立”，else 分支处理“其他情况”",
+        "else 后面直接跟冒号，不写条件",
+        "两个分支各自缩进"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "if ",
+          "else",
+          "print"
+        ],
+        "successFeedback": "分支清晰！程序现在能应对两种情况了。",
+        "errorFeedback": "请使用 if ... else ...，成立输出“及格”，否则输出“不及格”。"
+      },
+      "difficulty": 3,
+      "category": "流程控制",
+      "tags": [
+        "if",
+        "else",
+        "分支"
+      ],
+      "phase": 2,
+      "phaseName": "冒险启程",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    print(\"不及格\")",
+          "else:",
+          "    print(\"及格\")",
+          "if score >= 60:",
+          "score = 75"
+        ],
+        "correctOrder": [
+          "score = 75",
+          "if score >= 60:",
+          "    print(\"及格\")",
+          "else:",
+          "    print(\"不及格\")"
+        ]
+      },
+      "choices": {
+        "question": "关于 else，下列说法正确的是？",
+        "options": [
+          {
+            "text": "else 后不写条件，处理“其余情况”",
+            "correct": true,
+            "feedback": "正确！else 不需要条件，兜底所有不成立的情况。"
+          },
+          {
+            "text": "else 后面也要写判断条件",
+            "correct": false,
+            "feedback": "不对，else 不带条件，带条件的是 elif。"
+          },
+          {
+            "text": "if 和 else 必须同时出现",
+            "correct": false,
+            "feedback": "不对，可以只有 if 没有 else。"
+          },
+          {
+            "text": "else 必须写在最前面",
+            "correct": false,
+            "feedback": "不对，else 必须跟在 if 之后。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "score = 50\nif score >= 60:\n    print(\"及格\")\n___:\n    print(\"不及格\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "else",
+            "options": [
+              "else",
+              "elif",
+              "otherwise",
+              "except"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义分数。",
+          "code": "score = 75"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：写 if 分支。",
+          "code": "score = 75\nif score >= 60:\n    print(\"及格\")"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：补上 else 分支。",
+          "code": "score = 75\nif score >= 60:\n    print(\"及格\")\nelse:\n    print(\"不及格\")"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "关卡 10：简易计算器（小项目）",
+      "description": "综合输入、类型转换与条件判断，做一个能加减的小计算器。",
+      "objectives": [
+        "综合 input + int 转换",
+        "用 if/else 选择运算",
+        "输出格式化结果"
+      ],
+      "example": "a = int(input(\"a: \"))\nb = int(input(\"b: \"))\nop = input(\"运算符(+/-): \")\nif op == \"+\":\n    print(a + b)",
+      "challenge": "读取两个整数 a、b 和一个运算符 op（+ 或 -）。若 op 为 \"+\" 输出 a+b，否则输出 a-b。",
+      "hints": [
+        "用 int(input(...)) 读数字",
+        "用 op == \"+\" 判断运算符",
+        "else 分支处理减法"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "int",
+          "input",
+          "if",
+          "else",
+          "print"
+        ],
+        "successFeedback": "计算器完成！你已能把多个知识点串成完整程序。",
+        "errorFeedback": "请读取两个整数与一个运算符，用 if/else 分别处理加法与减法。"
+      },
+      "difficulty": 3,
+      "category": "综合项目",
+      "tags": [
+        "项目",
+        "综合",
+        "判断"
+      ],
+      "phase": 2,
+      "phaseName": "冒险启程",
+      "isMiniProject": true,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    print(a - b)",
+          "else:",
+          "    print(a + b)",
+          "if op == \"+\":",
+          "op = input(\"运算符(+/-): \")",
+          "b = int(input(\"b: \"))",
+          "a = int(input(\"a: \"))"
+        ],
+        "correctOrder": [
+          "a = int(input(\"a: \"))",
+          "b = int(input(\"b: \"))",
+          "op = input(\"运算符(+/-): \")",
+          "if op == \"+\":",
+          "    print(a + b)",
+          "else:",
+          "    print(a - b)"
+        ]
+      },
+      "choices": {
+        "question": "关于「简易计算器（小项目）」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "a = int(input(\"a: \"))\nb = int(input(\"b: \"))\nop = input(\"op: \")\nif op == \"+\":\n    print(___)\nelse:\n    print(___)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "a + b",
+            "options": [
+              "a + b",
+              "a - b",
+              "a * b",
+              "a / b"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "a - b",
+            "options": [
+              "a - b",
+              "a + b",
+              "b - a",
+              "a * b"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：读取两个数字和一个运算符。",
+          "code": "a = int(input(\"a: \"))\nb = int(input(\"b: \"))\nop = input(\"运算符(+/-): \")"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：if 处理加法。",
+          "code": "a = int(input(\"a: \"))\nb = int(input(\"b: \"))\nop = input(\"运算符(+/-): \")\nif op == \"+\":\n    print(a + b)"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：else 处理减法，完成计算器。",
+          "code": "a = int(input(\"a: \"))\nb = int(input(\"b: \"))\nop = input(\"运算符(+/-): \")\nif op == \"+\":\n    print(a + b)\nelse:\n    print(a - b)"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "关卡 11：while 循环",
+      "description": "只要条件为真，就一遍遍重复执行——用 while。",
+      "objectives": [
+        "理解 while 条件: 的重复逻辑",
+        "用计数器控制循环次数",
+        "避免写出死循环"
+      ],
+      "example": "i = 1\nwhile i <= 5:\n    print(i)\n    i = i + 1",
+      "challenge": "用 while 循环输出 1 到 5（每行一个数字）。",
+      "hints": [
+        "先定义计数器 i = 1",
+        "while i <= 5: 作为条件",
+        "循环体内别忘了让 i 增加，否则会死循环"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "while ",
+          "print",
+          "="
+        ],
+        "successFeedback": "循环跑起来了！注意让计数器前进，循环才会结束。",
+        "errorFeedback": "请使用 while 循环，并在循环内让计数器递增，输出 1 到 5。"
+      },
+      "difficulty": 3,
+      "category": "流程控制",
+      "tags": [
+        "while",
+        "循环"
+      ],
+      "phase": 3,
+      "phaseName": "技能进阶",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    i = i + 1",
+          "    print(i)",
+          "while i <= 5:",
+          "i = 1"
+        ],
+        "correctOrder": [
+          "i = 1",
+          "while i <= 5:",
+          "    print(i)",
+          "    i = i + 1"
+        ]
+      },
+      "choices": {
+        "question": "下面哪段会造成“死循环”？",
+        "options": [
+          {
+            "text": "i = 1\nwhile i <= 5:\n    print(i)",
+            "correct": true,
+            "feedback": "正确！循环里没有让 i 增大，条件永远成立，会无限循环。"
+          },
+          {
+            "text": "i = 1\nwhile i <= 5:\n    print(i)\n    i = i + 1",
+            "correct": false,
+            "feedback": "不会，i 在每次循环后 +1，最终会退出。"
+          },
+          {
+            "text": "i = 5\nwhile i > 0:\n    print(i)\n    i = i - 1",
+            "correct": false,
+            "feedback": "不会，i 递减到 0 后条件不成立，正常结束。"
+          },
+          {
+            "text": "while False:\n    print(\"x\")",
+            "correct": false,
+            "feedback": "不会，条件一开始就是假，循环体一次都不执行。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "i = 1\n___ i <= 5:\n    print(i)\n    i = i + 1",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "while",
+            "options": [
+              "while",
+              "for",
+              "if",
+              "loop"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：初始化计数器。",
+          "code": "i = 1"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：写 while 条件。",
+          "code": "i = 1\nwhile i <= 5:"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：循环体内打印并让 i 自增。",
+          "code": "i = 1\nwhile i <= 5:\n    print(i)\n    i = i + 1"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "关卡 12：列表入门",
+      "description": "列表（list）是有序的“容器”，能一次装下多个数据。",
+      "objectives": [
+        "用 [] 创建列表",
+        "用索引访问元素（从 0 开始）",
+        "用 len() 获取长度"
+      ],
+      "example": "fruits = [\"苹果\", \"香蕉\", \"橙子\"]\nprint(fruits[0])     # 苹果\nprint(len(fruits))   # 3",
+      "challenge": "创建一个列表 nums = [10, 20, 30, 40]，输出它的第一个元素和长度。",
+      "hints": [
+        "索引从 0 开始：第一个是 [0]",
+        "用 len(列表) 求元素个数",
+        "每个元素用逗号分隔，整体用 [] 包裹"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "[",
+          "print",
+          "len"
+        ],
+        "successFeedback": "列表入门成功！它是 Python 最常用的数据结构。",
+        "errorFeedback": "请创建列表 nums，并用索引 [0] 和 len() 分别输出首元素与长度。"
+      },
+      "difficulty": 3,
+      "category": "数据结构",
+      "tags": [
+        "列表",
+        "list",
+        "索引"
+      ],
+      "phase": 3,
+      "phaseName": "技能进阶",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(len(nums))",
+          "print(nums[0])",
+          "nums = [10, 20, 30, 40]"
+        ],
+        "correctOrder": [
+          "nums = [10, 20, 30, 40]",
+          "print(nums[0])",
+          "print(len(nums))"
+        ]
+      },
+      "choices": {
+        "question": "列表 pets = [\"猫\",\"狗\",\"鱼\"]，pets[2] 是？",
+        "options": [
+          {
+            "text": "\"鱼\"",
+            "correct": true,
+            "feedback": "正确！索引 2 是第三个元素（索引从 0 开始）。"
+          },
+          {
+            "text": "\"猫\"",
+            "correct": false,
+            "feedback": "不对，\"猫\" 是 pets[0]。"
+          },
+          {
+            "text": "\"狗\"",
+            "correct": false,
+            "feedback": "不对，\"狗\" 是 pets[1]。"
+          },
+          {
+            "text": "报错",
+            "correct": false,
+            "feedback": "不会报错，索引 2 在范围内。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "nums = [10, 20, 30, 40]\nprint(nums[___])\nprint(len(nums))",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "0",
+            "options": [
+              "0",
+              "1",
+              "-1",
+              "2"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：创建列表。",
+          "code": "nums = [10, 20, 30, 40]"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：输出第一个元素（索引 0）。",
+          "code": "nums = [10, 20, 30, 40]\nprint(nums[0])"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：输出长度。",
+          "code": "nums = [10, 20, 30, 40]\nprint(nums[0])\nprint(len(nums))"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "关卡 13：for 循环遍历",
+      "description": "不知道循环几次？用 for 直接“逐个取出”列表里的元素。",
+      "objectives": [
+        "掌握 for x in 列表: 的写法",
+        "理解循环变量每次取到下一个元素",
+        "区分 for 与 while 的适用场景"
+      ],
+      "example": "for fruit in [\"苹果\", \"香蕉\"]:\n    print(fruit)",
+      "challenge": "用 for 循环遍历列表 [1, 2, 3, 4, 5]，把每个数字原样输出。",
+      "hints": [
+        "for 变量 in 列表: 即可逐个取出",
+        "循环变量名随便起，如 x",
+        "循环体内 print(x)"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "for ",
+          "in ",
+          "print"
+        ],
+        "successFeedback": "遍历自如！for 是处理集合的利器。",
+        "errorFeedback": "请使用 for ... in ... 遍历列表，并在循环体内 print 每个元素。"
+      },
+      "difficulty": 3,
+      "category": "流程控制",
+      "tags": [
+        "for",
+        "循环",
+        "遍历"
+      ],
+      "phase": 3,
+      "phaseName": "技能进阶",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    print(x)",
+          "for x in [1, 2, 3, 4, 5]:"
+        ],
+        "correctOrder": [
+          "for x in [1, 2, 3, 4, 5]:",
+          "    print(x)"
+        ]
+      },
+      "choices": {
+        "question": "for i in range(3): 会循环几次？",
+        "options": [
+          {
+            "text": "3 次（i 依次取 0,1,2）",
+            "correct": true,
+            "feedback": "正确！range(3) 生成 0、1、2，共 3 次。"
+          },
+          {
+            "text": "2 次",
+            "correct": false,
+            "feedback": "不对，range(3) 包含 0、1、2 三个值。"
+          },
+          {
+            "text": "4 次",
+            "correct": false,
+            "feedback": "不对，range(3) 不包含 3。"
+          },
+          {
+            "text": "无限次",
+            "correct": false,
+            "feedback": "不会，range 是有限序列。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "for ___ in [1, 2, 3]:\n    print(x)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "x",
+            "options": [
+              "x",
+              "i",
+              "in",
+              "for"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：写 for 遍历结构。",
+          "code": "for x in [1, 2, 3, 4, 5]:"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：循环体内输出。",
+          "code": "for x in [1, 2, 3, 4, 5]:\n    print(x)"
+        },
+        {
+          "step": 3,
+          "hint": "完成！每个元素都会被打印一次。",
+          "code": "for x in [1, 2, 3, 4, 5]:\n    print(x)"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "关卡 14：列表操作",
+      "description": "增删查改：append 追加、insert 插入、remove 删除、切片截取。",
+      "objectives": [
+        "用 append() 在末尾追加元素",
+        "用 remove() 删除指定值",
+        "用切片 list[a:b] 截取子列表"
+      ],
+      "example": "lst = [1, 2, 3]\nlst.append(4)        # [1,2,3,4]\nlst.remove(2)        # [1,3,4]\nprint(lst[0:2])      # [1,3]",
+      "challenge": "从列表 [1,2,3] 出发，先 append(4)，再 remove(2)，最后输出从开头到索引 1（不含）的子列表。",
+      "hints": [
+        "append(值) 加到末尾",
+        "remove(值) 删除第一个匹配项",
+        "切片 [0:2] 取前两个元素"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "append",
+          "remove",
+          "print"
+        ],
+        "successFeedback": "列表操作熟练！增删与切片是日常高频操作。",
+        "errorFeedback": "请对列表使用 append(4)、remove(2)，并输出切片结果。"
+      },
+      "difficulty": 4,
+      "category": "数据结构",
+      "tags": [
+        "列表",
+        "append",
+        "切片"
+      ],
+      "phase": 3,
+      "phaseName": "技能进阶",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(lst[0:2])",
+          "lst.remove(2)",
+          "lst.append(4)",
+          "lst = [1, 2, 3]"
+        ],
+        "correctOrder": [
+          "lst = [1, 2, 3]",
+          "lst.append(4)",
+          "lst.remove(2)",
+          "print(lst[0:2])"
+        ]
+      },
+      "choices": {
+        "question": "执行 a = [10,20,30]; a.append(40) 后，a 是？",
+        "options": [
+          {
+            "text": "[10, 20, 30, 40]",
+            "correct": true,
+            "feedback": "正确！append 在末尾加入 40。"
+          },
+          {
+            "text": "[40, 10, 20, 30]",
+            "correct": false,
+            "feedback": "不对，append 加在末尾，不是开头。"
+          },
+          {
+            "text": "[10, 20, 30]",
+            "correct": false,
+            "feedback": "不对，append 确实改变了列表。"
+          },
+          {
+            "text": "[10, 20, 30, 40, 40]",
+            "correct": false,
+            "feedback": "不对，只追加了一次 40。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "lst = [1, 2, 3]\nlst.___(4)\nlst.remove(2)\nprint(lst)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "append",
+            "options": [
+              "append",
+              "add",
+              "push",
+              "insert"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：创建列表并追加 4。",
+          "code": "lst = [1, 2, 3]\nlst.append(4)"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：删除值为 2 的元素。",
+          "code": "lst = [1, 2, 3]\nlst.append(4)\nlst.remove(2)"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：输出切片 [0:2]。",
+          "code": "lst = [1, 2, 3]\nlst.append(4)\nlst.remove(2)\nprint(lst[0:2])"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "关卡 15：字典入门",
+      "description": "字典（dict）用“键:值”成对存储，像一本可查的电话簿。",
+      "objectives": [
+        "用 {} 创建字典",
+        "用 键 存取对应的值",
+        "用 for 遍历键或键值对"
+      ],
+      "example": "user = {\"name\": \"小红\", \"age\": 15}\nprint(user[\"name\"])\nuser[\"age\"] = 16",
+      "challenge": "创建字典 stu = {\"name\":\"Tom\", \"score\":88}，输出 name 对应的值，并把 score 改成 95 后再次输出 score。",
+      "hints": [
+        "用 字典[键] 取值",
+        "用 字典[键] = 新值 修改",
+        "键要用引号包裹"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "{",
+          "print"
+        ],
+        "successFeedback": "字典入门成功！它适合表达“有名字的属性”。",
+        "errorFeedback": "请创建字典 stu，用 stu[\"name\"] 取值，并修改 stu[\"score\"] 后输出。"
+      },
+      "difficulty": 4,
+      "category": "数据结构",
+      "tags": [
+        "字典",
+        "dict",
+        "键值"
+      ],
+      "phase": 3,
+      "phaseName": "技能进阶",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(stu[\"score\"])",
+          "stu[\"score\"] = 95",
+          "print(stu[\"name\"])",
+          "stu = {\"name\":\"Tom\", \"score\":88}"
+        ],
+        "correctOrder": [
+          "stu = {\"name\":\"Tom\", \"score\":88}",
+          "print(stu[\"name\"])",
+          "stu[\"score\"] = 95",
+          "print(stu[\"score\"])"
+        ]
+      },
+      "choices": {
+        "question": "字典 d = {\"a\":1}，要取 a 对应的值，正确的是？",
+        "options": [
+          {
+            "text": "d[\"a\"]",
+            "correct": true,
+            "feedback": "正确！用方括号加键名来取值。"
+          },
+          {
+            "text": "d.a",
+            "correct": false,
+            "feedback": "不对，普通字典不能用点号访问（除非是特殊对象）。"
+          },
+          {
+            "text": "d( \"a\" )",
+            "correct": false,
+            "feedback": "不对，字典不是函数，不能用括号调用。"
+          },
+          {
+            "text": "d->a",
+            "correct": false,
+            "feedback": "不对，Python 没有 -> 这种取值语法。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "stu = {\"name\":\"Tom\", \"score\":88}\nprint(stu[\"___\"])\nstu[\"score\"] = 95",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "name",
+            "options": [
+              "name",
+              "score",
+              "Tom",
+              "\"name\""
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：创建字典。",
+          "code": "stu = {\"name\":\"Tom\", \"score\":88}"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：输出 name 对应的值。",
+          "code": "stu = {\"name\":\"Tom\", \"score\":88}\nprint(stu[\"name\"])"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：修改 score 并输出。",
+          "code": "stu = {\"name\":\"Tom\", \"score\":88}\nprint(stu[\"name\"])\nstu[\"score\"] = 95\nprint(stu[\"score\"])"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "title": "关卡 16：函数入门",
+      "description": "把一段逻辑“封装”成函数，需要时随时调用，避免重复代码。",
+      "objectives": [
+        "用 def 定义函数",
+        "理解调用函数执行其内部代码",
+        "函数让代码可复用"
+      ],
+      "example": "def greet():\n    print(\"你好！\")\n\ngreet()\ngreet()",
+      "challenge": "定义一个函数 say_hi()，函数体内输出\"Hi there!\"，然后在函数外调用它两次。",
+      "hints": [
+        "函数定义：def 函数名():",
+        "函数体要缩进",
+        "调用时写 函数名()"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "def ",
+          "print"
+        ],
+        "successFeedback": "函数定义成功！复用从此开始。",
+        "errorFeedback": "请用 def 定义 say_hi() 并在其中 print，再调用两次。"
+      },
+      "difficulty": 4,
+      "category": "函数",
+      "tags": [
+        "函数",
+        "def",
+        "复用"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "say_hi()",
+          "say_hi()",
+          "    print(\"Hi there!\")",
+          "def say_hi():"
+        ],
+        "correctOrder": [
+          "def say_hi():",
+          "    print(\"Hi there!\")",
+          "say_hi()",
+          "say_hi()"
+        ]
+      },
+      "choices": {
+        "question": "关于函数，下列说法正确的是？",
+        "options": [
+          {
+            "text": "用 def 定义，函数名后要有括号和冒号",
+            "correct": true,
+            "feedback": "正确！def 名字(): 是标准定义形式。"
+          },
+          {
+            "text": "函数定义后自动执行",
+            "correct": false,
+            "feedback": "不对，定义不会执行，必须显式调用。"
+          },
+          {
+            "text": "函数名后面不需要括号",
+            "correct": false,
+            "feedback": "不对，定义和调用都要有括号。"
+          },
+          {
+            "text": "函数只能调用一次",
+            "correct": false,
+            "feedback": "不对，函数可以反复调用。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___ say_hi():\n    print(\"Hi there!\")\n\nsay_hi()",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "def",
+            "options": [
+              "def",
+              "func",
+              "function",
+              "do"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：用 def 定义函数。",
+          "code": "def say_hi():"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：缩进写出函数体。",
+          "code": "def say_hi():\n    print(\"Hi there!\")"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：调用两次。",
+          "code": "def say_hi():\n    print(\"Hi there!\")\n\nsay_hi()\nsay_hi()"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "关卡 17：函数参数",
+      "description": "让函数更灵活：通过参数把外部数据“传进去”。",
+      "objectives": [
+        "在 def 中声明形参",
+        "调用时传入实参",
+        "理解参数如何进入函数体"
+      ],
+      "example": "def greet(name):\n    print(\"你好，\" + name)\n\ngreet(\"小明\")\ngreet(\"小红\")",
+      "challenge": "定义函数 square(n)，输出 n 的平方（n ** 2）。调用 square(5) 与 square(9)。",
+      "hints": [
+        "def square(n): 声明参数 n",
+        "函数体内用 n ** 2 计算",
+        "调用时把数字放进括号"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "def ",
+          "**",
+          "print"
+        ],
+        "successFeedback": "参数运用自如！函数现在能处理不同输入了。",
+        "errorFeedback": "请用 def square(n): 定义带参函数，输出 n**2，并调用两次。"
+      },
+      "difficulty": 4,
+      "category": "函数",
+      "tags": [
+        "函数",
+        "参数"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "square(9)",
+          "square(5)",
+          "    print(n ** 2)",
+          "def square(n):"
+        ],
+        "correctOrder": [
+          "def square(n):",
+          "    print(n ** 2)",
+          "square(5)",
+          "square(9)"
+        ]
+      },
+      "choices": {
+        "question": "关于「函数参数」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "def square(n):\n    print(n ___ 2)\n\nsquare(5)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "**",
+            "options": [
+              "**",
+              "^",
+              "*",
+              "//"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义带参函数。",
+          "code": "def square(n):"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：输出 n 的平方。",
+          "code": "def square(n):\n    print(n ** 2)"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：调用两次。",
+          "code": "def square(n):\n    print(n ** 2)\nsquare(5)\nsquare(9)"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "关卡 18：变量作用域",
+      "description": "函数内部与外部的变量各有“领地”——理解局部与全局，避免命名冲突。",
+      "objectives": [
+        "区分函数内的局部变量与外部变量",
+        "理解函数内修改不影响外部同名变量",
+        "必要时用 global 声明全局变量"
+      ],
+      "example": "x = 10\ndef change():\n    x = 99      # 这是局部变量\n    print(x)\nchange()\nprint(x)        # 还是 10",
+      "challenge": "定义全局变量 count = 0，再写一个函数 add()，函数内用 global count 把它加 1 并输出。调用 add() 两次观察结果。",
+      "hints": [
+        "函数内想改全局变量要先写 global count",
+        "不加 global 时，赋值会创建局部变量",
+        "global 让修改作用到函数外部"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "global",
+          "def ",
+          "print"
+        ],
+        "successFeedback": "作用域搞清楚了！这是很多 Bug 的根源，你已跨过。",
+        "errorFeedback": "请在函数内用 global count 声明全局变量，再 count += 1 并输出。"
+      },
+      "difficulty": 4,
+      "category": "函数",
+      "tags": [
+        "作用域",
+        "global",
+        "变量"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "add()",
+          "add()",
+          "    print(count)",
+          "    count = count + 1",
+          "    global count",
+          "def add():",
+          "count = 0"
+        ],
+        "correctOrder": [
+          "count = 0",
+          "def add():",
+          "    global count",
+          "    count = count + 1",
+          "    print(count)",
+          "add()",
+          "add()"
+        ]
+      },
+      "choices": {
+        "question": "关于「变量作用域」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "count = 0\ndef add():\n    ___ count\n    count = count + 1\n    print(count)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "global",
+            "options": [
+              "global",
+              "local",
+              "static",
+              "extern"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义全局变量并声明函数。",
+          "code": "count = 0\ndef add():"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：函数内用 global 声明并自增。",
+          "code": "count = 0\ndef add():\n    global count\n    count = count + 1"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：输出并调用两次。",
+          "code": "count = 0\ndef add():\n    global count\n    count = count + 1\n    print(count)\nadd()\nadd()"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "title": "关卡 19：字符串方法",
+      "description": "字符串自带很多“方法”来加工文字：大小写、分割、去空格等。",
+      "objectives": [
+        "用 .upper()/.lower() 转换大小写",
+        "用 .strip() 去掉两端空白",
+        "用 .split() 按空格拆成列表"
+      ],
+      "example": "s = \"  Hello World  \"\nprint(s.strip().upper())\nprint(s.split())",
+      "challenge": "给定 text = \"  Python  \"，先 strip() 去掉两端空格，再 upper() 转大写后输出。",
+      "hints": [
+        ".strip() 去掉首尾空白",
+        ".upper() 转大写",
+        "方法用 点 连接：字符串.方法()"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          ".strip",
+          ".upper",
+          "print"
+        ],
+        "successFeedback": "字符串方法掌握！文本清洗全靠它们。",
+        "errorFeedback": "请对 text 调用 .strip() 后再 .upper()，然后输出。"
+      },
+      "difficulty": 4,
+      "category": "字符串",
+      "tags": [
+        "字符串",
+        "方法",
+        "strip"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(text.strip().upper())",
+          "text = \"  Python  \""
+        ],
+        "correctOrder": [
+          "text = \"  Python  \"",
+          "print(text.strip().upper())"
+        ]
+      },
+      "choices": {
+        "question": "关于「字符串方法」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "s = \"  hi  \"\nprint(s.___().upper())",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "strip",
+            "options": [
+              "strip",
+              "trim",
+              "clean",
+              "cut"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义带空格的字符串。",
+          "code": "text = \"  Python  \""
+        },
+        {
+          "step": 2,
+          "hint": "第二步：链式调用 strip 与 upper。",
+          "code": "text = \"  Python  \"\nprint(text.strip().upper())"
+        },
+        {
+          "step": 3,
+          "hint": "完成！strip 先去空格，upper 再转大写。",
+          "code": "text = \"  Python  \"\nprint(text.strip().upper())"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "关卡 20：猜数字游戏（小项目）",
+      "description": "综合函数、循环、条件与随机，做一个人机对战的猜数游戏。",
+      "objectives": [
+        "用 random.randint 生成随机数",
+        "用 while 循环持续接收猜测",
+        "用 if/elif/else 给出大小提示"
+      ],
+      "example": "import random\nsecret = random.randint(1, 10)\nguess = int(input(\"猜：\"))\nif guess == secret:\n    print(\"中了\")\nelif guess < secret:\n    print(\"小了\")\nelse:\n    print(\"大了\")",
+      "challenge": "写一个猜数字游戏：随机生成 1~10 的秘密数，循环让用户输入猜测，等于则输出\"猜对了\"并结束，小于则提示\"小了\"，大于则提示\"大了\"。",
+      "hints": [
+        "import random 后可用 random.randint(1,10)",
+        "用 while True: 持续循环，猜中后用 break 退出",
+        "用 if/elif/else 比较 guess 与 secret"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "import",
+          "random",
+          "while",
+          "if",
+          "break"
+        ],
+        "successFeedback": "游戏完成！你已能用循环+判断+随机做出完整交互程序。",
+        "errorFeedback": "请 import random，用 while 循环接收猜测，并用 if/elif/else 比较，猜中后 break。"
+      },
+      "difficulty": 5,
+      "category": "综合项目",
+      "tags": [
+        "项目",
+        "random",
+        "综合"
+      ],
+      "phase": 4,
+      "phaseName": "挑战大师",
+      "isMiniProject": true,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "        print(\"大了\")",
+          "    else:",
+          "        print(\"小了\")",
+          "    elif guess < secret:",
+          "        break",
+          "        print(\"猜对了\")",
+          "    if guess == secret:",
+          "    guess = int(input(\"猜：\"))",
+          "while True:",
+          "secret = random.randint(1, 10)",
+          "import random"
+        ],
+        "correctOrder": [
+          "import random",
+          "secret = random.randint(1, 10)",
+          "while True:",
+          "    guess = int(input(\"猜：\"))",
+          "    if guess == secret:",
+          "        print(\"猜对了\")",
+          "        break",
+          "    elif guess < secret:",
+          "        print(\"小了\")",
+          "    else:",
+          "        print(\"大了\")"
+        ]
+      },
+      "choices": {
+        "question": "关于「猜数字游戏（小项目）」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "import ___\nsecret = random.randint(1, 10)\nwhile True:\n    g = int(input(\"猜：\"))\n    if g == secret:\n        print(\"猜对了\")\n        ___\n    elif g < secret:\n        print(\"小了\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "random",
+            "options": [
+              "random",
+              "math",
+              "os",
+              "sys"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "break",
+            "options": [
+              "break",
+              "stop",
+              "exit",
+              "return"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：导入随机模块并生成秘密数。",
+          "code": "import random\nsecret = random.randint(1, 10)"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：用 while True 持续猜，并比较。",
+          "code": "import random\nsecret = random.randint(1, 10)\nwhile True:\n    guess = int(input(\"猜：\"))\n    if guess == secret:\n        print(\"猜对了\")\n        break\n    elif guess < secret:\n        print(\"小了\")\n    else:\n        print(\"大了\")"
+        },
+        {
+          "step": 3,
+          "hint": "完成！猜中时用 break 退出循环。",
+          "code": "import random\nsecret = random.randint(1, 10)\nwhile True:\n    guess = int(input(\"猜：\"))\n    if guess == secret:\n        print(\"猜对了\")\n        break\n    elif guess < secret:\n        print(\"小了\")\n    else:\n        print(\"大了\")"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "title": "关卡 21：文件读写",
+      "description": "把数据存进文件、再从文件读出来，程序才能“记得住”。",
+      "objectives": [
+        "用 open() 配合 \"w\" 写文件",
+        "用 with 语句自动关闭文件",
+        "用 \"r\" 读文件内容"
+      ],
+      "example": "with open(\"note.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"你好，文件\")\n\nwith open(\"note.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())",
+      "challenge": "用 with open 以写模式创建 \"hello.txt\"，写入\"Hello File\"，再以读模式打开并输出其内容。",
+      "hints": [
+        "写模式用 \"w\"",
+        "用 with ... as f: 会自动关闭",
+        "读用 f.read()"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "open",
+          "with",
+          "write",
+          "read",
+          "print"
+        ],
+        "successFeedback": "文件读写掌握！持久化是真实项目的基础。",
+        "errorFeedback": "请用 with open(..., \"w\") 写文件，再用 \"r\" 读并用 print 输出。"
+      },
+      "difficulty": 4,
+      "category": "文件操作",
+      "tags": [
+        "文件",
+        "open",
+        "读写"
+      ],
+      "phase": 5,
+      "phaseName": "探索者",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    print(f.read())",
+          "with open(\"hello.txt\", \"r\", encoding=\"utf-8\") as f:",
+          "    f.write(\"Hello File\")",
+          "with open(\"hello.txt\", \"w\", encoding=\"utf-8\") as f:"
+        ],
+        "correctOrder": [
+          "with open(\"hello.txt\", \"w\", encoding=\"utf-8\") as f:",
+          "    f.write(\"Hello File\")",
+          "with open(\"hello.txt\", \"r\", encoding=\"utf-8\") as f:",
+          "    print(f.read())"
+        ]
+      },
+      "choices": {
+        "question": "关于「文件读写」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "with open(\"a.txt\", \"___\", encoding=\"utf-8\") as f:\n    f.write(\"x\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "w",
+            "options": [
+              "w",
+              "r",
+              "x",
+              "d"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：以写模式打开并写入。",
+          "code": "with open(\"hello.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Hello File\")"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：以读模式打开。",
+          "code": "with open(\"hello.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Hello File\")\nwith open(\"hello.txt\", \"r\", encoding=\"utf-8\") as f:"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：读取并输出。",
+          "code": "with open(\"hello.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Hello File\")\nwith open(\"hello.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "title": "关卡 22：异常处理",
+      "description": "程序可能出错，用 try/except 优雅兜底，而不是直接崩溃。",
+      "objectives": [
+        "用 try 包裹可能出错的代码",
+        "用 except 捕获并处理异常",
+        "理解“出错也不中断”的价值"
+      ],
+      "example": "try:\n    n = int(input(\"数字：\"))\n    print(10 / n)\nexcept ZeroDivisionError:\n    print(\"不能除以 0\")",
+      "challenge": "用 try 读取用户输入并转成整数 n 后输出 100/n；用 except 捕获异常，当输入无法转整数或 n 为 0 时输出\"输入有误\"。",
+      "hints": [
+        "把 int(input()) 和除法放进 try",
+        "except: 后面可写具体异常或留空捕获全部",
+        "出错时 print(\"输入有误\")"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "try",
+          "except",
+          "print"
+        ],
+        "successFeedback": "异常处理到位！健壮的程序都懂得“兜底”。",
+        "errorFeedback": "请用 try 包裹可能出错的计算，except 中输出“输入有误”。"
+      },
+      "difficulty": 4,
+      "category": "错误处理",
+      "tags": [
+        "异常",
+        "try",
+        "except"
+      ],
+      "phase": 5,
+      "phaseName": "探索者",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    print(\"输入有误\")",
+          "except:",
+          "    print(100 / n)",
+          "    n = int(input(\"数字：\"))",
+          "try:"
+        ],
+        "correctOrder": [
+          "try:",
+          "    n = int(input(\"数字：\"))",
+          "    print(100 / n)",
+          "except:",
+          "    print(\"输入有误\")"
+        ]
+      },
+      "choices": {
+        "question": "关于「异常处理」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___:\n    n = int(input(\"数字：\"))\n    print(100 / n)\n___:\n    print(\"输入有误\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "try",
+            "options": [
+              "try",
+              "if",
+              "catch",
+              "check"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "except",
+            "options": [
+              "except",
+              "else",
+              "finally",
+              "catch"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：把可能出错的代码放进 try。",
+          "code": "try:\n    n = int(input(\"数字：\"))\n    print(100 / n)"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：加 except 兜底。",
+          "code": "try:\n    n = int(input(\"数字：\"))\n    print(100 / n)\nexcept:\n    print(\"输入有误\")"
+        },
+        {
+          "step": 3,
+          "hint": "完成！无论输入什么都不会让程序崩溃。",
+          "code": "try:\n    n = int(input(\"数字：\"))\n    print(100 / n)\nexcept:\n    print(\"输入有误\")"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "title": "关卡 23：列表推导式",
+      "description": "一行写出“对集合中每个元素加工”的列表，简洁又高效。",
+      "objectives": [
+        "掌握 [表达式 for 变量 in 序列] 语法",
+        "理解推导式等价于 for 循环建列表",
+        "可为推导式加 if 过滤"
+      ],
+      "example": "squares = [x ** 2 for x in range(1, 6)]\nprint(squares)        # [1,4,9,16,25]\nevens = [x for x in range(10) if x % 2 == 0]",
+      "challenge": "用列表推导式生成 1~5 每个数的立方，存进列表 cubes 并输出。",
+      "hints": [
+        "形式：[x**3 for x in range(1,6)]",
+        "range(1,6) 得到 1,2,3,4,5",
+        "结果直接是一个列表"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "for ",
+          "in ",
+          "print"
+        ],
+        "successFeedback": "推导式上手！这是 Python 最优雅的语法之一。",
+        "errorFeedback": "请用 [x**3 for x in range(1,6)] 形式生成立方列表并输出。"
+      },
+      "difficulty": 5,
+      "category": "高级特性",
+      "tags": [
+        "推导式",
+        "列表",
+        "简洁"
+      ],
+      "phase": 5,
+      "phaseName": "探索者",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(cubes)",
+          "cubes = [x ** 3 for x in range(1, 6)]"
+        ],
+        "correctOrder": [
+          "cubes = [x ** 3 for x in range(1, 6)]",
+          "print(cubes)"
+        ]
+      },
+      "choices": {
+        "question": "关于「列表推导式」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "cubes = [x ___ 3 for x in range(1, 6)]\nprint(cubes)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "**",
+            "options": [
+              "**",
+              "^",
+              "*",
+              "//"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：用推导式生成立方。",
+          "code": "cubes = [x ** 3 for x in range(1, 6)]"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：输出结果。",
+          "code": "cubes = [x ** 3 for x in range(1, 6)]\nprint(cubes)"
+        },
+        {
+          "step": 3,
+          "hint": "完成！一行等价于一个建表循环。",
+          "code": "cubes = [x ** 3 for x in range(1, 6)]\nprint(cubes)"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "title": "关卡 24：字典高级用法",
+      "description": "用 .get() 安全取值、遍历键/值/键值对，以及字典的嵌套组合。",
+      "objectives": [
+        "用 .get(key, 默认值) 避免 KeyError",
+        "用 .keys()/.values()/.items() 遍历",
+        "理解字典可嵌套"
+      ],
+      "example": "d = {\"a\": 1, \"b\": 2}\nprint(d.get(\"c\", 0))      # 0（不存在给默认）\nfor k, v in d.items():\n    print(k, v)",
+      "challenge": "定义字典 scores = {\"math\":90, \"english\":85}，用 .get(\"pe\", 0) 取一门不存在的课（默认 0）并输出；再遍历 items 打印每科成绩。",
+      "hints": [
+        ".get(key, 默认) 在键不存在时返回默认值",
+        "for k, v in 字典.items(): 同时拿到键和值",
+        "print 每个键值对"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          ".get",
+          ".items",
+          "print"
+        ],
+        "successFeedback": "字典进阶！.get 与 items 是实战高频用法。",
+        "errorFeedback": "请用 .get(\"pe\", 0) 取值，并用 for k,v in scores.items() 遍历输出。"
+      },
+      "difficulty": 5,
+      "category": "数据结构",
+      "tags": [
+        "字典",
+        "get",
+        "items"
+      ],
+      "phase": 5,
+      "phaseName": "探索者",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    print(k, v)",
+          "for k, v in scores.items():",
+          "print(scores.get(\"pe\", 0))",
+          "scores = {\"math\":90, \"english\":85}"
+        ],
+        "correctOrder": [
+          "scores = {\"math\":90, \"english\":85}",
+          "print(scores.get(\"pe\", 0))",
+          "for k, v in scores.items():",
+          "    print(k, v)"
+        ]
+      },
+      "choices": {
+        "question": "关于「字典高级用法」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "d = {\"a\":1}\nprint(d.___(\"z\", 0))\nfor k, v in d.___():\n    print(k, v)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "get",
+            "options": [
+              "get",
+              "find",
+              "take",
+              "read"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "items",
+            "options": [
+              "items",
+              "keys",
+              "values",
+              "pairs"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义字典并安全取值。",
+          "code": "scores = {\"math\":90, \"english\":85}\nprint(scores.get(\"pe\", 0))"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：遍历键值对。",
+          "code": "scores = {\"math\":90, \"english\":85}\nprint(scores.get(\"pe\", 0))\nfor k, v in scores.items():\n    print(k, v)"
+        },
+        {
+          "step": 3,
+          "hint": "完成！.get 不会因缺键而报错。",
+          "code": "scores = {\"math\":90, \"english\":85}\nprint(scores.get(\"pe\", 0))\nfor k, v in scores.items():\n    print(k, v)"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "title": "关卡 25：模块导入",
+      "description": "站在巨人的肩膀：导入标准库模块复用现成功能。",
+      "objectives": [
+        "用 import 导入整个模块",
+        "用 模块.功能 调用",
+        "用 from ... import 导入指定功能"
+      ],
+      "example": "import math\nprint(math.sqrt(16))     # 4.0\nfrom random import randint\nprint(randint(1, 6))",
+      "challenge": "导入 math 模块，输出 2 的 10 次方（用 math.pow 或 math 的常量）。再尝试 import math 后输出 math.pi。",
+      "hints": [
+        "import math 后可用 math.pow(2,10)",
+        "math.pi 是圆周率",
+        "模块功能用 点 调用"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "import",
+          "math",
+          "print"
+        ],
+        "successFeedback": "模块导入掌握！标准库是你的工具箱。",
+        "errorFeedback": "请 import math，并用 math.pow 或 math.pi 做输出。"
+      },
+      "difficulty": 5,
+      "category": "模块",
+      "tags": [
+        "模块",
+        "import",
+        "math"
+      ],
+      "phase": 5,
+      "phaseName": "探索者",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(math.pi)",
+          "print(math.pow(2, 10))",
+          "import math"
+        ],
+        "correctOrder": [
+          "import math",
+          "print(math.pow(2, 10))",
+          "print(math.pi)"
+        ]
+      },
+      "choices": {
+        "question": "关于「模块导入」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "___ math\nprint(math.pow(2, 10))",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "import",
+            "options": [
+              "import",
+              "include",
+              "require",
+              "using"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：导入 math 模块。",
+          "code": "import math"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：计算 2 的 10 次方。",
+          "code": "import math\nprint(math.pow(2, 10))"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：输出圆周率 pi。",
+          "code": "import math\nprint(math.pow(2, 10))\nprint(math.pi)"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "title": "关卡 26：类和对象入门",
+      "description": "用类（class）描述一类事物的属性与行为，用对象实例去使用它。",
+      "objectives": [
+        "用 class 定义类",
+        "用 __init__ 初始化属性",
+        "用 self 指代实例自身"
+      ],
+      "example": "class Dog:\n    def __init__(self, name):\n        self.name = name\n    def bark(self):\n        print(self.name + \"：汪！\")\n\nd = Dog(\"小白\")\nd.bark()",
+      "challenge": "定义一个类 Cat，__init__ 接收 name，并定义一个方法 meow() 输出\"<名字>：喵~\"。创建实例 c = Cat(\"咪咪\") 并调用 meow()。",
+      "hints": [
+        "class 类名: 注意首字母常大写",
+        "__init__(self, name): 里写 self.name = name",
+        "方法第一个参数都是 self"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "class ",
+          "def __init__",
+          "self",
+          "print"
+        ],
+        "successFeedback": "面向对象入门！类让复杂程序更有序。",
+        "errorFeedback": "请用 class 定义 Cat，__init__ 初始化 name，并定义 meow 方法。"
+      },
+      "difficulty": 5,
+      "category": "面向对象",
+      "tags": [
+        "类",
+        "对象",
+        "self"
+      ],
+      "phase": 6,
+      "phaseName": "大师之路",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "c.meow()",
+          "c = Cat(\"咪咪\")",
+          "        print(self.name + \"：喵~\")",
+          "    def meow(self):",
+          "        self.name = name",
+          "    def __init__(self, name):",
+          "class Cat:"
+        ],
+        "correctOrder": [
+          "class Cat:",
+          "    def __init__(self, name):",
+          "        self.name = name",
+          "    def meow(self):",
+          "        print(self.name + \"：喵~\")",
+          "c = Cat(\"咪咪\")",
+          "c.meow()"
+        ]
+      },
+      "choices": {
+        "question": "关于「类和对象入门」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "class Cat:\n    def __init__(___, name):\n        self.name = name\n    def meow(___):\n        print(self.name + \"：喵~\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "self",
+            "options": [
+              "self",
+              "this",
+              "me",
+              "obj"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "self",
+            "options": [
+              "self",
+              "this",
+              "me",
+              "obj"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义类与初始化方法。",
+          "code": "class Cat:\n    def __init__(self, name):\n        self.name = name"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：定义 meow 方法。",
+          "code": "class Cat:\n    def __init__(self, name):\n        self.name = name\n    def meow(self):\n        print(self.name + \"：喵~\")"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：创建实例并调用。",
+          "code": "class Cat:\n    def __init__(self, name):\n        self.name = name\n    def meow(self):\n        print(self.name + \"：喵~\")\nc = Cat(\"咪咪\")\nc.meow()"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "title": "关卡 27：继承",
+      "description": "子类继承父类的本领，还能扩展或改写——代码复用的高级形态。",
+      "objectives": [
+        "用 class 子类(父类): 表示继承",
+        "子类可直接使用父类方法",
+        "可在子类中新增或改写方法"
+      ],
+      "example": "class Animal:\n    def speak(self):\n        print(\"...\")\nclass Dog(Animal):\n    def speak(self):\n        print(\"汪！\")\n\nDog().speak()",
+      "challenge": "定义父类 Animal（有方法 eat() 输出\"进食\"），定义子类 Bird(Animal)（新增方法 fly() 输出\"飞翔\"）。创建 Bird 实例，调用 eat() 与 fly()。",
+      "hints": [
+        "class Bird(Animal): 表示继承",
+        "子类自动拥有父类的 eat()",
+        "在子类里新写 fly()"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "class ",
+          "def eat",
+          "def fly",
+          "print"
+        ],
+        "successFeedback": "继承理解到位！这是构建大型系统的基石。",
+        "errorFeedback": "请定义父类 Animal 含 eat()，子类 Bird(Animal) 含 fly()，并调用两者。"
+      },
+      "difficulty": 5,
+      "category": "面向对象",
+      "tags": [
+        "继承",
+        "类",
+        "复用"
+      ],
+      "phase": 6,
+      "phaseName": "大师之路",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "b.fly()",
+          "b.eat()",
+          "b = Bird()",
+          "        print(\"飞翔\")",
+          "    def fly(self):",
+          "class Bird(Animal):",
+          "        print(\"进食\")",
+          "    def eat(self):",
+          "class Animal:"
+        ],
+        "correctOrder": [
+          "class Animal:",
+          "    def eat(self):",
+          "        print(\"进食\")",
+          "class Bird(Animal):",
+          "    def fly(self):",
+          "        print(\"飞翔\")",
+          "b = Bird()",
+          "b.eat()",
+          "b.fly()"
+        ]
+      },
+      "choices": {
+        "question": "关于「继承」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "class Animal:\n    def eat(self):\n        print(\"进食\")\nclass Bird(___):\n    def fly(self):\n        print(\"飞翔\")",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "Animal",
+            "options": [
+              "Animal",
+              "Dog",
+              "Father",
+              "object"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义父类。",
+          "code": "class Animal:\n    def eat(self):\n        print(\"进食\")"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：定义继承子类并新增方法。",
+          "code": "class Animal:\n    def eat(self):\n        print(\"进食\")\nclass Bird(Animal):\n    def fly(self):\n        print(\"飞翔\")"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：实例化并调用两个方法。",
+          "code": "class Animal:\n    def eat(self):\n        print(\"进食\")\nclass Bird(Animal):\n    def fly(self):\n        print(\"飞翔\")\nb = Bird()\nb.eat()\nb.fly()"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "title": "关卡 28：装饰器",
+      "description": "装饰器像一个“包装纸”，在不改动原函数的情况下为它增加新功能。",
+      "objectives": [
+        "理解函数是对象，可被传递",
+        "用 @装饰器名 语法应用",
+        "装饰器接收函数并返回新函数"
+      ],
+      "example": "def bold(func):\n    def wrapper():\n        return \"<b>\" + func() + \"</b>\"\n    return wrapper\n\n@bold\ndef hello():\n    return \"Hi\"\n\nprint(hello())",
+      "challenge": "定义一个装饰器 shout，它包裹的函数返回的文字会被转成大写（用 .upper()）。用 @shout 装饰函数 greet() 返回\"hello\"，输出结果。",
+      "hints": [
+        "装饰器是一个接收函数、返回函数的函数",
+        "内部 wrapper 调用原函数并加工结果",
+        "@shout 写在被装饰函数上方"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "def ",
+          "return",
+          ".upper",
+          "print"
+        ],
+        "successFeedback": "装饰器入门！它是框架与日志的常用手段。",
+        "errorFeedback": "请定义装饰器 shout，用 .upper() 加工返回值，并 @shout 装饰 greet。"
+      },
+      "difficulty": 5,
+      "category": "高级特性",
+      "tags": [
+        "装饰器",
+        "函数",
+        "进阶"
+      ],
+      "phase": 6,
+      "phaseName": "大师之路",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(greet())",
+          "    return \"hello\"",
+          "def greet():",
+          "@shout",
+          "    return wrapper",
+          "        return func().upper()",
+          "    def wrapper():",
+          "def shout(func):"
+        ],
+        "correctOrder": [
+          "def shout(func):",
+          "    def wrapper():",
+          "        return func().upper()",
+          "    return wrapper",
+          "@shout",
+          "def greet():",
+          "    return \"hello\"",
+          "print(greet())"
+        ]
+      },
+      "choices": {
+        "question": "关于「装饰器」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "def shout(func):\n    def wrapper():\n        return func().___()\n    return wrapper",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "upper",
+            "options": [
+              "upper",
+              "lower",
+              "strip",
+              "title"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：写装饰器，内部转大写。",
+          "code": "def shout(func):\n    def wrapper():\n        return func().upper()\n    return wrapper"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：用 @shout 装饰函数。",
+          "code": "def shout(func):\n    def wrapper():\n        return func().upper()\n    return wrapper\n\n@shout\ndef greet():\n    return \"hello\""
+        },
+        {
+          "step": 3,
+          "hint": "第三步：输出结果。",
+          "code": "def shout(func):\n    def wrapper():\n        return func().upper()\n    return wrapper\n\n@shout\ndef greet():\n    return \"hello\"\n\nprint(greet())"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "title": "关卡 29：生成器",
+      "description": "用 yield 写出“懒计算”的生成器，按需产出值、节省内存。",
+      "objectives": [
+        "用 def + yield 定义生成器",
+        "理解 yield 会“暂停并返回”",
+        "用 for 或 next() 逐个取值"
+      ],
+      "example": "def count_up(n):\n    i = 1\n    while i <= n:\n        yield i\n        i += 1\n\nfor x in count_up(3):\n    print(x)",
+      "challenge": "写一个生成器 gen_squares(n)，依次 yield 1~n 每个数的平方。用 for 遍历 gen_squares(4) 输出。",
+      "hints": [
+        "函数里用 yield 而不是 return 就是生成器",
+        "yield 每次“吐出”一个值",
+        "for x in gen_squares(4): 会逐个取"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "def ",
+          "yield",
+          "for ",
+          "print"
+        ],
+        "successFeedback": "生成器掌握！处理大数据流时它极其高效。",
+        "errorFeedback": "请用 def + yield 定义生成器，依次 yield 平方值，并用 for 遍历输出。"
+      },
+      "difficulty": 5,
+      "category": "高级特性",
+      "tags": [
+        "生成器",
+        "yield",
+        "迭代"
+      ],
+      "phase": 6,
+      "phaseName": "大师之路",
+      "isMiniProject": false,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "    print(x)",
+          "for x in gen_squares(4):",
+          "        i += 1",
+          "        yield i ** 2",
+          "    while i <= n:",
+          "    i = 1",
+          "def gen_squares(n):"
+        ],
+        "correctOrder": [
+          "def gen_squares(n):",
+          "    i = 1",
+          "    while i <= n:",
+          "        yield i ** 2",
+          "        i += 1",
+          "for x in gen_squares(4):",
+          "    print(x)"
+        ]
+      },
+      "choices": {
+        "question": "关于「生成器」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "def gen_squares(n):\n    i = 1\n    while i <= n:\n        ___ i ** 2\n        i += 1",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "yield",
+            "options": [
+              "yield",
+              "return",
+              "emit",
+              "give"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义生成器函数与计数。",
+          "code": "def gen_squares(n):\n    i = 1\n    while i <= n:"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：用 yield 产出平方。",
+          "code": "def gen_squares(n):\n    i = 1\n    while i <= n:\n        yield i ** 2\n        i += 1"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：for 遍历输出。",
+          "code": "def gen_squares(n):\n    i = 1\n    while i <= n:\n        yield i ** 2\n        i += 1\nfor x in gen_squares(4):\n    print(x)"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "title": "关卡 30：毕业项目 · 学生成绩册",
+      "description": "综合运用类、列表、字典、循环与函数，打造一个可管理成绩的小系统。",
+      "objectives": [
+        "用类封装学生数据与行为",
+        "用列表管理多个对象",
+        "用函数汇总统计（平均分）"
+      ],
+      "example": "class Student:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\n\nstudents = [Student(\"A\", 90), Student(\"B\", 80)]\nfor s in students:\n    print(s.name, s.score)",
+      "challenge": "定义 Student 类（name, score），用列表存 3 名学生；写一个函数 average(students) 返回平均分（总分/人数）；最后遍历输出每位学生姓名与成绩，并输出平均分。",
+      "hints": [
+        "Student 类用 __init__ 存 name 与 score",
+        "把多个 Student 实例放进一个列表",
+        "average 用 sum(s.score for s in students)/len(students)"
+      ],
+      "validation": {
+        "requiredKeywords": [
+          "class ",
+          "def ",
+          "for ",
+          "print",
+          "return"
+        ],
+        "successFeedback": "毕业项目完成！你已具备用 Python 组织真实问题的能力。",
+        "errorFeedback": "请定义 Student 类、用列表管理、写 average 函数，并遍历输出与打印平均分。"
+      },
+      "difficulty": 5,
+      "category": "毕业项目",
+      "tags": [
+        "项目",
+        "综合",
+        "OOP"
+      ],
+      "phase": 6,
+      "phaseName": "大师之路",
+      "isMiniProject": true,
+      "questionTypes": [
+        "code",
+        "drag",
+        "choice",
+        "fill",
+        "guided"
+      ],
+      "defaultType": "code",
+      "codeBlocks": {
+        "available": [
+          "print(\"平均分：\", average(students))",
+          "    print(s.name, s.score)",
+          "for s in students:",
+          "    return sum(s.score for s in students) / len(students)",
+          "def average(students):",
+          "students = [Student(\"A\", 90), Student(\"B\", 80), Student(\"C\", 70)]",
+          "        self.score = score",
+          "        self.name = name",
+          "    def __init__(self, name, score):",
+          "class Student:"
+        ],
+        "correctOrder": [
+          "class Student:",
+          "    def __init__(self, name, score):",
+          "        self.name = name",
+          "        self.score = score",
+          "students = [Student(\"A\", 90), Student(\"B\", 80), Student(\"C\", 70)]",
+          "def average(students):",
+          "    return sum(s.score for s in students) / len(students)",
+          "for s in students:",
+          "    print(s.name, s.score)",
+          "print(\"平均分：\", average(students))"
+        ]
+      },
+      "choices": {
+        "question": "关于「毕业项目 · 学生成绩册」，下列说法正确的是？",
+        "options": [
+          {
+            "text": "它属于 Python 的基础语法与常见用法",
+            "correct": true,
+            "feedback": "正确！这是本关要掌握的核心。"
+          },
+          {
+            "text": "它只能在网页里运行，不能在本机运行",
+            "correct": false,
+            "feedback": "不对，Python 代码可以在任何环境运行。"
+          },
+          {
+            "text": "它不需要任何练习就能完全掌握",
+            "correct": false,
+            "feedback": "不对，编程需要动手实践。"
+          },
+          {
+            "text": "它与本关主题无关",
+            "correct": false,
+            "feedback": "不对，这正是本关的重点。"
+          }
+        ]
+      },
+      "fillBlanks": {
+        "template": "class Student:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = ___\nstudents = [Student(\"A\", 90), Student(\"B\", 80)]\ndef average(sts):\n    return sum(s.score for s in sts) / len(___)",
+        "blanks": [
+          {
+            "id": 0,
+            "answer": "score",
+            "options": [
+              "score",
+              "name",
+              "self",
+              "mark"
+            ]
+          },
+          {
+            "id": 1,
+            "answer": "sts",
+            "options": [
+              "sts",
+              "students",
+              "self",
+              "list"
+            ]
+          }
+        ]
+      },
+      "guidedHints": [
+        {
+          "step": 1,
+          "hint": "第一步：定义学生类。",
+          "code": "class Student:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score"
+        },
+        {
+          "step": 2,
+          "hint": "第二步：建列表并写平均分函数。",
+          "code": "class Student:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\nstudents = [Student(\"A\", 90), Student(\"B\", 80), Student(\"C\", 70)]\ndef average(students):\n    return sum(s.score for s in students) / len(students)"
+        },
+        {
+          "step": 3,
+          "hint": "第三步：遍历输出并打印平均分，完成毕业项目。",
+          "code": "class Student:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\nstudents = [Student(\"A\", 90), Student(\"B\", 80), Student(\"C\", 70)]\ndef average(students):\n    return sum(s.score for s in students) / len(students)\nfor s in students:\n    print(s.name, s.score)\nprint(\"平均分：\", average(students))"
+        }
+      ]
+    }
+  ]
+}

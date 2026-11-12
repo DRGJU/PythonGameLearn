@@ -3,16 +3,25 @@ class LevelPage {
         this.levels = [];
         this.currentLevel = null;
         this.currentLevelId = 1;
-        this.currentMode = 'code';
-        this.guidedStep = 0;
-        this.selectedChoice = null;
-        this.selectedFillBlank = null;
-        this.fillAnswers = {};
-        this.dragBlocks = [];
-        this.droppedBlocks = [];
+        this.currentMode = 'run';
+
+        // 预测输出
+        this.predictAnswered = false;
+        // 找错改错 / 运行验证：是否已完成
+        this.codeSolved = { run: false, debug: false, assemble: false };
+        // 拖拽组装
+        this.assembleDropped = []; // [{text}]
+        this.assembleDragFrom = null;
+        // 配对分类
+        this.matchPairs = [];      // 原始 pairs
+        this.matchLeft = [];       // [{text, pairIndex}]
+        this.matchRight = [];      // [{text, pairIndex}] 已打乱
+        this.matchMapping = {};    // leftIndex -> rightIndex
+        this.matchSelectedLeft = null;
+
         this.completedLevels = this.loadCompletedLevels();
         this.isInputFocused = false;
-        
+
         this.init();
     }
 
@@ -67,20 +76,17 @@ class LevelPage {
             tab.addEventListener('click', () => this.switchMode(tab.dataset.mode));
         });
 
-        document.getElementById('submit-code').addEventListener('click', () => this.submitCode());
-        document.getElementById('reset-code').addEventListener('click', () => this.resetCode());
+        document.getElementById('run-code').addEventListener('click', () => this.submitRun());
+        document.getElementById('reset-run').addEventListener('click', () => this.renderRun());
 
-        document.getElementById('submit-drag').addEventListener('click', () => this.submitDrag());
-        document.getElementById('reset-drag').addEventListener('click', () => this.resetDrag());
+        document.getElementById('run-debug').addEventListener('click', () => this.submitDebug());
+        document.getElementById('reset-debug').addEventListener('click', () => this.renderDebug());
 
-        document.getElementById('submit-choice').addEventListener('click', () => this.submitChoice());
+        document.getElementById('submit-assemble').addEventListener('click', () => this.submitAssemble());
+        document.getElementById('reset-assemble').addEventListener('click', () => this.renderAssemble());
 
-        document.getElementById('submit-fill').addEventListener('click', () => this.submitFill());
-        document.getElementById('reset-fill').addEventListener('click', () => this.resetFill());
-
-        document.getElementById('guided-prev').addEventListener('click', () => this.prevGuidedStep());
-        document.getElementById('guided-next').addEventListener('click', () => this.nextGuidedStep());
-        document.getElementById('guided-use-code').addEventListener('click', () => this.useGuidedCode());
+        document.getElementById('submit-match').addEventListener('click', () => this.submitMatch());
+        document.getElementById('reset-match').addEventListener('click', () => this.renderMatch());
 
         document.getElementById('level-nav-prev').addEventListener('click', () => this.navigateToPrevLevel());
         document.getElementById('level-nav-next').addEventListener('click', () => this.navigateToNextLevel());
@@ -92,7 +98,6 @@ class LevelPage {
     setupKeyboardNavigation() {
         document.addEventListener('keydown', (e) => {
             if (this.isInputFocused) return;
-            
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 this.navigateToPrevLevel();
@@ -106,12 +111,8 @@ class LevelPage {
     setupInputFocusListeners() {
         const inputs = document.querySelectorAll('textarea, input');
         inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                this.isInputFocused = true;
-            });
-            input.addEventListener('blur', () => {
-                this.isInputFocused = false;
-            });
+            input.addEventListener('focus', () => { this.isInputFocused = true; });
+            input.addEventListener('blur', () => { this.isInputFocused = false; });
         });
     }
 
@@ -120,7 +121,6 @@ class LevelPage {
             this.showNavigationHint('已经是第一个关卡');
             return;
         }
-        
         const prevLevelId = this.currentLevelId - 1;
         if (this.isLevelUnlocked(prevLevelId)) {
             this.navigateToLevel(prevLevelId);
@@ -135,7 +135,6 @@ class LevelPage {
             this.showNavigationHint('已经是最后一个已解锁关卡');
             return;
         }
-        
         const nextLevelId = this.currentLevelId + 1;
         if (this.isLevelUnlocked(nextLevelId)) {
             this.navigateToLevel(nextLevelId);
@@ -158,7 +157,6 @@ class LevelPage {
     showShortcutHint() {
         const hasSeen = localStorage.getItem('shortcutHintSeen');
         if (hasSeen) return;
-
         const hint = document.createElement('div');
         hint.className = 'floating-shortcut-hint';
         hint.innerHTML = `
@@ -170,17 +168,10 @@ class LevelPage {
             </div>
         `;
         document.body.appendChild(hint);
-
-        setTimeout(() => {
-            hint.classList.add('show');
-        }, 50);
-
+        setTimeout(() => hint.classList.add('show'), 50);
         setTimeout(() => {
             hint.classList.remove('show');
-            setTimeout(() => {
-                hint.remove();
-                localStorage.setItem('shortcutHintSeen', 'true');
-            }, 300);
+            setTimeout(() => { hint.remove(); localStorage.setItem('shortcutHintSeen', 'true'); }, 300);
         }, 3000);
     }
 
@@ -189,11 +180,7 @@ class LevelPage {
         hint.className = 'navigation-hint';
         hint.textContent = message;
         document.body.appendChild(hint);
-
-        setTimeout(() => {
-            hint.classList.add('show');
-        }, 50);
-
+        setTimeout(() => hint.classList.add('show'), 50);
         setTimeout(() => {
             hint.classList.remove('show');
             setTimeout(() => hint.remove(), 300);
@@ -202,11 +189,14 @@ class LevelPage {
 
     renderLevel() {
         this.currentLevel = this.levels.find(l => l.id === this.currentLevelId);
-        
         if (!this.currentLevel) {
             this.showError('未找到该关卡');
             return;
         }
+
+        // 重置各模式状态
+        this.predictAnswered = false;
+        this.codeSolved = { run: false, debug: false, assemble: false };
 
         this.updateNavigationBar();
         this.renderHeader();
@@ -214,11 +204,12 @@ class LevelPage {
         this.renderCodeExample();
         this.renderChallenge();
         this.renderModeTabs();
-        this.renderCodeMode();
-        this.renderDragMode();
-        this.renderChoiceMode();
-        this.renderFillMode();
-        this.renderGuidedMode();
+        this.renderRun();
+        this.renderPredict();
+        this.renderDebug();
+        this.renderAssemble();
+        this.renderMatch();
+        this.warmupPy();
     }
 
     updateNavigationBar() {
@@ -226,9 +217,7 @@ class LevelPage {
         const prevBtn = document.getElementById('level-nav-prev');
         const nextBtn = document.getElementById('level-nav-next');
         const currentDisplay = document.getElementById('level-nav-current');
-
         currentDisplay.textContent = `第 ${this.currentLevelId} 关 / 共 ${totalLevels} 关`;
-
         prevBtn.disabled = this.currentLevelId <= 1 || !this.isLevelUnlocked(this.currentLevelId - 1);
         nextBtn.disabled = this.currentLevelId >= this.getMaxUnlockedLevel();
     }
@@ -236,19 +225,15 @@ class LevelPage {
     renderHeader() {
         document.getElementById('level-title').textContent = this.currentLevel.title;
         document.getElementById('level-subtitle').textContent = this.currentLevel.description;
-        
         document.getElementById('level-header').innerHTML = `
-            <span class="level-phase-badge">${this.currentLevel.phaseName}</span>
-            <h2 class="level-title">${this.currentLevel.title}</h2>
-            <p class="level-description">${this.currentLevel.description}</p>
+            <span class="level-phase-badge">${this.escapeHtml(this.currentLevel.phaseName)}</span>
+            <h2 class="level-title">${this.escapeHtml(this.currentLevel.title)}</h2>
+            <p class="level-description">${this.escapeHtml(this.currentLevel.description)}</p>
         `;
     }
 
     renderLearningObjectives() {
-        const objectivesHtml = this.currentLevel.objectives.map(obj => `
-            <li>${obj}</li>
-        `).join('');
-        
+        const objectivesHtml = this.currentLevel.objectives.map(obj => `<li>${this.escapeHtml(obj)}</li>`).join('');
         document.getElementById('learning-objectives').innerHTML = `
             <h3>学习目标</h3>
             <ul>${objectivesHtml}</ul>
@@ -257,40 +242,37 @@ class LevelPage {
 
     renderCodeExample() {
         document.getElementById('code-example').innerHTML = `
+            <h3>示例代码</h3>
             <pre>${this.escapeHtml(this.currentLevel.example)}</pre>
         `;
     }
 
     renderChallenge() {
+        const c = this.currentLevel;
         document.getElementById('challenge').innerHTML = `
             <h3>挑战任务</h3>
-            <p>${this.currentLevel.challenge}</p>
-            ${this.currentLevel.hints && this.currentLevel.hints.length > 0 ? `
+            <p>${this.escapeHtml(c.challenge)}</p>
+            ${c.hints && c.hints.length > 0 ? `
                 <div class="hint-section">
                     <button class="hint-toggle" id="hint-toggle" type="button">显示提示</button>
                     <div class="hint-content" id="hint-content" style="display: none;">
-                        <ul>
-                            ${this.currentLevel.hints.map(hint => `<li>${hint}</li>`).join('')}
-                        </ul>
+                        <ul>${c.hints.map(h => `<li>${this.escapeHtml(h)}</li>`).join('')}</ul>
                     </div>
-                </div>
-            ` : ''}
+                </div>` : ''}
         `;
-
         const hintToggle = document.getElementById('hint-toggle');
         if (hintToggle) {
             hintToggle.addEventListener('click', () => {
-                const hintContent = document.getElementById('hint-content');
-                hintContent.style.display = hintContent.style.display === 'none' ? 'block' : 'none';
-                hintToggle.textContent = hintContent.style.display === 'none' ? '显示提示' : '隐藏提示';
+                const content = document.getElementById('hint-content');
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                hintToggle.textContent = content.style.display === 'none' ? '显示提示' : '隐藏提示';
             });
         }
     }
 
     renderModeTabs() {
         const modeTabs = document.querySelectorAll('.mode-tab');
-        const availableTypes = this.currentLevel.questionTypes || ['code'];
-        
+        const availableTypes = this.currentLevel.questionTypes || ['run'];
         modeTabs.forEach(tab => {
             const mode = tab.dataset.mode;
             if (!availableTypes.includes(mode)) {
@@ -304,444 +286,450 @@ class LevelPage {
     }
 
     switchMode(mode) {
-        if ((this.currentLevel.questionTypes || ['code']).indexOf(mode) === -1) {
-            return;
-        }
-        
+        if ((this.currentLevel.questionTypes || ['run']).indexOf(mode) === -1) return;
         this.currentMode = mode;
-        
         document.querySelectorAll('.mode-tab').forEach(tab => {
             tab.classList.remove('active');
             tab.setAttribute('aria-selected', 'false');
         });
         document.querySelector(`.mode-tab[data-mode="${mode}"]`).classList.add('active');
         document.querySelector(`.mode-tab[data-mode="${mode}"]`).setAttribute('aria-selected', 'true');
-        
-        document.querySelectorAll('.mode-content').forEach(content => {
-            content.classList.remove('active');
-        });
+        document.querySelectorAll('.mode-content').forEach(content => content.classList.remove('active'));
         document.getElementById(`mode-${mode}`).classList.add('active');
     }
 
-    renderCodeMode() {
-        document.getElementById('challenge-description').textContent = this.currentLevel.challenge;
-        document.getElementById('code-input').value = '';
-        document.getElementById('code-feedback').className = 'feedback';
-        document.getElementById('code-feedback').textContent = '';
+    // ===================== 工具 =====================
+    norm(s) {
+        return String(s)
+            .replace(/\r\n/g, '\n')
+            .split('\n')
+            .map(l => l.replace(/\s+$/, ''))
+            .join('\n')
+            .replace(/\n+$/, '');
     }
 
-    submitCode() {
-        const code = document.getElementById('code-input').value;
-        const feedback = document.getElementById('code-feedback');
-        
-        if (this.validateCode(code)) {
-            feedback.className = 'feedback success';
-            feedback.textContent = this.currentLevel.validation.successFeedback;
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    setFeedback(el, kind, text) {
+        el.className = `feedback ${kind}`;
+        el.textContent = text;
+    }
+
+    showRunOutput(el, stdout, error) {
+        if (error) {
+            el.className = 'run-output error';
+            el.textContent = `⚠️ ${error}`;
+        } else if (stdout && stdout.trim() !== '') {
+            el.className = 'run-output show';
+            el.textContent = stdout;
+        } else {
+            el.className = 'run-output show';
+            el.textContent = '（程序没有输出）';
+        }
+    }
+
+    warmupPy() {
+        const status = document.getElementById('py-status');
+        if (!window.PyRunner) return;
+        status.hidden = false;
+        status.className = 'py-status loading';
+        status.textContent = '正在加载 Python 运行环境（首次稍慢）…';
+        window.PyRunner.ensureReady()
+            .then(() => { status.hidden = true; })
+            .catch(() => {
+                status.hidden = false;
+                status.className = 'py-status error';
+                status.textContent = '⚠️ Python 运行环境加载失败，运行/改错类题目需联网加载；预测与配对模式不受影响，可刷新重试。';
+            });
+    }
+
+    async runWithPy(code, stdin) {
+        if (!window.PyRunner) throw new Error('运行环境不可用');
+        if (window.PyRunner.loadError) throw new Error(window.PyRunner.loadError);
+        return await window.PyRunner.run(code, { stdin: stdin || [] });
+    }
+
+    // ===================== 运行验证 =====================
+    renderRun() {
+        const m = this.currentLevel.run;
+        document.getElementById('run-prompt').textContent = m.prompt;
+        const input = document.getElementById('run-input');
+        input.value = m.starterCode || '';
+        document.getElementById('run-output').className = 'run-output';
+        document.getElementById('run-output').textContent = '';
+        this.setFeedback(document.getElementById('run-feedback'), '', '');
+    }
+
+    async submitRun() {
+        const m = this.currentLevel.run;
+        const code = document.getElementById('run-input').value;
+        const feedback = document.getElementById('run-feedback');
+        const output = document.getElementById('run-output');
+        if (!code || code.trim() === '') {
+            this.setFeedback(feedback, 'error', '请先编写代码再运行。');
+            return;
+        }
+        const btn = document.getElementById('run-code');
+        btn.disabled = true;
+        output.className = 'run-output loading';
+        output.textContent = '运行中…';
+        try {
+            const res = await this.runWithPy(code, m.stdin);
+            this.showRunOutput(output, res.stdout, res.error);
+            if (res.error) {
+                this.setFeedback(feedback, 'error', m.errorFeedback + '（运行出错：' + res.error + '）');
+            } else if (this.norm(res.stdout) === this.norm(m.expectedOutput)) {
+                this.codeSolved.run = true;
+                this.setFeedback(feedback, 'success', m.successFeedback);
+                this.showCelebration();
+            } else {
+                this.setFeedback(feedback, 'error', m.errorFeedback);
+            }
+        } catch (e) {
+            output.className = 'run-output error';
+            output.textContent = `⚠️ ${e.message}`;
+            this.setFeedback(feedback, 'error', m.errorFeedback);
+        } finally {
+            btn.disabled = false;
+        }
+    }
+
+    // ===================== 预测输出 =====================
+    renderPredict() {
+        const m = this.currentLevel.predict;
+        document.getElementById('predict-prompt').textContent = m.prompt;
+        document.getElementById('predict-code').textContent = m.code;
+        const opts = document.getElementById('predict-options');
+        opts.innerHTML = '';
+        this.predictAnswered = false;
+        m.options.forEach((opt, i) => {
+            const el = document.createElement('button');
+            el.type = 'button';
+            el.className = 'predict-option';
+            el.dataset.index = i;
+            el.textContent = opt.text;
+            el.addEventListener('click', () => this.selectPredict(i));
+            opts.appendChild(el);
+        });
+        this.setFeedback(document.getElementById('predict-feedback'), '', '');
+    }
+
+    selectPredict(index) {
+        const m = this.currentLevel.predict;
+        const opt = m.options[index];
+        const el = document.querySelector(`.predict-option[data-index="${index}"]`);
+        const feedback = document.getElementById('predict-feedback');
+        if (this.predictAnswered) return;
+        if (opt.correct) {
+            el.classList.add('correct');
+            this.predictAnswered = true;
+            // 锁定所有选项
+            document.querySelectorAll('.predict-option').forEach(o => (o.disabled = true));
+            this.setFeedback(feedback, 'success', opt.feedback);
             this.showCelebration();
         } else {
-            feedback.className = 'feedback error';
-            feedback.textContent = this.currentLevel.validation.errorFeedback;
+            el.classList.add('incorrect');
+            el.disabled = true;
+            this.setFeedback(feedback, 'error', opt.feedback);
         }
     }
 
-    validateCode(code) {
+    // ===================== 找错改错 =====================
+    renderDebug() {
+        const m = this.currentLevel.debug;
+        document.getElementById('debug-prompt').textContent = m.prompt;
+        const input = document.getElementById('debug-input');
+        input.value = m.buggyCode || '';
+        document.getElementById('debug-output').className = 'run-output';
+        document.getElementById('debug-output').textContent = '';
+        this.setFeedback(document.getElementById('debug-feedback'), '', '');
+    }
+
+    async submitDebug() {
+        const m = this.currentLevel.debug;
+        const code = document.getElementById('debug-input').value;
+        const feedback = document.getElementById('debug-feedback');
+        const output = document.getElementById('debug-output');
         if (!code || code.trim() === '') {
-            return false;
+            this.setFeedback(feedback, 'error', '请先修复代码再运行。');
+            return;
         }
-        
-        const requiredKeywords = this.currentLevel.validation.requiredKeywords || [];
-        for (const keyword of requiredKeywords) {
-            if (code.indexOf(keyword) === -1) {
-                return false;
+        const btn = document.getElementById('run-debug');
+        btn.disabled = true;
+        output.className = 'run-output loading';
+        output.textContent = '运行中…';
+        try {
+            const res = await this.runWithPy(code, m.stdin);
+            this.showRunOutput(output, res.stdout, res.error);
+            if (res.error) {
+                this.setFeedback(feedback, 'error', m.errorFeedback + '（运行出错：' + res.error + '）');
+            } else if (this.norm(res.stdout) === this.norm(m.expectedOutput)) {
+                this.codeSolved.debug = true;
+                this.setFeedback(feedback, 'success', m.successFeedback);
+                this.showCelebration();
+            } else {
+                this.setFeedback(feedback, 'error', m.errorFeedback);
             }
+        } catch (e) {
+            output.className = 'run-output error';
+            output.textContent = `⚠️ ${e.message}`;
+            this.setFeedback(feedback, 'error', m.errorFeedback);
+        } finally {
+            btn.disabled = false;
         }
-        
-        return true;
     }
 
-    resetCode() {
-        document.getElementById('code-input').value = '';
-        document.getElementById('code-feedback').className = 'feedback';
-        document.getElementById('code-feedback').textContent = '';
+    // ===================== 拖拽组装 =====================
+    renderAssemble() {
+        const m = this.currentLevel.assemble;
+        document.getElementById('assemble-prompt').textContent = m.prompt;
+        this.assembleDropped = [];
+        this.assembleDragFrom = null;
+        this.renderAssemblePalette();
+        this.renderAssembleOrdered();
+        document.getElementById('assemble-output').className = 'run-output';
+        document.getElementById('assemble-output').textContent = '';
+        this.setFeedback(document.getElementById('assemble-feedback'), '', '');
     }
 
-    renderDragMode() {
-        if (!this.currentLevel.codeBlocks) return;
-        
-        this.dragBlocks = [...this.currentLevel.codeBlocks.available];
-        this.droppedBlocks = [];
-        this.renderDragBlocks();
-        this.renderDroppedBlocks();
-        document.getElementById('drag-feedback').className = 'feedback';
-        document.getElementById('drag-feedback').textContent = '';
-    }
-
-    renderDragBlocks() {
-        const container = document.getElementById('drag-blocks');
+    renderAssemblePalette() {
+        const m = this.currentLevel.assemble;
+        const container = document.getElementById('assemble-blocks');
         container.innerHTML = '';
-        
-        this.dragBlocks.forEach((block, index) => {
-            const blockEl = document.createElement('div');
-            blockEl.className = 'code-block';
-            blockEl.textContent = block;
-            blockEl.draggable = true;
-            blockEl.dataset.index = index;
-            
-            blockEl.addEventListener('dragstart', (e) => this.handleDragStart(e, 'palette', index));
-            blockEl.addEventListener('dragend', (e) => this.handleDragEnd(e));
-            
-            container.appendChild(blockEl);
+        m.blocks.forEach((text, i) => {
+            const el = document.createElement('div');
+            el.className = 'assemble-block';
+            el.textContent = text;
+            el.draggable = true;
+            el.dataset.index = i;
+            el.addEventListener('click', () => this.addAssembleBlock(text));
+            el.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', JSON.stringify({ source: 'palette', text }));
+            });
+            container.appendChild(el);
         });
     }
 
-    renderDroppedBlocks() {
-        const container = document.getElementById('dropped-blocks');
-        const empty = document.getElementById('drop-zone-empty');
-        
-        if (this.droppedBlocks.length === 0) {
+    addAssembleBlock(text) {
+        this.assembleDropped.push({ text });
+        this.renderAssembleOrdered();
+    }
+
+    renderAssembleOrdered() {
+        const container = document.getElementById('assemble-ordered');
+        const empty = document.getElementById('assemble-drop-empty');
+        if (this.assembleDropped.length === 0) {
             empty.style.display = 'block';
             container.innerHTML = '';
             return;
         }
-        
         empty.style.display = 'none';
         container.innerHTML = '';
-        
-        this.droppedBlocks.forEach((block, index) => {
-            const blockEl = document.createElement('div');
-            blockEl.className = 'dropped-block';
-            blockEl.innerHTML = `
-                <code>${this.escapeHtml(block.text)}</code>
-                <button class="remove-block" data-index="${index}">×</button>
+        this.assembleDropped.forEach((item, i) => {
+            const el = document.createElement('div');
+            el.className = 'assemble-ordered-item';
+            el.draggable = true;
+            el.innerHTML = `
+                <span class="assemble-order">${i + 1}</span>
+                <code>${this.escapeHtml(item.text)}</code>
+                <span class="assemble-controls">
+                    <button type="button" class="assemble-move" data-act="up" aria-label="上移">↑</button>
+                    <button type="button" class="assemble-move" data-act="down" aria-label="下移">↓</button>
+                    <button type="button" class="assemble-remove" aria-label="移除">×</button>
+                </span>
             `;
-            blockEl.draggable = true;
-            blockEl.dataset.index = index;
-            
-            blockEl.addEventListener('dragstart', (e) => this.handleDragStart(e, 'drop', index));
-            blockEl.addEventListener('dragend', (e) => this.handleDragEnd(e));
-            
-            blockEl.querySelector('.remove-block').addEventListener('click', () => this.removeDroppedBlock(index));
-            
-            container.appendChild(blockEl);
+            el.querySelector('.assemble-remove').addEventListener('click', () => {
+                this.assembleDropped.splice(i, 1);
+                this.renderAssembleOrdered();
+            });
+            el.querySelector('[data-act="up"]').addEventListener('click', () => {
+                if (i > 0) { [this.assembleDropped[i - 1], this.assembleDropped[i]] = [this.assembleDropped[i], this.assembleDropped[i - 1]]; this.renderAssembleOrdered(); }
+            });
+            el.querySelector('[data-act="down"]').addEventListener('click', () => {
+                if (i < this.assembleDropped.length - 1) { [this.assembleDropped[i + 1], this.assembleDropped[i]] = [this.assembleDropped[i], this.assembleDropped[i + 1]]; this.renderAssembleOrdered(); }
+            });
+            el.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', JSON.stringify({ source: 'ordered', index: i }));
+            });
+            el.addEventListener('dragover', (e) => e.preventDefault());
+            el.addEventListener('drop', (e) => {
+                e.preventDefault();
+                try {
+                    const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                    if (data.source === 'palette') {
+                        this.assembleDropped.splice(i, 0, { text: data.text });
+                    } else if (data.source === 'ordered') {
+                        const from = data.index;
+                        const moved = this.assembleDropped.splice(from, 1)[0];
+                        this.assembleDropped.splice(i, 0, moved);
+                    }
+                    this.renderAssembleOrdered();
+                } catch (_) {}
+            });
+            container.appendChild(el);
         });
-        
-        const dropZone = document.getElementById('drop-zone');
-        dropZone.addEventListener('dragover', (e) => this.handleDragOver(e));
-        dropZone.addEventListener('dragleave', (e) => this.handleDragLeave(e));
-        dropZone.addEventListener('drop', (e) => this.handleDrop(e));
+
+        // 拖放区整体接收（从面板拖入时追加到末尾）
+        const dropZone = document.getElementById('assemble-drop');
+        dropZone.ondragover = (e) => e.preventDefault();
+        dropZone.ondrop = (e) => {
+            e.preventDefault();
+            try {
+                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                if (data.source === 'palette') {
+                    this.assembleDropped.push({ text: data.text });
+                    this.renderAssembleOrdered();
+                }
+            } catch (_) {}
+        };
     }
 
-    handleDragStart(e, source, index) {
-        e.dataTransfer.setData('text/plain', JSON.stringify({ source, index }));
-        e.target.classList.add('dragging');
-    }
-
-    handleDragEnd(e) {
-        e.target.classList.remove('dragging');
-        document.getElementById('drop-zone').classList.remove('drag-over');
-    }
-
-    handleDragOver(e) {
-        e.preventDefault();
-        e.currentTarget.classList.add('drag-over');
-    }
-
-    handleDragLeave(e) {
-        e.currentTarget.classList.remove('drag-over');
-    }
-
-    handleDrop(e) {
-        e.preventDefault();
-        e.currentTarget.classList.remove('drag-over');
-        
+    async submitAssemble() {
+        const m = this.currentLevel.assemble;
+        const feedback = document.getElementById('assemble-feedback');
+        const output = document.getElementById('assemble-output');
+        if (this.assembleDropped.length === 0) {
+            this.setFeedback(feedback, 'error', '请先把代码块拖拽到右侧，组成完整程序。');
+            return;
+        }
+        const code = this.assembleDropped.map(b => b.text).join('\n');
+        const btn = document.getElementById('submit-assemble');
+        btn.disabled = true;
+        output.className = 'run-output loading';
+        output.textContent = '运行中…';
         try {
-            const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-            if (data.source === 'palette') {
-                const block = this.dragBlocks[data.index];
-                this.droppedBlocks.push({ text: block, originalIndex: data.index });
-                this.renderDroppedBlocks();
-            }
-        } catch (error) {
-            console.error('Drop error:', error);
-        }
-    }
-
-    removeDroppedBlock(index) {
-        this.droppedBlocks.splice(index, 1);
-        this.renderDroppedBlocks();
-    }
-
-    submitDrag() {
-        const feedback = document.getElementById('drag-feedback');
-        const correctOrder = this.currentLevel.codeBlocks.correctOrder;
-        const userOrder = this.droppedBlocks.map(b => b.text);
-        
-        if (JSON.stringify(userOrder) === JSON.stringify(correctOrder)) {
-            feedback.className = 'feedback success';
-            feedback.textContent = this.currentLevel.validation.successFeedback;
-            this.showCelebration();
-        } else {
-            feedback.className = 'feedback error';
-            feedback.textContent = this.currentLevel.validation.errorFeedback;
-        }
-    }
-
-    resetDrag() {
-        this.renderDragMode();
-    }
-
-    renderChoiceMode() {
-        if (!this.currentLevel.choices) return;
-        
-        document.getElementById('choice-question-text').textContent = this.currentLevel.choices.question;
-        
-        const optionsContainer = document.getElementById('choice-options');
-        optionsContainer.innerHTML = '';
-        
-        this.currentLevel.choices.options.forEach((option, index) => {
-            const optionEl = document.createElement('div');
-            optionEl.className = 'choice-option';
-            optionEl.dataset.index = index;
-            optionEl.innerHTML = `
-                <div class="choice-indicator">${String.fromCharCode(65 + index)}</div>
-                <div class="choice-text">${option.text}</div>
-            `;
-            
-            optionEl.addEventListener('click', () => this.selectChoice(index));
-            optionsContainer.appendChild(optionEl);
-        });
-        
-        document.getElementById('choice-feedback').className = 'choice-feedback';
-        document.getElementById('choice-feedback').textContent = '';
-        this.selectedChoice = null;
-    }
-
-    selectChoice(index) {
-        if (this.selectedChoice !== null) return;
-        
-        this.selectedChoice = index;
-        const options = document.querySelectorAll('.choice-option');
-        const option = options[index];
-        const choiceData = this.currentLevel.choices.options[index];
-        
-        option.classList.add('selected');
-        
-        setTimeout(() => {
-            if (choiceData.correct) {
-                option.classList.add('correct');
-                option.querySelector('.choice-indicator').textContent = '✓';
-                document.getElementById('choice-feedback').className = 'choice-feedback correct show';
-                document.getElementById('choice-feedback').textContent = choiceData.feedback;
+            const res = await this.runWithPy(code, m.stdin);
+            this.showRunOutput(output, res.stdout, res.error);
+            if (res.error) {
+                this.setFeedback(feedback, 'error', m.errorFeedback + '（运行出错：' + res.error + '）');
+            } else if (this.norm(res.stdout) === this.norm(m.expectedOutput)) {
+                this.codeSolved.assemble = true;
+                this.setFeedback(feedback, 'success', m.successFeedback);
                 this.showCelebration();
             } else {
-                option.classList.add('incorrect');
-                option.querySelector('.choice-indicator').textContent = '✗';
-                
-                const correctIndex = this.currentLevel.choices.options.findIndex(o => o.correct);
-                if (correctIndex !== -1) {
-                    options[correctIndex].classList.add('correct');
-                    options[correctIndex].querySelector('.choice-indicator').textContent = '✓';
-                }
-                
-                document.getElementById('choice-feedback').className = 'choice-feedback incorrect show';
-                document.getElementById('choice-feedback').textContent = choiceData.feedback;
+                this.setFeedback(feedback, 'error', m.errorFeedback);
             }
-        }, 300);
-    }
-
-    submitChoice() {
-    }
-
-    renderFillMode() {
-        if (!this.currentLevel.fillBlanks) return;
-        
-        this.fillAnswers = {};
-        this.selectedFillBlank = null;
-        
-        const template = this.currentLevel.fillBlanks.template;
-        let html = '';
-        let blankIndex = 0;
-        let lastIndex = 0;
-        
-        const regex = /___/g;
-        let match;
-        while ((match = regex.exec(template)) !== null) {
-            html += this.escapeHtml(template.slice(lastIndex, match.index));
-            html += `<span class="fill-blank" data-index="${blankIndex}" id="fill-blank-${blankIndex}">点击选择</span>`;
-            blankIndex++;
-            lastIndex = match.index + 3;
-        }
-        html += this.escapeHtml(template.slice(lastIndex));
-        
-        document.getElementById('fill-code').innerHTML = html;
-        
-        const optionsContainer = document.getElementById('fill-options');
-        const allOptions = new Set();
-        this.currentLevel.fillBlanks.blanks.forEach(blank => {
-            blank.options.forEach(opt => allOptions.add(opt));
-        });
-        
-        optionsContainer.innerHTML = '';
-        Array.from(allOptions).forEach((option, index) => {
-            const optionEl = document.createElement('div');
-            optionEl.className = 'fill-option';
-            optionEl.textContent = option;
-            optionEl.dataset.option = option;
-            optionEl.addEventListener('click', () => this.selectFillOption(option));
-            optionsContainer.appendChild(optionEl);
-        });
-        
-        document.querySelectorAll('.fill-blank').forEach(blank => {
-            blank.addEventListener('click', () => this.selectFillBlank(parseInt(blank.dataset.index)));
-        });
-        
-        document.getElementById('fill-feedback').className = 'feedback';
-        document.getElementById('fill-feedback').textContent = '';
-    }
-
-    selectFillBlank(index) {
-        document.querySelectorAll('.fill-blank').forEach(b => {
-            b.style.borderColor = 'var(--accent-primary)';
-        });
-        
-        this.selectedFillBlank = index;
-        const blank = document.getElementById(`fill-blank-${index}`);
-        blank.style.borderColor = 'var(--accent-secondary)';
-        blank.style.boxShadow = '0 0 0 2px var(--color-focus)';
-    }
-
-    selectFillOption(option) {
-        if (this.selectedFillBlank === null) {
-            this.selectFillBlank(0);
-        }
-        
-        this.fillAnswers[this.selectedFillBlank] = option;
-        const blank = document.getElementById(`fill-blank-${this.selectedFillBlank}`);
-        blank.textContent = option;
-        blank.classList.add('filled');
-        
-        const nextBlank = this.selectedFillBlank + 1;
-        if (document.getElementById(`fill-blank-${nextBlank}`)) {
-            this.selectFillBlank(nextBlank);
+        } catch (e) {
+            output.className = 'run-output error';
+            output.textContent = `⚠️ ${e.message}`;
+            this.setFeedback(feedback, 'error', m.errorFeedback);
+        } finally {
+            btn.disabled = false;
         }
     }
 
-    submitFill() {
-        const feedback = document.getElementById('fill-feedback');
+    // ===================== 配对分类 =====================
+    renderMatch() {
+        const m = this.currentLevel.match;
+        document.getElementById('match-prompt').textContent = m.prompt;
+        this.matchPairs = m.pairs;
+        this.matchLeft = m.pairs.map((p, i) => ({ text: p.left, pairIndex: i }));
+        // 打乱右侧
+        this.matchRight = m.pairs.map((p, i) => ({ text: p.right, pairIndex: i }));
+        for (let i = this.matchRight.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.matchRight[i], this.matchRight[j]] = [this.matchRight[j], this.matchRight[i]];
+        }
+        this.matchMapping = {};
+        this.matchSelectedLeft = null;
+        this.renderMatchColumns();
+        this.setFeedback(document.getElementById('match-feedback'), '', '');
+    }
+
+    renderMatchColumns() {
+        const left = document.getElementById('match-left');
+        const right = document.getElementById('match-right');
+        left.innerHTML = '';
+        right.innerHTML = '';
+        this.matchLeft.forEach((item, i) => {
+            const el = document.createElement('div');
+            el.className = 'match-item left' + (this.matchMapping[i] != null ? ' paired' : '');
+            el.dataset.index = i;
+            el.textContent = item.text;
+            el.addEventListener('click', () => this.clickMatchLeft(i));
+            left.appendChild(el);
+        });
+        this.matchRight.forEach((item, i) => {
+            const pairedLeft = Object.keys(this.matchMapping).find(k => this.matchMapping[k] === i);
+            const el = document.createElement('div');
+            el.className = 'match-item right' + (pairedLeft != null ? ' paired' : '');
+            el.dataset.index = i;
+            el.textContent = item.text;
+            el.addEventListener('click', () => this.clickMatchRight(i));
+            right.appendChild(el);
+        });
+    }
+
+    clickMatchLeft(i) {
+        // 若已配对，点击则取消配对
+        if (this.matchMapping[i] != null) {
+            delete this.matchMapping[i];
+            this.matchSelectedLeft = null;
+            this.renderMatchColumns();
+            return;
+        }
+        this.matchSelectedLeft = i;
+        document.querySelectorAll('.match-item.left').forEach(el => el.classList.remove('selected'));
+        const el = document.querySelector(`.match-item.left[data-index="${i}"]`);
+        if (el) el.classList.add('selected');
+    }
+
+    clickMatchRight(i) {
+        // 若已配对，点击取消
+        const pairedLeft = Object.keys(this.matchMapping).find(k => this.matchMapping[k] === i);
+        if (pairedLeft != null) {
+            delete this.matchMapping[pairedLeft];
+            this.renderMatchColumns();
+            return;
+        }
+        if (this.matchSelectedLeft == null) return;
+        const leftIdx = this.matchSelectedLeft;
+        this.matchMapping[leftIdx] = i;
+        this.matchSelectedLeft = null;
+        this.renderMatchColumns();
+    }
+
+    submitMatch() {
+        const m = this.currentLevel.match;
+        const feedback = document.getElementById('match-feedback');
+        if (Object.keys(this.matchMapping).length < this.matchPairs.length) {
+            this.setFeedback(feedback, 'error', '请完成所有配对后再提交。');
+            return;
+        }
         let allCorrect = true;
-        
-        this.currentLevel.fillBlanks.blanks.forEach((blank, index) => {
-            const userAnswer = this.fillAnswers[index];
-            const blankEl = document.getElementById(`fill-blank-${index}`);
-            
-            if (userAnswer === blank.answer) {
-                blankEl.classList.add('correct');
-                blankEl.classList.remove('incorrect');
-            } else {
-                blankEl.classList.add('incorrect');
-                blankEl.classList.remove('correct');
-                allCorrect = false;
-            }
-        });
-        
+        for (let leftIdx = 0; leftIdx < this.matchPairs.length; leftIdx++) {
+            const rightIdx = this.matchMapping[leftIdx];
+            // 右侧被选中项的原始 pairIndex 必须等于左侧项的原始序号
+            const correct = this.matchRight[rightIdx].pairIndex === leftIdx;
+            if (!correct) allCorrect = false;
+        }
         if (allCorrect) {
-            feedback.className = 'feedback success';
-            feedback.textContent = this.currentLevel.validation.successFeedback;
+            this.setFeedback(feedback, 'success', '配对全部正确！你已经厘清了这些概念。');
             this.showCelebration();
         } else {
-            feedback.className = 'feedback error';
-            feedback.textContent = this.currentLevel.validation.errorFeedback;
+            this.setFeedback(feedback, 'error', '还有配对不正确，仔细观察左右含义再试试。');
         }
     }
 
-    resetFill() {
-        this.renderFillMode();
-    }
-
-    renderGuidedMode() {
-        if (!this.currentLevel.guidedHints) return;
-        
-        this.guidedStep = 0;
-        this.updateGuidedProgress();
-        this.updateGuidedHint();
-    }
-
-    updateGuidedProgress() {
-        const hints = this.currentLevel.guidedHints;
-        const progressContainer = document.getElementById('guided-progress');
-        
-        let html = '<div class="guided-step-indicator">';
-        hints.forEach((hint, index) => {
-            html += `<div class="step-dot ${index === this.guidedStep ? 'active' : ''} ${index < this.guidedStep ? 'completed' : ''}">${index + 1}</div>`;
-        });
-        html += '</div>';
-        html += `<span class="guided-step-count">步骤 ${this.guidedStep + 1} / ${hints.length}</span>`;
-        
-        progressContainer.innerHTML = html;
-        
-        document.getElementById('guided-prev').disabled = this.guidedStep === 0;
-        document.getElementById('guided-next').disabled = this.guidedStep >= hints.length - 1;
-    }
-
-    updateGuidedHint() {
-        const hint = this.currentLevel.guidedHints[this.guidedStep];
-        const hintContainer = document.getElementById('guided-hint');
-        
-        hintContainer.innerHTML = `
-            <h4>步骤 ${hint.step}</h4>
-            <p class="guided-hint-text">${hint.hint}</p>
-            <div class="guided-code-preview">
-                <pre>${this.escapeHtml(hint.code)}</pre>
-            </div>
-        `;
-    }
-
-    prevGuidedStep() {
-        if (this.guidedStep > 0) {
-            this.guidedStep--;
-            this.updateGuidedProgress();
-            this.updateGuidedHint();
-        }
-    }
-
-    nextGuidedStep() {
-        const hints = this.currentLevel.guidedHints;
-        if (this.guidedStep < hints.length - 1) {
-            this.guidedStep++;
-            this.updateGuidedProgress();
-            this.updateGuidedHint();
-        }
-    }
-
-    useGuidedCode() {
-        const hint = this.currentLevel.guidedHints[this.guidedStep];
-        document.getElementById('code-input').value = hint.code;
-        this.switchMode('code');
-    }
-
+    // ===================== 完成庆祝 =====================
     showCelebration() {
-        // 保存进度
         if (!this.completedLevels.includes(this.currentLevelId)) {
             this.completedLevels.push(this.currentLevelId);
             this.saveCompletedLevels();
             console.log('✅ 关卡完成，进度已保存:', this.currentLevelId);
         }
-        
-        // 显示简洁的成功提示
         const hint = document.createElement('div');
         hint.className = 'success-hint';
         hint.innerHTML = `关卡完成！`;
         document.body.appendChild(hint);
-        
-        setTimeout(() => {
-            hint.classList.add('show');
-        }, 50);
-        
-        // 1.5秒后自动跳转
+        setTimeout(() => hint.classList.add('show'), 50);
         setTimeout(() => {
             hint.classList.remove('show');
             setTimeout(() => hint.remove(), 300);
-            
             const nextLevelId = this.currentLevelId + 1;
             if (nextLevelId <= this.levels.length && this.isLevelUnlocked(nextLevelId)) {
                 this.navigateToLevel(nextLevelId);
@@ -762,12 +750,6 @@ class LevelPage {
                 </div>
             </div>
         `;
-    }
-
-    escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
     }
 }
 

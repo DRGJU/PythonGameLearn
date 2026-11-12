@@ -246,3 +246,59 @@ body > .global-error { position: fixed; inset: auto var(--gutter) var(--space-xl
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
 }
+
+/* ---- v5 答题模式：运行验证 / 预测输出 / 找错改错 / 拖拽组装 / 配对分类 ---- */
+.mode-prompt { margin: 0 0 var(--space-md); color: var(--color-ink); font-size: var(--text-md); line-height: 1.6; }
+
+.code-editor { display: block; width: 100%; min-height: 240px; margin-top: var(--space-md); padding: var(--space-md); border: 1px solid var(--color-rule-2); border-radius: var(--radius-input); outline: 2px solid transparent; outline-offset: -3px; background: var(--color-graphite); color: var(--color-graphite-ink); font-family: var(--font-outlier); font-size: var(--text-sm); line-height: 1.7; resize: vertical; }
+.code-editor::placeholder { color: var(--color-graphite-muted); }
+.code-editor:hover { border-color: var(--color-accent-2); }
+.code-editor:focus-visible { outline-color: var(--color-focus); }
+
+.run-output { display: none; margin-top: var(--space-md); padding: var(--space-md); border-radius: var(--radius-input); background: var(--color-graphite); color: var(--color-graphite-ink); font-family: var(--font-outlier); font-size: var(--text-sm); line-height: 1.7; white-space: pre-wrap; overflow-wrap: break-word; max-height: 260px; overflow: auto; }
+.run-output.show, .run-output.error, .run-output.loading { display: block; }
+.run-output.loading { color: var(--color-graphite-muted); }
+.run-output.error { border: 1px solid var(--color-error-ink); }
+
+/* 预测输出 */
+.code-snippet { margin: var(--space-md) 0 0; padding: var(--space-md); border-radius: var(--radius-input); background: var(--color-graphite); color: var(--color-graphite-ink); font-family: var(--font-outlier); font-size: var(--text-sm); line-height: 1.7; white-space: pre-wrap; overflow-wrap: break-word; }
+.predict-options { display: flex; flex-direction: column; gap: var(--space-sm); margin-top: var(--space-md); }
+.predict-option { display: block; width: 100%; text-align: left; padding: var(--space-md); border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-input); background: var(--color-paper); font-family: var(--font-outlier); font-size: var(--text-sm); color: var(--color-ink); cursor: pointer; white-space: pre-wrap; }
+.predict-option:hover { border-color: var(--color-accent); }
+.predict-option.correct { border-color: var(--color-success-ink); background: var(--color-accent-wash); }
+.predict-option.incorrect { border-color: var(--color-error-ink); }
+
+/* 拖拽组装 */
+.assemble-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.assemble-palette, .assemble-drop { min-width: 0; padding: var(--space-md); border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-card); }
+.assemble-palette h3, .assemble-drop h3 { color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body); font-weight: 500; }
+.assemble-blocks { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-md); }
+.assemble-block { display: inline-flex; align-items: center; min-height: 40px; padding: 0 var(--space-md); border: 1px solid var(--color-rule-2); border-radius: var(--radius-input); background: var(--color-paper-2); font-family: var(--font-outlier); font-size: var(--text-sm); cursor: grab; }
+.assemble-block:hover { border-color: var(--color-accent); }
+.assemble-block:active { transform: translateY(1px); }
+.assemble-drop-empty { margin-top: var(--space-md); padding: var(--space-xl) var(--space-md); border: 1px dashed var(--color-rule-2); border-radius: var(--radius-input); font-size: var(--text-sm); color: var(--color-muted); text-align: center; }
+.assemble-ordered { display: flex; flex-direction: column; gap: var(--space-xs); margin-top: var(--space-md); }
+.assemble-ordered-item { display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-input); background: var(--color-graphite); color: var(--color-graphite-ink); font-family: var(--font-outlier); font-size: var(--text-sm); }
+.assemble-ordered-item code { flex: 1; min-width: 0; }
+.assemble-order { display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--color-graphite-muted); border-radius: var(--radius-input); font-size: var(--text-sm); }
+.assemble-controls { display: flex; gap: var(--space-2xs); }
+.assemble-move, .assemble-remove { width: 28px; height: 28px; border: 1px solid var(--color-graphite-muted); border-radius: var(--radius-input); background: transparent; color: var(--color-graphite-ink); font-size: var(--text-sm); line-height: 1; }
+.assemble-move:hover, .assemble-remove:hover { border-color: var(--color-accent); }
+
+/* 配对分类 */
+.match-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+.match-column { display: flex; flex-direction: column; gap: var(--space-sm); }
+.match-item { display: flex; align-items: center; min-height: 44px; padding: var(--space-sm) var(--space-md); border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-input); background: var(--color-paper); color: var(--color-ink); font-size: var(--text-sm); cursor: pointer; }
+.match-item.right { font-family: var(--font-outlier); }
+.match-item:hover { border-color: var(--color-accent); }
+.match-item.selected { border-color: var(--color-accent); background: var(--color-accent-wash); }
+.match-item.paired { border-color: var(--color-accent); background: var(--color-accent-wash); }
+
+/* Pyodide 状态条 */
+.py-status { margin-bottom: var(--space-md); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-input); font-size: var(--text-sm); }
+.py-status.loading { background: var(--color-paper-2); color: var(--color-ink-2); border: 1px solid var(--color-rule); }
+.py-status.error { background: color-mix(in oklab, var(--color-error-ink) 12%, var(--color-paper)); color: var(--color-error-ink); border: 1px solid var(--color-error-ink); }
+
+@media (max-width: 60rem) {
+  .assemble-container, .match-grid { grid-template-columns: minmax(0, 1fr); }
+}
