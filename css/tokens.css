@@ -1,36 +1,97 @@
+/* PythonGameLearn · 设计系统（v2 · 科技化重构）
+ * 深色为主 + 青/电光蓝点缀，与根站点「墨迹」统一视觉语言。 */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
+
   --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
   --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.2rem; --text-xl: 1.44rem; --text-2xl: 1.728rem; --text-3xl: 2.074rem;
   --text-display-s: 1.44rem; --text-display: 1.728rem; --text-section: 1.2rem; --text-title: 1rem; --text-lead: 1rem;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
-  --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
-  --color-error-ink: oklch(40% 0.16 27); --color-success-ink: oklch(38% 0.11 150);
+  --dur-micro: 140ms; --dur-short: 260ms; --dur-long: 460ms;
+  --color-error: oklch(62% 0.18 27); --color-success: oklch(68% 0.16 150);
+  --color-error-ink: #f87171; --color-success-ink: #34d399;
   --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
   --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
-  --color-paper: oklch(98.6% 0.005 250); --color-paper-2: oklch(96.2% 0.008 252); --color-paper-3: oklch(93% 0.011 252);
-  --color-ink: oklch(21% 0.028 262); --color-ink-2: oklch(36% 0.022 260); --color-muted: oklch(50% 0.018 258);
-  --color-rule: oklch(90% 0.009 252); --color-rule-2: oklch(83% 0.012 252);
-  --color-graphite: oklch(21% 0.024 262); --color-graphite-2: oklch(26.5% 0.026 262); --color-graphite-ink: oklch(93% 0.010 250); --color-graphite-muted: oklch(69% 0.022 256);
-  --color-accent: oklch(52% 0.19 258); --color-accent-2: oklch(76% 0.13 254); --color-accent-wash: oklch(95% 0.028 256); --color-accent-ink: oklch(98.6% 0.005 250); --color-focus: oklch(52% 0.19 258);
-  --color-accent-deep: oklch(43% 0.2 262); --color-accent-edge: oklch(39% 0.16 260);
-  --color-glyph-1: oklch(89% 0.025 254); --color-glyph-2: oklch(81% 0.045 255); --color-glyph-3: oklch(70% 0.085 256); --color-glyph-4: oklch(60% 0.13 257);
-  --color-graphite-glyph-1: oklch(33% 0.03 262); --color-graphite-glyph-2: oklch(41% 0.05 260); --color-graphite-glyph-3: oklch(53% 0.1 258);
-  --color-key-face: oklch(99.4% 0.003 250); --color-key-edge: oklch(80% 0.016 254);
-  --font-display: "Familjen Grotesk", system-ui, sans-serif; --font-body: "IBM Plex Sans", system-ui, sans-serif;
-  --font-outlier: "JetBrains Mono", ui-monospace, monospace;
-  --radius-card: 8px; --radius-input: 6px; --radius-pill: 999px;
-  --cell-w: 8px; --cell-h: 16px; --cut: 8px; --cut-l: 16px;
-  --rule-hair: 1px; --shadow-card: 0 1px 2px oklch(21% 0.028 262 / 0.06);
-  --shadow-key: 0 3px 0 0 var(--color-key-edge), 0 6px 8px -4px oklch(21% 0.028 262 / 0.28), inset 0 1px 0 oklch(100% 0 0 / 0.9);
-  --shadow-key-accent: 0 3px 0 0 var(--color-accent-edge), 0 6px 8px -4px oklch(30% 0.12 260 / 0.45), inset 0 1px 0 oklch(100% 0 0 / 0.22);
-  --shadow-key-press: inset 0 1px 2px oklch(21% 0.028 262 / 0.14);
-  --tracking-display: -0.028em; --display-weight: 600;
+
+  /* 深色调色板 */
+  --color-bg: #060910;
+  --color-paper: #0b111d;
+  --color-paper-2: #0f1726;
+  --color-paper-3: #142033;
+  --color-ink: #e9eef6;
+  --color-ink-2: #aab6c8;
+  --color-muted: #6b7a90;
+  --color-rule: #1e2a3c;
+  --color-rule-2: #2c3e56;
+
+  --color-graphite: #080d16;
+  --color-graphite-2: #0d1626;
+  --color-graphite-ink: #cdd7e5;
+  --color-graphite-muted: #6b7a90;
+
+  --color-accent: #22d3ee;
+  --color-accent-deep: #0ea5c4;
+  --color-accent-2: #7df0fb;
+  --color-accent-edge: #0e7490;
+  --color-accent-wash: rgba(34, 211, 238, 0.10);
+  --color-accent-ink: #04141a;
+  --color-focus: #22d3ee;
+
+  /* 键面与装饰渐变序列（青色梯度） */
+  --color-key-face: #0f1726;
+  --color-key-edge: #2c3e56;
+  --color-glyph-1: #0e7490; --color-glyph-2: #15a3c4; --color-glyph-3: #22d3ee; --color-glyph-4: #7df0fb;
+  --color-graphite-glyph-1: #1b2a3d; --color-graphite-glyph-2: #284056; --color-graphite-glyph-3: #3a5670;
+
+  --font-display: "Space Grotesk", system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-outlier: "JetBrains Mono", "Cascadia Code", "SF Mono", "Consolas", "Liberation Mono", ui-monospace, monospace;
+
+  --radius-card: 16px; --radius-input: 10px; --radius-pill: 999px;
+  --cut: 8px; --cut-l: 16px;
+  --rule-hair: 1px;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 18px 48px -24px rgba(0, 0, 0, 0.75);
+  --shadow-key: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 8px 22px -14px rgba(0, 0, 0, 0.65);
+  --shadow-key-accent: 0 0 0 1px var(--color-accent-edge), 0 12px 34px -10px rgba(34, 211, 238, 0.45);
+  --shadow-key-press: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  --tracking-display: -0.02em; --display-weight: 700;
+
   --text-app-xl: 2.488rem; --text-app-lg: 1.728rem; --text-level: 3.583rem;
-  /* Legacy names still read by inline styles in the pages and js/level.js. */
+
+  /* 兼容页面内联样式与 js/level.js 的遗留命名 */
   --bg-primary: var(--color-paper); --bg-secondary: var(--color-paper-2); --bg-card: var(--color-paper);
   --text-primary: var(--color-ink); --text-secondary: var(--color-ink-2);
   --accent-primary: var(--color-accent); --accent-secondary: var(--color-accent-2);
   --radius-md: var(--radius-card);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #eef3f9;
+  --color-paper: #f6f9fc;
+  --color-paper-2: #ffffff;
+  --color-paper-3: #eaf0f7;
+  --color-ink: #0c1622;
+  --color-ink-2: #41546b;
+  --color-muted: #6b7d92;
+  --color-rule: #d8e0ea;
+  --color-rule-2: #c2cddd;
+  --color-graphite: #0e1521;
+  --color-graphite-2: #16202e;
+  --color-graphite-ink: #d6deea;
+  --color-graphite-muted: #8694a8;
+  --color-accent: #0891b2;
+  --color-accent-deep: #0e7490;
+  --color-accent-2: #06b6d4;
+  --color-accent-edge: #0e7490;
+  --color-accent-wash: rgba(8, 145, 178, 0.08);
+  --color-accent-ink: #ffffff;
+  --color-focus: #0891b2;
+  --color-key-face: #ffffff;
+  --color-key-edge: #c2cddd;
+  --color-glyph-1: #0e7490; --color-glyph-2: #0891b2; --color-glyph-3: #06b6d4; --color-glyph-4: #67e8f9;
+  --color-graphite-glyph-1: #2a3b50; --color-graphite-glyph-2: #3a5670; --color-graphite-glyph-3: #4d6e8c;
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 18px 48px -28px rgba(15, 30, 50, 0.35);
+  --shadow-key: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 8px 22px -16px rgba(15, 30, 50, 0.3);
+  --shadow-key-accent: 0 0 0 1px var(--color-accent-edge), 0 12px 30px -12px rgba(8, 145, 178, 0.35);
 }
