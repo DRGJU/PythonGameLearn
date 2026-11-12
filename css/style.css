@@ -171,7 +171,6 @@ body.loaded .mode-content.active { display: block; }
 .dropped-blocks { display: flex; flex-direction: column; gap: var(--space-xs); margin-top: var(--space-md); }
 .dropped-block { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-input); background: var(--color-graphite); color: var(--color-graphite-ink); font-family: var(--font-outlier); font-size: var(--text-sm); }
 .remove-block { border: 0; background: transparent; color: var(--color-graphite-ink); font-size: var(--text-lg); }
-.drag-actions { display: flex; gap: var(--space-sm); margin-top: var(--space-md); }
 
 /* Choice mode */
 .choice-question p { font-size: var(--text-lg); }
@@ -268,23 +267,6 @@ body > .global-error { position: fixed; inset: auto var(--gutter) var(--space-xl
 .predict-option.correct { border-color: var(--color-success-ink); background: var(--color-accent-wash); }
 .predict-option.incorrect { border-color: var(--color-error-ink); }
 
-/* 拖拽组装 */
-.assemble-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
-.assemble-palette, .assemble-drop { min-width: 0; padding: var(--space-md); border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-card); }
-.assemble-palette h3, .assemble-drop h3 { color: var(--color-muted); font-size: var(--text-sm); font-family: var(--font-body); font-weight: 500; }
-.assemble-blocks { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-top: var(--space-md); }
-.assemble-block { display: inline-flex; align-items: center; min-height: 40px; padding: 0 var(--space-md); border: 1px solid var(--color-rule-2); border-radius: var(--radius-input); background: var(--color-paper-2); font-family: var(--font-outlier); font-size: var(--text-sm); cursor: grab; }
-.assemble-block:hover { border-color: var(--color-accent); }
-.assemble-block:active { transform: translateY(1px); }
-.assemble-drop-empty { margin-top: var(--space-md); padding: var(--space-xl) var(--space-md); border: 1px dashed var(--color-rule-2); border-radius: var(--radius-input); font-size: var(--text-sm); color: var(--color-muted); text-align: center; }
-.assemble-ordered { display: flex; flex-direction: column; gap: var(--space-xs); margin-top: var(--space-md); }
-.assemble-ordered-item { display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); border-radius: var(--radius-input); background: var(--color-graphite); color: var(--color-graphite-ink); font-family: var(--font-outlier); font-size: var(--text-sm); }
-.assemble-ordered-item code { flex: 1; min-width: 0; }
-.assemble-order { display: grid; place-items: center; width: 24px; height: 24px; border: 1px solid var(--color-graphite-muted); border-radius: var(--radius-input); font-size: var(--text-sm); }
-.assemble-controls { display: flex; gap: var(--space-2xs); }
-.assemble-move, .assemble-remove { width: 28px; height: 28px; border: 1px solid var(--color-graphite-muted); border-radius: var(--radius-input); background: transparent; color: var(--color-graphite-ink); font-size: var(--text-sm); line-height: 1; }
-.assemble-move:hover, .assemble-remove:hover { border-color: var(--color-accent); }
-
 /* 配对分类 */
 .match-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
 .match-column { display: flex; flex-direction: column; gap: var(--space-sm); }
@@ -300,5 +282,5 @@ body > .global-error { position: fixed; inset: auto var(--gutter) var(--space-xl
 .py-status.error { background: color-mix(in oklab, var(--color-error-ink) 12%, var(--color-paper)); color: var(--color-error-ink); border: 1px solid var(--color-error-ink); }
 
 @media (max-width: 60rem) {
-  .assemble-container, .match-grid { grid-template-columns: minmax(0, 1fr); }
+  .match-grid { grid-template-columns: minmax(0, 1fr); }
 }

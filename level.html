@@ -85,9 +85,6 @@
                         <button class="mode-tab" data-mode="debug" role="tab" aria-selected="false" type="button">
                             <span class="mode-label">找错改错</span>
                         </button>
-                        <button class="mode-tab" data-mode="assemble" role="tab" aria-selected="false" type="button">
-                            <span class="mode-label">拖拽组装</span>
-                        </button>
                         <button class="mode-tab" data-mode="match" role="tab" aria-selected="false" type="button">
                             <span class="mode-label">配对分类</span>
                         </button>
@@ -123,28 +120,6 @@
                         </div>
                         <div class="run-output" id="debug-output" aria-live="polite"></div>
                         <div class="feedback" id="debug-feedback" role="status"></div>
-                    </div>
-
-                    <!-- 拖拽组装 -->
-                    <div class="mode-content" id="mode-assemble">
-                        <p class="mode-prompt" id="assemble-prompt"></p>
-                        <div class="assemble-container">
-                            <div class="assemble-palette">
-                                <h3>可用代码块</h3>
-                                <div class="assemble-blocks" id="assemble-blocks"></div>
-                            </div>
-                            <div class="assemble-drop" id="assemble-drop">
-                                <h3>你的程序（从上到下）</h3>
-                                <div class="assemble-drop-empty" id="assemble-drop-empty">点击或拖拽左侧代码块到这里，按正确顺序排列</div>
-                                <div class="assemble-ordered" id="assemble-ordered"></div>
-                            </div>
-                        </div>
-                        <div class="drag-actions">
-                            <button class="reset-button" id="reset-assemble" type="button"><span>重置</span></button>
-                            <button class="submit-button" id="submit-assemble" type="button"><span>运行并验证</span></button>
-                        </div>
-                        <div class="run-output" id="assemble-output" aria-live="polite"></div>
-                        <div class="feedback" id="assemble-feedback" role="status"></div>
                     </div>
 
                     <!-- 配对分类 -->

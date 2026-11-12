@@ -1,6 +1,6 @@
 // build-levels-v5.mjs
 // 生成 data/levels.json (v5.0.0)：用 5 种全新答题模式替换旧的 5 种模式。
-// 新模式：run(运行验证) / predict(预测输出) / debug(找错改错) / assemble(拖拽组装) / match(配对分类)
+// 新模式：run(运行验证) / predict(预测输出) / debug(找错改错) / match(配对分类)（拖拽组装 assemble 已移除）
 // 关键严谨性：每个 runnable 模式的参考解会在构建时用系统 python3 真正执行，
 // 其 stdout 必须严格等于声明的 expectedOutput；predict 的正确选项也必须等于真实运行输出。
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -66,15 +66,6 @@ const MODES = {
       successFeedback: '修好了！字符串必须用引号包裹，否则 Python 会当成变量名。',
       errorFeedback: '注意第二句的文字也要用引号包裹起来。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，依次输出这两句话。',
-      blocks: ['print("我准备好了！")', 'print("你好，Python！")'],
-      _sol: ['print("你好，Python！")', 'print("我准备好了！")'],
-      stdin: [],
-      expectedOutput: '你好，Python！\n我准备好了！',
-      successFeedback: '组装成功！顺序正确，程序跑通了。',
-      errorFeedback: '顺序不对，请先输出"你好，Python！"再输出"我准备好了！"。',
-    },
     match: {
       prompt: '将左侧概念与右侧正确的解释配对。',
       pairs: [
@@ -115,15 +106,6 @@ const MODES = {
       expectedOutput: '我是小明，今年12岁',
       successFeedback: '修复成功！字符串和数字不能直接用 + 拼接，用 f-string 最稳妥。',
       errorFeedback: '数字和字符串不能直接 +，改用 f-string（或 str(age)）来拼接。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，输出：我是小明，今年12岁。',
-      blocks: ['print(f"我是{name}，今年{age}岁")', 'age = 12', 'name = "小明"'],
-      _sol: ['name = "小明"', 'age = 12', 'print(f"我是{name}，今年{age}岁")'],
-      stdin: [],
-      expectedOutput: '我是小明，今年12岁',
-      successFeedback: '组装成功！顺序正确。',
-      errorFeedback: '顺序不对，先定义变量，再输出。',
     },
     match: {
       prompt: '将左侧概念与右侧正确的解释配对。',
@@ -166,15 +148,6 @@ const MODES = {
       successFeedback: '修复成功！整除要用 //，否则会得到带小数点的结果。',
       errorFeedback: '第一行应是 100 // 7（整除），不是 100 / 7。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，依次输出整除商、余数、乘方结果。',
-      blocks: ['print(2 ** 10)', 'print(100 % 7)', 'print(100 // 7)'],
-      _sol: ['print(100 // 7)', 'print(100 % 7)', 'print(2 ** 10)'],
-      stdin: [],
-      expectedOutput: '14\n2\n1024',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，按 整除商 / 余数 / 乘方 的顺序排列。',
-    },
     match: {
       prompt: '将左侧运算符与右侧含义配对。',
       pairs: [
@@ -215,15 +188,6 @@ const MODES = {
       expectedOutput: 'Hello World\n11',
       successFeedback: '修复成功！两个变量之间要显式加上一个空格。',
       errorFeedback: 'first 和 last 之间要有一个空格，用 f-string 最方便。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，输出 Hello World 及其长度。',
-      blocks: ['print(len(s))', 's = f"{first} {last}"', 'last = "World"', 'first = "Hello"'],
-      _sol: ['first = "Hello"', 'last = "World"', 's = f"{first} {last}"', 'print(s)', 'print(len(s))'],
-      stdin: [],
-      expectedOutput: 'Hello World\n11',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义两个变量，再拼接，最后求长度。',
     },
     match: {
       prompt: '将左侧字符串操作与右侧含义配对。',
@@ -266,15 +230,6 @@ const MODES = {
       successFeedback: '修复成功！f-string 里要用 {变量} 才能嵌入值。',
       errorFeedback: '第一行应写成 f"英雄：{hero}"。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，生成角色卡片。',
-      blocks: ['print(f"战力：{power}")', 'print(f"职业：{job}")', 'print(f"英雄：{hero}")', 'power = 88', 'job = "战士"', 'hero = "亚瑟"'],
-      _sol: ['hero = "亚瑟"', 'job = "战士"', 'power = 88', 'print(f"英雄：{hero}")', 'print(f"职业：{job}")', 'print(f"战力：{power}")'],
-      stdin: [],
-      expectedOutput: '英雄：亚瑟\n职业：战士\n战力：88',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义三个变量，再依次输出三行。',
-    },
     match: {
       prompt: '将左侧概念与右侧含义配对。',
       pairs: [
@@ -315,15 +270,6 @@ const MODES = {
       expectedOutput: '欢迎来到上海！',
       successFeedback: '修复成功！字符串拼接必须用 +，不能直接并列。',
       errorFeedback: '在 "欢迎来到" 和 city 之间要加上 +。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，读取输入并输出欢迎语。运行时输入：广州',
-      blocks: ['print("欢迎来到" + city + "！")', 'city = input()'],
-      _sol: ['city = input()', 'print("欢迎来到" + city + "！")'],
-      stdin: ['广州'],
-      expectedOutput: '欢迎来到广州！',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先读取输入，再输出。',
     },
     match: {
       prompt: '将左侧概念与右侧含义配对。',
@@ -366,15 +312,6 @@ const MODES = {
       successFeedback: '修复成功！input() 返回字符串，要先 int() 才能做加法。',
       errorFeedback: '把 n = input() 改成 n = int(input())。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，读取整数并加 10 输出。运行时输入：4',
-      blocks: ['print(n + 10)', 'n = int(input())'],
-      _sol: ['n = int(input())', 'print(n + 10)'],
-      stdin: ['4'],
-      expectedOutput: '14',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先转换并赋值，再输出。',
-    },
     match: {
       prompt: '将左侧类型转换函数与右侧作用配对。',
       pairs: [
@@ -415,15 +352,6 @@ const MODES = {
       expectedOutput: '已成年',
       successFeedback: '修复成功！"大于等于"的写法是 >=，不是 =>。',
       errorFeedback: '把 => 改成 >=。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，实现"成年"判断。',
-      blocks: ['    print("已成年")', 'if age >= 18:', 'age = 20'],
-      _sol: ['age = 20', 'if age >= 18:', '    print("已成年")'],
-      stdin: [],
-      expectedOutput: '已成年',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义变量，再写 if 与缩进的代码块。',
     },
     match: {
       prompt: '将左侧语法与右侧含义配对。',
@@ -466,15 +394,6 @@ const MODES = {
       successFeedback: '修复成功！else 后面也要加冒号。',
       errorFeedback: '在 else 后面补上冒号 :。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，实现二分支判断。',
-      blocks: ['    print("不及格")', 'else:', '    print("及格")', 'if score >= 60:', 'score = 50'],
-      _sol: ['score = 50', 'if score >= 60:', '    print("及格")', 'else:', '    print("不及格")'],
-      stdin: [],
-      expectedOutput: '不及格',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先赋值，再 if/else 两个分支。',
-    },
     match: {
       prompt: '将左侧语法与右侧含义配对。',
       pairs: [
@@ -515,15 +434,6 @@ const MODES = {
       expectedOutput: '15',
       successFeedback: '修复成功！判断相等用 ==，单个 = 是赋值。',
       errorFeedback: '把 if op = "+" 改成 if op == "+"。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，实现简易计算器。运行时输入：10、5、-',
-      blocks: ['    print(a - b)', 'else:', '    print(a + b)', 'if op == "+":', 'op = input()', 'b = int(input())', 'a = int(input())'],
-      _sol: ['a = int(input())', 'b = int(input())', 'op = input()', 'if op == "+":', '    print(a + b)', 'else:', '    print(a - b)'],
-      stdin: ['10', '5', '-'],
-      expectedOutput: '5',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先读取两个数字和运算符，再判断加减。',
     },
     match: {
       prompt: '将左侧写法与右侧含义配对。',
@@ -566,15 +476,6 @@ const MODES = {
       successFeedback: '修复成功！要包含 5，条件应是 i <= 5。',
       errorFeedback: '把 while i < 5 改成 while i <= 5。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，用 while 输出 1 到 5。',
-      blocks: ['    i = i + 1', '    print(i)', 'while i <= 5:', 'i = 1'],
-      _sol: ['i = 1', 'while i <= 5:', '    print(i)', '    i = i + 1'],
-      stdin: [],
-      expectedOutput: '1\n2\n3\n4\n5',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先初始化 i，再写 while 与循环体。',
-    },
     match: {
       prompt: '将左侧概念与右侧含义配对。',
       pairs: [
@@ -615,15 +516,6 @@ const MODES = {
       expectedOutput: '10\n4',
       successFeedback: '修复成功！列表索引从 0 开始，第一个元素是 [0]。',
       errorFeedback: '把 nums[1] 改成 nums[0]。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，输出列表首元素与长度。',
-      blocks: ['print(len(nums))', 'print(nums[0])', 'nums = [10, 20, 30, 40]'],
-      _sol: ['nums = [10, 20, 30, 40]', 'print(nums[0])', 'print(len(nums))'],
-      stdin: [],
-      expectedOutput: '10\n4',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先创建列表，再输出首元素与长度。',
     },
     match: {
       prompt: '将左侧语法与右侧含义配对。',
@@ -666,15 +558,6 @@ const MODES = {
       successFeedback: '修复成功！for / if / while 后面都要加冒号。',
       errorFeedback: '在 for 那一行末尾加上冒号 :。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，用 for 遍历输出。',
-      blocks: ['    print(x)', 'for x in [1, 2, 3, 4, 5]:'],
-      _sol: ['for x in [1, 2, 3, 4, 5]:', '    print(x)'],
-      stdin: [],
-      expectedOutput: '1\n2\n3\n4\n5',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先写 for 遍历，再写循环体。',
-    },
     match: {
       prompt: '将左侧语法与右侧含义配对。',
       pairs: [
@@ -715,15 +598,6 @@ const MODES = {
       expectedOutput: '[1, 3]',
       successFeedback: '修复成功！切片 [0:2] 取前两个元素。',
       errorFeedback: '把 lst[0:3] 改成 lst[0:2]。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，完成列表增删与切片。',
-      blocks: ['print(lst[0:2])', 'lst.remove(2)', 'lst.append(4)', 'lst = [1, 2, 3]'],
-      _sol: ['lst = [1, 2, 3]', 'lst.append(4)', 'lst.remove(2)', 'print(lst[0:2])'],
-      stdin: [],
-      expectedOutput: '[1, 3]',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先建表，再 append、remove，最后切片。',
     },
     match: {
       prompt: '将左侧列表操作与右侧含义配对。',
@@ -766,15 +640,6 @@ const MODES = {
       successFeedback: '修复成功！字典的键要和定义时完全一致。',
       errorFeedback: '把 stu["scoree"] 改成 stu["score"]。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，完成字典取值与修改。',
-      blocks: ['print(stu["score"])', 'stu["score"] = 95', 'print(stu["name"])', 'stu = {"name": "Tom", "score": 88}'],
-      _sol: ['stu = {"name": "Tom", "score": 88}', 'print(stu["name"])', 'stu["score"] = 95', 'print(stu["score"])'],
-      stdin: [],
-      expectedOutput: 'Tom\n95',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先建字典，再取值、改值、再取值。',
-    },
     match: {
       prompt: '将左侧字典语法与右侧含义配对。',
       pairs: [
@@ -815,15 +680,6 @@ const MODES = {
       expectedOutput: 'Hi there!\nHi there!',
       successFeedback: '修复成功！def 定义后面要加冒号。',
       errorFeedback: '在 def say_hi() 后面加上冒号 :。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，定义函数并调用两次。',
-      blocks: ['say_hi()', 'say_hi()', '    print("Hi there!")', 'def say_hi():'],
-      _sol: ['def say_hi():', '    print("Hi there!")', 'say_hi()', 'say_hi()'],
-      stdin: [],
-      expectedOutput: 'Hi there!\nHi there!',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义函数与函数体，再调用两次。',
     },
     match: {
       prompt: '将左侧函数概念与右侧含义配对。',
@@ -866,15 +722,6 @@ const MODES = {
       successFeedback: '修复成功！Python 里乘方是 **，不是 ^。',
       errorFeedback: '把 n ^ 2 改成 n ** 2。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，定义带参函数并调用。',
-      blocks: ['square(9)', 'square(5)', '    print(n ** 2)', 'def square(n):'],
-      _sol: ['def square(n):', '    print(n ** 2)', 'square(5)', 'square(9)'],
-      stdin: [],
-      expectedOutput: '25\n81',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义函数，再调用两次。',
-    },
     match: {
       prompt: '将左侧概念与右侧含义配对。',
       pairs: [
@@ -915,15 +762,6 @@ const MODES = {
       expectedOutput: '1\n2',
       successFeedback: '修复成功！函数内要改全局变量，必须先 global 声明。',
       errorFeedback: '在函数体第一行加上 global count。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，演示 global 计数器。',
-      blocks: ['add()', 'add()', '    print(count)', '    count = count + 1', '    global count', 'def add():', 'count = 0'],
-      _sol: ['count = 0', 'def add():', '    global count', '    count = count + 1', '    print(count)', 'add()', 'add()'],
-      stdin: [],
-      expectedOutput: '1\n2',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义全局变量，再写带 global 的函数与调用。',
     },
     match: {
       prompt: '将左侧概念与右侧含义配对。',
@@ -966,15 +804,6 @@ const MODES = {
       successFeedback: '修复成功！转大写要用 upper()。',
       errorFeedback: '把 .lower() 改成 .upper()。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，清洗并转大写输出。',
-      blocks: ['print(text.strip().upper())', 'text = "  Python  "'],
-      _sol: ['text = "  Python  "', 'print(text.strip().upper())'],
-      stdin: [],
-      expectedOutput: 'PYTHON',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义字符串，再处理输出。',
-    },
     match: {
       prompt: '将左侧字符串方法与右侧作用配对。',
       pairs: [
@@ -1015,15 +844,6 @@ const MODES = {
       expectedOutput: '小了\n大了',
       successFeedback: '修复成功！比秘密数小应当用 guess < secret。',
       errorFeedback: '把 elif guess > secret 改成 elif guess < secret。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，实现猜数字判断逻辑。',
-      blocks: ['print(check(9, 7))', 'print(check(3, 7))', '    return "大了"', '    else:', '    return "小了"', '    elif guess < secret:', '    return "猜对了"', '    if guess == secret:', 'def check(guess, secret):'],
-      _sol: ['def check(guess, secret):', '    if guess == secret:', '        return "猜对了"', '    elif guess < secret:', '        return "小了"', '    else:', '        return "大了"', 'print(check(3, 7))', 'print(check(9, 7))'],
-      stdin: [],
-      expectedOutput: '小了\n大了',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义函数与三个分支，再调用两次。',
     },
     match: {
       prompt: '将左侧写法与右侧作用配对。',
@@ -1066,15 +886,6 @@ const MODES = {
       successFeedback: '修复成功！要读取内容应使用 f.read()。',
       errorFeedback: '把 print(f) 改成 print(f.read())。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，完成文件写与读。',
-      blocks: ['    print(f.read())', 'with open("hello.txt", "r", encoding="utf-8") as f:', '    f.write("Hello File")', 'with open("hello.txt", "w", encoding="utf-8") as f:'],
-      _sol: ['with open("hello.txt", "w", encoding="utf-8") as f:', '    f.write("Hello File")', 'with open("hello.txt", "r", encoding="utf-8") as f:', '    print(f.read())'],
-      stdin: [],
-      expectedOutput: 'Hello File',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先写文件，再读文件。',
-    },
     match: {
       prompt: '将左侧文件模式与右侧含义配对。',
       pairs: [
@@ -1115,15 +926,6 @@ const MODES = {
       expectedOutput: '20.0',
       successFeedback: '修复成功！except 后面也要加冒号。',
       errorFeedback: '在 except 后面补上冒号 :。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，实现异常兜底。运行时输入：5',
-      blocks: ['    print("输入有误")', 'except:', '    print(100 / n)', '    n = int(input())', 'try:'],
-      _sol: ['try:', '    n = int(input())', '    print(100 / n)', 'except:', '    print("输入有误")'],
-      stdin: ['5'],
-      expectedOutput: '20.0',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先 try 包裹，再 except 兜底。',
     },
     match: {
       prompt: '将左侧异常处理概念与右侧含义配对。',
@@ -1166,15 +968,6 @@ const MODES = {
       successFeedback: '修复成功！乘方用 **，不是 ^。',
       errorFeedback: '把 x ^ 3 改成 x ** 3。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，生成立方列表。',
-      blocks: ['print(cubes)', 'cubes = [x ** 3 for x in range(1, 6)]'],
-      _sol: ['cubes = [x ** 3 for x in range(1, 6)]', 'print(cubes)'],
-      stdin: [],
-      expectedOutput: '[1, 8, 27, 64, 125]',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先推导式赋值，再输出。',
-    },
     match: {
       prompt: '将左侧推导式语法与右侧含义配对。',
       pairs: [
@@ -1215,15 +1008,6 @@ const MODES = {
       expectedOutput: '0\nmath 90\nenglish 85',
       successFeedback: '修复成功！遍历键值对要用 .items()。',
       errorFeedback: '把 scores.item() 改成 scores.items()。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，演示字典安全取值与遍历。',
-      blocks: ['    print(k, v)', 'for k, v in scores.items():', 'print(scores.get("pe", 0))', 'scores = {"math": 90, "english": 85}'],
-      _sol: ['scores = {"math": 90, "english": 85}', 'print(scores.get("pe", 0))', 'for k, v in scores.items():', '    print(k, v)'],
-      stdin: [],
-      expectedOutput: '0\nmath 90\nenglish 85',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先建字典，再 get，再遍历。',
     },
     match: {
       prompt: '将左侧字典方法与右侧作用配对。',
@@ -1266,15 +1050,6 @@ const MODES = {
       successFeedback: '修复成功！圆周率常量名为 math.pi。',
       errorFeedback: '把 math.pie 改成 math.pi。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，导入 math 并输出。',
-      blocks: ['print(math.pi)', 'print(math.pow(2, 10))', 'import math'],
-      _sol: ['import math', 'print(math.pow(2, 10))', 'print(math.pi)'],
-      stdin: [],
-      expectedOutput: '1024.0\n3.141592653589793',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先 import，再调用两个 math 功能。',
-    },
     match: {
       prompt: '将左侧模块写法与右侧作用配对。',
       pairs: [
@@ -1315,15 +1090,6 @@ const MODES = {
       expectedOutput: '咪咪：喵~',
       successFeedback: '修复成功！方法内部访问实例属性要用 self.name。',
       errorFeedback: '把 print(name + ...) 改成 print(self.name + ...)。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，定义一个会叫的 Cat 类。',
-      blocks: ['c.meow()', 'c = Cat("咪咪")', '        print(self.name + "：喵~")', '    def meow(self):', '        self.name = name', '    def __init__(self, name):', 'class Cat:'],
-      _sol: ['class Cat:', '    def __init__(self, name):', '        self.name = name', '    def meow(self):', '        print(self.name + "：喵~")', 'c = Cat("咪咪")', 'c.meow()'],
-      stdin: [],
-      expectedOutput: '咪咪：喵~',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义类、初始化、方法，再实例化调用。',
     },
     match: {
       prompt: '将左侧面向对象概念与右侧含义配对。',
@@ -1366,15 +1132,6 @@ const MODES = {
       successFeedback: '修复成功！class 定义后面也要加冒号。',
       errorFeedback: '在 class Bird(Animal) 后面加上冒号 :。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，演示继承。',
-      blocks: ['b.fly()', 'b.eat()', 'b = Bird()', '        print("飞翔")', '    def fly(self):', 'class Bird(Animal):', '        print("进食")', '    def eat(self):', 'class Animal:'],
-      _sol: ['class Animal:', '    def eat(self):', '        print("进食")', 'class Bird(Animal):', '    def fly(self):', '        print("飞翔")', 'b = Bird()', 'b.eat()', 'b.fly()'],
-      stdin: [],
-      expectedOutput: '进食\n飞翔',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先父类，再子类，再实例化与调用。',
-    },
     match: {
       prompt: '将左侧继承概念与右侧含义配对。',
       pairs: [
@@ -1415,15 +1172,6 @@ const MODES = {
       expectedOutput: 'HELLO',
       successFeedback: '修复成功！转大写要用 upper()。',
       errorFeedback: '把 .lower() 改成 .upper()。',
-    },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，实现 shout 装饰器。',
-      blocks: ['print(greet())', '    return "hello"', 'def greet():', '@shout', '    return wrapper', '        return func().upper()', '    def wrapper():', 'def shout(func):'],
-      _sol: ['def shout(func):', '    def wrapper():', '        return func().upper()', '    return wrapper', '@shout', 'def greet():', '    return "hello"', 'print(greet())'],
-      stdin: [],
-      expectedOutput: 'HELLO',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义装饰器、wrapper，再 @shout 装饰、定义函数、输出。',
     },
     match: {
       prompt: '将左侧装饰器概念与右侧含义配对。',
@@ -1466,15 +1214,6 @@ const MODES = {
       successFeedback: '修复成功！生成器要用 yield 才能逐个产出。',
       errorFeedback: '把 return i ** 2 改成 yield i ** 2。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，实现平方生成器。',
-      blocks: ['    print(x)', 'for x in gen_squares(4):', '        i += 1', '        yield i ** 2', '    while i <= n:', '    i = 1', 'def gen_squares(n):'],
-      _sol: ['def gen_squares(n):', '    i = 1', '    while i <= n:', '        yield i ** 2', '        i += 1', 'for x in gen_squares(4):', '    print(x)'],
-      stdin: [],
-      expectedOutput: '1\n4\n9\n16',
-      successFeedback: '组装成功！',
-      errorFeedback: '顺序不对，先定义生成器与循环，再 yield，最后遍历。',
-    },
     match: {
       prompt: '将左侧生成器概念与右侧含义配对。',
       pairs: [
@@ -1516,15 +1255,6 @@ const MODES = {
       successFeedback: '修复成功！变量名要前后一致。',
       errorFeedback: '把 len(student) 改成 len(students)。',
     },
-    assemble: {
-      prompt: '把代码块按正确顺序拖拽组装，完成毕业项目。',
-      blocks: ['print("平均分：", average(students))', '    print(s.name, s.score)', 'for s in students:', '    return sum(s.score for s in students) / len(students)', 'def average(students):', 'students = [Student("A", 90), Student("B", 80), Student("C", 70)]', '        self.score = score', '        self.name = name', '    def __init__(self, name, score):', 'class Student:'],
-      _sol: ['class Student:', '    def __init__(self, name, score):', '        self.name = name', '        self.score = score', 'students = [Student("A", 90), Student("B", 80), Student("C", 70)]', 'def average(students):', '    return sum(s.score for s in students) / len(students)', 'for s in students:', '    print(s.name, s.score)', 'print("平均分：", average(students))'],
-      stdin: [],
-      expectedOutput: 'A 90\nB 80\nC 70\n平均分： 80.0',
-      successFeedback: '组装成功！毕业项目达成！',
-      errorFeedback: '顺序不对，先类、列表、函数，再遍历与打印平均分。',
-    },
     match: {
       prompt: '将左侧综合概念与右侧含义配对。',
       pairs: [
@@ -1558,9 +1288,9 @@ for (const id of Object.keys(MODES).map(Number).sort((a, b) => a - b)) {
     continue;
   }
 
-  // --- 校验 runnable 模式的参考解 ---
-  const INTERNAL_KEY = { run: '_ref', debug: '_ref', assemble: '_sol' };
-  for (const modeName of ['run', 'debug', 'assemble']) {
+  // --- 校验 runnable 模式的参考解（运行验证 / 找错改错，均使用 _ref） ---
+  const INTERNAL_KEY = { run: '_ref', debug: '_ref' };
+  for (const modeName of ['run', 'debug']) {
     const mode = m[modeName];
     if (!mode) continue;
     const internalKey = INTERNAL_KEY[modeName];
@@ -1569,8 +1299,7 @@ for (const id of Object.keys(MODES).map(Number).sort((a, b) => a - b)) {
       continue;
     }
     let out;
-    const code =
-      modeName === 'assemble' ? mode[internalKey].join('\n') : mode[internalKey];
+    const code = mode[internalKey];
     try {
       out = pyRun(code, mode.stdin || []);
     } catch (e) {
@@ -1628,12 +1357,11 @@ for (const id of Object.keys(MODES).map(Number).sort((a, b) => a - b)) {
     phase: meta.phase,
     phaseName: meta.phaseName,
     isMiniProject: meta.isMiniProject,
-    questionTypes: ['run', 'predict', 'debug', 'assemble', 'match'],
+    questionTypes: ['run', 'predict', 'debug', 'match'],
     defaultType: 'run',
     run: stripInternal(m.run),
     predict: stripInternal(m.predict),
     debug: stripInternal(m.debug),
-    assemble: stripInternal(m.assemble),
     match: stripInternal(m.match),
   };
   levels.push(level);
@@ -1651,15 +1379,15 @@ if (errors.length) {
 
 const out = {
   metadata: {
-    version: '5.0.0',
+    version: '5.1.0',
     totalLevels: 30,
     difficulty: '入门到大师',
     estimatedTime: '10-20小时',
     lastUpdated: '2026-11-12',
-    redesignedBy: '答题模式重构 v5：运行验证 / 预测输出 / 找错改错 / 拖拽组装 / 配对分类（Pyodide 真实运行）',
+    redesignedBy: '答题模式重构 v5：运行验证 / 预测输出 / 找错改错 / 配对分类（拖拽组装已移除，Pyodide 真实运行）',
   },
   levels,
 };
 
 writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
-console.log(`✅ 已生成 ${OUT}（v5.0.0，${levels.length} 关，全部参考解经 python3 校验通过）`);
+console.log(`✅ 已生成 ${OUT}（v5.1.0，${levels.length} 关，全部参考解经 python3 校验通过）`);

@@ -8,10 +8,7 @@ class LevelPage {
         // 预测输出
         this.predictAnswered = false;
         // 找错改错 / 运行验证：是否已完成
-        this.codeSolved = { run: false, debug: false, assemble: false };
-        // 拖拽组装
-        this.assembleDropped = []; // [{text}]
-        this.assembleDragFrom = null;
+        this.codeSolved = { run: false, debug: false };
         // 配对分类
         this.matchPairs = [];      // 原始 pairs
         this.matchLeft = [];       // [{text, pairIndex}]
@@ -81,9 +78,6 @@ class LevelPage {
 
         document.getElementById('run-debug').addEventListener('click', () => this.submitDebug());
         document.getElementById('reset-debug').addEventListener('click', () => this.renderDebug());
-
-        document.getElementById('submit-assemble').addEventListener('click', () => this.submitAssemble());
-        document.getElementById('reset-assemble').addEventListener('click', () => this.renderAssemble());
 
         document.getElementById('submit-match').addEventListener('click', () => this.submitMatch());
         document.getElementById('reset-match').addEventListener('click', () => this.renderMatch());
@@ -196,7 +190,7 @@ class LevelPage {
 
         // 重置各模式状态
         this.predictAnswered = false;
-        this.codeSolved = { run: false, debug: false, assemble: false };
+        this.codeSolved = { run: false, debug: false };
 
         this.updateNavigationBar();
         this.renderHeader();
@@ -207,7 +201,6 @@ class LevelPage {
         this.renderRun();
         this.renderPredict();
         this.renderDebug();
-        this.renderAssemble();
         this.renderMatch();
         this.warmupPy();
     }
@@ -469,145 +462,6 @@ class LevelPage {
                 this.setFeedback(feedback, 'error', m.errorFeedback + '（运行出错：' + res.error + '）');
             } else if (this.norm(res.stdout) === this.norm(m.expectedOutput)) {
                 this.codeSolved.debug = true;
-                this.setFeedback(feedback, 'success', m.successFeedback);
-                this.showCelebration();
-            } else {
-                this.setFeedback(feedback, 'error', m.errorFeedback);
-            }
-        } catch (e) {
-            output.className = 'run-output error';
-            output.textContent = `⚠️ ${e.message}`;
-            this.setFeedback(feedback, 'error', m.errorFeedback);
-        } finally {
-            btn.disabled = false;
-        }
-    }
-
-    // ===================== 拖拽组装 =====================
-    renderAssemble() {
-        const m = this.currentLevel.assemble;
-        document.getElementById('assemble-prompt').textContent = m.prompt;
-        this.assembleDropped = [];
-        this.assembleDragFrom = null;
-        this.renderAssemblePalette();
-        this.renderAssembleOrdered();
-        document.getElementById('assemble-output').className = 'run-output';
-        document.getElementById('assemble-output').textContent = '';
-        this.setFeedback(document.getElementById('assemble-feedback'), '', '');
-    }
-
-    renderAssemblePalette() {
-        const m = this.currentLevel.assemble;
-        const container = document.getElementById('assemble-blocks');
-        container.innerHTML = '';
-        m.blocks.forEach((text, i) => {
-            const el = document.createElement('div');
-            el.className = 'assemble-block';
-            el.textContent = text;
-            el.draggable = true;
-            el.dataset.index = i;
-            el.addEventListener('click', () => this.addAssembleBlock(text));
-            el.addEventListener('dragstart', (e) => {
-                e.dataTransfer.setData('text/plain', JSON.stringify({ source: 'palette', text }));
-            });
-            container.appendChild(el);
-        });
-    }
-
-    addAssembleBlock(text) {
-        this.assembleDropped.push({ text });
-        this.renderAssembleOrdered();
-    }
-
-    renderAssembleOrdered() {
-        const container = document.getElementById('assemble-ordered');
-        const empty = document.getElementById('assemble-drop-empty');
-        if (this.assembleDropped.length === 0) {
-            empty.style.display = 'block';
-            container.innerHTML = '';
-            return;
-        }
-        empty.style.display = 'none';
-        container.innerHTML = '';
-        this.assembleDropped.forEach((item, i) => {
-            const el = document.createElement('div');
-            el.className = 'assemble-ordered-item';
-            el.draggable = true;
-            el.innerHTML = `
-                <span class="assemble-order">${i + 1}</span>
-                <code>${this.escapeHtml(item.text)}</code>
-                <span class="assemble-controls">
-                    <button type="button" class="assemble-move" data-act="up" aria-label="上移">↑</button>
-                    <button type="button" class="assemble-move" data-act="down" aria-label="下移">↓</button>
-                    <button type="button" class="assemble-remove" aria-label="移除">×</button>
-                </span>
-            `;
-            el.querySelector('.assemble-remove').addEventListener('click', () => {
-                this.assembleDropped.splice(i, 1);
-                this.renderAssembleOrdered();
-            });
-            el.querySelector('[data-act="up"]').addEventListener('click', () => {
-                if (i > 0) { [this.assembleDropped[i - 1], this.assembleDropped[i]] = [this.assembleDropped[i], this.assembleDropped[i - 1]]; this.renderAssembleOrdered(); }
-            });
-            el.querySelector('[data-act="down"]').addEventListener('click', () => {
-                if (i < this.assembleDropped.length - 1) { [this.assembleDropped[i + 1], this.assembleDropped[i]] = [this.assembleDropped[i], this.assembleDropped[i + 1]]; this.renderAssembleOrdered(); }
-            });
-            el.addEventListener('dragstart', (e) => {
-                e.dataTransfer.setData('text/plain', JSON.stringify({ source: 'ordered', index: i }));
-            });
-            el.addEventListener('dragover', (e) => e.preventDefault());
-            el.addEventListener('drop', (e) => {
-                e.preventDefault();
-                try {
-                    const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-                    if (data.source === 'palette') {
-                        this.assembleDropped.splice(i, 0, { text: data.text });
-                    } else if (data.source === 'ordered') {
-                        const from = data.index;
-                        const moved = this.assembleDropped.splice(from, 1)[0];
-                        this.assembleDropped.splice(i, 0, moved);
-                    }
-                    this.renderAssembleOrdered();
-                } catch (_) {}
-            });
-            container.appendChild(el);
-        });
-
-        // 拖放区整体接收（从面板拖入时追加到末尾）
-        const dropZone = document.getElementById('assemble-drop');
-        dropZone.ondragover = (e) => e.preventDefault();
-        dropZone.ondrop = (e) => {
-            e.preventDefault();
-            try {
-                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-                if (data.source === 'palette') {
-                    this.assembleDropped.push({ text: data.text });
-                    this.renderAssembleOrdered();
-                }
-            } catch (_) {}
-        };
-    }
-
-    async submitAssemble() {
-        const m = this.currentLevel.assemble;
-        const feedback = document.getElementById('assemble-feedback');
-        const output = document.getElementById('assemble-output');
-        if (this.assembleDropped.length === 0) {
-            this.setFeedback(feedback, 'error', '请先把代码块拖拽到右侧，组成完整程序。');
-            return;
-        }
-        const code = this.assembleDropped.map(b => b.text).join('\n');
-        const btn = document.getElementById('submit-assemble');
-        btn.disabled = true;
-        output.className = 'run-output loading';
-        output.textContent = '运行中…';
-        try {
-            const res = await this.runWithPy(code, m.stdin);
-            this.showRunOutput(output, res.stdout, res.error);
-            if (res.error) {
-                this.setFeedback(feedback, 'error', m.errorFeedback + '（运行出错：' + res.error + '）');
-            } else if (this.norm(res.stdout) === this.norm(m.expectedOutput)) {
-                this.codeSolved.assemble = true;
                 this.setFeedback(feedback, 'success', m.successFeedback);
                 this.showCelebration();
             } else {
