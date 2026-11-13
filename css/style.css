@@ -67,7 +67,7 @@ button[aria-busy="true"] { cursor: progress; }
 .progress-header h2 { font-size: var(--text-app-lg); }
 .progress-percentage { font-family: var(--font-outlier); font-size: var(--text-2xl); font-variant-numeric: tabular-nums; color: var(--color-accent); }
 .progress-bar { position: relative; height: 10px; margin-top: var(--space-md); border-radius: var(--radius-pill); background: var(--color-rule); overflow: hidden; }
-.progress-fill { width: 0; height: 100%; border-radius: var(--radius-pill); background: linear-gradient(90deg, var(--color-accent-deep), var(--color-accent)); box-shadow: 0 0 14px rgba(34, 211, 238, 0.55); transition: width var(--dur-long) var(--ease-out); }
+.progress-fill { width: 100%; height: 100%; border-radius: var(--radius-pill); background: linear-gradient(90deg, var(--color-accent-deep), var(--color-accent)); box-shadow: 0 0 14px rgba(34, 211, 238, 0.55); transform: scaleX(0); transform-origin: left center; transition: transform var(--dur-long) var(--ease-out); }
 .progress-glow { position: absolute; inset-block: 0; inset-inline-end: 0; width: 1px; background: var(--color-rule-2); }
 .progress-bar.completed .progress-fill { background: linear-gradient(90deg, var(--color-success), var(--color-accent)); }
 .progress-text { margin-top: var(--space-sm); font-size: var(--text-sm); color: var(--color-ink-2); }
@@ -113,9 +113,6 @@ button[aria-busy="true"] { cursor: progress; }
 .level-number { font-family: var(--font-outlier); font-size: var(--text-level); line-height: 1; font-variant-numeric: tabular-nums; color: var(--color-ink); text-shadow: 0 0 24px rgba(34, 211, 238, 0.25); }
 .level-btn.locked .level-number { color: var(--color-muted); text-shadow: none; }
 .level-btn-title { font-size: var(--text-sm); line-height: 1.4; color: var(--color-ink-2); }
-@supports (corner-shape: bevel) {
-  .level-btn, .progress-section, .code-example, .fill-code-container { border-radius: var(--cut-l) 4px var(--cut-l) 4px; corner-shape: bevel round bevel round; }
-}
 
 /* ===== 页脚 ===== */
 .site-footer { border-top: 1px solid color-mix(in oklab, var(--color-ink) 10%, transparent); background: color-mix(in oklab, var(--color-paper-2) 80%, transparent); }

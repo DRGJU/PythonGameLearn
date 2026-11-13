@@ -50,7 +50,7 @@
     const progress = totalLevels > 0 ? (completedCount / totalLevels) * 100 : 0;
     const roundedProgress = Math.round(progress);
 
-    DOMCache.progressFill.style.width = roundedProgress + '%';
+    DOMCache.progressFill.style.transform = 'scaleX(' + (roundedProgress / 100) + ')';
     DOMCache.progressText.textContent = `完成 ${completedCount} / ${totalLevels} 个关卡`;
     DOMCache.progressPercentage.textContent = roundedProgress + '%';
     
