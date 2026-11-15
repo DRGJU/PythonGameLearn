@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Python游戏化学习平台 - 以沉浸式游戏体验学习Python编程，从基础到进阶">
-  <meta name="keywords" content="Python, 编程学习, 游戏化学习, Python教程">
-  <meta name="author" content="Python Game Learn">
+  <meta name="description" content="Python 系统化课程：6 章 30 节完整教程，从零基础到面向对象，每节含概念讲解、逐行示例、常见错误与巩固练习。">
   <meta name="theme-color" content="#060910">
-  <meta name="robots" content="index, follow">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <title>Python 游戏化学习平台</title>
-
-  <link rel="preload" href="css/style.css" as="style">
+  <title>Python 系统化课程 · 从零基础到面向对象</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="css/style.css">
-
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.add('loaded');
     });
   </script>
@@ -26,16 +19,14 @@
   <header class="hero-header">
     <div class="container header-content">
       <div class="logo-section">
-        <div class="python-icon">
-          <svg width="48" height="48" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <div class="python-icon" aria-hidden="true">
+          <svg width="48" height="48" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg" focusable="false">
             <defs>
               <linearGradient id="python-gradient" x1="12.959%" y1="12.039%" x2="79.639%" y2="78.201%">
-                <stop offset="0%" stop-color="#387EB8"/>
-                <stop offset="100%" stop-color="#366994"/>
+                <stop offset="0%" stop-color="#387EB8"/><stop offset="100%" stop-color="#366994"/>
               </linearGradient>
               <linearGradient id="python-gradient-2" x1="19.128%" y1="20.579%" x2="90.742%" y2="88.429%">
-                <stop offset="0%" stop-color="#FFE052"/>
-                <stop offset="100%" stop-color="#FFC331"/>
+                <stop offset="0%" stop-color="#FFE052"/><stop offset="100%" stop-color="#FFC331"/>
               </linearGradient>
             </defs>
             <path d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072zM92.802 19.66a11.12 11.12 0 0 1 11.13 11.13 11.12 11.12 0 0 1-11.13 11.13 11.12 11.12 0 0 1-11.13-11.13 11.12 11.12 0 0 1 11.13-11.13z" fill="url(#python-gradient)"/>
@@ -43,28 +34,30 @@
           </svg>
         </div>
         <div class="title-wrapper">
-          <h1>Python 游戏化学习</h1>
-          <p class="subtitle">以沉浸式游戏体验掌握Python编程</p>
+          <h1>Python 系统化课程</h1>
+          <p class="subtitle">以理解为核心：讲清原理，再动手练习</p>
         </div>
       </div>
-      <div class="stats-row" aria-label="学习统计">
-        <div class="stat-item">
-          <span class="stat-number" id="totalLevels">30</span>
-          <span class="stat-label">关卡</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" id="completedCount">0</span>
-          <span class="stat-label">已完成</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" id="remainingCount">30</span>
-          <span class="stat-label">待完成</span>
-        </div>
+      <div class="stats-row" aria-label="课程概况">
+        <div class="stat-item"><span class="stat-number" id="totalLessons">30</span><span class="stat-label">节课</span></div>
+        <div class="stat-item"><span class="stat-number" id="totalChapters">6</span><span class="stat-label">章</span></div>
+        <div class="stat-item"><span class="stat-number" id="completedCount">0</span><span class="stat-label">已学完</span></div>
       </div>
     </div>
   </header>
 
   <main class="container main-content" id="main">
+
+    <section class="course-intro" aria-labelledby="courseIntroTitle">
+      <h2 id="courseIntroTitle" class="course-intro__title">把一门语言真正学会，而不是把题目做完</h2>
+      <p class="course-intro__lead">课程按知识依赖顺序编排：从输出与变量，到流程控制、容器、函数、文件与异常，最后进入面向对象与进阶特性。每节都是一份可独立阅读的教程，包含概念讲解、逐行示例、常见错误、知识小结，文末才是由浏览器内真实 Python 驱动的巩固练习。</p>
+      <dl class="course-intro__facts">
+        <div><dt>教程正文</dt><dd id="contentChars">6.2 万字</dd></div>
+        <div><dt>可运行示例</dt><dd id="codeExamples">60 个</dd></div>
+        <div><dt>建议学时</dt><dd id="estimatedHours">14 小时</dd></div>
+      </dl>
+    </section>
+
     <section class="progress-section" aria-label="学习进度">
       <div class="progress-header">
         <h2>学习进度</h2>
@@ -74,63 +67,37 @@
         <div class="progress-fill" id="progressFill"></div>
         <div class="progress-glow"></div>
       </div>
-      <p class="progress-text" id="progressText">完成 0 / 30 个关卡</p>
+      <p class="progress-text" id="progressText">已学完 0 / 30 节</p>
     </section>
 
-    <section class="game-section" aria-label="游戏关卡">
+    <section class="curriculum" aria-labelledby="curriculumTitle">
       <div class="section-header">
-        <h2>
+        <h2 id="curriculumTitle">
           <svg class="section-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5A2.5 2.5 0 0 1 4 20.5z"/>
           </svg>
-          选择关卡
+          课程大纲
         </h2>
       </div>
 
-      <div class="phase-tabs" id="phaseTabs" role="tablist" aria-label="阶段导航">
-        <button class="phase-tab active" data-phase="1" role="tab" aria-selected="true" type="button">
-          <span class="phase-name">新手村</span>
-          <span class="phase-badge">1-5</span>
-        </button>
-        <button class="phase-tab" data-phase="2" role="tab" aria-selected="false" type="button">
-          <span class="phase-name">冒险启程</span>
-          <span class="phase-badge">6-10</span>
-        </button>
-        <button class="phase-tab locked" data-phase="3" role="tab" aria-selected="false" type="button">
-          <span class="phase-name">技能进阶</span>
-          <span class="phase-badge">11-15</span>
-        </button>
-        <button class="phase-tab locked" data-phase="4" role="tab" aria-selected="false" type="button">
-          <span class="phase-name">挑战大师</span>
-          <span class="phase-badge">16-20</span>
-        </button>
-        <button class="phase-tab locked" data-phase="5" role="tab" aria-selected="false" type="button">
-          <span class="phase-name">探索者</span>
-          <span class="phase-badge">21-25</span>
-        </button>
-        <button class="phase-tab locked" data-phase="6" role="tab" aria-selected="false" type="button">
-          <span class="phase-name">大师之路</span>
-          <span class="phase-badge">26-30</span>
-        </button>
-      </div>
+      <nav class="chapter-tabs" id="chapterTabs" role="tablist" aria-label="章节导航"></nav>
 
-      <div class="level-selector" id="levelSelector" role="tablist" aria-label="关卡列表"></div>
+      <div class="chapter-detail" id="chapterDetail" aria-live="polite"></div>
+
+      <div class="lesson-list" id="lessonList" role="list"></div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-content">
-      <div class="footer-info">
-        <p>&copy; 2026 Python游戏化学习平台 · 由热爱编程的学习者精心打造</p>
-      </div>
+      <div class="footer-info"><p>&copy; 2026 Python 系统化课程 · 内容按知识依赖顺序编排</p></div>
       <div class="footer-links">
-        <a href="#" class="footer-link">使用指南</a>
-        <a href="#" class="footer-link">常见问题</a>
-        <a href="#" class="footer-link">关于作者</a>
+        <a href="index.html" class="footer-link">课程大纲</a>
+        <a href="https://github.com/DRGJU" class="footer-link">GitHub</a>
       </div>
     </div>
   </footer>
 
-  <script src="js/game.js"></script>
+  <script src="js/course.js"></script>
 </body>
 </html>
