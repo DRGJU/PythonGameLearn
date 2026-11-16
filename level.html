@@ -60,18 +60,12 @@
       <section class="practice" id="practice" aria-labelledby="practice-title">
         <div class="practice__head">
           <h2 id="practice-title">巩固练习</h2>
-          <p class="practice__lead">教程读完后，用下面四类练习检验理解。运行与改错题由浏览器内真实 Python 判定输出。</p>
+          <p class="practice__lead">教程读完后，用一道练习检验理解。练习方式按本节考点选定，改错与运行类由浏览器内真实 Python 判定输出。</p>
         </div>
         <div class="py-status" id="py-status" hidden></div>
         <div class="practice-badge" id="practice-badge" hidden></div>
-        <div class="mode-tabs" id="mode-tabs" role="tablist" aria-label="练习类型">
-          <button class="mode-tab active" data-mode="run" role="tab" aria-selected="true" type="button"><span class="mode-label">运行验证</span></button>
-          <button class="mode-tab" data-mode="predict" role="tab" aria-selected="false" type="button"><span class="mode-label">预测输出</span></button>
-          <button class="mode-tab" data-mode="debug" role="tab" aria-selected="false" type="button"><span class="mode-label">找错改错</span></button>
-          <button class="mode-tab" data-mode="match" role="tab" aria-selected="false" type="button"><span class="mode-label">配对分类</span></button>
-        </div>
 
-        <div class="mode-content active" id="mode-run">
+        <div class="mode-content" id="mode-run">
           <p class="mode-prompt" id="run-prompt"></p>
           <label class="visually-hidden" for="run-input">代码编辑器</label>
           <textarea class="code-editor" id="run-input" spellcheck="false" autocomplete="off"></textarea>

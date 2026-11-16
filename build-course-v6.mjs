@@ -216,6 +216,13 @@ async function main() {
       }
 
       const practice = enhancePractice(rawPractice, lesson, meta, overrides[id]);
+      // 每节只能在四种答题方式中显示一种：primaryMode 必须合法
+      const VALID_MODES = ['run', 'predict', 'debug', 'match'];
+      if (VALID_MODES.indexOf(meta.primaryMode) < 0) {
+        errors.push(`课 ${id} primaryMode 非法：${meta.primaryMode}`);
+      } else {
+        practice.meta.primaryMode = meta.primaryMode;
+      }
       if (!practice.meta.review.length) errors.push(`课 ${id} 缺练习解析（review 块）`);
       if (practice.meta.hints.length !== 3) errors.push(`课 ${id} 分级提示不足 3 级`);
 
@@ -288,7 +295,7 @@ async function main() {
 
   const out = {
     metadata: {
-      version: '6.1.0',
+      version: '6.2.0',
       title: 'Python 系统化课程',
       subtitle: '从零基础到面向对象：30 节可自学的完整教程',
       totalLessons: 30,
@@ -298,7 +305,7 @@ async function main() {
       estimatedHours: Math.round(lessons.reduce((s, l) => s + l.minutes, 0) / 60),
       lastUpdated: '2026-11-15',
       redesignedBy: '定位重构：以学习为核心，教程为主体、练习置于文末；内容由 306 字/节扩充至 2000+ 字/节',
-      practiceVersion: '答题方式优化：中性改错题干、分级提示、练习解析、考点标签、逐行差异诊断',
+      practiceVersion: '单模式呈现：每节按考点自动选择最契合的一种答题方式（run/predict/debug/match），其余隐藏',
       builtWith: 'build-course-v6.mjs（教程示例与改错代码均经系统 python3 实跑校验）',
     },
     chapters: chapters.map((c) => ({
@@ -309,7 +316,7 @@ async function main() {
   };
 
   writeFileSync(P('data', 'course.json'), JSON.stringify(out, null, 2) + '\n', 'utf8');
-  console.log(`✅ 已生成 data/course.json（v6.1.0）`);
+  console.log(`✅ 已生成 data/course.json（v6.2.0）`);
   console.log(`   6 章 / ${lessons.length} 节 / 正文 ${totalChars} 字 / 平均 ${Math.round(totalChars / lessons.length)} 字每节`);
   console.log(`   ${codeChecked} 个教程代码块经 python3 实跑通过；4 类练习复用 v5.1 已校验数据`);
 }

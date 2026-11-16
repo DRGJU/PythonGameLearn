@@ -321,10 +321,6 @@
   function renderPractice() {
     var p = state.lesson.practice;
 
-    var badge = el('practice-badge');
-    badge.hidden = false;
-    badge.textContent = '本节考点：' + p.meta.concept;
-
     el('run-prompt').textContent = p.run.prompt;
     el('run-input').value = p.run.starterCode || '';
     el('run-output').className = 'run-output';
@@ -346,22 +342,28 @@
     el('match-prompt').textContent = p.match.prompt;
     renderMatch();
 
-    ['run', 'predict', 'debug', 'match'].forEach(renderPracticeTools);
+    // 先只保留一种模式的 DOM 与工具，再渲染其内容
+    activatePrimaryMode();
+    renderPracticeTools(state.lesson.practice.meta.primaryMode || 'run');
   }
 
-  function setupModeTabs() {
-    Array.prototype.forEach.call(document.querySelectorAll('.mode-tab'), function (tab) {
-      tab.addEventListener('click', function () {
-        var mode = tab.dataset.mode;
-        document.querySelectorAll('.mode-tab').forEach(function (t) {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        document.querySelectorAll('.mode-content').forEach(function (c) { c.classList.remove('active'); });
-        el('mode-' + mode).classList.add('active');
-      });
+  /** 每节只显示一种答题方式：由 course.json 的 primaryMode 决定，其余模式不渲染工具与状态。 */
+  function activatePrimaryMode() {
+    var mode = state.lesson.practice.meta.primaryMode || 'run';
+    document.querySelectorAll('.mode-content').forEach(function (c) { c.classList.remove('active'); });
+    var target = el('mode-' + mode);
+    if (target) target.classList.add('active');
+
+    var labels = { run: '运行验证', predict: '预测输出', debug: '找错改错', match: '配对分类' };
+    var badge = el('practice-badge');
+    badge.hidden = false;
+    badge.textContent = '本节练习方式：' + labels[mode] + ' · 考点：' + state.lesson.practice.meta.concept;
+
+    // 其余三种模式不渲染工具区，避免无内容空壳出现在 DOM 中
+    Object.keys(labels).forEach(function (m) {
+      if (m === mode) return;
+      var tools = document.querySelector('[data-mode-tools="' + m + '"]');
+      if (tools) tools.remove();
     });
   }
 
@@ -607,7 +609,6 @@
       setFeedback(el('debug-feedback'), '', '');
     });
     el('reset-match').addEventListener('click', renderMatch);
-    setupModeTabs();
   }
 
   function showError(msg) {

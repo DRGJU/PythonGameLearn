@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "6.1.0",
+    "version": "6.2.0",
     "title": "Python 系统化课程",
     "subtitle": "从零基础到面向对象：30 节可自学的完整教程",
     "totalLessons": 30,
@@ -15,7 +15,7 @@
     "estimatedHours": 15,
     "lastUpdated": "2026-11-15",
     "redesignedBy": "定位重构：以学习为核心，教程为主体、练习置于文末；内容由 306 字/节扩充至 2000+ 字/节",
-    "practiceVersion": "答题方式优化：中性改错题干、分级提示、练习解析、考点标签、逐行差异诊断",
+    "practiceVersion": "单模式呈现：每节按考点自动选择最契合的一种答题方式（run/predict/debug/match），其余隐藏",
     "builtWith": "build-course-v6.mjs（教程示例与改错代码均经系统 python3 实跑校验）"
   },
   "chapters": [
@@ -319,7 +319,8 @@
             "debug": "字符串必须用引号包裹，否则 Python 会当成变量名。",
             "predict": "正确。两个 print 各输出一行，依次为 Hello、World。",
             "match": "「配对分类」把函数、参数、字符串、表达式等术语与它们的含义对应，目的是确保你能用准确的语言描述代码，而不是只会照抄。"
-          }
+          },
+          "primaryMode": "run"
         }
       },
       "tags": [
@@ -551,7 +552,8 @@
             "debug": "字符串和数字不能直接用 + 拼接，用 f-string 最稳妥。",
             "predict": "正确。5 + 3 = 8。",
             "match": "「配对分类」把 int、str、float 等类型名与示例值对应，帮你建立类型词汇表，为下一节的运算打基础。"
-          }
+          },
+          "primaryMode": "debug"
         }
       },
       "tags": [
@@ -802,7 +804,8 @@
             "debug": "整除要用 //，否则会得到带小数点的结果。",
             "predict": "正确。17 ÷ 5 = 3 余 2，% 取到的就是余数 2。",
             "match": "「配对分类」把运算符与含义对应，重点确认 // 与 % 的分工，这两者在后续判断奇偶、分页计算时会反复用到。"
-          }
+          },
+          "primaryMode": "run"
         }
       },
       "tags": [
@@ -1045,7 +1048,8 @@
             "debug": "两个变量之间要显式加上一个空格。",
             "predict": "正确。* 让字符串重复指定次数。",
             "match": "「配对分类」把 upper/strip/split/join 等方法与作用对应，建议同时记住每个方法的返回值类型，这对后续链式调用有帮助。"
-          }
+          },
+          "primaryMode": "predict"
         }
       },
       "tags": [
@@ -1278,7 +1282,8 @@
             "debug": "f-string 里要用 {变量} 才能嵌入值。",
             "predict": "正确。{name} 会被替换成变量的值 Lucy。",
             "match": "「配对分类」把前三节的概念与用途对应，检验你是否能把「变量」「表达式」「字符串方法」这些术语准确地映射到代码中的具体位置。"
-          }
+          },
+          "primaryMode": "run"
         }
       },
       "tags": [
@@ -1522,7 +1527,8 @@
             "debug": "字符串拼接必须用 +，不能直接并列。",
             "predict": "正确。input() 读取到的内容会拼进字符串。",
             "match": "「配对分类」把 input、int、float、str 与各自作用对应，帮助建立「取得文本 → 解释类型 → 参与运算」的固定流程。"
-          }
+          },
+          "primaryMode": "debug"
         }
       },
       "tags": [
@@ -1759,7 +1765,8 @@
             "debug": "input() 返回字符串，要先 int() 才能做加法。",
             "predict": "正确。float() 把字符串转成小数 3.5。",
             "match": "「配对分类」把转换函数与失败情形对应，目标是让你在写代码前就能判断「这一步会不会抛异常」。"
-          }
+          },
+          "primaryMode": "debug"
         }
       },
       "tags": [
@@ -2004,7 +2011,8 @@
             "debug": "\"大于等于\"的写法是 >=，不是 =>。",
             "predict": "正确。5 > 3 成立，走 if 分支输出\"大\"。",
             "match": "「配对分类」把 ==、and、in 等运算符与含义对应，检验你能否用准确的术语描述条件的构成。"
-          }
+          },
+          "primaryMode": "predict"
         }
       },
       "tags": [
@@ -2236,7 +2244,8 @@
             "debug": "else 后面也要加冒号。",
             "predict": "正确。4 能被 2 整除，是偶数。",
             "match": "「配对分类」把 if、elif、else 与各自职责对应，帮助你在设计规则时先确定「是否互斥」再选结构。"
-          }
+          },
+          "primaryMode": "predict"
         }
       },
       "tags": [
@@ -2486,7 +2495,8 @@
             "debug": "判断相等用 ==，单个 = 是赋值。",
             "predict": "正确。op 是 \"-\"，走 else 输出 8 - 3 = 5。",
             "match": "「配对分类」把本章概念（input、int、if、elif、else）与职责对应，检验你能否把需求拆解为清晰的处理阶段。"
-          }
+          },
+          "primaryMode": "run"
         }
       },
       "tags": [
@@ -2719,7 +2729,8 @@
             "debug": "要包含 5，条件应是 i <= 5。",
             "predict": "正确。循环到 i=3 后 i 变成 4，条件不成立退出。",
             "match": "「配对分类」把 break、continue、计数器与各自作用对应，帮助建立「循环三要素：初始状态、继续条件、状态推进」的检查清单。"
-          }
+          },
+          "primaryMode": "predict"
         }
       },
       "tags": [
@@ -2961,7 +2972,8 @@
             "debug": "列表索引从 0 开始，第一个元素是 [0]。",
             "predict": "正确。索引 2 是第三个元素（从 0 开始）。",
             "match": "「配对分类」把 append、insert、pop、remove 与语义对应，重点是区分「按位置操作」与「按值操作」。"
-          }
+          },
+          "primaryMode": "match"
         }
       },
       "tags": [
@@ -3194,7 +3206,8 @@
             "debug": "for / if / while 后面都要加冒号。",
             "predict": "正确。range(3) 生成 0、1、2。",
             "match": "「配对分类」把 for、range、enumerate 与用途对应，帮助你在「已知数据集合」与「条件驱动」之间正确选择循环形式。"
-          }
+          },
+          "primaryMode": "predict"
         }
       },
       "tags": [
@@ -3436,7 +3449,8 @@
             "debug": "切片 [0:2] 取前两个元素。",
             "predict": "正确。append 在末尾加入 40。",
             "match": "「配对分类」把 sort 与 sorted、reverse 与 [::-1] 对应，核心是区分「原地」与「返回新对象」两类语义。"
-          }
+          },
+          "primaryMode": "debug"
         }
       },
       "tags": [
@@ -3673,7 +3687,8 @@
             "debug": "字典的键要和定义时完全一致。",
             "predict": "正确。用键 \"a\" 取到值 1。",
             "match": "「配对分类」把 keys / values / items / get 与用途对应，检验你能否为不同需求选择正确的访问方式。"
-          }
+          },
+          "primaryMode": "match"
         }
       },
       "tags": [
@@ -3911,7 +3926,8 @@
             "debug": "def 定义后面要加冒号。",
             "predict": "正确。定义不会执行，调用 f() 才输出 A。",
             "match": "「配对分类」把 def、参数、return、调用与职责对应，检验你能否准确描述一次函数调用中数据的流向。"
-          }
+          },
+          "primaryMode": "debug"
         }
       },
       "tags": [
@@ -4149,7 +4165,8 @@
             "debug": "Python 里乘方是 **，不是 ^。",
             "predict": "正确。2 + 3 = 5。",
             "match": "「配对分类」把位置参数、默认参数、*args、**kwargs 与用途对应，帮助你在设计接口时选择合适的参数形式。"
-          }
+          },
+          "primaryMode": "run"
         }
       },
       "tags": [
@@ -4385,7 +4402,8 @@
             "debug": "函数内要改全局变量，必须先 global 声明。",
             "predict": "正确。函数内 x 是局部变量 99，函数外 x 仍是全局 10。",
             "match": "「配对分类」把 LEGB 四层与示例对应，帮助你在阅读多层嵌套函数时快速定位一个名字的来源。"
-          }
+          },
+          "primaryMode": "match"
         }
       },
       "tags": [
@@ -4628,7 +4646,8 @@
             "debug": "转大写要用 upper()。",
             "predict": "正确。strip() 去掉了两端空格。",
             "match": "「配对分类」把 strip、split、join、find 与用途对应，重点是记住每个方法的返回值类型。"
-          }
+          },
+          "primaryMode": "predict"
         }
       },
       "tags": [
@@ -4868,7 +4887,8 @@
             "debug": "比秘密数小应当用 guess < secret。",
             "predict": "正确。5 < 7，走 elif 分支。",
             "match": "「配对分类」把本章的函数、参数、返回值、作用域概念对应，检验你能否描述一次完整调用中数据的流向与可见范围。"
-          }
+          },
+          "primaryMode": "run"
         }
       },
       "tags": [
@@ -5106,7 +5126,8 @@
             "debug": "要读取内容应使用 f.read()。",
             "predict": "正确。写入 \"x\" 后读出也是 \"x\"。",
             "match": "「配对分类」把 r / w / a 与语义对应，核心是分清「清空」与「保留」这两种写入行为。"
-          }
+          },
+          "primaryMode": "match"
         }
       },
       "tags": [
@@ -5348,7 +5369,8 @@
             "debug": "except 后面也要加冒号。",
             "predict": "正确。10/0 会抛异常，被 except 捕获并输出\"错\"。",
             "match": "「配对分类」把 ValueError、TypeError、ZeroDivisionError 等与触发原因对应，目标是看到报错最后一行就能定位根因。"
-          }
+          },
+          "primaryMode": "debug"
         }
       },
       "tags": [
@@ -5581,7 +5603,8 @@
             "debug": "乘方用 **，不是 ^。",
             "predict": "正确。range(6) 为 0~5，其中偶数是 0、2、4。",
             "match": "「配对分类」把列表、字典、集合推导式与结果类型对应，帮助你在需要「变换」「映射」「去重」时选对工具。"
-          }
+          },
+          "primaryMode": "match"
         }
       },
       "tags": [
@@ -5817,7 +5840,8 @@
             "debug": "遍历键值对要用 .items()。",
             "predict": "正确。键 \"c\" 不存在，返回默认值 0。",
             "match": "「配对分类」把 get、setdefault、items、update 与用途对应，帮助你在统计与配置合并场景选择正确方法。"
-          }
+          },
+          "primaryMode": "run"
         }
       },
       "tags": [
@@ -6055,7 +6079,8 @@
             "debug": "圆周率常量名为 math.pi。",
             "predict": "正确。math.sqrt(16) 返回 4.0。",
             "match": "「配对分类」把常用标准库模块与用途对应，帮助你在遇到需求时先判断是否已有内置方案。"
-          }
+          },
+          "primaryMode": "debug"
         }
       },
       "tags": [
@@ -6297,7 +6322,8 @@
             "debug": "方法内部访问实例属性要用 self.name。",
             "predict": "正确。实例属性 name 的值是\"小白\"。",
             "match": "「配对分类」把类、实例、属性、方法与含义对应，检验你能否准确描述一次实例化过程中发生了什么。"
-          }
+          },
+          "primaryMode": "match"
         }
       },
       "tags": [
@@ -6533,7 +6559,8 @@
             "debug": "class 定义后面也要加冒号。",
             "predict": "正确。子类 B 继承了父类的 hi()，输出 A。",
             "match": "「配对分类」把父类、子类、重写、super、多态与含义对应，帮助你在设计类型关系时先把语义判断清楚。"
-          }
+          },
+          "primaryMode": "debug"
         }
       },
       "tags": [
@@ -6771,7 +6798,8 @@
             "debug": "转大写要用 upper()。",
             "predict": "正确。装饰器把返回值转成了大写。",
             "match": "「配对分类」把闭包、装饰器、wraps、*args 与职责对应，检验你能否说清装饰一次调用时数据的流转路径。"
-          }
+          },
+          "primaryMode": "predict"
         }
       },
       "tags": [
@@ -7008,7 +7036,8 @@
             "debug": "生成器要用 yield 才能逐个产出。",
             "predict": "正确。生成器依次产出 1、2。",
             "match": "「配对分类」把迭代器、yield、生成器表达式与含义对应，帮助你在「一次全部生成」与「按需生成」之间做出正确选择。"
-          }
+          },
+          "primaryMode": "match"
         }
       },
       "tags": [
@@ -7240,7 +7269,8 @@
             "debug": "变量名要前后一致。",
             "predict": "正确。实例属性被打印出来。",
             "match": "「配对分类」把本课程六章的核心概念与用途对应，用来检验你是否建立起从「值 → 容器 → 函数 → 文件与异常 → 类与进阶」的完整知识脉络。"
-          }
+          },
+          "primaryMode": "run"
         }
       },
       "tags": [
