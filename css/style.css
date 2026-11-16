@@ -470,3 +470,19 @@ body > .global-error { position: fixed; inset: auto var(--gutter) var(--space-xl
 @media (max-width: 40rem) {
   .diff-head, .diff-row { grid-template-columns: 28px minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-xs); padding-inline: var(--space-sm); font-size: var(--text-xs); }
 }
+
+/* 首页分享入口 */
+.course-intro__actions { margin-top: var(--space-lg); }
+.course-intro__actions .btn {
+  display: inline-flex; align-items: center; gap: var(--space-xs);
+  min-height: 42px; padding-inline: var(--space-lg);
+  border: 1px solid var(--color-rule-2); border-radius: var(--radius-pill);
+  background: color-mix(in oklab, var(--color-paper) 70%, transparent);
+  color: var(--color-ink); font-family: var(--font-body);
+  font-size: var(--text-sm); font-weight: 500; text-decoration: none;
+  transition: border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.course-intro__actions .btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.course-intro__actions .btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.course-intro__actions .btn:active { transform: translateY(2px); }
+.course-intro__actions .btn svg { width: 16px; height: 16px; flex: 0 0 auto; }
