@@ -12,7 +12,10 @@ node server.js          # 本地预览 http://localhost:8081/
 
 然后用浏览器打开 `http://localhost:8081/index.html`。**不要用 `file://` 直接打开**：课程数据通过 `fetch()` 加载，Pyodide 的 module worker 也要求 HTTP 环境。
 
-**分享给好友**：打开 `http://localhost:8081/share.html`，这是为分享准备的卡片页，展示课程亮点与目录；点「复制分享链接」即可把地址发给好友。部署后把 `localhost:8081` 换成站点域名。
+**分享给好友**有两种方式：
+
+1. **图片卡片**：直接把 `share-card.png` 发到微信 / 朋友圈，好友扫码即可打开分享页。重新生成：`node tools/generate-share-card.mjs`（需要联网获取二维码，渲染依赖仓库内已有的 `../astro-poc/node_modules/sharp`，无需安装依赖）。二维码指向 `https://drgju.github.io/PythonGameLearn/share.html`，改域名时同步修改生成脚本中的 `SHARE_URL`。
+2. **链接卡片页**：首页的「分享这门课程」按钮或 `http://localhost:8081/share.html` 打开分享页；点「复制分享链接」即可把地址发给好友。部署后把 `localhost:8081` 换成站点域名。
 
 重新生成课程数据（修改教程或考点后必须执行，约 40 秒）：
 
