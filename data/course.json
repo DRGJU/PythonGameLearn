@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "version": "6.0.0",
+    "version": "6.1.0",
     "title": "Python 系统化课程",
     "subtitle": "从零基础到面向对象：30 节可自学的完整教程",
     "totalLessons": 30,
@@ -15,7 +15,8 @@
     "estimatedHours": 15,
     "lastUpdated": "2026-11-15",
     "redesignedBy": "定位重构：以学习为核心，教程为主体、练习置于文末；内容由 306 字/节扩充至 2000+ 字/节",
-    "builtWith": "build-course-v6.mjs（所有示例代码经系统 python3 实跑校验）"
+    "practiceVersion": "答题方式优化：中性改错题干、分级提示、练习解析、考点标签、逐行差异诊断",
+    "builtWith": "build-course-v6.mjs（教程示例与改错代码均经系统 python3 实跑校验）"
   },
   "chapters": [
     {
@@ -241,50 +242,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "编写程序，依次输出两句话：\"你好，Python！\" 和 \"我准备好了！\"（各占一行）。",
+          "prompt": "围绕本节考点「print() 输出与字符串字面量」：编写程序，依次输出两句话：\"你好，Python！\" 和 \"我准备好了！\"（各占一行）。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "你好，Python！\n我准备好了！",
-          "successFeedback": "太棒了！你已经成功把内容输出到屏幕，正式开始编程之旅！",
-          "errorFeedback": "请使用 print() 分别输出这两句用引号包裹的话，注意每行一个 print。"
+          "successFeedback": "输出与预期一致。「print() 输出与字符串字面量」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面这段代码会输出什么？",
+          "prompt": "本题考查「print() 输出与字符串字面量」。阅读代码，选出它运行后的实际输出。",
           "code": "print(\"Hello\")\nprint(\"World\")",
           "stdin": [],
           "options": [
             {
               "text": "Hello\nWorld",
               "correct": true,
-              "feedback": "正确！两个 print 各输出一行，依次为 Hello、World。"
+              "feedback": "正确。两个 print 各输出一行，依次为 Hello、World。"
             },
             {
               "text": "HelloWorld",
               "correct": false,
-              "feedback": "不对，print 默认会换行，不会把两行连在一起。"
+              "feedback": "不正确。print 默认会换行，不会把两行连在一起。"
             },
             {
               "text": "World\nHello",
               "correct": false,
-              "feedback": "不对，输出顺序和代码顺序一致。"
+              "feedback": "不正确。输出顺序和代码顺序一致。"
             },
             {
               "text": "Hello World",
               "correct": false,
-              "feedback": "不对，两个 print 之间不会自动加空格。"
+              "feedback": "不正确。两个 print 之间不会自动加空格。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码想输出两句话，但第二句漏了引号导致报错，请修复它。",
+          "prompt": "下面这段程序想依次输出两句话，但运行时报错。请定位并修正错误，使其输出预期内容。",
           "buggyCode": "print(\"你好，Python！\")\nprint(我准备好了！)",
           "stdin": [],
           "expectedOutput": "你好，Python！\n我准备好了！",
-          "successFeedback": "修好了！字符串必须用引号包裹，否则 Python 会当成变量名。",
-          "errorFeedback": "注意第二句的文字也要用引号包裹起来。"
+          "successFeedback": "输出与预期一致。「print() 输出与字符串字面量」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧概念与右侧正确的解释配对。",
+          "prompt": "本题考查「print() 输出与字符串字面量」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "print()",
@@ -299,6 +300,26 @@
               "right": "用来给数据起名字并保存"
             }
           ]
+        },
+        "meta": {
+          "concept": "print() 输出与字符串字面量",
+          "hints": [
+            "先回到本节目标：理解「程序是一串按顺序执行的指令」这一基本模型。",
+            "再看知识要点：程序是指令的有序集合，Python 解释器按从上到下的顺序逐行执行。",
+            "最后对照常见错误的原因：没有引号时，Python 把「你好」当作变量名去查找；该名字未定义，会抛出 NameError。"
+          ],
+          "review": [
+            "「运行验证」要求你写出两行各输出一句话的程序，考查的是顺序执行与换行这两个默认行为。若输出挤在同一行，检查是否误用了 end 参数；若只输出一句，检查是否把两句话放进了同一个 print()。",
+            "「预测输出」给出一段含 print() 的代码让你判断结果，重点考查「先计算表达式、再输出」以及默认分隔符。做这类题时建议逐行在纸上写出每一步的值，特别注意逗号分隔会额外产生一个空格。",
+            "「找错改错」中的错误通常集中在引号不成对、全角标点、以及把文字与数字直接相加。定位方法是先读报错的最后一行：SyntaxError 说明语法结构有问题，NameError 说明名字未定义，TypeError 说明类型不匹配。",
+            "「配对分类」把函数、参数、字符串、表达式等术语与它们的含义对应，目的是确保你能用准确的语言描述代码，而不是只会照抄。"
+          ],
+          "explanations": {
+            "run": "",
+            "debug": "字符串必须用引号包裹，否则 Python 会当成变量名。",
+            "predict": "正确。两个 print 各输出一行，依次为 Hello、World。",
+            "match": "「配对分类」把函数、参数、字符串、表达式等术语与它们的含义对应，目的是确保你能用准确的语言描述代码，而不是只会照抄。"
+          }
         }
       },
       "tags": [
@@ -453,50 +474,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "创建变量 name = \"小明\"、age = 12，再用一行 print 输出：我是小明，今年12岁。",
+          "prompt": "围绕本节考点「变量赋值与字符串拼接」：创建变量 name = \"小明\"、age = 12，再用一行 print 输出：我是小明，今年12岁。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "我是小明，今年12岁",
-          "successFeedback": "漂亮！你已经学会用变量保存数据，并用 f-string 把它们嵌进文字。",
-          "errorFeedback": "请先用 = 给 name、age 赋值，再用 f\"…{变量}…\" 输出。"
+          "successFeedback": "输出与预期一致。「变量赋值与字符串拼接」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「变量赋值与字符串拼接」。阅读代码，选出它运行后的实际输出。",
           "code": "x = 5\ny = 3\nprint(x + y)",
           "stdin": [],
           "options": [
             {
               "text": "8",
               "correct": true,
-              "feedback": "正确！5 + 3 = 8。"
+              "feedback": "正确。5 + 3 = 8。"
             },
             {
               "text": "53",
               "correct": false,
-              "feedback": "不对，+ 对数字做的是加法，不是拼接。"
+              "feedback": "不正确。+ 对数字做的是加法，不是拼接。"
             },
             {
               "text": "x + y",
               "correct": false,
-              "feedback": "不对，print 会输出计算结果，而不是公式。"
+              "feedback": "不正确。print 会输出计算结果，而不是公式。"
             },
             {
               "text": "2",
               "correct": false,
-              "feedback": "不对，结果是 8。"
+              "feedback": "不正确。结果是 8。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码想拼接输出，但把整数直接拼进字符串会报错，请修复。",
+          "prompt": "下面这段程序想把数值与文字拼接后输出，但运行时报错。请定位并修正错误，使其输出预期内容。",
           "buggyCode": "name = \"小明\"\nage = 12\nprint(\"我是\" + name + \"，今年\" + age + \"岁\")",
           "stdin": [],
           "expectedOutput": "我是小明，今年12岁",
-          "successFeedback": "修复成功！字符串和数字不能直接用 + 拼接，用 f-string 最稳妥。",
-          "errorFeedback": "数字和字符串不能直接 +，改用 f-string（或 str(age)）来拼接。"
+          "successFeedback": "输出与预期一致。「变量赋值与字符串拼接」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧概念与右侧正确的解释配对。",
+          "prompt": "本题考查「变量赋值与字符串拼接」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "赋值语句",
@@ -511,6 +532,26 @@
               "right": "需要用引号包裹"
             }
           ]
+        },
+        "meta": {
+          "concept": "变量赋值与字符串拼接",
+          "hints": [
+            "先回到本节目标：理解变量是「名字与值之间的绑定」，而不是装数据的盒子。",
+            "再看知识要点：赋值语句先计算右侧得到值，再把左侧名字绑定到该值。",
+            "最后对照常见错误的原因：变量名不能以数字开头，解释器会抛出 SyntaxError。"
+          ],
+          "review": [
+            "「运行验证」通常要求把若干信息存入变量后按指定格式输出。注意赋值不产生输出，只有 print() 才会显示内容；若结果里出现多余空格，检查是否用逗号分隔了本应拼接的字符串。",
+            "「预测输出」常设置多次重新赋值，考查你是否按执行顺序跟踪名字的最新值。建议用一张两列表格，逐行记录每个名字在执行该行之后的值，不要凭印象跳步。",
+            "「找错改错」的高频错误是大小写不一致、使用关键字命名、以及在赋值前读取。看到 NameError 时，先确认名字拼写与赋值语句的位置。",
+            "「配对分类」把 int、str、float 等类型名与示例值对应，帮你建立类型词汇表，为下一节的运算打基础。"
+          ],
+          "explanations": {
+            "run": "漂亮！你已经学会用变量保存数据，并用 f-string 把它们嵌进文字。",
+            "debug": "字符串和数字不能直接用 + 拼接，用 f-string 最稳妥。",
+            "predict": "正确。5 + 3 = 8。",
+            "match": "「配对分类」把 int、str、float 等类型名与示例值对应，帮你建立类型词汇表，为下一节的运算打基础。"
+          }
         }
       },
       "tags": [
@@ -684,50 +725,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "计算并输出：100 除以 7 的商（用 //）、100 除以 7 的余数（用 %）、以及 2 的 10 次方（用 **）。三个结果各占一行。",
+          "prompt": "围绕本节考点「整除 // 与普通除法 /」：计算并输出：100 除以 7 的商（用 //）、100 除以 7 的余数（用 %）、以及 2 的 10 次方（用 **）。三个结果各占一行。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "14\n2\n1024",
-          "successFeedback": "计算无误！你已经掌握了 Python 的算术运算符。",
-          "errorFeedback": "请分别使用 //（整除）、%（取余）、**（乘方）。"
+          "successFeedback": "输出与预期一致。「整除 // 与普通除法 /」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "表达式 17 % 5 的结果是？",
+          "prompt": "本题考查「整除 // 与普通除法 /」。阅读代码，选出它运行后的实际输出。",
           "code": "print(17 % 5)",
           "stdin": [],
           "options": [
             {
               "text": "2",
               "correct": true,
-              "feedback": "正确！17 ÷ 5 = 3 余 2，% 取到的就是余数 2。"
+              "feedback": "正确。17 ÷ 5 = 3 余 2，% 取到的就是余数 2。"
             },
             {
               "text": "3",
               "correct": false,
-              "feedback": "不对，3 是整除的商（17 // 5）。"
+              "feedback": "不正确。3 是整除的商（17 // 5）。"
             },
             {
               "text": "3.4",
               "correct": false,
-              "feedback": "不对，% 取余得到整数 2。"
+              "feedback": "不正确。% 取余得到整数 2。"
             },
             {
               "text": "85",
               "correct": false,
-              "feedback": "不对，85 是 17 × 5。"
+              "feedback": "不正确。85 是 17 × 5。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码想求整除商，但误用了普通除法 /，请修复成 //。",
+          "prompt": "下面这段程序想输出整除商，但输出与预期不符。请定位并修正错误。",
           "buggyCode": "print(100 / 7)\nprint(100 % 7)\nprint(2 ** 10)",
           "stdin": [],
           "expectedOutput": "14\n2\n1024",
-          "successFeedback": "修复成功！整除要用 //，否则会得到带小数点的结果。",
-          "errorFeedback": "第一行应是 100 // 7（整除），不是 100 / 7。"
+          "successFeedback": "输出与预期一致。「整除 // 与普通除法 /」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧运算符与右侧含义配对。",
+          "prompt": "本题考查「整除 // 与普通除法 /」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "//",
@@ -742,6 +783,26 @@
               "right": "乘方"
             }
           ]
+        },
+        "meta": {
+          "concept": "整除 // 与普通除法 /",
+          "hints": [
+            "先回到本节目标：能区分 int 与 float，并解释除法结果的类型。",
+            "再看知识要点：int 与 float 是两种基本数值类型；/ 的结果恒为 float，// 为向下取整。",
+            "最后对照常见错误的原因：除法结果是 float，而索引与 range() 需要 int，会抛出 TypeError。"
+          ],
+          "review": [
+            "「运行验证」通常要求输出多个运算结果，注意 / 与 // 的区别以及 print() 多个参数之间的默认空格。若期望输出中没有空格，应改为先拼接字符串或用 sep=''。",
+            "「预测输出」常把优先级、类型提升和整除放在一起。逐行计算时，先处理括号与乘方，再乘除，最后加减；遇到混合 int/float 时记得结果类型会变成 float。",
+            "「找错改错」的高频错误包括用 ^ 表示乘方、把字符串与数字直接相加、以及把除法结果当作整数使用。TypeError 通常指向类型不匹配，ValueError 通常指向转换内容非法。",
+            "「配对分类」把运算符与含义对应，重点确认 // 与 % 的分工，这两者在后续判断奇偶、分页计算时会反复用到。"
+          ],
+          "explanations": {
+            "run": "计算无误！你已经掌握了 Python 的算术运算符。",
+            "debug": "整除要用 //，否则会得到带小数点的结果。",
+            "predict": "正确。17 ÷ 5 = 3 余 2，% 取到的就是余数 2。",
+            "match": "「配对分类」把运算符与含义对应，重点确认 // 与 % 的分工，这两者在后续判断奇偶、分页计算时会反复用到。"
+          }
         }
       },
       "tags": [
@@ -907,50 +968,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "给定 first = \"Hello\"、last = \"World\"，用 f-string 输出 \"Hello World\"（中间一个空格），并输出该字符串的长度。",
+          "prompt": "围绕本节考点「f-string 与格式说明符」：给定 first = \"Hello\"、last = \"World\"，用 f-string 输出 \"Hello World\"（中间一个空格），并输出该字符串的长度。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "Hello World\n11",
-          "successFeedback": "字符串玩得不错！f-string 会是你最常用的技巧之一。",
-          "errorFeedback": "请用 f\"{first} {last}\" 拼出带空格的句子，再用 len() 求长度。"
+          "successFeedback": "输出与预期一致。「f-string 与格式说明符」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「f-string 与格式说明符」。阅读代码，选出它运行后的实际输出。",
           "code": "s = \"abc\"\nprint(s * 3)",
           "stdin": [],
           "options": [
             {
               "text": "abcabcabc",
               "correct": true,
-              "feedback": "正确！* 让字符串重复指定次数。"
+              "feedback": "正确。* 让字符串重复指定次数。"
             },
             {
               "text": "abc 3",
               "correct": false,
-              "feedback": "不对，重复不会产生空格和数字。"
+              "feedback": "不正确。重复不会产生空格和数字。"
             },
             {
               "text": "abcabc",
               "correct": false,
-              "feedback": "不对，重复 3 次应是 abcabcabc。"
+              "feedback": "不正确。重复 3 次应是 abcabcabc。"
             },
             {
               "text": "3abc",
               "correct": false,
-              "feedback": "不对，顺序反了。"
+              "feedback": "不正确。顺序反了。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码想输出 \"Hello World\" 及其长度，但漏了空格，请修复成用 f-string 拼接（带空格）。",
+          "prompt": "下面这段程序想输出一段带空格的短语及其长度，但输出与预期不符。请定位并修正错误。",
           "buggyCode": "first = \"Hello\"\nlast = \"World\"\nprint(first + last)",
           "stdin": [],
           "expectedOutput": "Hello World\n11",
-          "successFeedback": "修复成功！两个变量之间要显式加上一个空格。",
-          "errorFeedback": "first 和 last 之间要有一个空格，用 f-string 最方便。"
+          "successFeedback": "输出与预期一致。「f-string 与格式说明符」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧字符串操作与右侧含义配对。",
+          "prompt": "本题考查「f-string 与格式说明符」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "+",
@@ -965,6 +1026,26 @@
               "right": "返回字符串长度"
             }
           ]
+        },
+        "meta": {
+          "concept": "f-string 与格式说明符",
+          "hints": [
+            "先回到本节目标：理解字符串是不可变的有序序列，索引从 0 开始。",
+            "再看知识要点：字符串是有序序列，索引从 0 开始，支持负索引；切片左闭右开且省略端点表示到头尾。",
+            "最后对照常见错误的原因：字符串不可变，不支持按索引赋值，抛出 TypeError。"
+          ],
+          "review": [
+            "「运行验证」常要求输出格式化后的多段文本，注意 f-string 中冒号后的说明符会改变数值的显示方式，且对齐补的是空格。",
+            "「预测输出」偏爱考查切片的左闭右开、负索引，以及「方法返回新字符串、原串不变」这一性质。遇到连续调用，按顺序写出每一步产生的对象。",
+            "「找错改错」常见错误是索引越界、字符串与数字相加、以及忘记接收 replace()/strip() 的返回值。IndexError 指向下标，TypeError 指向类型或不可变赋值。",
+            "「配对分类」把 upper/strip/split/join 等方法与作用对应，建议同时记住每个方法的返回值类型，这对后续链式调用有帮助。"
+          ],
+          "explanations": {
+            "run": "字符串玩得不错！f-string 会是你最常用的技巧之一。",
+            "debug": "两个变量之间要显式加上一个空格。",
+            "predict": "正确。* 让字符串重复指定次数。",
+            "match": "「配对分类」把 upper/strip/split/join 等方法与作用对应，建议同时记住每个方法的返回值类型，这对后续链式调用有帮助。"
+          }
         }
       },
       "tags": [
@@ -1120,50 +1201,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义 hero = \"亚瑟\"、job = \"战士\"、power = 88，用 f-string 输出三行：英雄：亚瑟 / 职业：战士 / 战力：88。",
+          "prompt": "围绕本节考点「综合：变量、运算与格式化输出」：定义 name = \"林晓\"、age = 16、city = \"杭州\"，用 f-string 逐行输出：姓名：林晓 / 年龄：16 / 城市：杭州。",
           "starterCode": "",
           "stdin": [],
-          "expectedOutput": "英雄：亚瑟\n职业：战士\n战力：88",
-          "successFeedback": "项目完成！你已能综合运用变量与 f-string 生成结构化输出。",
-          "errorFeedback": "请定义三个变量，并用三个 f-string 分别输出。"
+          "expectedOutput": "姓名：林晓\n年龄：16\n城市：杭州",
+          "successFeedback": "输出与预期一致。「综合：变量、运算与格式化输出」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
-          "code": "name = \"Lucy\"\nprint(f\"你好，{name}\")",
+          "prompt": "本题考查「综合：变量、运算与格式化输出」。阅读代码，选出它运行后的实际输出。",
+          "code": "name = \"林晓\"\nprint(f\"你好，{name}\")",
           "stdin": [],
           "options": [
             {
-              "text": "你好，Lucy",
+              "text": "你好，林晓",
               "correct": true,
-              "feedback": "正确！{name} 会被替换成变量的值 Lucy。"
+              "feedback": "正确。{name} 会被替换成变量的值。"
             },
             {
               "text": "你好，name",
               "correct": false,
-              "feedback": "不对，花括号里写的是变量名，会替换成它的值。"
+              "feedback": "不正确。花括号里是变量名，会替换成它的值。"
             },
             {
               "text": "你好，{name}",
               "correct": false,
-              "feedback": "不对，花括号会被求值替换。"
+              "feedback": "不正确。花括号内的表达式会被求值。"
             },
             {
-              "text": "Lucy 你好",
+              "text": "林晓 你好",
               "correct": false,
-              "feedback": "不对，文字顺序和代码一致。"
+              "feedback": "不正确。输出顺序与代码中的文字顺序一致。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码第一行的 f-string 漏了花括号，请修复成 {hero}。",
-          "buggyCode": "hero = \"亚瑟\"\njob = \"战士\"\npower = 88\nprint(f\"英雄：hero\")\nprint(f\"职业：{job}\")\nprint(f\"战力：{power}\")",
+          "prompt": "下面这段程序想用格式化字符串输出信息卡，但输出与预期不符。请定位并修正错误。",
+          "buggyCode": "name = \"林晓\"\nage = 16\ncity = \"杭州\"\nprint(f\"姓名：name\")\nprint(f\"年龄：{age}\")\nprint(f\"城市：{city}\")",
           "stdin": [],
-          "expectedOutput": "英雄：亚瑟\n职业：战士\n战力：88",
-          "successFeedback": "修复成功！f-string 里要用 {变量} 才能嵌入值。",
-          "errorFeedback": "第一行应写成 f\"英雄：{hero}\"。"
+          "expectedOutput": "姓名：林晓\n年龄：16\n城市：杭州",
+          "successFeedback": "输出与预期一致。「综合：变量、运算与格式化输出」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧概念与右侧含义配对。",
+          "prompt": "本题考查「综合：变量、运算与格式化输出」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "f-string",
@@ -1171,13 +1252,33 @@
             },
             {
               "left": "变量",
-              "right": "保存数据的容器"
+              "right": "给数据起名字并保存值"
             },
             {
               "left": "print()",
               "right": "把内容输出到屏幕"
             }
           ]
+        },
+        "meta": {
+          "concept": "综合：变量、运算与格式化输出",
+          "hints": [
+            "先回到本节目标：能按「输入数据 → 计算 → 组织文本 → 输出」的顺序设计程序。",
+            "再看知识要点：顺序程序可按「准备数据 → 计算派生量 → 组织文本 → 输出」四段拆解。",
+            "最后对照常见错误的原因：total 是 int，字符串与整数相加会抛出 TypeError。"
+          ],
+          "review": [
+            "「运行验证」要求输出多字段信息卡，重点考查输出格式是否逐行一致。特别注意逗号分隔带来的额外空格，以及 :.1f 与 :.2f 造成的小数位差异。",
+            "「预测输出」会把变量重新赋值、算术运算和 f-string 组合在一起，建议先算出所有中间值，再代入格式说明符判断最终文本。",
+            "「找错改错」的高频问题是字符串与数字相加、忘记 str() 转换、以及除以零。TypeError 查类型，ZeroDivisionError 查分母来源。",
+            "「配对分类」把前三节的概念与用途对应，检验你是否能把「变量」「表达式」「字符串方法」这些术语准确地映射到代码中的具体位置。"
+          ],
+          "explanations": {
+            "run": "你已能综合运用变量与 f-string 生成结构化输出。",
+            "debug": "f-string 里要用 {变量} 才能嵌入值。",
+            "predict": "正确。{name} 会被替换成变量的值 Lucy。",
+            "match": "「配对分类」把前三节的概念与用途对应，检验你是否能把「变量」「表达式」「字符串方法」这些术语准确地映射到代码中的具体位置。"
+          }
         }
       },
       "tags": [
@@ -1338,17 +1439,17 @@
       ],
       "practice": {
         "run": {
-          "prompt": "用 input() 读取一行输入存入 city，再输出 \"欢迎来到<城市>！\"。运行时输入：北京",
+          "prompt": "围绕本节考点「input() 返回值恒为字符串」：用 input() 读取一行输入存入 city，再输出 \"欢迎来到<城市>！\"。运行时输入：北京",
           "starterCode": "",
           "stdin": [
             "北京"
           ],
           "expectedOutput": "欢迎来到北京！",
-          "successFeedback": "很好！你的程序已经能和用户对话了。",
-          "errorFeedback": "请用 input() 获取输入并存到变量，再用 print 拼接输出欢迎语。"
+          "successFeedback": "输出与预期一致。「input() 返回值恒为字符串」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码运行时若输入\"小红\"，会输出什么？（input 会读取\"小红\"）",
+          "prompt": "本题考查「input() 返回值恒为字符串」。阅读代码，选出它运行后的实际输出。",
           "code": "name = input()\nprint(\"你好，\" + name)",
           "stdin": [
             "小红"
@@ -1357,37 +1458,37 @@
             {
               "text": "你好，小红",
               "correct": true,
-              "feedback": "正确！input() 读取到的内容会拼进字符串。"
+              "feedback": "正确。input() 读取到的内容会拼进字符串。"
             },
             {
               "text": "你好，name",
               "correct": false,
-              "feedback": "不对，变量 name 的值被用上了。"
+              "feedback": "不正确。变量 name 的值被用上了。"
             },
             {
               "text": "你好，",
               "correct": false,
-              "feedback": "不对，输入内容也被输出了。"
+              "feedback": "不正确。输入内容也被输出了。"
             },
             {
               "text": "name 你好",
               "correct": false,
-              "feedback": "不对，顺序反了。"
+              "feedback": "不正确。顺序反了。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码在拼接处漏了加号 +，导致语法错误，请修复。",
+          "prompt": "下面这段程序想读入一行内容后拼接输出，但运行时报错。请定位并修正错误。",
           "buggyCode": "city = input()\nprint(\"欢迎来到\" city \"！\")",
           "stdin": [
             "上海"
           ],
           "expectedOutput": "欢迎来到上海！",
-          "successFeedback": "修复成功！字符串拼接必须用 +，不能直接并列。",
-          "errorFeedback": "在 \"欢迎来到\" 和 city 之间要加上 +。"
+          "successFeedback": "输出与预期一致。「input() 返回值恒为字符串」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧概念与右侧含义配对。",
+          "prompt": "本题考查「input() 返回值恒为字符串」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "input()",
@@ -1402,6 +1503,26 @@
               "right": "用来保存输入的数据"
             }
           ]
+        },
+        "meta": {
+          "concept": "input() 返回值恒为字符串",
+          "hints": [
+            "先回到本节目标：理解 input() 的返回值永远是字符串。",
+            "再看知识要点：input() 会暂停程序等待一行输入，返回值恒为字符串且不含结尾换行。",
+            "最后对照常见错误的原因：input() 返回字符串，字符串与整数相加抛出 TypeError。"
+          ],
+          "review": [
+            "「运行验证」通常要求读入一行文本后输出欢迎语。由于示例统一使用无提示语的 input()，输出只包含你显式 print() 的内容；若不慎使用带提示语的形式，输出开头会多出提示文字且缺少换行。",
+            "「预测输出」常把 input() 得到的字符串与 str() / int() 转换组合，考查你是否注意到「输入永远是文本」。逐行记录每个名字的类型，比只记值更可靠。",
+            "「找错改错」的高频问题是对输入直接做算术、或用 int() 转换带小数点的文本。TypeError 检查是否遗漏转换，ValueError 检查文本内容是否合法。",
+            "「配对分类」把 input、int、float、str 与各自作用对应，帮助建立「取得文本 → 解释类型 → 参与运算」的固定流程。"
+          ],
+          "explanations": {
+            "run": "很好！你的程序已经能和用户对话了。",
+            "debug": "字符串拼接必须用 +，不能直接并列。",
+            "predict": "正确。input() 读取到的内容会拼进字符串。",
+            "match": "「配对分类」把 input、int、float、str 与各自作用对应，帮助建立「取得文本 → 解释类型 → 参与运算」的固定流程。"
+          }
         }
       },
       "tags": [
@@ -1557,34 +1678,34 @@
       ],
       "practice": {
         "run": {
-          "prompt": "用 input() 读取一个整数，先用 int() 转换成数字，再加 10 后输出。运行时输入：5",
+          "prompt": "围绕本节考点「int()/float() 显式类型转换」：用 input() 读取一个整数，先用 int() 转换成数字，再加 10 后输出。运行时输入：5",
           "starterCode": "",
           "stdin": [
             "5"
           ],
           "expectedOutput": "15",
-          "successFeedback": "类型转换到位！这是处理用户输入的关键一步。",
-          "errorFeedback": "请先用 int(input()) 把输入转成整数，再加 10 输出。"
+          "successFeedback": "输出与预期一致。「int()/float() 显式类型转换」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「int()/float() 显式类型转换」。阅读代码，选出它运行后的实际输出。",
           "code": "s = \"3.5\"\nprint(float(s))",
           "stdin": [],
           "options": [
             {
               "text": "3.5",
               "correct": true,
-              "feedback": "正确！float() 把字符串转成小数 3.5。"
+              "feedback": "正确。float() 把字符串转成小数 3.5。"
             },
             {
               "text": "3",
               "correct": false,
-              "feedback": "不对，3 是 int 的结果，这里用的是 float。"
+              "feedback": "不正确。3 是 int 的结果，这里用的是 float。"
             },
             {
               "text": "3.5.0",
               "correct": false,
-              "feedback": "不对，不会出现这种写法。"
+              "feedback": "不正确。不会出现这种写法。"
             },
             {
               "text": "报错",
@@ -1594,17 +1715,17 @@
           ]
         },
         "debug": {
-          "prompt": "下面代码忘记把 input 转成整数，导致字符串和数字相加报错，请修复。",
+          "prompt": "下面这段程序想读入一个整数再做加法，但运行时报错。请定位并修正错误。",
           "buggyCode": "n = input()\nprint(n + 10)",
           "stdin": [
             "7"
           ],
           "expectedOutput": "17",
-          "successFeedback": "修复成功！input() 返回字符串，要先 int() 才能做加法。",
-          "errorFeedback": "把 n = input() 改成 n = int(input())。"
+          "successFeedback": "输出与预期一致。「int()/float() 显式类型转换」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧类型转换函数与右侧作用配对。",
+          "prompt": "本题考查「int()/float() 显式类型转换」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "int()",
@@ -1619,6 +1740,26 @@
               "right": "把数字转为字符串"
             }
           ]
+        },
+        "meta": {
+          "concept": "int()/float() 显式类型转换",
+          "hints": [
+            "先回到本节目标：能说明隐式类型转换与显式类型转换的区别。",
+            "再看知识要点：隐式转换只发生在安全的数值提升；文本转数值必须显式调用。",
+            "最后对照常见错误的原因：字符串含小数点，不是合法的整数字面量，抛出 ValueError。"
+          ],
+          "review": [
+            "「运行验证」常要求读入一个整数再做运算。注意输入先经 int() 才能参与算术，且输出中的空格数量要与期望一致。",
+            "「预测输出」偏爱把 int()、float()、str() 混在一组 print() 中，考查每种转换的结果类型与显示形态，尤其是 3.0 与 3 的差别。",
+            "「找错改错」的典型错误是对含小数点的文本调用 int()、忘记转换就做加法。ValueError 指向内容非法，TypeError 指向类型不匹配。",
+            "「配对分类」把转换函数与失败情形对应，目标是让你在写代码前就能判断「这一步会不会抛异常」。"
+          ],
+          "explanations": {
+            "run": "类型转换到位！这是处理用户输入的关键一步。",
+            "debug": "input() 返回字符串，要先 int() 才能做加法。",
+            "predict": "正确。float() 把字符串转成小数 3.5。",
+            "match": "「配对分类」把转换函数与失败情形对应，目标是让你在写代码前就能判断「这一步会不会抛异常」。"
+          }
         }
       },
       "tags": [
@@ -1786,50 +1927,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义 age = 20，若 age >= 18 则输出\"已成年\"。",
+          "prompt": "围绕本节考点「比较运算符与 if 语句」：定义 age = 20，若 age >= 18 则输出\"已成年\"。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "已成年",
-          "successFeedback": "判断成立！你的程序已经会\"思考\"了。",
-          "errorFeedback": "请使用 if 与 >= 判断 age 是否 >=18，成立时 print。"
+          "successFeedback": "输出与预期一致。「比较运算符与 if 语句」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「比较运算符与 if 语句」。阅读代码，选出它运行后的实际输出。",
           "code": "x = 5\nif x > 3:\n    print(\"大\")\nelse:\n    print(\"小\")",
           "stdin": [],
           "options": [
             {
               "text": "大",
               "correct": true,
-              "feedback": "正确！5 > 3 成立，走 if 分支输出\"大\"。"
+              "feedback": "正确。5 > 3 成立，走 if 分支输出\"大\"。"
             },
             {
               "text": "小",
               "correct": false,
-              "feedback": "不对，条件成立，不会走 else。"
+              "feedback": "不正确。条件成立，不会走 else。"
             },
             {
               "text": "大\n小",
               "correct": false,
-              "feedback": "不对，只会执行其中一个分支。"
+              "feedback": "不正确。只会执行其中一个分支。"
             },
             {
               "text": "什么都不输出",
               "correct": false,
-              "feedback": "不对，条件成立有输出。"
+              "feedback": "不正确。条件成立有输出。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码把 >= 误写成了 =>，请修复。",
+          "prompt": "下面这段程序想按阈值判断并输出结论，但运行时报错。请定位并修正错误。",
           "buggyCode": "age = 20\nif age => 18:\n    print(\"已成年\")",
           "stdin": [],
           "expectedOutput": "已成年",
-          "successFeedback": "修复成功！\"大于等于\"的写法是 >=，不是 =>。",
-          "errorFeedback": "把 => 改成 >=。"
+          "successFeedback": "输出与预期一致。「比较运算符与 if 语句」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧语法与右侧含义配对。",
+          "prompt": "本题考查「比较运算符与 if 语句」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "if",
@@ -1844,6 +1985,26 @@
               "right": "表示 if 内部要执行的代码块"
             }
           ]
+        },
+        "meta": {
+          "concept": "比较运算符与 if 语句",
+          "hints": [
+            "先回到本节目标：理解布尔表达式与比较运算符。",
+            "再看知识要点：比较运算产生 bool 值；== 是比较，= 是赋值，不可混用。",
+            "最后对照常见错误的原因：= 是赋值语句，不能出现在条件表达式里，抛出 SyntaxError。"
+          ],
+          "review": [
+            "「运行验证」常要求根据输入数值输出不同提示，注意所有输出都来自显式 print()，条件不成立时程序应安静结束而不是输出空行。",
+            "「预测输出」重点考查短路、真值判定与缩进范围。建议先标出哪些行属于 if 块，再逐行判断是否执行。",
+            "「找错改错」高频错误为漏写冒号、把 = 当 ==、缩进不一致、以及 or 连接的表达式不完整。SyntaxError 查结构，IndentationError 查缩进，逻辑错误则需对照输出反推。",
+            "「配对分类」把 ==、and、in 等运算符与含义对应，检验你能否用准确的术语描述条件的构成。"
+          ],
+          "explanations": {
+            "run": "判断成立！你的程序已经会\"思考\"了。",
+            "debug": "\"大于等于\"的写法是 >=，不是 =>。",
+            "predict": "正确。5 > 3 成立，走 if 分支输出\"大\"。",
+            "match": "「配对分类」把 ==、and、in 等运算符与含义对应，检验你能否用准确的术语描述条件的构成。"
+          }
         }
       },
       "tags": [
@@ -1998,50 +2159,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义 score = 75，若 score >= 60 输出\"及格\"，否则输出\"不及格\"。",
+          "prompt": "围绕本节考点「if / elif / else 语法结构」：定义 score = 75，若 score >= 60 输出\"及格\"，否则输出\"不及格\"。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "及格",
-          "successFeedback": "分支清晰！程序现在能应对两种情况了。",
-          "errorFeedback": "请使用 if ... else ...，成立输出\"及格\"，否则输出\"不及格\"。"
+          "successFeedback": "输出与预期一致。「if / elif / else 语法结构」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「if / elif / else 语法结构」。阅读代码，选出它运行后的实际输出。",
           "code": "n = 4\nif n % 2 == 0:\n    print(\"偶数\")\nelse:\n    print(\"奇数\")",
           "stdin": [],
           "options": [
             {
               "text": "偶数",
               "correct": true,
-              "feedback": "正确！4 能被 2 整除，是偶数。"
+              "feedback": "正确。4 能被 2 整除，是偶数。"
             },
             {
               "text": "奇数",
               "correct": false,
-              "feedback": "不对，4 是偶数。"
+              "feedback": "不正确。4 是偶数。"
             },
             {
               "text": "4",
               "correct": false,
-              "feedback": "不对，输出的是文字。"
+              "feedback": "不正确。输出的是文字。"
             },
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，必有分支被执行。"
+              "feedback": "不正确。必有分支被执行。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码的 else 后漏了冒号，请修复。",
+          "prompt": "下面这段程序想按分数划分等级，但存在语法错误。请定位并修正，使其输出预期内容。",
           "buggyCode": "score = 50\nif score >= 60:\n    print(\"及格\")\nelse\n    print(\"不及格\")",
           "stdin": [],
           "expectedOutput": "不及格",
-          "successFeedback": "修复成功！else 后面也要加冒号。",
-          "errorFeedback": "在 else 后面补上冒号 :。"
+          "successFeedback": "输出与预期一致。「if / elif / else 语法结构」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧语法与右侧含义配对。",
+          "prompt": "本题考查「if / elif / else 语法结构」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "else",
@@ -2056,6 +2217,26 @@
               "right": "条件判断"
             }
           ]
+        },
+        "meta": {
+          "concept": "if / elif / else 语法结构",
+          "hints": [
+            "先回到本节目标：能写出互斥的多分支结构并说明执行顺序。",
+            "再看知识要点：if / elif / else 链自上而下求值，命中一个分支后整条链结束。",
+            "最后对照常见错误的原因：一旦命中，后续分支全部跳过，导致分类结果失真。"
+          ],
+          "review": [
+            "「运行验证」通常实现一个二分支判断，注意条件为真和为假两条路径都要能给出正确输出，且没有多余空行。",
+            "「预测输出」常设置落在边界上的值（如恰好 60 或 90），考查 >= 与 > 的区别以及条件顺序。逐个条件求值，命中即停止。",
+            "「找错改错」的高频错误是 elif 写错、else 带条件、以及该用链却用了多个独立 if。若输出出现两行本应互斥的结果，首先怀疑分支结构。",
+            "「配对分类」把 if、elif、else 与各自职责对应，帮助你在设计规则时先确定「是否互斥」再选结构。"
+          ],
+          "explanations": {
+            "run": "分支清晰！程序现在能应对两种情况了。",
+            "debug": "else 后面也要加冒号。",
+            "predict": "正确。4 能被 2 整除，是偶数。",
+            "match": "「配对分类」把 if、elif、else 与各自职责对应，帮助你在设计规则时先确定「是否互斥」再选结构。"
+          }
         }
       },
       "tags": [
@@ -2220,7 +2401,7 @@
       ],
       "practice": {
         "run": {
-          "prompt": "依次读取两个整数 a、b 和一个运算符 op（+ 或 -）。若 op 为 \"+\" 输出 a+b，否则输出 a-b。运行时输入：10、5、+",
+          "prompt": "围绕本节考点「综合：输入、转换与分支」：依次读取两个整数 a、b 和一个运算符 op（+ 或 -）。若 op 为 \"+\" 输出 a+b，否则输出 a-b。运行时输入：10、5、+",
           "starterCode": "",
           "stdin": [
             "10",
@@ -2228,28 +2409,28 @@
             "+"
           ],
           "expectedOutput": "15",
-          "successFeedback": "计算器完成！你已能把多个知识点串成完整程序。",
-          "errorFeedback": "请用 int(input()) 读数字，用 op == \"+\" 判断，并分别处理加减。"
+          "successFeedback": "输出与预期一致。「综合：输入、转换与分支」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「综合：输入、转换与分支」。阅读代码，选出它运行后的实际输出。",
           "code": "a = 8\nb = 3\nop = \"-\" \nif op == \"+\":\n    print(a + b)\nelse:\n    print(a - b)",
           "stdin": [],
           "options": [
             {
               "text": "5",
               "correct": true,
-              "feedback": "正确！op 是 \"-\"，走 else 输出 8 - 3 = 5。"
+              "feedback": "正确。op 是 \"-\"，走 else 输出 8 - 3 = 5。"
             },
             {
               "text": "11",
               "correct": false,
-              "feedback": "不对，op 是减号。"
+              "feedback": "不正确。op 是减号。"
             },
             {
               "text": "8-3",
               "correct": false,
-              "feedback": "不对，输出的是计算结果。"
+              "feedback": "不正确。输出的是计算结果。"
             },
             {
               "text": "83",
@@ -2259,7 +2440,7 @@
           ]
         },
         "debug": {
-          "prompt": "下面代码把比较 == 误写成赋值 =，请修复。",
+          "prompt": "下面这段程序想按运算符选择不同的计算，但存在语法错误。请定位并修正。",
           "buggyCode": "a = int(input())\nb = int(input())\nop = input()\nif op = \"+\":\n    print(a + b)\nelse:\n    print(a - b)",
           "stdin": [
             "10",
@@ -2267,11 +2448,11 @@
             "+"
           ],
           "expectedOutput": "15",
-          "successFeedback": "修复成功！判断相等用 ==，单个 = 是赋值。",
-          "errorFeedback": "把 if op = \"+\" 改成 if op == \"+\"。"
+          "successFeedback": "输出与预期一致。「综合：输入、转换与分支」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧写法与右侧含义配对。",
+          "prompt": "本题考查「综合：输入、转换与分支」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "int(input())",
@@ -2286,6 +2467,26 @@
               "right": "运算符不是加号时执行减法"
             }
           ]
+        },
+        "meta": {
+          "concept": "综合：输入、转换与分支",
+          "hints": [
+            "先回到本节目标：能把输入、转换、分支、运算组合为完整程序。",
+            "再看知识要点：完整程序 = 读取输入 → 显式转换 → 分支选择 → 明确输出。",
+            "最后对照常见错误的原因：b 为 0 时抛出 ZeroDivisionError，程序中断。"
+          ],
+          "review": [
+            "「运行验证」要求实现完整的计算程序。注意输入按行提供，且每个分支都要有且仅有一个 print()；输出中不要混入 input() 的提示语。",
+            "「预测输出」会给出具体输入让你推断结果，重点考查 / 返回 float、以及除零分支的提示文本。先确定命中哪个分支，再算该分支的输出。",
+            "「找错改错」常见错误包括把运算符转成整数、遗漏除零判断、以及用独立 if 导致重复输出。ZeroDivisionError 与 ValueError 分别指向除零与非法转换。",
+            "「配对分类」把本章概念（input、int、if、elif、else）与职责对应，检验你能否把需求拆解为清晰的处理阶段。"
+          ],
+          "explanations": {
+            "run": "你已能把多个知识点串成完整程序。",
+            "debug": "判断相等用 ==，单个 = 是赋值。",
+            "predict": "正确。op 是 \"-\"，走 else 输出 8 - 3 = 5。",
+            "match": "「配对分类」把本章概念（input、int、if、elif、else）与职责对应，检验你能否把需求拆解为清晰的处理阶段。"
+          }
         }
       },
       "tags": [
@@ -2441,50 +2642,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "用 while 循环输出 1 到 5，每行一个数字。",
+          "prompt": "围绕本节考点「while 循环边界与终止条件」：用 while 循环输出 1 到 5，每行一个数字。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "1\n2\n3\n4\n5",
-          "successFeedback": "循环跑起来了！记得让计数器前进，循环才会结束。",
-          "errorFeedback": "请使用 while 循环，并在循环内让计数器 i 递增，输出 1 到 5。"
+          "successFeedback": "输出与预期一致。「while 循环边界与终止条件」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「while 循环边界与终止条件」。阅读代码，选出它运行后的实际输出。",
           "code": "i = 1\nwhile i <= 3:\n    print(i)\n    i = i + 1",
           "stdin": [],
           "options": [
             {
               "text": "1\n2\n3",
               "correct": true,
-              "feedback": "正确！循环到 i=3 后 i 变成 4，条件不成立退出。"
+              "feedback": "正确。循环到 i=3 后 i 变成 4，条件不成立退出。"
             },
             {
               "text": "1\n2\n3\n4",
               "correct": false,
-              "feedback": "不对，i=4 时条件 i<=3 已不成立。"
+              "feedback": "不正确。i=4 时条件 i<=3 已不成立。"
             },
             {
               "text": "3\n2\n1",
               "correct": false,
-              "feedback": "不对，顺序是递增的。"
+              "feedback": "不正确。顺序是递增的。"
             },
             {
               "text": "1 2 3",
               "correct": false,
-              "feedback": "不对，每个 print 单独占一行。"
+              "feedback": "不正确。每个 print 单独占一行。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面循环条件写成了 i < 5，导致少输出一个 5，请改成 i <= 5。",
+          "prompt": "下面这段程序想输出 1 到 5，但实际输出少了一行。请定位并修正错误。",
           "buggyCode": "i = 1\nwhile i < 5:\n    print(i)\n    i = i + 1",
           "stdin": [],
           "expectedOutput": "1\n2\n3\n4\n5",
-          "successFeedback": "修复成功！要包含 5，条件应是 i <= 5。",
-          "errorFeedback": "把 while i < 5 改成 while i <= 5。"
+          "successFeedback": "输出与预期一致。「while 循环边界与终止条件」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧概念与右侧含义配对。",
+          "prompt": "本题考查「while 循环边界与终止条件」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "while",
@@ -2499,6 +2700,26 @@
               "right": "条件永远为真、无法退出"
             }
           ]
+        },
+        "meta": {
+          "concept": "while 循环边界与终止条件",
+          "hints": [
+            "先回到本节目标：能说明 while 循环的执行流程与终止条件。",
+            "再看知识要点：while 每轮先判断条件再执行循环体，条件为假时退出。",
+            "最后对照常见错误的原因：条件恒为真，形成死循环，程序不会自行结束。"
+          ],
+          "review": [
+            "「运行验证」通常要求用 while 输出连续数字。注意循环边界：i <= 5 与 i < 5 会相差一轮，输出行数也随之不同。",
+            "「预测输出」常把累加、continue、break 组合，考查每轮是否执行、何时退出。建议画一张表格逐轮记录变量值。",
+            "「找错改错」最高频的问题是漏写递增导致死循环，以及递增写在 continue 之后。若程序长时间无输出或输出不停止，优先检查推进语句。",
+            "「配对分类」把 break、continue、计数器与各自作用对应，帮助建立「循环三要素：初始状态、继续条件、状态推进」的检查清单。"
+          ],
+          "explanations": {
+            "run": "循环跑起来了！记得让计数器前进，循环才会结束。",
+            "debug": "要包含 5，条件应是 i <= 5。",
+            "predict": "正确。循环到 i=3 后 i 变成 4，条件不成立退出。",
+            "match": "「配对分类」把 break、continue、计数器与各自作用对应，帮助建立「循环三要素：初始状态、继续条件、状态推进」的检查清单。"
+          }
         }
       },
       "tags": [
@@ -2663,32 +2884,32 @@
       ],
       "practice": {
         "run": {
-          "prompt": "创建列表 nums = [10, 20, 30, 40]，输出它的第一个元素和长度。",
+          "prompt": "围绕本节考点「列表索引从 0 开始」：创建列表 nums = [10, 20, 30, 40]，输出它的第一个元素和长度。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "10\n4",
-          "successFeedback": "列表入门成功！它是 Python 最常用的数据结构。",
-          "errorFeedback": "请创建列表 nums，并用索引 [0] 和 len() 分别输出首元素与长度。"
+          "successFeedback": "输出与预期一致。「列表索引从 0 开始」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「列表索引从 0 开始」。阅读代码，选出它运行后的实际输出。",
           "code": "pets = [\"猫\", \"狗\", \"鱼\"]\nprint(pets[2])",
           "stdin": [],
           "options": [
             {
               "text": "鱼",
               "correct": true,
-              "feedback": "正确！索引 2 是第三个元素（从 0 开始）。"
+              "feedback": "正确。索引 2 是第三个元素（从 0 开始）。"
             },
             {
               "text": "猫",
               "correct": false,
-              "feedback": "不对，\"猫\" 是 pets[0]。"
+              "feedback": "不正确。\"猫\" 是 pets[0]。"
             },
             {
               "text": "狗",
               "correct": false,
-              "feedback": "不对，\"狗\" 是 pets[1]。"
+              "feedback": "不正确。\"狗\" 是 pets[1]。"
             },
             {
               "text": "报错",
@@ -2698,15 +2919,15 @@
           ]
         },
         "debug": {
-          "prompt": "下面代码想输出第一个元素，但用了索引 [1]（第二个），请改成 [0]。",
+          "prompt": "下面这段程序想输出列表的第一个元素，但输出了别的内容。请定位并修正错误。",
           "buggyCode": "nums = [10, 20, 30, 40]\nprint(nums[1])\nprint(len(nums))",
           "stdin": [],
           "expectedOutput": "10\n4",
-          "successFeedback": "修复成功！列表索引从 0 开始，第一个元素是 [0]。",
-          "errorFeedback": "把 nums[1] 改成 nums[0]。"
+          "successFeedback": "输出与预期一致。「列表索引从 0 开始」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧语法与右侧含义配对。",
+          "prompt": "本题考查「列表索引从 0 开始」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "[]",
@@ -2721,6 +2942,26 @@
               "right": "获取列表长度"
             }
           ]
+        },
+        "meta": {
+          "concept": "列表索引从 0 开始",
+          "hints": [
+            "先回到本节目标：理解列表是有序、可变、可含异构元素的序列。",
+            "再看知识要点：列表有序、可变、可异构；索引从 0 开始，切片左闭右开。",
+            "最后对照常见错误的原因：两个名字指向同一列表对象，任一处的修改都会被另一处看到。"
+          ],
+          "review": [
+            "「运行验证」常要求输出列表首元素与长度。注意 len() 返回元素个数，而 a[0] 是首元素；两者类型不同，输出格式也不同。",
+            "「预测输出」偏爱考查切片边界、pop 的返回值，以及别名赋值后的联动变化。遇到 a.pop() 要同时记录「返回值」与「列表新状态」。",
+            "「找错改错」高频问题是索引越界、remove 不存在的值、以及误把赋值当复制。IndexError 查下标，ValueError 查按值删除。",
+            "「配对分类」把 append、insert、pop、remove 与语义对应，重点是区分「按位置操作」与「按值操作」。"
+          ],
+          "explanations": {
+            "run": "它是 Python 最常用的数据结构。",
+            "debug": "列表索引从 0 开始，第一个元素是 [0]。",
+            "predict": "正确。索引 2 是第三个元素（从 0 开始）。",
+            "match": "「配对分类」把 append、insert、pop、remove 与语义对应，重点是区分「按位置操作」与「按值操作」。"
+          }
         }
       },
       "tags": [
@@ -2876,50 +3117,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "用 for 循环遍历列表 [1, 2, 3, 4, 5]，把每个数字原样输出（每行一个）。",
+          "prompt": "围绕本节考点「for 循环与 range()」：用 for 循环遍历列表 [1, 2, 3, 4, 5]，把每个数字原样输出（每行一个）。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "1\n2\n3\n4\n5",
-          "successFeedback": "遍历自如！for 是处理集合的利器。",
-          "errorFeedback": "请使用 for x in [1, 2, 3, 4, 5]: 遍历列表，并在循环体内 print 每个元素。"
+          "successFeedback": "输出与预期一致。「for 循环与 range()」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「for 循环与 range()」。阅读代码，选出它运行后的实际输出。",
           "code": "for i in range(3):\n    print(i)",
           "stdin": [],
           "options": [
             {
               "text": "0\n1\n2",
               "correct": true,
-              "feedback": "正确！range(3) 生成 0、1、2。"
+              "feedback": "正确。range(3) 生成 0、1、2。"
             },
             {
               "text": "1\n2\n3",
               "correct": false,
-              "feedback": "不对，range 从 0 开始。"
+              "feedback": "不正确。range 从 0 开始。"
             },
             {
               "text": "0 1 2",
               "correct": false,
-              "feedback": "不对，每个值各占一行。"
+              "feedback": "不正确。每个值各占一行。"
             },
             {
               "text": "3",
               "correct": false,
-              "feedback": "不对，共循环 3 次。"
+              "feedback": "不正确。共循环 3 次。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面 for 语句末尾漏了冒号，请补上。",
+          "prompt": "下面这段程序想遍历一组数据并逐行输出，但存在语法错误。请定位并修正。",
           "buggyCode": "for x in [1, 2, 3, 4, 5]\n    print(x)",
           "stdin": [],
           "expectedOutput": "1\n2\n3\n4\n5",
-          "successFeedback": "修复成功！for / if / while 后面都要加冒号。",
-          "errorFeedback": "在 for 那一行末尾加上冒号 :。"
+          "successFeedback": "输出与预期一致。「for 循环与 range()」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧语法与右侧含义配对。",
+          "prompt": "本题考查「for 循环与 range()」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "for",
@@ -2934,6 +3175,26 @@
               "right": "生成 0、1、2 三个数"
             }
           ]
+        },
+        "meta": {
+          "concept": "for 循环与 range()",
+          "hints": [
+            "先回到本节目标：能说明 for 循环与 while 循环的适用差异。",
+            "再看知识要点：for 依次取出可迭代对象的元素，无需手动维护计数器。",
+            "最后对照常见错误的原因：range 左闭右开，最大值为 4。"
+          ],
+          "review": [
+            "「运行验证」通常要求用 for 遍历输出若干元素，注意输出顺序与容器顺序一致，且每行只 print() 一次。",
+            "「预测输出」常把 range 的边界、步长与累加器组合。先列出 range 实际产生的整数序列，再逐轮更新累加器。",
+            "「找错改错」高频错误是 range 少一位、累加器放错位置、以及在遍历中删除元素。若结果比预期少一个元素，优先检查 range 右端点。",
+            "「配对分类」把 for、range、enumerate 与用途对应，帮助你在「已知数据集合」与「条件驱动」之间正确选择循环形式。"
+          ],
+          "explanations": {
+            "run": "遍历自如！for 是处理集合的利器。",
+            "debug": "for / if / while 后面都要加冒号。",
+            "predict": "正确。range(3) 生成 0、1、2。",
+            "match": "「配对分类」把 for、range、enumerate 与用途对应，帮助你在「已知数据集合」与「条件驱动」之间正确选择循环形式。"
+          }
         }
       },
       "tags": [
@@ -3098,50 +3359,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "从列表 [1, 2, 3] 出发，先 append(4)，再 remove(2)，最后输出从开头到索引 1（不含）的子列表。",
+          "prompt": "围绕本节考点「切片左闭右开与排序」：从列表 [1, 2, 3] 出发，先 append(4)，再 remove(2)，最后输出从开头到索引 1（不含）的子列表。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "[1, 3]",
-          "successFeedback": "列表操作熟练！增删与切片是日常高频操作。",
-          "errorFeedback": "请对列表使用 append(4)、remove(2)，并输出切片 lst[0:2]。"
+          "successFeedback": "输出与预期一致。「切片左闭右开与排序」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「切片左闭右开与排序」。阅读代码，选出它运行后的实际输出。",
           "code": "a = [10, 20, 30]\na.append(40)\nprint(a)",
           "stdin": [],
           "options": [
             {
               "text": "[10, 20, 30, 40]",
               "correct": true,
-              "feedback": "正确！append 在末尾加入 40。"
+              "feedback": "正确。append 在末尾加入 40。"
             },
             {
               "text": "[40, 10, 20, 30]",
               "correct": false,
-              "feedback": "不对，append 加在末尾。"
+              "feedback": "不正确。append 加在末尾。"
             },
             {
               "text": "[10, 20, 30]",
               "correct": false,
-              "feedback": "不对，列表已被修改。"
+              "feedback": "不正确。列表已被修改。"
             },
             {
               "text": "[10, 20, 30, 40, 40]",
               "correct": false,
-              "feedback": "不对，只追加了一次。"
+              "feedback": "不正确。只追加了一次。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码想输出前两个元素，但切片写成了 [0:3]，请改成 [0:2]。",
+          "prompt": "下面这段程序想输出列表的前两个元素，但多输出了一个。请定位并修正错误。",
           "buggyCode": "lst = [1, 2, 3]\nlst.append(4)\nlst.remove(2)\nprint(lst[0:3])",
           "stdin": [],
           "expectedOutput": "[1, 3]",
-          "successFeedback": "修复成功！切片 [0:2] 取前两个元素。",
-          "errorFeedback": "把 lst[0:3] 改成 lst[0:2]。"
+          "successFeedback": "输出与预期一致。「切片左闭右开与排序」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧列表操作与右侧含义配对。",
+          "prompt": "本题考查「切片左闭右开与排序」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "append()",
@@ -3156,6 +3417,26 @@
               "right": "截取部分元素"
             }
           ]
+        },
+        "meta": {
+          "concept": "切片左闭右开与排序",
+          "hints": [
+            "先回到本节目标：能区分 sort() 与 sorted() 的返回值差异。",
+            "再看知识要点：sort() / reverse() 原地修改并返回 None；sorted() / 切片返回新对象。",
+            "最后对照常见错误的原因：sort() 原地排序并返回 None，赋值后 a 变成 None。"
+          ],
+          "review": [
+            "「运行验证」常要求增删元素后输出列表，注意 print(list) 会显示方括号、逗号和空格，与逐元素输出格式不同。",
+            "「预测输出」偏爱考查 sort() 返回 None 的情形、切片边界以及 [::2] 的取值。先判断操作是否改变原表，再写出结果。",
+            "「找错改错」高频错误是把 a = a.sort() 当作排序、对混合类型用 sum()、以及误以为浅复制完全独立。AttributeError: 'NoneType' 通常就来自前者。",
+            "「配对分类」把 sort 与 sorted、reverse 与 [::-1] 对应，核心是区分「原地」与「返回新对象」两类语义。"
+          ],
+          "explanations": {
+            "run": "列表操作熟练！增删与切片是日常高频操作。",
+            "debug": "切片 [0:2] 取前两个元素。",
+            "predict": "正确。append 在末尾加入 40。",
+            "match": "「配对分类」把 sort 与 sorted、reverse 与 [::-1] 对应，核心是区分「原地」与「返回新对象」两类语义。"
+          }
         }
       },
       "tags": [
@@ -3315,32 +3596,32 @@
       ],
       "practice": {
         "run": {
-          "prompt": "创建字典 stu = {\"name\": \"Tom\", \"score\": 88}，输出 name 对应的值，并把 score 改成 95 后输出 score。",
+          "prompt": "围绕本节考点「字典按键取值与键名」：创建字典 stu = {\"name\": \"Tom\", \"score\": 88}，输出 name 对应的值，并把 score 改成 95 后输出 score。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "Tom\n95",
-          "successFeedback": "字典入门成功！它适合表达\"有名字的属性\"。",
-          "errorFeedback": "请创建字典 stu，用 stu[\"name\"] 取值，并修改 stu[\"score\"] 后输出。"
+          "successFeedback": "输出与预期一致。「字典按键取值与键名」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「字典按键取值与键名」。阅读代码，选出它运行后的实际输出。",
           "code": "d = {\"a\": 1}\nprint(d[\"a\"])",
           "stdin": [],
           "options": [
             {
               "text": "1",
               "correct": true,
-              "feedback": "正确！用键 \"a\" 取到值 1。"
+              "feedback": "正确。用键 \"a\" 取到值 1。"
             },
             {
               "text": "a",
               "correct": false,
-              "feedback": "不对，输出的是值，不是键。"
+              "feedback": "不正确。输出的是值，不是键。"
             },
             {
               "text": "{\"a\": 1}",
               "correct": false,
-              "feedback": "不对，只取出了值。"
+              "feedback": "不正确。只取出了值。"
             },
             {
               "text": "报错",
@@ -3350,15 +3631,15 @@
           ]
         },
         "debug": {
-          "prompt": "下面代码取 score 时把键名拼错成 \"scoree\"，导致找不到键报错，请改成 \"score\"。",
+          "prompt": "下面这段程序想读取字典中某个字段的值，但运行时报错。请定位并修正错误。",
           "buggyCode": "stu = {\"name\": \"Tom\", \"score\": 88}\nprint(stu[\"name\"])\nstu[\"score\"] = 95\nprint(stu[\"scoree\"])",
           "stdin": [],
           "expectedOutput": "Tom\n95",
-          "successFeedback": "修复成功！字典的键要和定义时完全一致。",
-          "errorFeedback": "把 stu[\"scoree\"] 改成 stu[\"score\"]。"
+          "successFeedback": "输出与预期一致。「字典按键取值与键名」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧字典语法与右侧含义配对。",
+          "prompt": "本题考查「字典按键取值与键名」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "{}",
@@ -3373,6 +3654,26 @@
               "right": "分隔键与值"
             }
           ]
+        },
+        "meta": {
+          "concept": "字典按键取值与键名",
+          "hints": [
+            "先回到本节目标：理解键值对映射与列表顺序存储的区别。",
+            "再看知识要点：字典是键到值的映射；键唯一且不可变，值可为任意对象。",
+            "最后对照常见错误的原因：按键读取时键缺失会抛 KeyError。"
+          ],
+          "review": [
+            "「运行验证」常要求按给定键读取并修改字典后输出。注意输出的是值而不是整个字典，且新增键与修改已有键写法相同。",
+            "「预测输出」偏爱考查 get() 的默认值、in 判断的是键、以及遍历顺序。逐行记录字典状态变化比只看最后一行更可靠。",
+            "「找错改错」高频问题是缺键直接用下标、把值当键判断、以及误以为遍历得到的是值。KeyError 直接指向键名拼写或缺失。",
+            "「配对分类」把 keys / values / items / get 与用途对应，检验你能否为不同需求选择正确的访问方式。"
+          ],
+          "explanations": {
+            "run": "它适合表达\"有名字的属性\"。",
+            "debug": "字典的键要和定义时完全一致。",
+            "predict": "正确。用键 \"a\" 取到值 1。",
+            "match": "「配对分类」把 keys / values / items / get 与用途对应，检验你能否为不同需求选择正确的访问方式。"
+          }
         }
       },
       "tags": [
@@ -3533,50 +3834,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义函数 say_hi()，函数体内输出 \"Hi there!\"，然后在函数外调用它两次。",
+          "prompt": "围绕本节考点「def 定义与 return 返回」：定义函数 say_hi()，函数体内输出 \"Hi there!\"，然后在函数外调用它两次。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "Hi there!\nHi there!",
-          "successFeedback": "函数定义成功！复用从此开始。",
-          "errorFeedback": "请用 def 定义 say_hi() 并在其中 print，再调用两次。"
+          "successFeedback": "输出与预期一致。「def 定义与 return 返回」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「def 定义与 return 返回」。阅读代码，选出它运行后的实际输出。",
           "code": "def f():\n    print(\"A\")\nf()",
           "stdin": [],
           "options": [
             {
               "text": "A",
               "correct": true,
-              "feedback": "正确！定义不会执行，调用 f() 才输出 A。"
+              "feedback": "正确。定义不会执行，调用 f() 才输出 A。"
             },
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，最后调用了 f()。"
+              "feedback": "不正确。最后调用了 f()。"
             },
             {
               "text": "A\nA",
               "correct": false,
-              "feedback": "不对，只调用了一次。"
+              "feedback": "不正确。只调用了一次。"
             },
             {
               "text": "f",
               "correct": false,
-              "feedback": "不对，输出的是函数体内的内容。"
+              "feedback": "不正确。输出的是函数体内的内容。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面 def 语句末尾漏了冒号，请补上。",
+          "prompt": "下面这段程序想定义并调用一个函数，但存在语法错误。请定位并修正。",
           "buggyCode": "def say_hi()\n    print(\"Hi there!\")\nsay_hi()\nsay_hi()",
           "stdin": [],
           "expectedOutput": "Hi there!\nHi there!",
-          "successFeedback": "修复成功！def 定义后面要加冒号。",
-          "errorFeedback": "在 def say_hi() 后面加上冒号 :。"
+          "successFeedback": "输出与预期一致。「def 定义与 return 返回」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧函数概念与右侧含义配对。",
+          "prompt": "本题考查「def 定义与 return 返回」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "def",
@@ -3591,6 +3892,26 @@
               "right": "表示函数内部的代码"
             }
           ]
+        },
+        "meta": {
+          "concept": "def 定义与 return 返回",
+          "hints": [
+            "先回到本节目标：能说明 def、参数、return 三部分的作用。",
+            "再看知识要点：def 只定义不执行；函数名加括号才触发调用。",
+            "最后对照常见错误的原因：这只是引用函数对象，函数体不会执行。"
+          ],
+          "review": [
+            "「运行验证」通常要求定义函数并调用两次，注意输出来自调用处的 print()，而不是函数内部的打印；若函数内部也 print，输出行数会翻倍。",
+            "「预测输出」常把返回值继续参与运算，考查你是否理解 return 与 print 的区别。遇到 f(g(x)) 形式，先算内层返回值再代入外层。",
+            "「找错改错」高频错误是漏写 return、调用时漏括号、以及定义在调用之后。若输出多出 None，通常说明把无返回值的函数调用直接交给了 print()。",
+            "「配对分类」把 def、参数、return、调用与职责对应，检验你能否准确描述一次函数调用中数据的流向。"
+          ],
+          "explanations": {
+            "run": "复用从此开始。",
+            "debug": "def 定义后面要加冒号。",
+            "predict": "正确。定义不会执行，调用 f() 才输出 A。",
+            "match": "「配对分类」把 def、参数、return、调用与职责对应，检验你能否准确描述一次函数调用中数据的流向。"
+          }
         }
       },
       "tags": [
@@ -3751,27 +4072,27 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义函数 square(n)，输出 n 的平方（n ** 2）。调用 square(5) 与 square(9)。",
+          "prompt": "围绕本节考点「乘方 ** 与参数形式」：定义函数 square(n)，输出 n 的平方（n ** 2）。调用 square(5) 与 square(9)。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "25\n81",
-          "successFeedback": "参数运用自如！函数现在能处理不同输入了。",
-          "errorFeedback": "请用 def square(n): 定义带参函数，输出 n**2，并调用两次。"
+          "successFeedback": "输出与预期一致。「乘方 ** 与参数形式」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「乘方 ** 与参数形式」。阅读代码，选出它运行后的实际输出。",
           "code": "def add(a, b):\n    print(a + b)\nadd(2, 3)",
           "stdin": [],
           "options": [
             {
               "text": "5",
               "correct": true,
-              "feedback": "正确！2 + 3 = 5。"
+              "feedback": "正确。2 + 3 = 5。"
             },
             {
               "text": "23",
               "correct": false,
-              "feedback": "不对，+ 对数字是加法。"
+              "feedback": "不正确。+ 对数字是加法。"
             },
             {
               "text": "2 3",
@@ -3781,20 +4102,20 @@
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，调用了 add(2,3)。"
+              "feedback": "不正确。调用了 add(2,3)。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码用 ^ 当乘方（其实 ^ 是异或），请改成 **。",
+          "prompt": "下面这段程序想计算乘方，但运算结果与预期不符。请定位并修正错误。",
           "buggyCode": "def square(n):\n    print(n ^ 2)\nsquare(5)\nsquare(9)",
           "stdin": [],
           "expectedOutput": "25\n81",
-          "successFeedback": "修复成功！Python 里乘方是 **，不是 ^。",
-          "errorFeedback": "把 n ^ 2 改成 n ** 2。"
+          "successFeedback": "输出与预期一致。「乘方 ** 与参数形式」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧概念与右侧含义配对。",
+          "prompt": "本题考查「乘方 ** 与参数形式」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "形参",
@@ -3809,6 +4130,26 @@
               "right": "乘方运算"
             }
           ]
+        },
+        "meta": {
+          "concept": "乘方 ** 与参数形式",
+          "hints": [
+            "先回到本节目标：能区分位置参数与关键字参数。",
+            "再看知识要点：位置实参按顺序绑定，关键字实参按名绑定且顺序自由。",
+            "最后对照常见错误的原因：默认值只求值一次，多次调用共享同一列表，产生数据残留。"
+          ],
+          "review": [
+            "「运行验证」常要求定义带参数的函数并调用两次，注意按位置与按名传参的绑定结果应一致，输出格式由 return 之后的字符串决定。",
+            "「预测输出」会混合默认值与关键字参数，考查绑定顺序。建议先列出每个参数最终绑定的值，再执行函数体。",
+            "「找错改错」高频错误是默认参数顺序颠倒、关键字参数后跟位置参数、以及实参数量不匹配。TypeError 通常指向数量问题。",
+            "「配对分类」把位置参数、默认参数、*args、**kwargs 与用途对应，帮助你在设计接口时选择合适的参数形式。"
+          ],
+          "explanations": {
+            "run": "参数运用自如！函数现在能处理不同输入了。",
+            "debug": "Python 里乘方是 **，不是 ^。",
+            "predict": "正确。2 + 3 = 5。",
+            "match": "「配对分类」把位置参数、默认参数、*args、**kwargs 与用途对应，帮助你在设计接口时选择合适的参数形式。"
+          }
         }
       },
       "tags": [
@@ -3967,32 +4308,32 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义全局变量 count = 0；写函数 add()，函数内用 global count 把它加 1 并输出。调用 add() 两次。",
+          "prompt": "围绕本节考点「作用域与 global 声明」：定义全局变量 count = 0；写函数 add()，函数内用 global count 把它加 1 并输出。调用 add() 两次。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "1\n2",
-          "successFeedback": "作用域搞清楚了！这是很多 Bug 的根源，你已跨过。",
-          "errorFeedback": "请在函数内用 global count 声明全局变量，再 count += 1 并输出。"
+          "successFeedback": "输出与预期一致。「作用域与 global 声明」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「作用域与 global 声明」。阅读代码，选出它运行后的实际输出。",
           "code": "x = 10\ndef f():\n    x = 99\n    print(x)\nf()\nprint(x)",
           "stdin": [],
           "options": [
             {
               "text": "99\n10",
               "correct": true,
-              "feedback": "正确！函数内 x 是局部变量 99，函数外 x 仍是全局 10。"
+              "feedback": "正确。函数内 x 是局部变量 99，函数外 x 仍是全局 10。"
             },
             {
               "text": "99\n99",
               "correct": false,
-              "feedback": "不对，函数外的 x 没被改。"
+              "feedback": "不正确。函数外的 x 没被改。"
             },
             {
               "text": "10\n10",
               "correct": false,
-              "feedback": "不对，函数内重新赋值了。"
+              "feedback": "不正确。函数内重新赋值了。"
             },
             {
               "text": "报错",
@@ -4002,15 +4343,15 @@
           ]
         },
         "debug": {
-          "prompt": "下面函数内修改 count 却忘了 global 声明，会报错，请补上 global count。",
+          "prompt": "下面这段程序想在函数内累加计数，但运行时报错。请定位并修正错误。",
           "buggyCode": "count = 0\ndef add():\n    count = count + 1\n    print(count)\nadd()\nadd()",
           "stdin": [],
           "expectedOutput": "1\n2",
-          "successFeedback": "修复成功！函数内要改全局变量，必须先 global 声明。",
-          "errorFeedback": "在函数体第一行加上 global count。"
+          "successFeedback": "输出与预期一致。「作用域与 global 声明」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧概念与右侧含义配对。",
+          "prompt": "本题考查「作用域与 global 声明」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "global",
@@ -4025,6 +4366,26 @@
               "right": "函数外定义的变量"
             }
           ]
+        },
+        "meta": {
+          "concept": "作用域与 global 声明",
+          "hints": [
+            "先回到本节目标：能区分局部作用域与全局作用域。",
+            "再看知识要点：名字按 LEGB 顺序查找：局部 → 外层 → 全局 → 内置。",
+            "最后对照常见错误的原因：x 被判定为局部变量，赋值前读取抛 UnboundLocalError。"
+          ],
+          "review": [
+            "「运行验证」通常考查 global 计数器的行为，注意 global 声明必须出现在函数内使用该名字之前，且多次调用会累积状态。",
+            "「预测输出」会把局部变量、全局常量与同名遮蔽混在一起。先判定每个名字属于哪个作用域，再代入求值。",
+            "「找错改错」高频问题是 UnboundLocalError、误以为列表参数被复制、以及遮蔽内置名字。报错信息中的变量名通常直接指向出错位置。",
+            "「配对分类」把 LEGB 四层与示例对应，帮助你在阅读多层嵌套函数时快速定位一个名字的来源。"
+          ],
+          "explanations": {
+            "run": "作用域搞清楚了！这是很多 Bug 的根源，你已跨过。",
+            "debug": "函数内要改全局变量，必须先 global 声明。",
+            "predict": "正确。函数内 x 是局部变量 99，函数外 x 仍是全局 10。",
+            "match": "「配对分类」把 LEGB 四层与示例对应，帮助你在阅读多层嵌套函数时快速定位一个名字的来源。"
+          }
         }
       },
       "tags": [
@@ -4190,50 +4551,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "给定 text = \"  Python  \"，先 strip() 去掉两端空格，再 upper() 转大写后输出。",
+          "prompt": "围绕本节考点「字符串方法返回新对象」：给定 text = \"  Python  \"，先 strip() 去掉两端空格，再 upper() 转大写后输出。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "PYTHON",
-          "successFeedback": "字符串方法掌握！文本清洗全靠它们。",
-          "errorFeedback": "请对 text 调用 .strip() 后再 .upper()，然后输出。"
+          "successFeedback": "输出与预期一致。「字符串方法返回新对象」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「字符串方法返回新对象」。阅读代码，选出它运行后的实际输出。",
           "code": "s = \"  hi  \"\nprint(s.strip())",
           "stdin": [],
           "options": [
             {
               "text": "hi",
               "correct": true,
-              "feedback": "正确！strip() 去掉了两端空格。"
+              "feedback": "正确。strip() 去掉了两端空格。"
             },
             {
               "text": "  hi  ",
               "correct": false,
-              "feedback": "不对，strip 会去除两端空白。"
+              "feedback": "不正确。strip 会去除两端空白。"
             },
             {
               "text": "HI",
               "correct": false,
-              "feedback": "不对，这里没用 upper。"
+              "feedback": "不正确。这里没用 upper。"
             },
             {
               "text": "hi  ",
               "correct": false,
-              "feedback": "不对，结尾空格也被去掉了。"
+              "feedback": "不正确。结尾空格也被去掉了。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码用 .lower() 而非 .upper()，请改成 .upper()。",
+          "prompt": "下面这段程序想把文本转为大写输出，但输出与预期不符。请定位并修正错误。",
           "buggyCode": "text = \"  Python  \"\nprint(text.strip().lower())",
           "stdin": [],
           "expectedOutput": "PYTHON",
-          "successFeedback": "修复成功！转大写要用 upper()。",
-          "errorFeedback": "把 .lower() 改成 .upper()。"
+          "successFeedback": "输出与预期一致。「字符串方法返回新对象」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧字符串方法与右侧作用配对。",
+          "prompt": "本题考查「字符串方法返回新对象」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": ".strip()",
@@ -4248,6 +4609,26 @@
               "right": "按空白拆成列表"
             }
           ]
+        },
+        "meta": {
+          "concept": "字符串方法返回新对象",
+          "hints": [
+            "先回到本节目标：能组合 strip / split / join 完成文本清洗。",
+            "再看知识要点：文本清洗流水线：strip → split → 逐元素处理 → join。",
+            "最后对照常见错误的原因：join 要求所有元素为字符串，含整数会抛 TypeError。"
+          ],
+          "review": [
+            "「运行验证」通常要求清洗字符串并转大写输出。注意 strip / upper 都返回新字符串，必须接收结果；输出中不应残留首尾空白。",
+            "「预测输出」常把 split 产生的列表与 join 重组放在一起，逐行记录每一步的类型变化就能避免出错。",
+            "「找错改错」高频错误是 join 混入数字、忘记接收返回值、以及 split 后忘记转换类型。TypeError 多指向前者，ValueError 多指向后者。",
+            "「配对分类」把 strip、split、join、find 与用途对应，重点是记住每个方法的返回值类型。"
+          ],
+          "explanations": {
+            "run": "字符串方法掌握！文本清洗全靠它们。",
+            "debug": "转大写要用 upper()。",
+            "predict": "正确。strip() 去掉了两端空格。",
+            "match": "「配对分类」把 strip、split、join、find 与用途对应，重点是记住每个方法的返回值类型。"
+          }
         }
       },
       "tags": [
@@ -4410,50 +4791,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "写一个函数 check(guess, secret)：若 guess == secret 返回\"猜对了\"，guess < secret 返回\"小了\"，否则返回\"大了\"。然后调用并输出 check(3, 7) 与 check(9, 7)。",
+          "prompt": "围绕本节考点「综合：函数返回值驱动分支」：写一个函数 check(guess, secret)：若 guess == secret 返回\"猜对了\"，guess < secret 返回\"小了\"，否则返回\"大了\"。然后调用并输出 check(3, 7) 与 check(9, 7)。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "小了\n大了",
-          "successFeedback": "游戏逻辑完成！你已能用条件比较组织交互式判断。",
-          "errorFeedback": "请用 if/elif/else 比较 guess 与 secret，并分别返回对应文字；最后调用两次并打印。"
+          "successFeedback": "输出与预期一致。「综合：函数返回值驱动分支」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「综合：函数返回值驱动分支」。阅读代码，选出它运行后的实际输出。",
           "code": "secret = 7\nguess = 5\nif guess == secret:\n    print(\"中\")\nelif guess < secret:\n    print(\"小\")\nelse:\n    print(\"大\")",
           "stdin": [],
           "options": [
             {
               "text": "小",
               "correct": true,
-              "feedback": "正确！5 < 7，走 elif 分支。"
+              "feedback": "正确。5 < 7，走 elif 分支。"
             },
             {
               "text": "中",
               "correct": false,
-              "feedback": "不对，5 不等于 7。"
+              "feedback": "不正确。5 不等于 7。"
             },
             {
               "text": "大",
               "correct": false,
-              "feedback": "不对，5 比 7 小。"
+              "feedback": "不正确。5 比 7 小。"
             },
             {
               "text": "无",
               "correct": false,
-              "feedback": "不对，必有分支执行。"
+              "feedback": "不正确。必有分支执行。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面代码把\"小了\"的判断写成了 guess > secret（应为 <），请修复。",
+          "prompt": "下面这段程序想按数值大小给出提示，但某个分支的判断方向不对。请定位并修正错误。",
           "buggyCode": "def check(guess, secret):\n    if guess == secret:\n        return \"猜对了\"\n    elif guess > secret:\n        return \"小了\"\n    else:\n        return \"大了\"\nprint(check(3, 7))\nprint(check(9, 7))",
           "stdin": [],
           "expectedOutput": "小了\n大了",
-          "successFeedback": "修复成功！比秘密数小应当用 guess < secret。",
-          "errorFeedback": "把 elif guess > secret 改成 elif guess < secret。"
+          "successFeedback": "输出与预期一致。「综合：函数返回值驱动分支」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧写法与右侧作用配对。",
+          "prompt": "本题考查「综合：函数返回值驱动分支」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "import random",
@@ -4468,6 +4849,26 @@
               "right": "跳出循环"
             }
           ]
+        },
+        "meta": {
+          "concept": "综合：函数返回值驱动分支",
+          "hints": [
+            "先回到本节目标：能把输入、转换、判断、函数封装组合应用。",
+            "再看知识要点：把「判断单个值」封装成函数，主流程负责遍历与汇总。",
+            "最后对照常见错误的原因：结果无法被主流程复用，计数与筛选都要另写一遍。"
+          ],
+          "review": [
+            "「运行验证」要求完成判断程序，注意输出来自主流程的 print()，函数内部应保持安静；比较结果要与期望的分类文本逐字一致。",
+            "「预测输出」会把多个输入值与 elif 链组合，先确认每个值命中哪个分支，再按遍历顺序写出输出。",
+            "「找错改错」高频问题是函数内 print 却无 return、字典计数键不存在、以及字符串未转数字导致字典序比较。",
+            "「配对分类」把本章的函数、参数、返回值、作用域概念对应，检验你能否描述一次完整调用中数据的流向与可见范围。"
+          ],
+          "explanations": {
+            "run": "你已能用条件比较组织交互式判断。",
+            "debug": "比秘密数小应当用 guess < secret。",
+            "predict": "正确。5 < 7，走 elif 分支。",
+            "match": "「配对分类」把本章的函数、参数、返回值、作用域概念对应，检验你能否描述一次完整调用中数据的流向与可见范围。"
+          }
         }
       },
       "tags": [
@@ -4628,32 +5029,32 @@
       ],
       "practice": {
         "run": {
-          "prompt": "用 with open 以写模式创建 \"hello.txt\" 写入 \"Hello File\"，再以读模式打开并输出其内容。",
+          "prompt": "围绕本节考点「with 读写文件与 read()」：用 with open 以写模式创建 \"hello.txt\" 写入 \"Hello File\"，再以读模式打开并输出其内容。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "Hello File",
-          "successFeedback": "文件读写掌握！持久化是真实项目的基础。",
-          "errorFeedback": "请用 with open(..., \"w\") 写文件，再用 \"r\" 读并用 print 输出 f.read()。"
+          "successFeedback": "输出与预期一致。「with 读写文件与 read()」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「with 读写文件与 read()」。阅读代码，选出它运行后的实际输出。",
           "code": "with open(\"a.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"x\")\nwith open(\"a.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())",
           "stdin": [],
           "options": [
             {
               "text": "x",
               "correct": true,
-              "feedback": "正确！写入 \"x\" 后读出也是 \"x\"。"
+              "feedback": "正确。写入 \"x\" 后读出也是 \"x\"。"
             },
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，读到了内容并打印。"
+              "feedback": "不正确。读到了内容并打印。"
             },
             {
               "text": "None",
               "correct": false,
-              "feedback": "不对，read 返回文件内容。"
+              "feedback": "不正确。read 返回文件内容。"
             },
             {
               "text": "xa.txt",
@@ -4663,15 +5064,15 @@
           ]
         },
         "debug": {
-          "prompt": "下面代码读取时直接 print(f) 打印了文件对象而非内容，请改成 print(f.read())。",
+          "prompt": "下面这段程序想输出文件里的文字，但屏幕上显示的是别的内容。请定位并修正错误。",
           "buggyCode": "with open(\"hello.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Hello File\")\nwith open(\"hello.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f)",
           "stdin": [],
           "expectedOutput": "Hello File",
-          "successFeedback": "修复成功！要读取内容应使用 f.read()。",
-          "errorFeedback": "把 print(f) 改成 print(f.read())。"
+          "successFeedback": "输出与预期一致。「with 读写文件与 read()」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧文件模式与右侧含义配对。",
+          "prompt": "本题考查「with 读写文件与 read()」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "\"w\"",
@@ -4686,6 +5087,26 @@
               "right": "自动关闭文件"
             }
           ]
+        },
+        "meta": {
+          "concept": "with 读写文件与 read()",
+          "hints": [
+            "先回到本节目标：能使用 open() 配合 with 安全读写文件。",
+            "再看知识要点：r 只读、w 写入会清空、a 追加保留原内容。",
+            "最后对照常见错误的原因：w 模式会清空文件，原数据全部丢失。"
+          ],
+          "review": [
+            "「运行验证」通常要求写入内容再读出，注意输出来自读取后的 print()，而不是 write() 本身；若期望输出只有一行，检查是否重复打印了换行。",
+            "「预测输出」常把 write 的换行符与 readlines 的行数放在一起。先确定写入的文本究竟有几行，再推断读取结果。",
+            "「找错改错」高频错误是用 w 覆盖而非追加、遗漏 encoding、忘记 close、以及未清理行尾换行。FileNotFoundError 指向路径或模式。",
+            "「配对分类」把 r / w / a 与语义对应，核心是分清「清空」与「保留」这两种写入行为。"
+          ],
+          "explanations": {
+            "run": "文件读写掌握！持久化是真实项目的基础。",
+            "debug": "要读取内容应使用 f.read()。",
+            "predict": "正确。写入 \"x\" 后读出也是 \"x\"。",
+            "match": "「配对分类」把 r / w / a 与语义对应，核心是分清「清空」与「保留」这两种写入行为。"
+          }
         }
       },
       "tags": [
@@ -4846,29 +5267,29 @@
       ],
       "practice": {
         "run": {
-          "prompt": "用 try 读取整数 n，输出 100 除以 n 的结果；用 except 捕获异常，出错时输出\"输入有误\"。运行时输入：5",
+          "prompt": "围绕本节考点「try / except 异常分支」：用 try 读取整数 n，输出 100 除以 n 的结果；用 except 捕获异常，出错时输出\"输入有误\"。运行时输入：5",
           "starterCode": "",
           "stdin": [
             "5"
           ],
           "expectedOutput": "20.0",
-          "successFeedback": "异常处理到位！健壮的程序都懂得\"兜底\"。",
-          "errorFeedback": "请用 try 包裹可能出错的计算，except 中输出\"输入有误\"。"
+          "successFeedback": "输出与预期一致。「try / except 异常分支」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「try / except 异常分支」。阅读代码，选出它运行后的实际输出。",
           "code": "try:\n    print(10 / 0)\nexcept:\n    print(\"错\")",
           "stdin": [],
           "options": [
             {
               "text": "错",
               "correct": true,
-              "feedback": "正确！10/0 会抛异常，被 except 捕获并输出\"错\"。"
+              "feedback": "正确。10/0 会抛异常，被 except 捕获并输出\"错\"。"
             },
             {
               "text": "无穷大",
               "correct": false,
-              "feedback": "不对，Python 会直接抛异常。"
+              "feedback": "不正确。Python 会直接抛异常。"
             },
             {
               "text": "10/0",
@@ -4878,22 +5299,22 @@
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，except 分支有输出。"
+              "feedback": "不正确。except 分支有输出。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面 except 后漏了冒号，请补上。",
+          "prompt": "下面这段程序想捕获转换失败的情况，但存在语法错误。请定位并修正。",
           "buggyCode": "try:\n    n = int(input())\n    print(100 / n)\nexcept\n    print(\"输入有误\")",
           "stdin": [
             "5"
           ],
           "expectedOutput": "20.0",
-          "successFeedback": "修复成功！except 后面也要加冒号。",
-          "errorFeedback": "在 except 后面补上冒号 :。"
+          "successFeedback": "输出与预期一致。「try / except 异常分支」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧异常处理概念与右侧含义配对。",
+          "prompt": "本题考查「try / except 异常分支」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "try",
@@ -4908,6 +5329,26 @@
               "right": "程序运行时的错误"
             }
           ]
+        },
+        "meta": {
+          "concept": "try / except 异常分支",
+          "hints": [
+            "先回到本节目标：能说明异常与语法错误的区别。",
+            "再看知识要点：异常发生在运行期，可被捕获；语法错误发生在解析期，无法捕获。",
+            "最后对照常见错误的原因：掩盖了本应暴露的逻辑错误，调试困难。"
+          ],
+          "review": [
+            "「运行验证」通常要求实现带兜底的逻辑，注意异常分支的输出文本要与期望一致，且不能额外打印 traceback。",
+            "「预测输出」会把多个输入与不同异常类型组合，先判断每次调用是否抛异常、被哪个 except 捕获，再写出输出。",
+            "「找错改错」高频错误是 except 顺序颠倒、捕获类型写错、以及 finally 中误写 return。若程序静默给出错误结果，优先检查是否吞掉了异常。",
+            "「配对分类」把 ValueError、TypeError、ZeroDivisionError 等与触发原因对应，目标是看到报错最后一行就能定位根因。"
+          ],
+          "explanations": {
+            "run": "异常处理到位！健壮的程序都懂得\"兜底\"。",
+            "debug": "except 后面也要加冒号。",
+            "predict": "正确。10/0 会抛异常，被 except 捕获并输出\"错\"。",
+            "match": "「配对分类」把 ValueError、TypeError、ZeroDivisionError 等与触发原因对应，目标是看到报错最后一行就能定位根因。"
+          }
         }
       },
       "tags": [
@@ -5063,50 +5504,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "用列表推导式生成 1~5 每个数的立方，存进列表 cubes 并输出。",
+          "prompt": "围绕本节考点「列表推导式与表达式」：用列表推导式生成 1~5 每个数的立方，存进列表 cubes 并输出。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "[1, 8, 27, 64, 125]",
-          "successFeedback": "推导式上手！这是 Python 最优雅的语法之一。",
-          "errorFeedback": "请用 [x**3 for x in range(1, 6)] 形式生成立方列表并输出。"
+          "successFeedback": "输出与预期一致。「列表推导式与表达式」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「列表推导式与表达式」。阅读代码，选出它运行后的实际输出。",
           "code": "evens = [x for x in range(6) if x % 2 == 0]\nprint(evens)",
           "stdin": [],
           "options": [
             {
               "text": "[0, 2, 4]",
               "correct": true,
-              "feedback": "正确！range(6) 为 0~5，其中偶数是 0、2、4。"
+              "feedback": "正确。range(6) 为 0~5，其中偶数是 0、2、4。"
             },
             {
               "text": "[1, 3, 5]",
               "correct": false,
-              "feedback": "不对，那是奇数。"
+              "feedback": "不正确。那是奇数。"
             },
             {
               "text": "[0, 1, 2, 3, 4, 5]",
               "correct": false,
-              "feedback": "不对，加了 if 过滤。"
+              "feedback": "不正确。加了 if 过滤。"
             },
             {
               "text": "[2, 4]",
               "correct": false,
-              "feedback": "不对，0 也是偶数且被包含。"
+              "feedback": "不正确。0 也是偶数且被包含。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面推导式用 ^ 当乘方（实际是异或），请改成 **。",
+          "prompt": "下面这段程序想生成一组平方数，但运算结果与预期不符。请定位并修正错误。",
           "buggyCode": "cubes = [x ^ 3 for x in range(1, 6)]\nprint(cubes)",
           "stdin": [],
           "expectedOutput": "[1, 8, 27, 64, 125]",
-          "successFeedback": "修复成功！乘方用 **，不是 ^。",
-          "errorFeedback": "把 x ^ 3 改成 x ** 3。"
+          "successFeedback": "输出与预期一致。「列表推导式与表达式」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧推导式语法与右侧含义配对。",
+          "prompt": "本题考查「列表推导式与表达式」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "[... for ...]",
@@ -5121,6 +5562,26 @@
               "right": "用于过滤元素"
             }
           ]
+        },
+        "meta": {
+          "concept": "列表推导式与表达式",
+          "hints": [
+            "先回到本节目标：能把简单 for + append 改写为列表推导式。",
+            "再看知识要点：[表达式 for 变量 in 对象 if 条件] 等价于带筛选的收集循环。",
+            "最后对照常见错误的原因：推导式最前面只能是表达式，赋值是语句，会抛 SyntaxError。"
+          ],
+          "review": [
+            "「运行验证」常要求生成一组平方或立方数，注意输出是列表还是逐行数字；print(列表) 会带方括号与逗号。",
+            "「预测输出」偏爱考查 if 过滤条件与表达式中的三元写法。先确定哪些元素被保留，再计算每个元素的输出值。",
+            "「找错改错」高频问题是把 if 位置写错、在表达式里写赋值、以及误用集合导致顺序不稳定。",
+            "「配对分类」把列表、字典、集合推导式与结果类型对应，帮助你在需要「变换」「映射」「去重」时选对工具。"
+          ],
+          "explanations": {
+            "run": "推导式上手！这是 Python 最优雅的语法之一。",
+            "debug": "乘方用 **，不是 ^。",
+            "predict": "正确。range(6) 为 0~5，其中偶数是 0、2、4。",
+            "match": "「配对分类」把列表、字典、集合推导式与结果类型对应，帮助你在需要「变换」「映射」「去重」时选对工具。"
+          }
         }
       },
       "tags": [
@@ -5279,27 +5740,27 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义 scores = {\"math\": 90, \"english\": 85}，用 .get(\"pe\", 0) 取一门不存在的课（默认 0）并输出；再遍历 items 打印每科成绩（每行\"科目 分数\"）。",
+          "prompt": "围绕本节考点「items() 遍历键值对」：定义 scores = {\"math\": 90, \"english\": 85}，用 .get(\"pe\", 0) 取一门不存在的课（默认 0）并输出；再遍历 items 打印每科成绩（每行\"科目 分数\"）。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "0\nmath 90\nenglish 85",
-          "successFeedback": "字典进阶！.get 与 items 是实战高频用法。",
-          "errorFeedback": "请用 .get(\"pe\", 0) 取值，并用 for k, v in scores.items() 遍历输出。"
+          "successFeedback": "输出与预期一致。「items() 遍历键值对」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「items() 遍历键值对」。阅读代码，选出它运行后的实际输出。",
           "code": "d = {\"a\": 1, \"b\": 2}\nprint(d.get(\"c\", 0))",
           "stdin": [],
           "options": [
             {
               "text": "0",
               "correct": true,
-              "feedback": "正确！键 \"c\" 不存在，返回默认值 0。"
+              "feedback": "正确。键 \"c\" 不存在，返回默认值 0。"
             },
             {
               "text": "None",
               "correct": false,
-              "feedback": "不对，给了默认值 0 就不会返回 None。"
+              "feedback": "不正确。给了默认值 0 就不会返回 None。"
             },
             {
               "text": "报错",
@@ -5309,20 +5770,20 @@
             {
               "text": "1",
               "correct": false,
-              "feedback": "不对，1 是键 \"a\" 的值。"
+              "feedback": "不正确。1 是键 \"a\" 的值。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面遍历写成了 scores.item()（少了 s），请改成 scores.items()。",
+          "prompt": "下面这段程序想遍历字典的键值对，但运行时报错。请定位并修正错误。",
           "buggyCode": "scores = {\"math\": 90, \"english\": 85}\nprint(scores.get(\"pe\", 0))\nfor k, v in scores.item():\n    print(k, v)",
           "stdin": [],
           "expectedOutput": "0\nmath 90\nenglish 85",
-          "successFeedback": "修复成功！遍历键值对要用 .items()。",
-          "errorFeedback": "把 scores.item() 改成 scores.items()。"
+          "successFeedback": "输出与预期一致。「items() 遍历键值对」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧字典方法与右侧作用配对。",
+          "prompt": "本题考查「items() 遍历键值对」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": ".get(k, d)",
@@ -5337,6 +5798,26 @@
               "right": "遍历所有键"
             }
           ]
+        },
+        "meta": {
+          "concept": "items() 遍历键值对",
+          "hints": [
+            "先回到本节目标：能使用 setdefault 与 get 简化计数逻辑。",
+            "再看知识要点：get(k, 0) 与 setdefault(k, 0) 都能简化计数，后者会写入默认值。",
+            "最后对照常见错误的原因：读取不存在的键抛 KeyError。"
+          ],
+          "review": [
+            "「运行验证」常要求安全取值与遍历，注意输出的是值还是整个字典，且 get 的默认值应出现在缺键分支。",
+            "「预测输出」偏爱考查按值排序后的顺序、合并时的覆盖规则。先确定排序依据与合并方向，再写出最终字典。",
+            "「找错改错」高频问题是计数时直接 +=、对字典直接 sorted 后当作键值对使用、以及缺字段访问。",
+            "「配对分类」把 get、setdefault、items、update 与用途对应，帮助你在统计与配置合并场景选择正确方法。"
+          ],
+          "explanations": {
+            "run": "字典进阶！.get 与 items 是实战高频用法。",
+            "debug": "遍历键值对要用 .items()。",
+            "predict": "正确。键 \"c\" 不存在，返回默认值 0。",
+            "match": "「配对分类」把 get、setdefault、items、update 与用途对应，帮助你在统计与配置合并场景选择正确方法。"
+          }
         }
       },
       "tags": [
@@ -5497,22 +5978,22 @@
       ],
       "practice": {
         "run": {
-          "prompt": "导入 math 模块，输出 2 的 10 次方（用 math.pow）与圆周率 math.pi。",
+          "prompt": "围绕本节考点「import 与标准库成员名」：导入 math 模块，输出 2 的 10 次方（用 math.pow）与圆周率 math.pi。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "1024.0\n3.141592653589793",
-          "successFeedback": "模块导入掌握！标准库是你的工具箱。",
-          "errorFeedback": "请 import math，并用 math.pow(2, 10) 与 math.pi 做输出。"
+          "successFeedback": "输出与预期一致。「import 与标准库成员名」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「import 与标准库成员名」。阅读代码，选出它运行后的实际输出。",
           "code": "import math\nprint(math.sqrt(16))",
           "stdin": [],
           "options": [
             {
               "text": "4.0",
               "correct": true,
-              "feedback": "正确！math.sqrt(16) 返回 4.0。"
+              "feedback": "正确。math.sqrt(16) 返回 4.0。"
             },
             {
               "text": "4",
@@ -5522,7 +6003,7 @@
             {
               "text": "2",
               "correct": false,
-              "feedback": "不对，2 是 16 的平方根的另一种理解错误。"
+              "feedback": "不正确。2 是 16 的平方根的另一种理解错误。"
             },
             {
               "text": "16",
@@ -5532,15 +6013,15 @@
           ]
         },
         "debug": {
-          "prompt": "下面代码把 math.pi 拼错成 math.pie，请改成 math.pi。",
+          "prompt": "下面这段程序想输出圆周率，但运行时报错。请定位并修正错误。",
           "buggyCode": "import math\nprint(math.pow(2, 10))\nprint(math.pie)",
           "stdin": [],
           "expectedOutput": "1024.0\n3.141592653589793",
-          "successFeedback": "修复成功！圆周率常量名为 math.pi。",
-          "errorFeedback": "把 math.pie 改成 math.pi。"
+          "successFeedback": "输出与预期一致。「import 与标准库成员名」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧模块写法与右侧作用配对。",
+          "prompt": "本题考查「import 与标准库成员名」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "import",
@@ -5555,6 +6036,26 @@
               "right": "圆周率常量"
             }
           ]
+        },
+        "meta": {
+          "concept": "import 与标准库成员名",
+          "hints": [
+            "先回到本节目标：能使用 import 导入模块并调用其成员。",
+            "再看知识要点：import 模块名 最清晰；from ... import 用于少量明确名字，避免通配符导入。",
+            "最后对照常见错误的原因：导入大量名字，易冲突且难以追溯来源。"
+          ],
+          "review": [
+            "「运行验证」常要求导入 math 后输出计算结果，注意 sqrt 返回浮点数，输出会是 4.0 而非 4。",
+            "「预测输出」偏爱考查 ceil/floor/round 的差别，以及固定种子后随机数序列可复现这一性质。",
+            "「找错改错」高频错误是漏写模块前缀、误用通配符导入后命名冲突、以及把入口代码放在顶层。ModuleNotFoundError 指向模块名或环境。",
+            "「配对分类」把常用标准库模块与用途对应，帮助你在遇到需求时先判断是否已有内置方案。"
+          ],
+          "explanations": {
+            "run": "模块导入掌握！标准库是你的工具箱。",
+            "debug": "圆周率常量名为 math.pi。",
+            "predict": "正确。math.sqrt(16) 返回 4.0。",
+            "match": "「配对分类」把常用标准库模块与用途对应，帮助你在遇到需求时先判断是否已有内置方案。"
+          }
         }
       },
       "tags": [
@@ -5719,50 +6220,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义类 Cat，__init__ 接收 name，并定义一个方法 meow() 输出 \"<名字>：喵~\"。创建实例 c = Cat(\"咪咪\") 并调用 meow()。",
+          "prompt": "围绕本节考点「实例属性与 self」：定义类 Cat，__init__ 接收 name，并定义一个方法 meow() 输出 \"<名字>：喵~\"。创建实例 c = Cat(\"咪咪\") 并调用 meow()。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "咪咪：喵~",
-          "successFeedback": "面向对象入门！类让复杂程序更有序。",
-          "errorFeedback": "请用 class 定义 Cat，__init__ 初始化 name，并定义 meow 方法输出 self.name。"
+          "successFeedback": "输出与预期一致。「实例属性与 self」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「实例属性与 self」。阅读代码，选出它运行后的实际输出。",
           "code": "class Dog:\n    def __init__(self, name):\n        self.name = name\nd = Dog(\"小白\")\nprint(d.name)",
           "stdin": [],
           "options": [
             {
               "text": "小白",
               "correct": true,
-              "feedback": "正确！实例属性 name 的值是\"小白\"。"
+              "feedback": "正确。实例属性 name 的值是\"小白\"。"
             },
             {
               "text": "Dog",
               "correct": false,
-              "feedback": "不对，输出的是属性值。"
+              "feedback": "不正确。输出的是属性值。"
             },
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，print 了 d.name。"
+              "feedback": "不正确。print 了 d.name。"
             },
             {
               "text": "小白：喵~",
               "correct": false,
-              "feedback": "不对，这里没有 meow 方法。"
+              "feedback": "不正确。这里没有 meow 方法。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面 meow 里把 self.name 误写成 name（未定义），请改成 self.name。",
+          "prompt": "下面这段程序想输出对象的名称，但运行时报错。请定位并修正错误。",
           "buggyCode": "class Cat:\n    def __init__(self, name):\n        self.name = name\n    def meow(self):\n        print(name + \"：喵~\")\nc = Cat(\"咪咪\")\nc.meow()",
           "stdin": [],
           "expectedOutput": "咪咪：喵~",
-          "successFeedback": "修复成功！方法内部访问实例属性要用 self.name。",
-          "errorFeedback": "把 print(name + ...) 改成 print(self.name + ...)。"
+          "successFeedback": "输出与预期一致。「实例属性与 self」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧面向对象概念与右侧含义配对。",
+          "prompt": "本题考查「实例属性与 self」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "class",
@@ -5777,6 +6278,26 @@
               "right": "指代当前实例"
             }
           ]
+        },
+        "meta": {
+          "concept": "实例属性与 self",
+          "hints": [
+            "先回到本节目标：能区分类、实例、属性与方法。",
+            "再看知识要点：类是模板，实例是按模板创建的具体对象。",
+            "最后对照常见错误的原因：调用时 Python 自动传入实例，形参不足抛 TypeError。"
+          ],
+          "review": [
+            "「运行验证」通常要求定义类并调用其方法，注意输出来自方法的返回值经 print() 显示，而不是方法内部自行打印。",
+            "「预测输出」会把多个实例的状态变化放在一起，先分别记录每个实例的属性，再代入方法计算。",
+            "「找错改错」高频错误是漏写 self、把实例数据放成类属性、以及创建实例时参数不全。TypeError 多指向实参数量或 self。",
+            "「配对分类」把类、实例、属性、方法与含义对应，检验你能否准确描述一次实例化过程中发生了什么。"
+          ],
+          "explanations": {
+            "run": "面向对象入门！类让复杂程序更有序。",
+            "debug": "方法内部访问实例属性要用 self.name。",
+            "predict": "正确。实例属性 name 的值是\"小白\"。",
+            "match": "「配对分类」把类、实例、属性、方法与含义对应，检验你能否准确描述一次实例化过程中发生了什么。"
+          }
         }
       },
       "tags": [
@@ -5935,32 +6456,32 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义父类 Animal（含方法 eat() 输出\"进食\"），子类 Bird(Animal)（新增方法 fly() 输出\"飞翔\"）。创建 Bird 实例并调用 eat() 与 fly()。",
+          "prompt": "围绕本节考点「class 继承与 super()」：定义父类 Animal（含方法 eat() 输出\"进食\"），子类 Bird(Animal)（新增方法 fly() 输出\"飞翔\"）。创建 Bird 实例并调用 eat() 与 fly()。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "进食\n飞翔",
-          "successFeedback": "继承理解到位！这是构建大型系统的基石。",
-          "errorFeedback": "请定义父类 Animal 含 eat()，子类 Bird(Animal) 含 fly()，并调用两者。"
+          "successFeedback": "输出与预期一致。「class 继承与 super()」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「class 继承与 super()」。阅读代码，选出它运行后的实际输出。",
           "code": "class A:\n    def hi(self):\n        print(\"A\")\nclass B(A):\n    pass\nB().hi()",
           "stdin": [],
           "options": [
             {
               "text": "A",
               "correct": true,
-              "feedback": "正确！子类 B 继承了父类的 hi()，输出 A。"
+              "feedback": "正确。子类 B 继承了父类的 hi()，输出 A。"
             },
             {
               "text": "B",
               "correct": false,
-              "feedback": "不对，输出的是方法内部内容。"
+              "feedback": "不正确。输出的是方法内部内容。"
             },
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，调用了 hi()。"
+              "feedback": "不正确。调用了 hi()。"
             },
             {
               "text": "报错",
@@ -5970,15 +6491,15 @@
           ]
         },
         "debug": {
-          "prompt": "下面子类定义 class Bird(Animal) 末尾漏了冒号，请补上。",
+          "prompt": "下面这段程序想定义一个子类，但存在语法错误。请定位并修正。",
           "buggyCode": "class Animal:\n    def eat(self):\n        print(\"进食\")\nclass Bird(Animal)\n    def fly(self):\n        print(\"飞翔\")\nb = Bird()\nb.eat()\nb.fly()",
           "stdin": [],
           "expectedOutput": "进食\n飞翔",
-          "successFeedback": "修复成功！class 定义后面也要加冒号。",
-          "errorFeedback": "在 class Bird(Animal) 后面加上冒号 :。"
+          "successFeedback": "输出与预期一致。「class 继承与 super()」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧继承概念与右侧含义配对。",
+          "prompt": "本题考查「class 继承与 super()」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "子类(父类)",
@@ -5993,6 +6514,26 @@
               "right": "子类中重新定义父类方法"
             }
           ]
+        },
+        "meta": {
+          "concept": "class 继承与 super()",
+          "hints": [
+            "先回到本节目标：能写出子类并说明继承关系。",
+            "再看知识要点：class B(A): 让子类获得父类成员；同名方法实现重写。",
+            "最后对照常见错误的原因：父类定义的属性未被初始化，访问时抛 AttributeError。"
+          ],
+          "review": [
+            "「运行验证」常要求基于父类定义子类并调用方法，注意 super() 传参顺序与父类 __init__ 形参一致。",
+            "「预测输出」偏爱考查方法重写后究竟执行哪个版本，以及 super() 调用返回的文本如何被追加。",
+            "「找错改错」高频错误是漏调父类初始化导致 AttributeError、重写方法时忘记 self、以及把组合写成了继承。",
+            "「配对分类」把父类、子类、重写、super、多态与含义对应，帮助你在设计类型关系时先把语义判断清楚。"
+          ],
+          "explanations": {
+            "run": "继承理解到位！这是构建大型系统的基石。",
+            "debug": "class 定义后面也要加冒号。",
+            "predict": "正确。子类 B 继承了父类的 hi()，输出 A。",
+            "match": "「配对分类」把父类、子类、重写、super、多态与含义对应，帮助你在设计类型关系时先把语义判断清楚。"
+          }
         }
       },
       "tags": [
@@ -6153,50 +6694,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义装饰器 shout，它包裹的函数返回值会被转成大写（用 .upper()）。用 @shout 装饰函数 greet() 返回 \"hello\"，输出结果。",
+          "prompt": "围绕本节考点「装饰器包装函数」：定义装饰器 shout，它包裹的函数返回值会被转成大写（用 .upper()）。用 @shout 装饰函数 greet() 返回 \"hello\"，输出结果。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "HELLO",
-          "successFeedback": "装饰器入门！它是框架与日志的常用手段。",
-          "errorFeedback": "请定义装饰器 shout，用 .upper() 加工返回值，并 @shout 装饰 greet 再输出。"
+          "successFeedback": "输出与预期一致。「装饰器包装函数」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「装饰器包装函数」。阅读代码，选出它运行后的实际输出。",
           "code": "def shout(func):\n    def wrapper():\n        return func().upper()\n    return wrapper\n@shout\ndef greet():\n    return \"hello\"\nprint(greet())",
           "stdin": [],
           "options": [
             {
               "text": "HELLO",
               "correct": true,
-              "feedback": "正确！装饰器把返回值转成了大写。"
+              "feedback": "正确。装饰器把返回值转成了大写。"
             },
             {
               "text": "hello",
               "correct": false,
-              "feedback": "不对，装饰器会加工返回值。"
+              "feedback": "不正确。装饰器会加工返回值。"
             },
             {
               "text": "HELLO()",
               "correct": false,
-              "feedback": "不对，输出的是返回值本身。"
+              "feedback": "不正确。输出的是返回值本身。"
             },
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，print 了 greet()。"
+              "feedback": "不正确。print 了 greet()。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面装饰器把 .upper() 误写成 .lower()，请改成 .upper()。",
+          "prompt": "下面这段程序想把返回值转成大写输出，但输出与预期不符。请定位并修正错误。",
           "buggyCode": "def shout(func):\n    def wrapper():\n        return func().lower()\n    return wrapper\n@shout\ndef greet():\n    return \"hello\"\nprint(greet())",
           "stdin": [],
           "expectedOutput": "HELLO",
-          "successFeedback": "修复成功！转大写要用 upper()。",
-          "errorFeedback": "把 .lower() 改成 .upper()。"
+          "successFeedback": "输出与预期一致。「装饰器包装函数」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧装饰器概念与右侧含义配对。",
+          "prompt": "本题考查「装饰器包装函数」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "@装饰器",
@@ -6211,6 +6752,26 @@
               "right": "调用原函数的返回值"
             }
           ]
+        },
+        "meta": {
+          "concept": "装饰器包装函数",
+          "hints": [
+            "先回到本节目标：理解函数是一等对象，可以作为参数与返回值。",
+            "再看知识要点：函数是一等对象，可赋值、传参、作为返回值。",
+            "最后对照常见错误的原因：被装饰函数返回 None，调用方拿到空值。"
+          ],
+          "review": [
+            "「运行验证」通常要求实现一个简单的包装装饰器，注意 wrapper 必须返回原函数结果，且输出顺序是「包装逻辑在前、原函数输出在后」。",
+            "「预测输出」偏爱考查装饰后 __name__ 的变化、以及多次包装时各层执行的先后顺序。",
+            "「找错改错」高频错误是遗漏 return、忘写 @wraps、以及把参数写死导致 TypeError。",
+            "「配对分类」把闭包、装饰器、wraps、*args 与职责对应，检验你能否说清装饰一次调用时数据的流转路径。"
+          ],
+          "explanations": {
+            "run": "装饰器入门！它是框架与日志的常用手段。",
+            "debug": "转大写要用 upper()。",
+            "predict": "正确。装饰器把返回值转成了大写。",
+            "match": "「配对分类」把闭包、装饰器、wraps、*args 与职责对应，检验你能否说清装饰一次调用时数据的流转路径。"
+          }
         }
       },
       "tags": [
@@ -6370,50 +6931,50 @@
       ],
       "practice": {
         "run": {
-          "prompt": "写生成器 gen_squares(n)，依次 yield 1~n 每个数的平方。用 for 遍历 gen_squares(4) 输出。",
+          "prompt": "围绕本节考点「yield 与生成器」：写生成器 gen_squares(n)，依次 yield 1~n 每个数的平方。用 for 遍历 gen_squares(4) 输出。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "1\n4\n9\n16",
-          "successFeedback": "生成器掌握！处理大数据流时它极其高效。",
-          "errorFeedback": "请用 def + yield 定义生成器，依次 yield 平方值，并用 for 遍历输出。"
+          "successFeedback": "输出与预期一致。「yield 与生成器」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「yield 与生成器」。阅读代码，选出它运行后的实际输出。",
           "code": "def gen():\n    yield 1\n    yield 2\nfor x in gen():\n    print(x)",
           "stdin": [],
           "options": [
             {
               "text": "1\n2",
               "correct": true,
-              "feedback": "正确！生成器依次产出 1、2。"
+              "feedback": "正确。生成器依次产出 1、2。"
             },
             {
               "text": "1 2",
               "correct": false,
-              "feedback": "不对，每个值各占一行。"
+              "feedback": "不正确。每个值各占一行。"
             },
             {
               "text": "[1, 2]",
               "correct": false,
-              "feedback": "不对，不是列表。"
+              "feedback": "不正确。不是列表。"
             },
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，for 会遍历产出。"
+              "feedback": "不正确。for 会遍历产出。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面生成器误用 return 而非 yield（只会返回一次就结束），请改成 yield。",
+          "prompt": "下面这段程序想依次产出多个值，但实际只产出了一个。请定位并修正错误。",
           "buggyCode": "def gen_squares(n):\n    i = 1\n    while i <= n:\n        return i ** 2\n        i = i + 1\nfor x in gen_squares(4):\n    print(x)",
           "stdin": [],
           "expectedOutput": "1\n4\n9\n16",
-          "successFeedback": "修复成功！生成器要用 yield 才能逐个产出。",
-          "errorFeedback": "把 return i ** 2 改成 yield i ** 2。"
+          "successFeedback": "输出与预期一致。「yield 与生成器」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧生成器概念与右侧含义配对。",
+          "prompt": "本题考查「yield 与生成器」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "yield",
@@ -6428,6 +6989,26 @@
               "right": "取下一个值"
             }
           ]
+        },
+        "meta": {
+          "concept": "yield 与生成器",
+          "hints": [
+            "先回到本节目标：能说明迭代器与惰性求值的含义。",
+            "再看知识要点：迭代器记住遍历位置，next() 取值、耗尽后抛 StopIteration。",
+            "最后对照常见错误的原因：生成器一次耗尽，第二次迭代为空。"
+          ],
+          "review": [
+            "「运行验证」通常要求用生成器产出一组数值，注意 yield 的每个值都要被正确收集，输出往往是列表形态。",
+            "「预测输出」偏爱考查生成器一次性耗尽的特性，以及 next() 逐次取值时函数暂停的位置。",
+            "「找错改错」高频错误是对生成器 len()、重复遍历、以及把 return 当作多次产出。",
+            "「配对分类」把迭代器、yield、生成器表达式与含义对应，帮助你在「一次全部生成」与「按需生成」之间做出正确选择。"
+          ],
+          "explanations": {
+            "run": "生成器掌握！处理大数据流时它极其高效。",
+            "debug": "生成器要用 yield 才能逐个产出。",
+            "predict": "正确。生成器依次产出 1、2。",
+            "match": "「配对分类」把迭代器、yield、生成器表达式与含义对应，帮助你在「一次全部生成」与「按需生成」之间做出正确选择。"
+          }
         }
       },
       "tags": [
@@ -6582,27 +7163,27 @@
       ],
       "practice": {
         "run": {
-          "prompt": "定义 Student 类（name, score），用列表存 3 名学生；写函数 average(students) 返回平均分；遍历输出每位姓名与成绩，并输出平均分。",
+          "prompt": "围绕本节考点「综合：类、列表与异常」：定义 Student 类（name, score），用列表存 3 名学生；写函数 average(students) 返回平均分；遍历输出每位姓名与成绩，并输出平均分。",
           "starterCode": "",
           "stdin": [],
           "expectedOutput": "A 90\nB 80\nC 70\n平均分： 80.0",
-          "successFeedback": "毕业项目完成！你已具备用 Python 组织真实问题的能力。",
-          "errorFeedback": "请定义 Student 类、用列表管理、写 average 函数，并遍历输出与打印平均分。"
+          "successFeedback": "输出与预期一致。「综合：类、列表与异常」的用法正确。",
+          "errorFeedback": "输出与预期不一致。请查看下方的期望输出与实际输出，逐行比对后重试。"
         },
         "predict": {
-          "prompt": "下面代码的输出是？",
+          "prompt": "本题考查「综合：类、列表与异常」。阅读代码，选出它运行后的实际输出。",
           "code": "class Student:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\nst = Student(\"A\", 90)\nprint(st.name, st.score)",
           "stdin": [],
           "options": [
             {
               "text": "A 90",
               "correct": true,
-              "feedback": "正确！实例属性被打印出来。"
+              "feedback": "正确。实例属性被打印出来。"
             },
             {
               "text": "90 A",
               "correct": false,
-              "feedback": "不对，顺序是 name 在前。"
+              "feedback": "不正确。顺序是 name 在前。"
             },
             {
               "text": "Student",
@@ -6612,20 +7193,20 @@
             {
               "text": "无输出",
               "correct": false,
-              "feedback": "不对，print 了属性。"
+              "feedback": "不正确。print 了属性。"
             }
           ]
         },
         "debug": {
-          "prompt": "下面 average 函数里把 len(students) 误写成 len(student)（未定义），请改成 len(students)。",
+          "prompt": "下面这段程序想统计一组记录的平均分，但运行时报错。请定位并修正错误。",
           "buggyCode": "class Student:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\nstudents = [Student(\"A\", 90), Student(\"B\", 80), Student(\"C\", 70)]\ndef average(students):\n    return sum(s.score for s in students) / len(student)\nfor s in students:\n    print(s.name, s.score)\nprint(\"平均分：\", average(students))",
           "stdin": [],
           "expectedOutput": "A 90\nB 80\nC 70\n平均分： 80.0",
-          "successFeedback": "修复成功！变量名要前后一致。",
-          "errorFeedback": "把 len(student) 改成 len(students)。"
+          "successFeedback": "输出与预期一致。「综合：类、列表与异常」的用法正确。",
+          "errorFeedback": "程序仍未得到预期输出。先查看运行结果定位问题，可使用下方分级提示。"
         },
         "match": {
-          "prompt": "将左侧综合概念与右侧含义配对。",
+          "prompt": "本题考查「综合：类、列表与异常」。将左侧术语与右侧含义一一对应。",
           "pairs": [
             {
               "left": "类",
@@ -6640,6 +7221,26 @@
               "right": "封装可复用的计算"
             }
           ]
+        },
+        "meta": {
+          "concept": "综合：类、列表与异常",
+          "hints": [
+            "先回到本节目标：能把类、容器、函数、异常与文件操作组合为完整程序。",
+            "再看知识要点：完整程序按数据层、逻辑层、输入层、流程层、呈现层组织。",
+            "最后对照常见错误的原因：空分数列表会导致 ZeroDivisionError。"
+          ],
+          "review": [
+            "「运行验证」是整门课程的收尾综合题，注意对齐输出中的空格由格式说明符决定，中文字符按字符计宽会与西文显示略有差异。",
+            "「预测输出」会把统计、等级判断与文件读回放在一起，建议分三段核对：先算总分与平均分，再映射等级，最后检查写入文本的格式。",
+            "「找错改错」高频问题是平均除以空列表、解析异常未捕获、文件未指定编码，以及把计算逻辑混进输出循环。",
+            "「配对分类」把本课程六章的核心概念与用途对应，用来检验你是否建立起从「值 → 容器 → 函数 → 文件与异常 → 类与进阶」的完整知识脉络。"
+          ],
+          "explanations": {
+            "run": "",
+            "debug": "变量名要前后一致。",
+            "predict": "正确。实例属性被打印出来。",
+            "match": "「配对分类」把本课程六章的核心概念与用途对应，用来检验你是否建立起从「值 → 容器 → 函数 → 文件与异常 → 类与进阶」的完整知识脉络。"
+          }
         }
       },
       "tags": [

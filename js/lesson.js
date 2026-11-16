@@ -1,7 +1,12 @@
 /**
  * 课时页引擎：渲染系统化教程 + 文末巩固练习。
- * 与旧练习引擎的区别：教程是主体，练习只给反馈、不自动跳转、不弹出提示；
- * 进度由学习者主动「标记为已学完」记录。
+ *
+ * 答题方式优化要点：
+ *  - 改错题干不泄露答案，答案讲解移入「解析」区
+ *  - 每类练习提供 3 级渐进提示（方向 → 要点 → 原理）
+ *  - 运行/改错显示「期望输出 vs 实际输出」逐行差异，定位首个不同行
+ *  - 预测选项随机排列；配对项改为可聚焦按钮，支持键盘与错误项标注
+ *  - 练习只给诊断反馈，不自动跳课、不弹胜利提示
  */
 (function () {
   'use strict';
@@ -11,8 +16,9 @@
 
   var state = {
     data: null, lesson: null, id: 1,
-    predictAnswered: false,
+    predictAnswered: false, predictOrder: [],
     matchPairs: [], matchLeft: [], matchRight: [], matchMapping: {}, matchSelectedLeft: null,
+    hintLevel: { run: 0, predict: 0, debug: 0, match: 0 },
   };
 
   function el(id) { return document.getElementById(id); }
@@ -174,6 +180,109 @@
     }).join('');
   }
 
+  /* ===================== 差异诊断 ===================== */
+
+  /** 逐行对比期望与实际，标出首个不同行；纯展示，不泄露修改方法 */
+  function renderDiff(node, expected, actual, hasError) {
+    if (!node) return;
+    if (hasError) {
+      node.hidden = false;
+      node.className = 'diff-panel is-error';
+      node.innerHTML = '<p class="diff-panel__note">程序未正常结束，无法比对输出。请先看运行错误。</p>';
+      return;
+    }
+    if (norm(expected) === norm(actual)) {
+      node.hidden = true;
+      node.innerHTML = '';
+      return;
+    }
+    var e = norm(expected).split('\n');
+    var a = norm(actual).split('\n');
+    var rows = [];
+    var first = -1;
+    var n = Math.max(e.length, a.length);
+    for (var i = 0; i < n; i += 1) {
+      var ok = e[i] === a[i];
+      if (!ok && first < 0) first = i + 1;
+      rows.push(
+        '<li class="diff-row' + (ok ? '' : ' is-diff') + '">' +
+          '<span class="diff-row__no">' + (i + 1) + '</span>' +
+          '<span class="diff-row__exp">' + escapeHtml(e[i] == null ? '（无此行）' : e[i]) + '</span>' +
+          '<span class="diff-row__act">' + escapeHtml(a[i] == null ? '（无此行）' : a[i]) + '</span>' +
+        '</li>'
+      );
+    }
+    node.hidden = false;
+    node.className = 'diff-panel';
+    node.innerHTML =
+      '<p class="diff-panel__note">首个不一致在第 <strong>' + first + '</strong> 行。逐行检查字符、空格与标点。</p>' +
+      '<div class="diff-head"><span>行</span><span>期望输出</span><span>实际输出</span></div>' +
+      '<ul class="diff-rows">' + rows.join('') + '</ul>';
+  }
+
+  function clearDiff(node) {
+    if (!node) return;
+    node.hidden = true;
+    node.className = 'diff-panel';
+    node.innerHTML = '';
+  }
+
+  /* ===================== 提示与解析 ===================== */
+
+  function renderPracticeTools(mode) {
+    var host = document.querySelector('[data-mode-tools="' + mode + '"]');
+    if (!host) return;
+    var meta = state.lesson.practice.meta;
+    var hints = meta.hints || [];
+    var exp = (meta.explanations || {})[mode] || '';
+    state.hintLevel[mode] = 0;
+
+    host.innerHTML =
+      '<div class="practice-tools__row">' +
+        '<button class="tool-button" type="button" data-tool="hint" data-mode="' + mode + '">查看提示</button>' +
+        '<button class="tool-button" type="button" data-tool="solution" data-mode="' + mode + '">查看解析</button>' +
+        '<span class="tool-status" data-tool-status="' + mode + '"></span>' +
+      '</div>' +
+      '<div class="hint-box" data-hint-box="' + mode + '" hidden></div>' +
+      '<div class="solution-box" data-solution-box="' + mode + '" hidden>' +
+        '<p>' + escapeHtml(exp) + '</p>' +
+        (meta.review && meta.review[mode === 'match' ? 3 : mode === 'predict' ? 1 : mode === 'debug' ? 2 : 0]
+          ? '<p class="solution-box__extra">' + escapeHtml(meta.review[mode === 'match' ? 3 : mode === 'predict' ? 1 : mode === 'debug' ? 2 : 0]) + '</p>'
+          : '') +
+      '</div>';
+
+    host.querySelector('[data-tool="hint"]').addEventListener('click', function () {
+      var box = host.querySelector('[data-hint-box="' + mode + '"]');
+      if (state.hintLevel[mode] >= hints.length) {
+        box.hidden = true;
+        state.hintLevel[mode] = 0;
+        host.querySelector('[data-tool-status="' + mode + '"]').textContent = '';
+        return;
+      }
+      state.hintLevel[mode] += 1;
+      box.hidden = false;
+      box.innerHTML = hints.slice(0, state.hintLevel[mode]).map(function (h, i) {
+        return '<p class="hint-box__item"><span>第 ' + (i + 1) + ' 级</span>' + escapeHtml(h) + '</p>';
+      }).join('');
+      var status = host.querySelector('[data-tool-status="' + mode + '"]');
+      status.textContent = state.hintLevel[mode] >= hints.length ? '提示已全部展开' : '';
+      host.querySelector('[data-tool="hint"]').textContent =
+        state.hintLevel[mode] >= hints.length ? '收起提示' : '下一级提示';
+    });
+
+    host.querySelector('[data-tool="solution"]').addEventListener('click', function (e) {
+      var box = host.querySelector('[data-solution-box="' + mode + '"]');
+      box.hidden = !box.hidden;
+      e.currentTarget.setAttribute('aria-expanded', String(!box.hidden));
+    });
+    host.querySelector('[data-tool="solution"]').setAttribute('aria-expanded', 'false');
+  }
+
+  function markToolDone(mode) {
+    var status = document.querySelector('[data-tool-status="' + mode + '"]');
+    if (status) status.textContent = '已验证通过';
+  }
+
   /* ===================== 练习：Pyodide 与四类模式 ===================== */
 
   function showRunOutput(node, stdout, error) {
@@ -212,10 +321,15 @@
   function renderPractice() {
     var p = state.lesson.practice;
 
+    var badge = el('practice-badge');
+    badge.hidden = false;
+    badge.textContent = '本节考点：' + p.meta.concept;
+
     el('run-prompt').textContent = p.run.prompt;
     el('run-input').value = p.run.starterCode || '';
     el('run-output').className = 'run-output';
     el('run-output').textContent = '';
+    clearDiff(el('run-diff'));
     setFeedback(el('run-feedback'), '', '');
 
     el('predict-prompt').textContent = p.predict.prompt;
@@ -226,10 +340,13 @@
     el('debug-input').value = p.debug.buggyCode || '';
     el('debug-output').className = 'run-output';
     el('debug-output').textContent = '';
+    clearDiff(el('debug-diff'));
     setFeedback(el('debug-feedback'), '', '');
 
     el('match-prompt').textContent = p.match.prompt;
     renderMatch();
+
+    ['run', 'predict', 'debug', 'match'].forEach(renderPracticeTools);
   }
 
   function setupModeTabs() {
@@ -261,12 +378,16 @@
     try {
       var res = await runWithPy(code, m.stdin);
       showRunOutput(output, res.stdout, res.error);
-      if (res.error) setFeedback(feedback, 'error', m.errorFeedback + '（运行出错：' + res.error + '）');
-      else if (norm(res.stdout) === norm(m.expectedOutput)) setFeedback(feedback, 'success', m.successFeedback);
-      else setFeedback(feedback, 'error', m.errorFeedback);
+      renderDiff(el('run-diff'), m.expectedOutput, res.stdout, !!res.error);
+      if (res.error) setFeedback(feedback, 'error', m.errorFeedback);
+      else if (norm(res.stdout) === norm(m.expectedOutput)) {
+        setFeedback(feedback, 'success', m.successFeedback);
+        markToolDone('run');
+      } else setFeedback(feedback, 'error', m.errorFeedback);
     } catch (e) {
       output.className = 'run-output error';
       output.textContent = '⚠️ ' + e.message;
+      renderDiff(el('run-diff'), m.expectedOutput, '', true);
       setFeedback(feedback, 'error', m.errorFeedback);
     } finally { btn.disabled = false; }
   }
@@ -284,12 +405,16 @@
     try {
       var res = await runWithPy(code, m.stdin);
       showRunOutput(output, res.stdout, res.error);
-      if (res.error) setFeedback(feedback, 'error', m.errorFeedback + '（运行出错：' + res.error + '）');
-      else if (norm(res.stdout) === norm(m.expectedOutput)) setFeedback(feedback, 'success', m.successFeedback);
-      else setFeedback(feedback, 'error', m.errorFeedback);
+      renderDiff(el('debug-diff'), m.expectedOutput, res.stdout, !!res.error);
+      if (res.error) setFeedback(feedback, 'error', m.errorFeedback);
+      else if (norm(res.stdout) === norm(m.expectedOutput)) {
+        setFeedback(feedback, 'success', m.successFeedback);
+        markToolDone('debug');
+      } else setFeedback(feedback, 'error', m.errorFeedback);
     } catch (e) {
       output.className = 'run-output error';
       output.textContent = '⚠️ ' + e.message;
+      renderDiff(el('debug-diff'), m.expectedOutput, '', true);
       setFeedback(feedback, 'error', m.errorFeedback);
     } finally { btn.disabled = false; }
   }
@@ -299,13 +424,20 @@
     var host = el('predict-options');
     host.innerHTML = '';
     state.predictAnswered = false;
-    m.options.forEach(function (opt, i) {
+    // 选项随机排列，避免靠位置记忆答案
+    state.predictOrder = m.options.map(function (_, i) { return i; });
+    for (var i = state.predictOrder.length - 1; i > 0; i -= 1) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = state.predictOrder[i]; state.predictOrder[i] = state.predictOrder[j]; state.predictOrder[j] = t;
+    }
+    state.predictOrder.forEach(function (orig) {
+      var opt = m.options[orig];
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'predict-option';
-      b.dataset.index = i;
+      b.dataset.index = orig;
       b.textContent = opt.text;
-      b.addEventListener('click', function () { selectPredict(i); });
+      b.addEventListener('click', function () { selectPredict(orig); });
       host.appendChild(b);
     });
     setFeedback(el('predict-feedback'), '', '');
@@ -322,6 +454,7 @@
       state.predictAnswered = true;
       el('predict-options').querySelectorAll('.predict-option').forEach(function (o) { o.disabled = true; });
       setFeedback(feedback, 'success', opt.feedback);
+      markToolDone('predict');
     } else {
       node.classList.add('incorrect');
       node.disabled = true;
@@ -344,27 +477,46 @@
     setFeedback(el('match-feedback'), '', '');
   }
 
+  /** 配对项用 button，天然可聚焦；Enter / Space 触发，方向键在列内移动 */
+  function makeMatchButton(item, side, idx, onClick) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'match-item ' + side;
+    b.dataset.side = side;
+    b.dataset.index = idx;
+    b.textContent = item.text;
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', onClick);
+    b.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        var sibs = Array.prototype.slice.call(b.parentElement.querySelectorAll('.match-item'));
+        var cur = sibs.indexOf(b);
+        var step = (e.key === 'ArrowDown' || e.key === 'ArrowRight') ? 1 : -1;
+        var next = sibs[cur + step];
+        if (next) next.focus();
+      }
+    });
+    return b;
+  }
+
   function renderMatchColumns() {
     var left = el('match-left');
     var right = el('match-right');
     left.innerHTML = '';
     right.innerHTML = '';
     state.matchLeft.forEach(function (item, i) {
-      var node = document.createElement('div');
-      node.className = 'match-item left' + (state.matchMapping[i] != null ? ' paired' : '');
-      node.dataset.index = i;
-      node.textContent = item.text;
-      node.addEventListener('click', function () { clickMatchLeft(i); });
-      left.appendChild(node);
+      var paired = state.matchMapping[i] != null;
+      var b = makeMatchButton(item, 'left', i, function () { clickMatchLeft(i); });
+      if (paired) { b.classList.add('paired'); b.setAttribute('aria-pressed', 'true'); }
+      if (state.matchSelectedLeft === i) b.classList.add('selected');
+      left.appendChild(b);
     });
     state.matchRight.forEach(function (item, i) {
       var pairedLeft = Object.keys(state.matchMapping).find(function (k) { return state.matchMapping[k] === i; });
-      var node = document.createElement('div');
-      node.className = 'match-item right' + (pairedLeft != null ? ' paired' : '');
-      node.dataset.index = i;
-      node.textContent = item.text;
-      node.addEventListener('click', function () { clickMatchRight(i); });
-      right.appendChild(node);
+      var b = makeMatchButton(item, 'right', i, function () { clickMatchRight(i); });
+      if (pairedLeft != null) { b.classList.add('paired'); b.setAttribute('aria-pressed', 'true'); }
+      right.appendChild(b);
     });
   }
 
@@ -376,9 +528,7 @@
       return;
     }
     state.matchSelectedLeft = i;
-    el('match-left').querySelectorAll('.match-item').forEach(function (n) { n.classList.remove('selected'); });
-    var node = el('match-left').querySelector('.match-item[data-index="' + i + '"]');
-    if (node) node.classList.add('selected');
+    renderMatchColumns();
   }
 
   function clickMatchRight(i) {
@@ -400,13 +550,22 @@
       setFeedback(feedback, 'error', '请完成所有配对后再验证。');
       return;
     }
-    var allCorrect = true;
+    var wrong = [];
     for (var leftIdx = 0; leftIdx < state.matchPairs.length; leftIdx += 1) {
       var rightIdx = state.matchMapping[leftIdx];
-      if (state.matchRight[rightIdx].pairIndex !== leftIdx) allCorrect = false;
+      if (state.matchRight[rightIdx].pairIndex !== leftIdx) wrong.push(leftIdx + 1);
     }
-    setFeedback(feedback, allCorrect ? 'success' : 'error',
-      allCorrect ? '配对全部正确，本节概念已厘清。' : '还有配对不正确，对照教程中的定义再想想。');
+    // 只标注错误项，不直接给出正确配对；解析区承担讲解
+    el('match-left').querySelectorAll('.match-item').forEach(function (b) {
+      var idx = parseInt(b.dataset.index, 10);
+      b.classList.toggle('incorrect', wrong.indexOf(idx + 1) >= 0);
+    });
+    if (wrong.length === 0) {
+      setFeedback(feedback, 'success', '全部配对正确，本节概念已厘清。');
+      markToolDone('match');
+    } else {
+      setFeedback(feedback, 'error', '第 ' + wrong.join('、') + ' 项配对不成立，已标出。可查看提示或解析后重试。');
+    }
   }
 
   /* ===================== 进度标记 ===================== */
@@ -425,7 +584,7 @@
       writeCompleted(c);
       btn.textContent = '已学完 ✓';
       btn.classList.add('is-done');
-      el('complete-hint').textContent = '进度已保存。可点右上角箭头进入下一节。';
+      el('complete-hint').textContent = '进度已保存。可点上方箭头进入下一节。';
     });
   }
 
@@ -437,12 +596,14 @@
       el('run-input').value = state.lesson.practice.run.starterCode || '';
       el('run-output').className = 'run-output';
       el('run-output').textContent = '';
+      clearDiff(el('run-diff'));
       setFeedback(el('run-feedback'), '', '');
     });
     el('reset-debug').addEventListener('click', function () {
       el('debug-input').value = state.lesson.practice.debug.buggyCode || '';
       el('debug-output').className = 'run-output';
       el('debug-output').textContent = '';
+      clearDiff(el('debug-diff'));
       setFeedback(el('debug-feedback'), '', '');
     });
     el('reset-match').addEventListener('click', renderMatch);

@@ -431,3 +431,51 @@ body > .global-error { position: fixed; inset: auto var(--gutter) var(--space-xl
   .course-intro, .chapter-detail { padding: var(--space-md); }
   .course-intro__facts { gap: var(--space-lg); }
 }
+
+/* ===================== v6.1 答题方式优化 ===================== */
+.practice-badge { display: inline-flex; align-items: center; margin-bottom: var(--space-md); padding: var(--space-2xs) var(--space-md); border: 1px solid var(--color-accent-edge); border-radius: var(--radius-pill); background: var(--color-accent-wash); color: var(--color-accent); font-size: var(--text-sm); }
+
+/* 逐行差异诊断 */
+.diff-panel { margin-top: var(--space-md); border: 1px solid var(--color-rule); border-radius: var(--radius-card); background: color-mix(in oklab, var(--color-graphite) 70%, transparent); overflow: hidden; }
+.diff-panel__note { margin: 0; padding: var(--space-sm) var(--space-md); border-bottom: 1px solid var(--color-rule); font-size: var(--text-sm); color: var(--color-ink-2); }
+.diff-panel__note strong { color: var(--color-error-ink); font-family: var(--font-outlier); }
+.diff-panel.is-error .diff-panel__note { color: var(--color-error-ink); }
+.diff-head, .diff-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-sm); padding: var(--space-xs) var(--space-md); }
+.diff-head { font-size: var(--text-xs); color: var(--color-muted); font-family: var(--font-outlier); }
+.diff-rows { margin: 0; padding: 0; list-style: none; }
+.diff-row { border-top: 1px solid var(--color-rule); font-family: var(--font-outlier); font-size: var(--text-sm); line-height: 1.6; }
+.diff-row__no { color: var(--color-muted); }
+.diff-row__exp { color: var(--color-ink-2); overflow-wrap: anywhere; }
+.diff-row__act { color: var(--color-ink-2); overflow-wrap: anywhere; }
+.diff-row.is-diff { background: color-mix(in oklab, var(--color-error-ink) 8%, transparent); }
+.diff-row.is-diff .diff-row__no { color: var(--color-error-ink); }
+.diff-row.is-diff .diff-row__exp { color: var(--color-success-ink); }
+.diff-row.is-diff .diff-row__act { color: var(--color-error-ink); text-decoration: underline wavy var(--color-error-ink) 1px; text-underline-offset: 3px; }
+
+/* 分级提示与解析 */
+.practice-tools { margin-top: var(--space-md); }
+.practice-tools__row { display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
+.tool-button { min-height: 34px; padding: 0 var(--space-md); border: 1px solid var(--color-rule-2); border-radius: var(--radius-input); background: color-mix(in oklab, var(--color-paper) 70%, transparent); color: var(--color-ink-2); font-family: var(--font-body); font-size: var(--text-sm); cursor: pointer; transition: border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+.tool-button:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.tool-button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.tool-status { font-size: var(--text-sm); color: var(--color-success-ink); }
+.hint-box, .solution-box { margin-top: var(--space-sm); padding: var(--space-md) var(--space-lg); border-radius: var(--radius-input); font-size: var(--text-sm); line-height: 1.8; }
+.hint-box { border-left: 2px solid var(--color-accent); background: color-mix(in oklab, var(--color-accent) 6%, transparent); }
+.hint-box__item { margin: 0 0 var(--space-xs); color: var(--color-ink-2); }
+.hint-box__item:last-child { margin-bottom: 0; }
+.hint-box__item span { display: inline-block; margin-right: var(--space-sm); padding: 1px var(--space-xs); border-radius: var(--radius-input); background: var(--color-accent-wash); color: var(--color-accent); font-family: var(--font-outlier); font-size: var(--text-xs); }
+.solution-box { border-left: 2px solid var(--color-success-ink); background: color-mix(in oklab, var(--color-success-ink) 6%, transparent); color: var(--color-ink-2); }
+.solution-box p { margin: 0 0 var(--space-xs); }
+.solution-box p:last-child { margin-bottom: 0; }
+.solution-box__extra { color: var(--color-muted); }
+
+/* 配对项改为可聚焦按钮 */
+.match-item { text-align: left; font-family: var(--font-body); color: var(--color-ink); }
+.match-item:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.match-item.selected { box-shadow: var(--shadow-glow); }
+.match-item.incorrect { border-color: var(--color-error-ink); color: var(--color-error-ink); background: color-mix(in oklab, var(--color-error-ink) 8%, transparent); }
+.match-item[aria-pressed="true"]::after { content: " ✓"; color: var(--color-accent); }
+
+@media (max-width: 40rem) {
+  .diff-head, .diff-row { grid-template-columns: 28px minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-xs); padding-inline: var(--space-sm); font-size: var(--text-xs); }
+}

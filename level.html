@@ -63,6 +63,7 @@
           <p class="practice__lead">教程读完后，用下面四类练习检验理解。运行与改错题由浏览器内真实 Python 判定输出。</p>
         </div>
         <div class="py-status" id="py-status" hidden></div>
+        <div class="practice-badge" id="practice-badge" hidden></div>
         <div class="mode-tabs" id="mode-tabs" role="tablist" aria-label="练习类型">
           <button class="mode-tab active" data-mode="run" role="tab" aria-selected="true" type="button"><span class="mode-label">运行验证</span></button>
           <button class="mode-tab" data-mode="predict" role="tab" aria-selected="false" type="button"><span class="mode-label">预测输出</span></button>
@@ -79,7 +80,9 @@
             <button class="submit-button" id="run-code" type="button">运行并验证</button>
           </div>
           <div class="run-output" id="run-output" aria-live="polite"></div>
+          <div class="diff-panel" id="run-diff" hidden></div>
           <div class="feedback" id="run-feedback" role="status"></div>
+          <div class="practice-tools" data-mode-tools="run"></div>
         </div>
 
         <div class="mode-content" id="mode-predict">
@@ -87,6 +90,7 @@
           <pre class="code-snippet" id="predict-code"></pre>
           <div class="predict-options" id="predict-options"></div>
           <div class="feedback" id="predict-feedback" role="status"></div>
+          <div class="practice-tools" data-mode-tools="predict"></div>
         </div>
 
         <div class="mode-content" id="mode-debug">
@@ -98,7 +102,9 @@
             <button class="submit-button" id="run-debug" type="button">运行并验证</button>
           </div>
           <div class="run-output" id="debug-output" aria-live="polite"></div>
+          <div class="diff-panel" id="debug-diff" hidden></div>
           <div class="feedback" id="debug-feedback" role="status"></div>
+          <div class="practice-tools" data-mode-tools="debug"></div>
         </div>
 
         <div class="mode-content" id="mode-match">
@@ -112,6 +118,7 @@
             <button class="submit-button" id="submit-match" type="button">验证配对</button>
           </div>
           <div class="feedback" id="match-feedback" role="status"></div>
+          <div class="practice-tools" data-mode-tools="match"></div>
         </div>
       </section>
 
