@@ -12,6 +12,8 @@ node server.js          # 本地预览 http://localhost:8081/
 
 然后用浏览器打开 `http://localhost:8081/index.html`。**不要用 `file://` 直接打开**：课程数据通过 `fetch()` 加载，Pyodide 的 module worker 也要求 HTTP 环境。
 
+**分享给好友**：打开 `http://localhost:8081/share.html`，这是为分享准备的卡片页，展示课程亮点与目录；点「复制分享链接」即可把地址发给好友。部署后把 `localhost:8081` 换成站点域名。
+
 重新生成课程数据（修改教程或考点后必须执行，约 40 秒）：
 
 ```bash
@@ -78,6 +80,7 @@ data/levels.json (v5.1)   ─┘        └─→ python3 实跑校验
 
 | 文件 | 职责 |
 |---|---|
+| `share.html` + `css/share.css` | 分享落地页：深色科技风卡片，展示课程亮点与目录，可复制链接发给好友 |
 | `index.html` + `js/course.js` | 课程大纲：章节 tab、课时列表、进度统计 |
 | `level.html` + `js/lesson.js` | 课时页：教程排版、单一答题区、提示与解析、进度标记 |
 | `css/tokens.css` | 设计令牌：深色为主 + 青/电光蓝点缀，含浅色变体 |
