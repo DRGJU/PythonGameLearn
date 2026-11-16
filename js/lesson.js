@@ -12,7 +12,6 @@
   'use strict';
 
   var STORAGE_KEY = 'pycourse:completed';
-  var LAST_KEY = 'pycourse:last';
 
   var state = {
     data: null, lesson: null, id: 1,
@@ -55,9 +54,6 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch (e) {}
   }
 
-  function writeLast(id) {
-    try { localStorage.setItem(LAST_KEY, String(id)); } catch (e) {}
-  }
 
   function getLessonId() {
     var m = new URLSearchParams(window.location.search).get('lesson');
@@ -626,7 +622,6 @@
         state.id = Math.min(getLessonId(), d.lessons.length);
         state.lesson = d.lessons.find(function (l) { return l.id === state.id; });
         if (!state.lesson) throw new Error('未找到该课时');
-        writeLast(state.id);
         renderHeader();
         renderBody();
         renderToc();

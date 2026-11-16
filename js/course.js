@@ -6,7 +6,6 @@
   'use strict';
 
   var STORAGE_KEY = 'pycourse:completed';
-  var LAST_KEY = 'pycourse:last';
 
   var state = { data: null, activeChapter: 1, completed: {} };
 
@@ -22,9 +21,6 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch (e) {}
   }
 
-  function readLast() {
-    try { return parseInt(localStorage.getItem(LAST_KEY), 10) || 0; } catch (e) { return 0; }
-  }
 
   function escapeHtml(s) {
     var d = document.createElement('div');
@@ -125,13 +121,11 @@
   function renderLessonList() {
     var host = el('lessonList');
     var lessons = state.data.lessons.filter(function (l) { return l.chapterId === state.activeChapter; });
-    var last = readLast();
 
     host.innerHTML = lessons.map(function (l) {
       var done = !!state.completed[l.id];
-      var isLast = l.id === last;
       var chars = countChars(l);
-      return '<article class="lesson-card' + (done ? ' completed' : '') + (isLast ? ' resume' : '') + '" role="listitem">' +
+      return '<article class="lesson-card' + (done ? ' completed' : '') + '" role="listitem">' +
         '<a class="lesson-card__link" href="level.html?lesson=' + l.id + '">' +
           '<div class="lesson-card__no">第 ' + l.id + ' 节</div>' +
           '<h4 class="lesson-card__title">' + escapeHtml(l.title) + '</h4>' +
@@ -141,7 +135,6 @@
             '<span>' + (chars / 1000).toFixed(1) + ' 千字教程</span>' +
             '<span>' + l.blocks.filter(function (b) { return b.type === 'code'; }).length + ' 个示例</span>' +
             (done ? '<span class="lesson-card__done">已学完</span>' : '') +
-            (isLast ? '<span class="lesson-card__resume">继续学习</span>' : '') +
           '</div>' +
         '</a>' +
       '</article>';
@@ -163,9 +156,8 @@
       .then(function (d) {
         if (!d || !d.lessons || !d.chapters) throw new Error('数据格式不正确');
         state.data = d;
-        var last = readLast();
-        var found = d.lessons.find(function (l) { return l.id === last; });
-        if (found) state.activeChapter = found.chapterId;
+        // 每次打开都从第一章开始，不按上次学习位置自动跳转
+        state.activeChapter = 1;
         renderStats();
         renderChapterTabs();
         renderChapterDetail();
