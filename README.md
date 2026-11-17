@@ -89,7 +89,7 @@ data/levels.json (v5.1)   ─┘        └─→ python3 实跑校验
 | `css/tokens.css` | 设计令牌：深色为主 + 青/电光蓝点缀，含浅色变体 |
 | `css/base.css` | 基础层：深色底、固定在 `html` 上的极光与网格底纹、焦点环、reduced-motion |
 | `css/style.css` | 组件与教程排版样式 |
-| `js/py-runner.js` + `js/py-runner.worker.js` | Pyodide 封装：Web Worker、stdin 注入、输出捕获、8 秒超时终止重建 |
+| `js/py-runner.js` + `js/py-runner.worker.js` | Pyodide 封装：Web Worker、stdin 注入、输出捕获、双 CDN 自动回退、加载超时与重试、运行 8 秒超时保护 |
 | `server.js` | 零依赖本地服务器（8081） |
 
 视觉语言与同仓库外的博客「墨迹」统一为深色科技风。深浅主题由 `data-theme` 控制，`:root` 默认深色。
@@ -98,7 +98,7 @@ data/levels.json (v5.1)   ─┘        └─→ python3 实跑校验
 
 ## 已知限制
 
-- 运行与改错类练习首次使用需联网从 jsDelivr 加载 Pyodide v0.27.2（约 10 MB）；预测与配对类离线可用。
+- 运行与改错类练习首次使用需联网加载 Pyodide v0.27.2（约 9 MB）。默认从 `fastly.jsdelivr.net` 拉取，失败自动回退 `cdn.jsdelivr.net`（内容相同）；两个源都不可达时页面会显示具体错误并提供「重试加载」。预测与配对类不加载 Pyodide，可离线使用。
 - 进度只存在当前浏览器的 `localStorage`，不跨设备同步。
 - 本机无 Chromium 内核，未做浏览器像素级渲染验证；已验证范围为数据、语法、令牌引用、元素 ID 与 HTTP 资源可达性。
 - 静态文件需通过 HTTP 访问，`file://` 下 `fetch()` 与 module worker 会被浏览器拦截。
