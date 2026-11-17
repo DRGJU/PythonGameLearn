@@ -296,16 +296,33 @@
 
   function warmupPy() {
     var status = el('py-status');
-    if (!window.PyRunner) return;
+    if (!window.PyRunner) {
+      status.hidden = false;
+      status.className = 'py-status error';
+      status.textContent = 'Python 运行组件未加载，请刷新页面重试。';
+      return;
+    }
     status.hidden = false;
     status.className = 'py-status loading';
-    status.textContent = '正在加载 Python 运行环境（首次稍慢）…';
+    status.textContent = '正在加载 Python 运行环境（首次约 9 MB）…';
     window.PyRunner.ensureReady()
       .then(function () { status.hidden = true; })
-      .catch(function () {
+      .catch(function (e) {
         status.hidden = false;
         status.className = 'py-status error';
-        status.textContent = '⚠️ Python 运行环境加载失败，运行/改错类练习需联网；预测与配对不受影响，可刷新重试。';
+        status.textContent = '⚠️ ' + (e && e.message ? e.message : '加载失败') +
+          ' 预测与配对练习不受影响。';
+        var retry = document.createElement('button');
+        retry.type = 'button';
+        retry.className = 'py-retry';
+        retry.textContent = '重试加载';
+        retry.addEventListener('click', function () {
+          window.PyRunner.loadError = null;
+          window.PyRunner.initPromise = null;
+          window.PyRunner.ready = false;
+          warmupPy();
+        });
+        status.appendChild(retry);
       });
   }
 
@@ -628,7 +645,9 @@
         renderPractice();
         setupPracticeEvents();
         setupComplete();
-        warmupPy();
+        // 仅运行验证 / 找错改错需要 Pyodide；预测与配对无需下载 9MB
+        var mode = state.lesson.practice.meta.primaryMode;
+        if (mode === 'run' || mode === 'debug') warmupPy();
       })
       .catch(function (e) { showError(e.message); });
   }

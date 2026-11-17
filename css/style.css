@@ -486,3 +486,13 @@ body > .global-error { position: fixed; inset: auto var(--gutter) var(--space-xl
 .course-intro__actions .btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
 .course-intro__actions .btn:active { transform: translateY(2px); }
 .course-intro__actions .btn svg { width: 16px; height: 16px; flex: 0 0 auto; }
+
+/* Python 运行环境重试按钮 */
+.py-retry {
+  display: inline-block; margin-left: var(--space-sm); padding: 2px var(--space-sm);
+  border: 1px solid var(--color-accent-edge); border-radius: var(--radius-input);
+  background: var(--color-accent-wash); color: var(--color-accent);
+  font-family: var(--font-body); font-size: var(--text-sm); cursor: pointer;
+}
+.py-retry:hover { border-color: var(--color-accent); }
+.py-retry:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
